@@ -18,3 +18,7 @@ plus an introduction to scripts.
 
 Drawing and customizing plots, graphs, and maps, mostly using the `ggplot2` package.
 
+# License
+
+The content (including text, graphics, and other media) of this project itself is licensed under the [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/), and any underlying source code used to format and display that content, including original code examples, is licensed under the 
+MIT License.
