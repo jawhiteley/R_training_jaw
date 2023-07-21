@@ -1,0 +1,6 @@
+## Sytem files
+.DS_Store
+
+## temporary files
+.Rhistory
+.*.swp

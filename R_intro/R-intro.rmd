@@ -1,0 +1,58 @@
+---
+title: "A Gentle Introduction to R"
+author: "Jonathan Whiteley"
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+  #beamer_presentation:
+    #theme: "Boadilla"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Pop Quiz
+
++ What does 'CRAN' stand for?
++ Why is it called 'R'?
++ How can you use R _interactively_?
++ How do you find out what a function does & how to use it?
++ How do you store values to re-use later?
++ True or False: Warnings can be ignored, but an Error means I made a mistake.
++ True or False: Error messages will tell me how to fix the problem.
+
+
+## Learning Objectives
+
+* Get familiar with the R _interface_
+* Enter _commands_
+  * input & output: using R interactively
+  * use some common _functions_
+* Understand _Errors_ & _Warnings_
+* Use technical _terms_ for R concepts
+* How to get Help
+
+## Why is it called 'R'?
+
+- **`R`** started as an _open-source_ implementation of the 
+  **`S`** statistical computing language (S-PLUS)
+  - `S` was created at Bell Laboratories in 1976
+  - `R` was based on the `S` syntax (mostly v3), but works very differently "under the hood".
+- **`R`** was created by **R**oss Ihaka and **R**obert Gentleman at the University of Aukland in the early 1990s.
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+```{r}
+1 + 2
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
