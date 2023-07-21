@@ -2,45 +2,59 @@
 title: "A Gentle Introduction to R"
 author: "Jonathan Whiteley"
 date: "`r Sys.Date()`"
-output: ioslides_presentation
-  #beamer_presentation:
-    #theme: "Boadilla"
+output: 
+  beamer_presentation:
+    theme: "Boadilla"
+header-includes: |
+  \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
+  \newcommand{\R}{\texttt{R}}
+
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Pop Quiz
+# Pop Quiz
 
 + What does 'CRAN' stand for?
-+ Why is it called 'R'?
-+ How can you use R _interactively_?
++ Why is it called '$\R$'?
++ How can you use $\R$ _interactively_?
 + How do you find out what a function does & how to use it?
 + How do you store values to re-use later?
 + True or False: Warnings can be ignored, but an Error means I made a mistake.
 + True or False: Error messages will tell me how to fix the problem.
 
 
-## Learning Objectives
+# Learning Objectives
 
-* Get familiar with the R _interface_
+* Get familiar with the ![]( `r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em} _interface_
 * Enter _commands_
-  * input & output: using R interactively
+  * input & output: using $\R$ interactively
   * use some common _functions_
 * Understand _Errors_ & _Warnings_
-* Use technical _terms_ for R concepts
+* Use technical _terms_ for $\R$ concepts
 * How to get Help
 
-## Why is it called 'R'?
+# Why is it called $\Rlogo$?
 
-- **`R`** started as an _open-source_ implementation of the 
+- **$\R$** started as an _open-source_ implementation of the  
   **`S`** statistical computing language (S-PLUS)
   - `S` was created at Bell Laboratories in 1976
-  - `R` was based on the `S` syntax (mostly v3), but works very differently "under the hood".
-- **`R`** was created by **R**oss Ihaka and **R**obert Gentleman at the University of Aukland in the early 1990s.
+  - $\R$ was based on the `S` syntax (mostly v3), but works very differently "under the hood".
+- **$\R$** was created by **R**oss Ihaka and **R**obert Gentleman at the University of Aukland in the early 1990s.
 
-## Slide with R Output
+# The $\Rlogo$ Inteface
+
+- $\R$ has a slightly different interface for each **O**perating **S**ystem (OS)
+- GUI = **G**raphical **U**ser **I**nterface
+- In every case, you interact with R primarily using a _command line_
+  - aka “Question-and-Answer Model”
+  - You ask $\R$ to do something (a _command_),  
+    \qquad{} and $\R$ tells you the answer (_result_).
+  - Instructions are given to $\R$ using the _R language_.
+
+# Slide with R Output
 
 ```{r cars, echo = TRUE}
 summary(cars)
@@ -50,7 +64,7 @@ summary(cars)
 1 + 2
 ```
 
-## Slide with Plot
+# Slide with Plot
 
 ```{r pressure}
 plot(pressure)
