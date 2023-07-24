@@ -3,20 +3,21 @@ by Jonathan Whiteley
 
 # Outline
 
-The materials are designed to be offered in 3 workshops, each about 3 hours long.
+The materials are designed to be offered in 3 workshops, each about 3 hours long, allowing time for exercises, questions, and discussion.
 
 ## (A Gentle) Introduction to R
 
-Getting started, assuming no experience with programming or a command-line interface.
+Getting started with R, assuming no experience with programming or a command-line interface.
 
-## Working With Data
+## A Short Introduction to Working With Data in R
 
 Reading and writing data files, common data transformations (using the `tidyverse` family of packages),
 plus an introduction to scripts.
 
-## A Short Introduction to Data Visulization in R
+## A Short Introduction to Plotting and Data Visulization in R
 
-Drawing and customizing plots, graphs, and maps, mostly using the `ggplot2` package.
+Drawing and customizing plots, graphs, and maps, using base functions and the `ggplot2` package.
+
 
 # License
 

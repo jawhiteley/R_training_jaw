@@ -1,0 +1,14 @@
+---
+title: "A Short Introduction to Plotting and Data Visualization in R"
+author: "Jonathan Whiteley"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+---
+<!-- References 
+
+-->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+

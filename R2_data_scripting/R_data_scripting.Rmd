@@ -1,0 +1,14 @@
+---
+title: "A Short Introduction to Working With Data in R"
+author: "Jonathan Whiteley"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+---
+<!-- References 
+https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf
+-->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
