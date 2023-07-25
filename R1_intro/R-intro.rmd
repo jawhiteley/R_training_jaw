@@ -62,25 +62,49 @@ knitr::opts_chunk$set(echo = TRUE)
   - Instructions are given to $\R$ using the _R language_.
 
 
+# $\Rlogo$ is a Calculator
+
+```{=latex}
+\begin{columns}[T]
+  \begin{column}{0.5\textwidth}
+```
+```{r calculator}
+1 + 1
+2 * 2
+2^3
+```
+```{=latex}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+```
+```{r calculator2}
+10 - 1
+8 / 2
+sqrt(9)
+```
+```{=latex}
+  \end{column}
+\end{columns}
+```
+
+- These are *expressions*.
+- *Expressions* are *evaluated*, and the *result* is *returned*\
+  (sometimes *invisibly*).
+
+
 # Symbolic _Variables_
 
-- You can store values (*objects*) in symbolic variables
-(*names*) using an *assignment operator*
+- You can store values (*objects*) in symbolic variables (*names*) 
+  using an *assignment operator*
 
 |||<!-- empty header row, because most Markdown parsers require a header row -->
 |:---|-|
 |`<-`|assign the *value* on the **right** to the *name* on the **left**|
-|`->`|assign the *value* on the **left** to the *name* on the **right**|
-|`=` |assign the *value* on the **right** to the *name* on the **left**|
 
-- You can also use the `assign` *function*
-
-```{r, results='hide'}
-assign('x', 3)    # assign the value 3 to the variable ‘x’
+```{=latex}
+\begin{columns}[T]
+  \begin{column}{0.5\textwidth}
 ```
-
-
-# Variable Names
 
 - Variable names can include:
 
@@ -91,30 +115,24 @@ assign('x', 3)    # assign the value 3 to the variable ‘x’
 |periods    |`.`      |
 |underscores|`_`      |
 
-- Variable names _should begin with a letter_
+- Variable names _should begin with a **letter**_
 
-```{r, results='hide'}
+```{=latex}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+```
+```{r assignment, results='hide'}
 A <- 10
-B = 10 * 10
-log(A) -> A_log
+B <- 10 * 10
+A_log <- log(A)
 B.seq <- 1:B
+
 assign('x', 3)
 ```
-
-
-# Slide with R Output
-
-```{r cars, echo = TRUE}
-summary(cars)
+```{=latex}
+  \end{column}
+\end{columns}
 ```
 
-```{r}
-1 + 2
-```
 
-# Slide with Plot
-
-```{r pressure}
-plot(pressure)
-```
 

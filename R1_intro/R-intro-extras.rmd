@@ -31,9 +31,37 @@ c(1, 2, 3) %*% c(3, 2, 1)
 ```
 
 
-# Variable Names: Details
+# Symbolic _Variables_
 
-- Variable names containing only the following are easiest to work with:
+- You can store values (*objects*) in symbolic variables (*names*\
+  using an *assignment operator*
+
+|||<!-- empty header row, because most Markdown parsers require a header row -->
+|:---|-|
+|`->`|assign the *value* on the **left** to the *name* on the **right**|
+|`<-`|assign the *value* on the **right** to the *name* on the **left**|
+|`=` |assign the *value* on the **right** to the *name* on the **left**|
+
+- '`<-`' is preferred, because it is unambiguous\
+  (to people _and_ to $\R$)
+- '`=`' is not allowed in certain situations\
+  (e.g., when [surrounded by other expressions](https://stackoverflow.com/a/51564252))
+  - '`=`' is also used to set *argument* *values* in *function calls*,\
+  which is a different meaning and its most common use.
+
+- You can also use the `assign` *function* (advanced):
+
+```{r, results='hide'}
+assign('x', 3)    # assign the value 3 to the variable ‘x’
+```
+
+<!--
+https://stackoverflow.com/questions/1741820/what-are-the-differences-between-and-assignment-operators
+-->
+
+# Variable Names
+
+- Variable names can include:
 
 |||<!-- empty header row, because most Markdown parsers require a header row -->
 |:----------|---------|
@@ -42,31 +70,31 @@ c(1, 2, 3) %*% c(3, 2, 1)
 |periods    |`.`      |
 |underscores|`_`      |
 
-- Names can start with a **letter** or a **period** _(more on this later)_, but anything else triggers an error
+- Variable names _should begin with a letter_
 
 ```{r, results='hide'}
-myvar = T
-.myvar = T
+A <- 10
+B = 10 * 10
+log(A) -> A_log
+B.seq <- 1:B
+assign('x', 3)
+```
+
+
+# Variable Names: Details
+
+Names can start with a **letter** or a **period** _(more on this later)_
+
+```{r, results='hide'}
+myvar  <- T
+.myvar <- T
 ```
   
-These will fail:
+but anything else triggers an error
 ```{r, eval=FALSE}
-0myvar = F
-_myvar = F
-my var = F
-```
-
-
-# Variable Names: Advanced
-
-- 'Valid' names following the rules above can be referred to easily in code.
-
-- Names with any character are actually possible, but must be quoted with backticks (```)
-  - **This is not recommended practice**, but occasionally useful when you need to refer to an element of an object, such as lists and data frames, that have non-standard names.
-
-```{r}
-`(my) [strange] {variable} 'name' "!@#$"` = T
-print(`(my) [strange] {variable} 'name' "!@#$"`)
+0myvar <- F
+_myvar <- F
+my var <- F
 ```
 
 
@@ -82,4 +110,18 @@ ls(all.names = TRUE)
   - Such variables are used by packages or the system for special values that users should not interact with directly.
   - Such variables may not behave as expected with common commands, such as `ls()` (above).
   - Therefore, most users should avoid doing this unless they know what they are doing and have a good reason to do so.
+
+
+# Variable Names: Advanced
+
+- 'Valid' names following the rules above can be referred to easily in code.
+
+- Names with any character are actually possible, but must be quoted with backticks (```)
+  - **This is not recommended practice**, but occasionally useful when you need to refer to an element of an object, such as lists and data frames, that have non-standard names.
+
+```{r}
+`(my) [strange] {variable} 'name' "!@#$"` <- T
+print(`(my) [strange] {variable} 'name' "!@#$"`)
+```
+
 
