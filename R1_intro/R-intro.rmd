@@ -41,6 +41,7 @@ knitr::opts_chunk$set(echo = TRUE)
 * Use technical _terms_ for $\R$ concepts
 * How to get Help
 
+
 # Why is it called $\Rlogo$?
 
 - **$\R$** started as an _open-source_ implementation of the  
@@ -48,6 +49,7 @@ knitr::opts_chunk$set(echo = TRUE)
   - `S` was created at Bell Laboratories in 1976
   - $\R$ was based on the `S` syntax (mostly v3), but works very differently "under the hood".
 - **$\R$** was created by **R**oss Ihaka and **R**obert Gentleman at the University of Aukland in the early 1990s.
+
 
 # The $\Rlogo$ Inteface
 
@@ -59,6 +61,45 @@ knitr::opts_chunk$set(echo = TRUE)
     \qquad{} and $\R$ tells you the answer (_result_).
   - Instructions are given to $\R$ using the _R language_.
 
+
+# Symbolic _Variables_
+
+- You can store values (*objects*) in symbolic variables
+(*names*) using an *assignment operator*
+
+|||<!-- empty header row, because most Markdown parsers require a header row -->
+|:---|-|
+|`<-`|assign the *value* on the **right** to the *name* on the **left**|
+|`->`|assign the *value* on the **left** to the *name* on the **right**|
+|`=` |assign the *value* on the **right** to the *name* on the **left**|
+
+- You can also use the `assign` *function*
+
+```{r, results='hide'}
+assign('x', 3)    # assign the value 3 to the variable ‘x’
+```
+
+
+# Variable Names
+
+- Variable names can include:
+
+|||<!-- empty header row, because most Markdown parsers require a header row -->
+|:----------|---------|
+|letters    |`a-z A-Z`|
+|numbers    |`0-9`    |
+|periods    |`.`      |
+|underscores|`_`      |
+
+- Variable names _should begin with a letter_
+
+```{r, results='hide'}
+A <- 10
+B = 10 * 10
+log(A) -> A_log
+B.seq <- 1:B
+assign('x', 3)
+```
 
 
 # Slide with R Output
