@@ -8,6 +8,7 @@ output:
 header-includes: |
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
+  \setbeamertemplate{itemize item}[circle]
 
 ---
 
@@ -16,6 +17,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Pop Quiz
+
+```{=latex}
+{\footnotesize We will review these \textit{at the end}, so you can see how much you have learned.}
+```
 
 + What does 'CRAN' stand for?
 + Why is it called '$\R$'?
@@ -53,6 +58,8 @@ knitr::opts_chunk$set(echo = TRUE)
   - You ask $\R$ to do something (a _command_),  
     \qquad{} and $\R$ tells you the answer (_result_).
   - Instructions are given to $\R$ using the _R language_.
+
+
 
 # Slide with R Output
 
