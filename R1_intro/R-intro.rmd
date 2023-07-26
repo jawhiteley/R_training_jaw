@@ -90,17 +90,19 @@ https://stackoverflow.com/questions/53530985/custom-highlighting-style-in-rmarkd
 
 # The $\Rlogo$ console
 
+In this presentation, 
 
++ *commands* that can be entered in the *command-line* look like this:
 
-# $\Rlogo$ command-line tips
+```{r in_format, include=TRUE, eval=FALSE}
+Input (commands)
+```
 
-- With the cursor next to the empty prompt,  
-  use the up & down \highlight{arrow keys} to
-  re-produce previous commands
-- This lets you 
-  “scroll through your *command history*”
-- Press \highlight{up} once, and you get the last command you entered 
-  without having to copy & paste
++ Expected output (results) look like this:
+
+```{r out_format, include=TRUE, eval=TRUE, echo=FALSE}
+cat("Output (results)")
+```
 
 
 # $\Rlogo$ is a show-off
@@ -132,9 +134,20 @@ sqrt(9)
 \end{columns}
 ```
 
-- These are *expressions*.
+- These are *expressions*
 - *Expressions* are *evaluated*, and the *result* is *returned*\
-  (sometimes *invisibly*).
+  (sometimes *invisibly*)
+
+
+# $\Rlogo$ command-line tips
+
+- With the cursor next to the empty prompt (\OtherTok{\texttt{>}}),  
+  use the up & down \highlight{arrow keys} to
+  re-produce previous commands
+- This lets you 
+  “scroll through your *command history*”
+- Press \highlight{up} once, and you get the last command you entered 
+  without having to copy & paste
 
 
 # Symbolic _variables_
