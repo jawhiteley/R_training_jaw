@@ -10,8 +10,8 @@ header-includes: |
   \setbeamertemplate{itemize item}[circle]
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
-  \newcommand{\highlight}[1]{\AlertTok{#1}}
-  \newcommand{\highlightAlt}[1]{\StringTok{#1}}
+  \newcommand{\highlight}[1]{\StringTok{#1}}
+  \newcommand{\important}[1]{\AlertTok{#1}}
   \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
   \newcommand{\annote}[1]{{\footnotesize #1}}
   \newcommand{\obj}[1]{\textit{texttt{\VariableTok{#1}}}}
@@ -115,7 +115,7 @@ myvar  <- T
 .myvar <- T
 ```
   
-but anything else triggers an \highlight{error}
+but anything else triggers an \important{error}
 ```{r, eval=FALSE}
 0myvar <- F
 _myvar <- F
@@ -152,8 +152,8 @@ ls(all.names = TRUE)
 
 - 'Valid' names following the rules above can be referred to easily in code.
 
-- Names with any character are actually possible, but must be quoted with backticks (```)
-  - **This is not recommended practice**, but occasionally useful when you need to refer to an element of an object, such as lists items or data frame columns, that have non-standard names.
+- Names with any character are actually possible, but must be quoted with backticks (`` ` ``)
+  - **This is not recommended practice**, but occasionally useful when you need to refer to an element of an object, such as list items or data frame columns, that have non-standard names.
 
 ```{r}
 `(my) [strange] {variable} 'name' "!@#$"` <- T

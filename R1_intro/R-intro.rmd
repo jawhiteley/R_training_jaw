@@ -10,8 +10,8 @@ header-includes: |
   \setbeamertemplate{itemize item}[circle]
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
-  \newcommand{\highlight}[1]{\AlertTok{#1}}
-  \newcommand{\highlightAlt}[1]{\StringTok{#1}}
+  \newcommand{\highlight}[1]{\StringTok{#1}}
+  \newcommand{\important}[1]{\AlertTok{#1}}
   \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
   \newcommand{\annote}[1]{{\footnotesize #1}}
   \newcommand{\obj}[1]{\textit{texttt{\VariableTok{#1}}}}
@@ -77,15 +77,15 @@ https://stackoverflow.com/questions/53530985/custom-highlighting-style-in-rmarkd
   \OtherTok{\texttt{>}}
   - This is $\R$'s way of saying "I am ready to accept new commands".
   - Type a new command on the line after this prompt (i.e., *input*).
-- **Press \highlight{\texttt{return}}/\highlight{\texttt{enter}} to *execute* the current *command* **
+- **Press \important{\texttt{return}}/\important{\texttt{enter}} to *execute* the current *command* **
 - If the prompt looks like this:  
   \OtherTok{\texttt{+}}  
   it means the last command was _incomplete_ and $\R$ is waiting for more input.  
   $\R$ will not do anything until the command is completed or cancelled.
   - This usually means you forgot a closing\
-    *quote* \highlight{\texttt{"}}, *parenthesis* \highlight{\texttt{(}}, 
-    *bracket* \highlight{\texttt{[}}, or *brace* \highlight{\texttt{\{}}
-- \highlightAlt{You can \textit{cancel} the current command at any time by pressing \texttt{escape}} (\highlight{\texttt{esc}})
+    *quote* \important{\texttt{"}}, *parenthesis* \important{\texttt{(}}, 
+    *bracket* \important{\texttt{[}}, or *brace* \important{\texttt{\{}}
+- \highlight{You can \textit{cancel} the current command at any time by pressing \texttt{escape}} (\important{\texttt{esc}})
 
 
 # The $\Rlogo$ console
@@ -137,7 +137,7 @@ modelling & GLMs
 
 <!-- blank line (Markdown-compatible) -->\
 
-\highlightAlt{Note that \R{} will not only\\ 
+\highlight{Note that \R{} will not only\\ 
 show the output, but also\\ 
 \textit{the code used to produce it}.}
 
@@ -184,11 +184,11 @@ sqrt(9)
 # $\Rlogo$ command-line tips
 
 - With the cursor next to the empty prompt (\OtherTok{\texttt{>}}),  
-  use the up & down \highlight{arrow keys} (&uarr;&darr;) to
+  use the up & down \important{arrow keys} (&uarr;&darr;) to
   re-produce previous commands
 - This lets you 
   “scroll through your *command history*”
-- Press \highlight{up} (\highlight{$\uparrow$}) once, and you get the last command you entered 
+- Press \important{up} (\important{$\uparrow$}) once, and you get the last command you entered 
   without having to copy & paste
 
 
