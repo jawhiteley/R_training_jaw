@@ -3,24 +3,33 @@ title: "A Gentle Introduction to R"
 author: "Jonathan Whiteley"
 date: "`r Sys.Date()`"
 output: 
-  beamer_presentation:
-    theme: "Boadilla"
+  beamer_presentation: 
+    theme: Boadilla
+    keep_tex: yes
 header-includes: |
+  \setbeamertemplate{itemize item}[circle]
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
-  \setbeamertemplate{itemize item}[circle]
-
+  \newcommand{\highlight}[1]{\AlertTok{#1}}
+  \newcommand{\highlightAlt}[1]{\StringTok{#1}}
+  \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
+  \newcommand{\annote}[1]{{\footnotesize #1}}
+  \newcommand{\var}[1]{\textit{texttt{\VariableTok{#1}}}}
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r NOTES, include=FALSE, eval=FALSE}
+Tips for controlling highlighting and styles in markdown:
+https://stackoverflow.com/questions/53530985/custom-highlighting-style-in-rmarkdown 
+```
+
+
 # Pop Quiz
 
-```{=latex}
-{\footnotesize We will review these \textit{at the end}, so you can see how much you have learned.}
-```
+\annote{\fade{We will review these \textit{at the end}, so you can see how much you have learned.}}
 
 + What does 'CRAN' stand for?
 + Why is it called '$\R$'?
@@ -51,18 +60,54 @@ knitr::opts_chunk$set(echo = TRUE)
 - **$\R$** was created by **R**oss Ihaka and **R**obert Gentleman at the University of Aukland in the early 1990s.
 
 
-# The $\Rlogo$ Inteface
+# The $\Rlogo$ inteface
 
 - $\R$ has a slightly different interface for each **O**perating **S**ystem (OS)
-- GUI = **G**raphical **U**ser **I**nterface
+  - GUI = **G**raphical **U**ser **I**nterface
 - In every case, you interact with R primarily using a _command line_
   - aka “Question-and-Answer Model”
-  - You ask $\R$ to do something (a _command_),  
-    \qquad{} and $\R$ tells you the answer (_result_).
-  - Instructions are given to $\R$ using the _R language_.
+  - You ask $\R$ to do something (a *command*),  
+    \qquad{} and $\R$ tells you the answer (*result*).
+  - Instructions are given to $\R$ using the *R language*.
 
 
-# $\Rlogo$ is a Calculator
+# The $\Rlogo$ command-line
+
+- The command *prompt* normally looks like this:  
+  \OtherTok{\texttt{>}}
+  - This is $\R$'s way of saying "I am ready to accept new commands".
+  - Type a new command on the line after this prompt (i.e., *input*).
+- **Press \highlight{\texttt{return}}/\highlight{\texttt{enter}} to *execute* the current *command* **
+- If the prompt looks like this:  
+  \OtherTok{\texttt{+}}  
+  it means the last command was _incomplete_ and $\R$ is waiting for more input.  
+  $\R$ will not do anything until the command is completed or cancelled.
+  - This usually means you forgot a closing\
+    *quote* \highlight{\texttt{"}}, *parenthesis* \highlight{\texttt{(}}, 
+    *bracket* \highlight{\texttt{[}}, or *brace* \highlight{\texttt{\{}}
+- \highlightAlt{You can \textit{cancel} the current command at any time by pressing \texttt{escape}} (\highlight{\texttt{esc}})
+
+
+# The $\Rlogo$ console
+
+
+
+# $\Rlogo$ command-line tips
+
+- With the cursor next to the empty prompt,  
+  use the up & down \highlight{arrow keys} to
+  re-produce previous commands
+- This lets you 
+  “scroll through your *command history*”
+- Press \highlight{up} once, and you get the last command you entered 
+  without having to copy & paste
+
+
+# $\Rlogo$ is a show-off
+
+
+
+# $\Rlogo$ is a calculator
 
 ```{=latex}
 \begin{columns}[T]
@@ -92,14 +137,22 @@ sqrt(9)
   (sometimes *invisibly*).
 
 
-# Symbolic _Variables_
+# Symbolic _variables_
 
 - You can store values (*objects*) in symbolic variables (*names*) 
   using an *assignment operator*
 
-|||<!-- empty header row, because most Markdown parsers require a header row -->
-|:---|-|
-|`<-`|assign the *value* on the **right** to the *name* on the **left**|
+```{=latex}
+% Latex table, because I want to use LaTeX commands to format text,
+% which somehow causes extra space in the tex output, if used in a Markdown table.
+\begin{longtable}[c]{@{}ll@{}}
+\toprule()
+\endhead
+\OperatorTok{\texttt{\textless{}-}} & assign the \emph{value} on the \textbf{right} to
+the \emph{name} on the \textbf{left} \\
+\bottomrule()
+\end{longtable}
+```
 
 ```{=latex}
 \begin{columns}[T]
@@ -110,12 +163,12 @@ sqrt(9)
 
 |||<!-- empty header row, because most Markdown parsers require a header row -->
 |:----------|---------|
-|letters    |`a-z A-Z`|
-|numbers    |`0-9`    |
-|periods    |`.`      |
-|underscores|`_`      |
+|letters    |\StringTok{\texttt{a-z A-Z}}|
+|numbers    |\StringTok{\texttt{0-9}}    |
+|periods    |\StringTok{\texttt{.}}      |
+|underscores|\StringTok{\texttt{\_}}     |
 
-- Variable names _should begin with a **letter**_
+- Variable names _should begin with a **\StringTok{letter}**_
 
 ```{=latex}
   \end{column}
