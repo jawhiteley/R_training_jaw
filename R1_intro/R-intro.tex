@@ -145,7 +145,7 @@
 \newcommand{\highlightAlt}[1]{\StringTok{#1}}
 \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
 \newcommand{\annote}[1]{{\footnotesize #1}}
-\newcommand{\var}[1]{\textit{texttt{\VariableTok{#1}}}}
+\newcommand{\obj}[1]{\textit{texttt{\VariableTok{#1}}}}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -348,9 +348,45 @@ In this presentation,
 \end{verbatim}
 \end{frame}
 
-\begin{frame}{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
+\begin{frame}[fragile]{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 is a show-off}
 \protect\hypertarget{includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-is-a-show-off}{}
+\begin{columns}[T]
+  \begin{column}{0.5\textwidth}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{demo}\NormalTok{(graphics)}
+\FunctionTok{demo}\NormalTok{(image)}
+\FunctionTok{demo}\NormalTok{(lm.glm)}
+\FunctionTok{demo}\NormalTok{()}
+
+\FunctionTok{help.start}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+  \end{column}
+  \begin{column}{0.5\textwidth}
+
+\begin{itemize}
+\item
+  some plots and graphs that can be made using \(\texttt{R}\)
+\item
+  images and other graphics made using \(\texttt{R}\)
+\item
+  a demonstration of linear modelling \& GLMs
+\item
+  a list of available demos
+\end{itemize}
+
+\hfill\break
+
+\StringTok{Note that \texttt{R}{} will not only\\ 
+show the output, but also\\ 
+\textit{the code used to produce it}.}
+
+  \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
@@ -443,13 +479,13 @@ command-line tips}
 \tightlist
 \item
   With the cursor next to the empty prompt (\OtherTok{\texttt{>}}),\\
-  use the up \& down \AlertTok{arrow keys} to re-produce previous
+  use the up \& down \AlertTok{arrow keys} (↑↓) to re-produce previous
   commands
 \item
   This lets you ``scroll through your \emph{command history}''
 \item
-  Press \AlertTok{up} once, and you get the last command you entered
-  without having to copy \& paste
+  Press \AlertTok{up} (\AlertTok{$\uparrow$}) once, and you get the last
+  command you entered without having to copy \& paste
 \end{itemize}
 \end{frame}
 
@@ -478,7 +514,7 @@ the \emph{name} on the \textbf{left} \\
 \begin{itemize}
 \tightlist
 \item
-  Variable names can include:
+  Names can include:
 \end{itemize}
 
 \begin{longtable}[]{@{}ll@{}}
@@ -494,7 +530,7 @@ underscores & \StringTok{\texttt{\_}} \\
 \begin{itemize}
 \tightlist
 \item
-  Variable names \emph{should begin with a \textbf{\StringTok{letter}}}
+  Names \emph{should begin with a \textbf{\StringTok{letter}}}
 \end{itemize}
 
   \end{column}
@@ -513,6 +549,48 @@ underscores & \StringTok{\texttt{\_}} \\
 
   \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{References \& More Information}
+\protect\hypertarget{references-more-information}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{help.start}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  \href{https://cran.r-project.org/doc/manuals/r-release/R-intro.html}{An
+  Introduction to R}
+\item
+  \href{https://cran.r-project.org/doc/manuals/r-release/R-lang.html}{The
+  R Language Definition}
+\item
+  \href{https://r-project.org/}{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)}
+  \href{https://cran.r-project.org/manuals.html}{Manuals}
+  (\url{https://cran.r-project.org/manuals.html})
+\item
+  \(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
+  \href{https://cran.r-project.org/other-docs.html}{Contributed
+  Documentation}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    e.g., \url{http://cran.r-project.org/doc/contrib/usingR.pdf}
+  \end{itemize}
+\item
+  Internet search
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://stackoverflow.com/questions/tagged/r}{Stack Overflow}
+  \item
+    \href{http://www.cookbook-r.com/}{Cookbook for R}
+  \end{itemize}
+\end{itemize}
 \end{frame}
 
 \end{document}

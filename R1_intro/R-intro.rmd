@@ -14,7 +14,7 @@ header-includes: |
   \newcommand{\highlightAlt}[1]{\StringTok{#1}}
   \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
   \newcommand{\annote}[1]{{\footnotesize #1}}
-  \newcommand{\var}[1]{\textit{texttt{\VariableTok{#1}}}}
+  \newcommand{\obj}[1]{\textit{texttt{\VariableTok{#1}}}}
 ---
 
 ```{r setup, include=FALSE}
@@ -107,7 +107,49 @@ cat("Output (results)")
 
 # $\Rlogo$ is a show-off
 
+```{=latex}
+\begin{columns}[T]
+  \begin{column}{0.5\textwidth}
+```
+```{r showoff, eval=FALSE}
+demo(graphics)
+demo(image)
+demo(lm.glm)
+demo()
 
+help.start()
+```
+```{=latex}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+```
+
+- some plots and graphs
+that can be made using $\R$
+
+- images and other graphics
+made using $\R$
+
+- a demonstration of linear
+modelling & GLMs
+
+- a list of available demos
+
+<!-- blank line (Markdown-compatible) -->\
+
+\highlightAlt{Note that \R{} will not only\\ 
+show the output, but also\\ 
+\textit{the code used to produce it}.}
+
+```{=latex}
+  \end{column}
+\end{columns}
+```
+
+<!-- Overlay arrows:
+https://www.overleaf.com/latex/templates/beamer-arrows/wmqkckggvjsd
+https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specified-position-in-a-frame-and-write-some-notes-on
+-->
 
 # $\Rlogo$ is a calculator
 
@@ -142,15 +184,17 @@ sqrt(9)
 # $\Rlogo$ command-line tips
 
 - With the cursor next to the empty prompt (\OtherTok{\texttt{>}}),  
-  use the up & down \highlight{arrow keys} to
+  use the up & down \highlight{arrow keys} (&uarr;&darr;) to
   re-produce previous commands
 - This lets you 
   “scroll through your *command history*”
-- Press \highlight{up} once, and you get the last command you entered 
+- Press \highlight{up} (\highlight{$\uparrow$}) once, and you get the last command you entered 
   without having to copy & paste
 
 
 # Symbolic _variables_
+<!-- variables vs objects?  Objects vs names?  
+In R, everything is an _object_, which have names -->
 
 - You can store values (*objects*) in symbolic variables (*names*) 
   using an *assignment operator*
@@ -172,7 +216,7 @@ the \emph{name} on the \textbf{left} \\
   \begin{column}{0.5\textwidth}
 ```
 
-- Variable names can include:
+- Names can include:
 
 |||<!-- empty header row, because most Markdown parsers require a header row -->
 |:----------|---------|
@@ -181,7 +225,7 @@ the \emph{name} on the \textbf{left} \\
 |periods    |\StringTok{\texttt{.}}      |
 |underscores|\StringTok{\texttt{\_}}     |
 
-- Variable names _should begin with a **\StringTok{letter}**_
+- Names _should begin with a **\StringTok{letter}**_
 
 ```{=latex}
   \end{column}
@@ -201,4 +245,26 @@ assign('x', 3)
 ```
 
 
+# References & More Information
 
+```{r, eval=FALSE}
+help.start()
+```
+  - [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
+  - [The R Language Definition](https://cran.r-project.org/doc/manuals/r-release/R-lang.html)
+
++ [$\Rlogo$](https://r-project.org/) [Manuals](https://cran.r-project.org/manuals.html)
+  (<https://cran.r-project.org/manuals.html>)
+
++ $\Rlogo$ [Contributed Documentation](https://cran.r-project.org/other-docs.html)
+  - e.g., <http://cran.r-project.org/doc/contrib/usingR.pdf>
+
++ Internet search
+  - [Stack Overflow](https://stackoverflow.com/questions/tagged/r)
+  - [Cookbook for R](http://www.cookbook-r.com/)
+
+<!-- deprecated (these are 10+ years old, but they helped me learn)
++ Books
+  - [A Beginner's Guide to R](https://link.springer.com/book/10.1007/978-0-387-93837-0)
+  - [Introductory Statistics with R](https://link.springer.com/book/10.1007/978-0-387-79054-1)
+-->
