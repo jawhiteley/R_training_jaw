@@ -134,6 +134,7 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -160,7 +161,7 @@
 
 \title{A Gentle Introduction to R}
 \author{Jonathan Whiteley}
-\date{2023-07-26}
+\date{2023-08-03}
 
 \begin{document}
 \frame{\titlepage}
@@ -216,9 +217,9 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Why is it called
+\begin{frame}[fragile]{Why is it named
 \(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)?}
-\protect\hypertarget{why-is-it-called-includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg}{}
+\protect\hypertarget{why-is-it-named-includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg}{}
 \begin{itemize}
 \tightlist
 \item
@@ -235,9 +236,9 @@
     works very differently ``under the hood''.
   \end{itemize}
 \item
-  \textbf{\(\texttt{R}\)} was created by \textbf{R}oss Ihaka and
-  \textbf{R}obert Gentleman at the University of Aukland in the early
-  1990s.
+  \textbf{\(\texttt{R}\)} was created by \uline{\textbf{R}}oss Ihaka and
+  \uline{\textbf{R}}obert Gentleman at the University of Aukland in the
+  early 1990s.
 \end{itemize}
 \end{frame}
 
@@ -356,23 +357,27 @@ is a show-off}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{demo}\NormalTok{(graphics)}
-\FunctionTok{demo}\NormalTok{(image)}
-\FunctionTok{demo}\NormalTok{(lm.glm)}
-\FunctionTok{demo}\NormalTok{()}
+\FunctionTok{demo}\NormalTok{(graphics)  }\CommentTok{\# }
+\FunctionTok{demo}\NormalTok{(image)     }\CommentTok{\# }
+\FunctionTok{demo}\NormalTok{(lm.glm)    }\CommentTok{\# }
+\FunctionTok{demo}\NormalTok{()          }\CommentTok{\# }
 
-\FunctionTok{help.start}\NormalTok{()}
+\FunctionTok{help.start}\NormalTok{()    }\CommentTok{\#}
 \end{Highlighting}
 \end{Shaded}
+
+A great place to start, especially if you are comfortable reading
+documentation for a programming language.\\
+More on this later.
 
   \end{column}
   \begin{column}{0.5\textwidth}
 
 \begin{itemize}
 \item
-  some plots and graphs that can be made using \(\texttt{R}\)
+  some plots and graphs that can be made with \(\texttt{R}\)
 \item
-  images and other graphics made using \(\texttt{R}\)
+  image-like graphics and maps that can be made with \(\texttt{R}\)
 \item
   a demonstration of linear modelling \& GLMs
 \item
@@ -393,8 +398,7 @@ show the output, but also\\
 is a calculator}
 \protect\hypertarget{includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-is-a-calculator}{}
 \begin{columns}[T]
-  \begin{column}{0.5\textwidth}
-
+\begin{column}{0.5\textwidth}
 \begin{Shaded}
 \begin{Highlighting}[]
 \DecValTok{1} \SpecialCharTok{+} \DecValTok{1}
@@ -424,10 +428,9 @@ is a calculator}
 \begin{verbatim}
 ## [1] 8
 \end{verbatim}
+\end{column}
 
-  \end{column}
-  \begin{column}{0.5\textwidth}
-
+\begin{column}{0.5\textwidth}
 \begin{Shaded}
 \begin{Highlighting}[]
 \DecValTok{10} \SpecialCharTok{{-}} \DecValTok{1}
@@ -457,8 +460,7 @@ is a calculator}
 \begin{verbatim}
 ## [1] 3
 \end{verbatim}
-
-  \end{column}
+\end{column}
 \end{columns}
 
 \begin{itemize}
@@ -470,6 +472,33 @@ is a calculator}
   \emph{returned}\\
   (sometimes \emph{invisibly})
 \end{itemize}
+
+\note{The bullet points are accurate, but I note that the
+\href{https://cran.r-project.org/doc/manuals/r-release/R-lang.html}{R
+Language Definition} distinguishes between `expressions', which are
+actually a type of object, and `statements' (see s2.1.3 `Language
+objects', s2.1.4 `Expression objects'):
+
+\begin{itemize}
+\tightlist
+\item
+  An \emph{expression} \[object?\] contains one or more statements.
+\item
+  A statement is a syntactically correct collection of tokens.
+\item
+  Expression objects are special language objects which contain parsed
+  but unevaluated R statements.
+\item
+  ``an expression object can contain several such expressions'' (not
+  clear)
+\end{itemize}
+
+Therefore, my understanding is that a \emph{statement} is parsed (by the
+R parser), which results in an unevaluated \emph{expression}, which can
+in turn be evaluated (by `the evaluator', such as \texttt{eval()}) to
+return the \emph{value}.
+
+``All expressions have a value.'' (s3 `Evaluation of expressions')}
 \end{frame}
 
 \begin{frame}{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)

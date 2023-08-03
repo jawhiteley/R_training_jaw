@@ -22,6 +22,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r NOTES, include=FALSE, eval=FALSE}
+https://pandoc.org/MANUAL.html#pandocs-markdown
+https://pandoc.org/MANUAL.html#slide-shows
+https://pandoc.org/MANUAL.html#custom-styles
+
 Tips for controlling highlighting and styles in markdown:
 https://stackoverflow.com/questions/53530985/custom-highlighting-style-in-rmarkdown 
 
@@ -56,13 +60,13 @@ https://quarto.org/docs/authoring/markdown-basics.html
 * How to get Help
 
 
-# Why is it called $\Rlogo$?
+# Why is it named $\Rlogo$?
 
 - **$\R$** started as an _open-source_ implementation of the  
   **`S`** statistical computing language (S-PLUS)
   - `S` was created at Bell Laboratories in 1976
   - $\R$ was based on the `S` syntax (mostly v3), but works very differently "under the hood".
-- **$\R$** was created by **R**oss Ihaka and **R**obert Gentleman at the University of Aukland in the early 1990s.
+- **$\R$** was created by [**R**]{.underline}oss Ihaka and [**R**]{.underline}obert Gentleman at the University of Aukland in the early 1990s.
 
 
 # The $\Rlogo$ inteface
@@ -117,26 +121,29 @@ cat("Output (results)")
   \begin{column}{0.5\textwidth}
 ```
 ```{r showoff, eval=FALSE}
-demo(graphics)
-demo(image)
-demo(lm.glm)
-demo()
+demo(graphics)  # 
+demo(image)     # 
+demo(lm.glm)    # 
+demo()          # 
 
-help.start()
+help.start()    #
 ```
+
+A great place to start, 
+especially if you are comfortable reading 
+documentation for a programming language.  
+More on this later.
+
 ```{=latex}
   \end{column}
   \begin{column}{0.5\textwidth}
 ```
 
-- some plots and graphs
-that can be made using $\R$
+- some plots and graphs that can be made with $\R$
 
-- images and other graphics
-made using $\R$
+- image-like graphics and maps that can be made with $\R$
 
-- a demonstration of linear
-modelling & GLMs
+- a demonstration of linear modelling & GLMs
 
 - a list of available demos
 
@@ -158,33 +165,52 @@ https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specifi
 
 # $\Rlogo$ is a calculator
 
-```{=latex}
-\begin{columns}[T]
-  \begin{column}{0.5\textwidth}
-```
+:::::: {.columns}
+::: {.column width="50%"}
+
 ```{r calculator}
 1 + 1
 2 * 2
 2^3
 ```
-```{=latex}
-  \end{column}
-  \begin{column}{0.5\textwidth}
-```
+
+:::
+::: {.column width="50%"}
+
 ```{r calculator2}
 10 - 1
 8 / 2
 sqrt(9)
 ```
-```{=latex}
-  \end{column}
-\end{columns}
-```
+
+:::
+::::::
 
 - These are *expressions*
 - *Expressions* are *evaluated*, and the *result* is *returned*\
   (sometimes *invisibly*)
 
+::: notes
+
+The bullet points are accurate, but I note that the 
+[R Language Definition](https://cran.r-project.org/doc/manuals/r-release/R-lang.html)
+distinguishes between 'expressions', which are actually a type of object,
+and 'statements' (see s2.1.3 'Language objects', s2.1.4 'Expression objects'):
+
+- An *expression* \[object?\] contains one or more statements.
+- A statement is a syntactically correct collection of tokens.
+- Expression objects are special language objects which contain parsed but unevaluated R statements. 
+- "an expression object can contain several such expressions" (not clear)
+
+Therefore, my understanding is
+that a *statement* is parsed (by the R parser),
+which results in an unevaluated *expression*,
+which can in turn be evaluated (by 'the evaluator', such as `eval()`)
+to return the *value*.
+
+"All expressions have a value." (s3 'Evaluation of expressions')
+
+:::
 
 # $\Rlogo$ command-line tips
 
