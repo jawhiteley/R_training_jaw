@@ -24,6 +24,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r NOTES, include=FALSE, eval=FALSE}
 Tips for controlling highlighting and styles in markdown:
 https://stackoverflow.com/questions/53530985/custom-highlighting-style-in-rmarkdown 
+
+Quarto Pandoc Markdown, with native support for flowcharts and diagrams
+https://quarto.org/docs/authoring/markdown-basics.html
+  + Can I define global 'styles' with options for different output formats, 
+    and reduce the amount of custom LaTeX?
 ```
 
 
