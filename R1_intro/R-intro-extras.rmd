@@ -40,13 +40,14 @@ c(1, 2, 3) %*% c(3, 2, 1)
 
 - You can store values (*objects*) in symbolic variables (*names*)\
   using an *assignment operator*
-<!--
-||| empty header row, because most Markdown parsers require a header row 
-|:---|-|
-|`->`|assign the *value* on the **left** to the *name* on the **right**|
-|`<-`|assign the *value* on the **right** to the *name* on the **left**|
-|`=` |assign the *value* on the **right** to the *name* on the **left**|
--->
+
+-------- ------------------------------------------------------------------
+`->`{.r} assign the *value* on the **left** to the *name* on the **right**
+`<-`{.r} assign the *value* on the **right** to the *name* on the **left**
+`=`{.r}  assign the *value* on the **right** to the *name* on the **left**
+---------------------------------------------------------------------------
+
+<!-- pure latex table, with custom latex formatting commands (less portable)
 ```{=latex}
 % Latex table, because I want to use LaTeX commands to format text,
 % which somehow causes extra space in the tex output, if used in a Markdown table.
@@ -62,12 +63,13 @@ the \emph{name} on the \textbf{left} \\
 \bottomrule()
 \end{longtable}
 ```
-
-- '`<-`' is preferred, because it is unambiguous\
+-->
+ 
+- '`<-`{.r}' is preferred, because it is unambiguous\
   (to people _and_ to $\R$)
-- '`=`' is not allowed in certain situations\
+- '`=`{.r}' is not allowed in certain situations\
   (e.g., when [surrounded by other expressions](https://stackoverflow.com/a/51564252))
-  - '`=`' is also used to set *argument* *values* in *function calls*,\
+  - '`=`{.r}' is also used to set *argument* *values* in *function calls*,\
   which is a different meaning and its most common use.
 
 - You can also use the `assign` *function* (advanced):

@@ -44,21 +44,18 @@
   \frame{\subsectionpage}
 }
 \usepackage{amsmath,amssymb}
+\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math} % this also loads fontspec
+  \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-\usepackage{lmodern}
 \usetheme[]{Boadilla}
-\ifPDFTeX\else
-  % xetex/luatex font selection
-\fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \IfFileExists{microtype.sty}{% use microtype if available
@@ -88,13 +85,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -102,7 +99,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -111,7 +108,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -137,13 +134,13 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\usepackage{soul}
+\usepackage[normalem]{ulem}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \setbeamertemplate{itemize item}[circle]
-\newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
+\newcommand{\Rlogo}{\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
 \newcommand{\highlight}[1]{\StringTok{#1}}
 \newcommand{\important}[1]{\AlertTok{#1}}
@@ -155,7 +152,7 @@
 \fi
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same}
+\urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={A Gentle Introduction to R},
   pdfauthor={Jonathan Whiteley},
@@ -199,7 +196,7 @@
 \tightlist
 \item
   Get familiar with the
-  \includegraphics[width=\textwidth,height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}
+  \includegraphics[width=\textwidth,height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}
   \emph{interface}
 \item
   Enter \emph{commands}
@@ -221,8 +218,8 @@
 \end{frame}
 
 \begin{frame}[fragile]{Why is it named
-\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)?}
-\protect\hypertarget{why-is-it-named-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg}{}
+\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)?}
+\protect\hypertarget{why-is-it-named-includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg}{}
 \begin{itemize}
 \tightlist
 \item
@@ -239,16 +236,16 @@
     works very differently ``under the hood''.
   \end{itemize}
 \item
-  \textbf{\(\texttt{R}\)} was created by \ul{\textbf{R}}oss Ihaka and
-  \ul{\textbf{R}}obert Gentleman at the University of Aukland in the
+  \textbf{\(\texttt{R}\)} was created by \uline{\textbf{R}}oss Ihaka and
+  \uline{\textbf{R}}obert Gentleman at the University of Aukland in the
   early 1990s.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{The
-\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 inteface}
-\protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-inteface}{}
+\protect\hypertarget{the-includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-inteface}{}
 \begin{itemize}
 \tightlist
 \item
@@ -279,9 +276,9 @@ inteface}
 \end{frame}
 
 \begin{frame}{The
-\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 command-line}
-\protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-command-line}{}
+\protect\hypertarget{the-includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-command-line}{}
 \begin{itemize}
 \tightlist
 \item
@@ -323,9 +320,9 @@ command-line}
 \end{frame}
 
 \begin{frame}[fragile]{The
-\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 console}
-\protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-console}{}
+\protect\hypertarget{the-includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-console}{}
 In this presentation,
 
 \begin{itemize}
@@ -352,9 +349,9 @@ In this presentation,
 \end{verbatim}
 \end{frame}
 
-\begin{frame}[fragile]{\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\begin{frame}[fragile]{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 is a show-off}
-\protect\hypertarget{includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-is-a-show-off}{}
+\protect\hypertarget{includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-is-a-show-off}{}
 \begin{columns}[T]
 \begin{column}{0.3\textwidth}
 \begin{Shaded}
@@ -403,7 +400,7 @@ is a show-off}
 \end{column}
 
 \begin{column}{0.7\textwidth}
-a line of plain text.
+\texttt{a\ line\ of\ monospace\ text.}
 \end{column}
 \end{columns}
 
@@ -422,7 +419,6 @@ Text with
 \end{column}
 \end{columns}
 
-\hfill\break
 \hfill\break
 
 \begin{columns}[T]
@@ -467,9 +463,9 @@ show the output, but also\\
 \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\begin{frame}[fragile]{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 is a calculator}
-\protect\hypertarget{includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-is-a-calculator}{}
+\protect\hypertarget{includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-is-a-calculator}{}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \begin{Shaded}
@@ -567,16 +563,16 @@ objects', s2.1.4 `Expression objects'):
 \end{itemize}
 
 Therefore, my understanding is that a \emph{statement} is parsed (by the
-R parser), which results in an unevaluated \emph{expression}, which can
-in turn be evaluated (by `the evaluator', such as \texttt{eval()}) to
-return the \emph{value}.
+R parser), which results in an unevaluated \emph{expression} (an object
+of mode ``expression''), which can in turn be evaluated (by `the
+evaluator', such as \texttt{eval()}) to return the \emph{value}.
 
 ``All expressions have a value.'' (s3 `Evaluation of expressions')}
 \end{frame}
 
-\begin{frame}{\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\begin{frame}{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 command-line tips}
-\protect\hypertarget{includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-command-line-tips}{}
+\protect\hypertarget{includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-command-line-tips}{}
 \begin{itemize}
 \tightlist
 \item
@@ -600,19 +596,16 @@ command-line tips}
   (\emph{names}) using an \emph{assignment operator}
 \end{itemize}
 
-% Latex table, because I want to use LaTeX commands to format text,
-% which somehow causes extra space in the tex output, if used in a Markdown table.
-\begin{longtable}[c]{@{}ll@{}}
+\begin{longtable}[]{@{}ll@{}}
 \toprule()
 \endhead
-\OperatorTok{\texttt{\textless{}-}} & assign the \emph{value} on the \textbf{right} to
-the \emph{name} on the \textbf{left} \\
+\VERB|\OtherTok{\textless{}{-}}| & assign the \emph{value} on the
+\textbf{right} to the \emph{name} on the \textbf{left} \\
 \bottomrule()
 \end{longtable}
 
 \begin{columns}[T]
-  \begin{column}{0.5\textwidth}
-
+\begin{column}{0.5\textwidth}
 \begin{itemize}
 \tightlist
 \item
@@ -620,13 +613,13 @@ the \emph{name} on the \textbf{left} \\
 \end{itemize}
 
 \begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
+\toprule()
 \endhead
 letters & \StringTok{\texttt{a-z A-Z}} \\
 numbers & \StringTok{\texttt{0-9}} \\
 periods & \StringTok{\texttt{.}} \\
 underscores & \StringTok{\texttt{\_}} \\
-\bottomrule\noalign{}
+\bottomrule()
 \end{longtable}
 
 \begin{itemize}
@@ -634,10 +627,9 @@ underscores & \StringTok{\texttt{\_}} \\
 \item
   Names \emph{should begin with a \textbf{\StringTok{letter}}}
 \end{itemize}
+\end{column}
 
-  \end{column}
-  \begin{column}{0.5\textwidth}
-
+\begin{column}{0.5\textwidth}
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{A }\OtherTok{\textless{}{-}} \DecValTok{10}
@@ -648,8 +640,7 @@ underscores & \StringTok{\texttt{\_}} \\
 \FunctionTok{assign}\NormalTok{(}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{, }\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-  \end{column}
+\end{column}
 \end{columns}
 \end{frame}
 
@@ -669,11 +660,11 @@ underscores & \StringTok{\texttt{\_}} \\
   \href{https://cran.r-project.org/doc/manuals/r-release/R-lang.html}{The
   R Language Definition}
 \item
-  \href{https://r-project.org/}{\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)}
+  \href{https://r-project.org/}{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)}
   \href{https://cran.r-project.org/manuals.html}{Manuals}
   (\url{https://cran.r-project.org/manuals.html})
 \item
-  \(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+  \(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
   \href{https://cran.r-project.org/other-docs.html}{Contributed
   Documentation}
 
