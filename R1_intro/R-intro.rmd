@@ -8,6 +8,8 @@ output:
     keep_tex: yes
 header-includes: |
   \setbeamertemplate{itemize item}[circle]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta}
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
   \newcommand{\highlight}[1]{\StringTok{#1}}
@@ -213,6 +215,7 @@ demo()          #
 help.start()    #
 ```
 
+\tikz[remember picture]{ \node (n1) {};}\
 A great place to start, 
 especially if you are comfortable reading 
 documentation for a programming language.  
@@ -229,20 +232,29 @@ More on this later.
 
 - a list of available demos
 
-<!-- blank line (Markdown-compatible) -->\
+\
 
-\highlight{Note that \R{} will not only\\ 
-show the output, but also\\ 
-\textit{the code used to produce it}.}
+## Note
+
+\R{} will not only\ 
+show the output, but also\ 
+_the code used to produce it_.
 
 :::
 ::::::
 
 
 <!-- Overlay arrows:
+https://tikz.dev/tikz-arrows
 https://www.overleaf.com/latex/templates/beamer-arrows/wmqkckggvjsd
 https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specified-position-in-a-frame-and-write-some-notes-on
+https://tex.stackexchange.com/questions/347492/how-can-i-draw-arrows-from-items-to-a-picture-in-beamer
+https://tex.stackexchange.com/questions/9559/drawing-on-an-image-wit%E2%80%8C%E2%80%8Bh-tikz/
 -->
+
+\begin{tikzpicture}[remember picture, overlay]
+  \draw [ultra thick, gray, -{Latex}] (n1.south) -- ++(0,5ex);
+\end{tikzpicture}
 
 <!--
 The descriptions in this section could be entered as comments directly in the code block.
@@ -315,7 +327,7 @@ to return the *value*.
 
 # Symbolic _variables_
 <!-- variables vs objects?  Objects vs names?  
-In R, everything is an _object_, which have names -->
+In R, everything is an _object_, and each has a name -->
 
 - You can store values (*objects*) in symbolic variables (*names*) 
   using an *assignment operator*

@@ -140,6 +140,8 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \setbeamertemplate{itemize item}[circle]
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
 \newcommand{\Rlogo}{\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
 \newcommand{\highlight}[1]{\StringTok{#1}}
@@ -468,6 +470,7 @@ is a show-off (2)}
 \end{Highlighting}
 \end{Shaded}
 
+\tikz[remember picture]{ \node (n1) {};}\\
 A great place to start, especially if you are comfortable reading
 documentation for a programming language.\\
 More on this later.
@@ -487,11 +490,17 @@ More on this later.
 
 \hfill\break
 
-\StringTok{Note that \texttt{R}{} will not only\\ 
-show the output, but also\\ 
-\textit{the code used to produce it}.}
+\begin{block}{Note}
+\protect\hypertarget{note}{}
+\texttt{R}{} will not only~ show the output, but also~ \emph{the code
+used to produce it}.
+\end{block}
 \end{column}
 \end{columns}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \draw [ultra thick, gray, -{Latex}] (n1.south) -- ++(0,5ex);
+\end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
