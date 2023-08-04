@@ -30,9 +30,11 @@ Tips for controlling highlighting and styles in markdown:
 https://stackoverflow.com/questions/53530985/custom-highlighting-style-in-rmarkdown 
 
 Quarto Pandoc Markdown, with native support for flowcharts and diagrams
+and other extensions (like callouts and code annotation):
 https://quarto.org/docs/authoring/markdown-basics.html
-  + Can I define global 'styles' with options for different output formats, 
-    and reduce the amount of custom LaTeX?
+
++ Can I define global 'styles' with options for different output formats, 
+  and reduce the amount of custom LaTeX?
 ```
 
 
@@ -157,7 +159,7 @@ demo()
 ```
 :::
 ::: {.column width="70%"}
-`a line of monospace text.`
+a line of plain text.
 :::
 ::::::
 
@@ -170,12 +172,38 @@ Text with `print("inline code")`{.r}.
 :::
 ::::::
 
-\
-
-```{=latex}
-\begin{columns}[T]
-  \begin{column}{0.5\textwidth}
+:::::: {.columns}
+::: {.column width="30%"}
+```{r, eval=FALSE}
+demo()
 ```
+:::
+::: {.column width="70%"}
+<!-- blank line to help with alignment: mixing content and presentation! :( -->\
+
+**&larr;** description.
+:::
+::::::
+
+:::::: {.columns}
+::: {.column width="30%"}
+```{r, eval=FALSE}
+demo()
+```
+:::
+::: {.column width="70%"}
+```
+a block of monospace text.
+```
+:::
+::::::
+
+
+# $\Rlogo$ is a show-off (2)
+
+:::::: {.columns}
+::: {.column width="50%"}
+
 ```{r showoff, eval=FALSE}
 demo(graphics)  # 
 demo(image)     # 
@@ -190,10 +218,8 @@ especially if you are comfortable reading
 documentation for a programming language.  
 More on this later.
 
-```{=latex}
-  \end{column}
-  \begin{column}{0.5\textwidth}
-```
+:::
+::: {.column width="50%"}
 
 - some plots and graphs that can be made with $\R$
 
@@ -209,10 +235,9 @@ More on this later.
 show the output, but also\\ 
 \textit{the code used to produce it}.}
 
-```{=latex}
-  \end{column}
-\end{columns}
-```
+:::
+::::::
+
 
 <!-- Overlay arrows:
 https://www.overleaf.com/latex/templates/beamer-arrows/wmqkckggvjsd
@@ -223,7 +248,7 @@ https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specifi
 The descriptions in this section could be entered as comments directly in the code block.
 This would be much simpler in terms of the content (Markdown).
 But the comment character hasn't been introduced yet,
-and I need a way to explain the commands in the meantime.
+and I need a clear way to explain the commands in the meantime.
 -->
 
 
@@ -332,8 +357,18 @@ assign('x', 3)
 ```{r, eval=FALSE}
 help.start()
 ```
+
+Available from the above screen:
+  
   - [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
+  
   - [The R Language Definition](https://cran.r-project.org/doc/manuals/r-release/R-lang.html)
+
+Online:
+
++ [RStudio Education](https://education.rstudio.com/) ([education.rstudio.com](https://education.rstudio.com/))
+
+  - tutorials, workshop materials, and other resources.
 
 + [$\Rlogo$](https://r-project.org/) [Manuals](https://cran.r-project.org/manuals.html)
   (<https://cran.r-project.org/manuals.html>)
@@ -342,11 +377,12 @@ help.start()
   - e.g., <http://cran.r-project.org/doc/contrib/usingR.pdf>
 
 + Internet search
-  - [Stack Overflow](https://stackoverflow.com/questions/tagged/r)
-  - [Cookbook for R](http://www.cookbook-r.com/)
+  - [Stack Overflow](https://stackoverflow.com/questions/tagged/r) ([stackoverflow.com](https://stackoverflow.com/))
+  - [Cookbook for R](http://www.cookbook-r.com/) ([www.cookbook-r.com](http://www.cookbook-r.com/))
 
 <!-- deprecated (these are 10+ years old, but they helped me learn)
-+ Books
+Books:
+
   - [A Beginner's Guide to R](https://link.springer.com/book/10.1007/978-0-387-93837-0)
   - [Introductory Statistics with R](https://link.springer.com/book/10.1007/978-0-387-79054-1)
 -->
