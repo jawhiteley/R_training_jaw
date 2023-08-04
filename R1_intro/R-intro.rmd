@@ -85,16 +85,22 @@ https://quarto.org/docs/authoring/markdown-basics.html
 - The command *prompt* normally looks like this:  
   \OtherTok{\texttt{>}}  
   <!-- `>`{.r} -->
+  (the colour varies, depending on the interface)
+  
   - This is $\R$'s way of saying "I am ready to accept new commands".
   - Type a new command on the line after this prompt (i.e., *input*).
+  
 - **Press \important{\texttt{return}}/\important{\texttt{enter}} to *execute* the current *command* **
+
 - If the prompt looks like this:  
   \OtherTok{\texttt{+}}  
   it means the last command was _incomplete_ and $\R$ is waiting for more input.  
   $\R$ will not do anything until the command is completed or cancelled.
+  
   - This usually means you forgot a closing\
     *quote* \important{\texttt{"}}, *parenthesis* \important{\texttt{(}}, 
     *bracket* \important{\texttt{[}}, or *brace* \important{\texttt{\{}}
+    
 - \highlight{You can \textit{cancel} the current command at any time by pressing \texttt{escape}} (\important{\texttt{esc}})
 
 
@@ -245,7 +251,7 @@ sqrt(9)
 ::::::
 
 - These are *expressions*
-- *Expressions* are *evaluated*, and the *result* is *returned*\
+- *Expressions* are *evaluated*, and the *value* (result) is *returned*\
   (sometimes *invisibly*)
 
 ::: notes
