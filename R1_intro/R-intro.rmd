@@ -83,7 +83,8 @@ https://quarto.org/docs/authoring/markdown-basics.html
 # The $\Rlogo$ command-line
 
 - The command *prompt* normally looks like this:  
-  \OtherTok{\texttt{>}}
+  \OtherTok{\texttt{>}}  
+  <!-- `>`{.r} -->
   - This is $\R$'s way of saying "I am ready to accept new commands".
   - Type a new command on the line after this prompt (i.e., *input*).
 - **Press \important{\texttt{return}}/\important{\texttt{enter}} to *execute* the current *command* **
@@ -103,18 +104,68 @@ In this presentation,
 
 + *commands* that can be entered in the *command-line* look like this:
 
-```{r in_format, include=TRUE, eval=FALSE}
+```{r format_input, include=TRUE, eval=FALSE}
 Input (commands)
 ```
 
 + Expected output (results) look like this:
 
-```{r out_format, include=TRUE, eval=TRUE, echo=FALSE}
+```{r format_output, include=TRUE, eval=TRUE, echo=FALSE}
 cat("Output (results)")
 ```
 
 
 # $\Rlogo$ is a show-off
+
+<!-- Trying to display a code block, with explanations of each line side-by-side.
+But the code block is always misaligned with the text in the other column in Beamer.
+:( -->
+:::::: {.columns}
+::: {.column width="30%"}
+```{r showoff1, eval=FALSE}
+demo(graphics)
+```
+:::
+::: {.column width="70%"}
+- some plots and graphs that can be made with $\R$
+:::
+::::::
+
+:::::: {.columns}
+::: {.column width="30%"}
+```{r showoff2, eval=FALSE}
+demo(image)
+```
+:::
+::: {.column width="70%"}
+\
+
+- image-like graphics and maps that can be made with $\R$
+:::
+::::::
+
+:::::: {.columns}
+::: {.column width="30%"}
+```{r showoff3, eval=FALSE}
+demo()
+```
+:::
+::: {.column width="70%"}
+a line of plain text.
+:::
+::::::
+
+:::::: {.columns}
+::: {.column width="30%"}
+Text with `print("inline code")`{.r}.
+:::
+::: {.column width="70%"}
+- bullet point
+:::
+::::::
+
+\
+\
 
 ```{=latex}
 \begin{columns}[T]
@@ -162,6 +213,14 @@ show the output, but also\\
 https://www.overleaf.com/latex/templates/beamer-arrows/wmqkckggvjsd
 https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specified-position-in-a-frame-and-write-some-notes-on
 -->
+
+<!--
+The descriptions in this section could be entered as comments directly in the code block.
+This would be much simpler in terms of the content (Markdown).
+But the comment character hasn't been introduced yet,
+and I need a way to explain the commands in the meantime.
+-->
+
 
 # $\Rlogo$ is a calculator
 
