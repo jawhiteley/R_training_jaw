@@ -9,7 +9,7 @@ output:
 header-includes: |
   \setbeamertemplate{itemize item}[circle]
   \usepackage{tikz}
-  \usetikzlibrary{arrows.meta}
+  \usetikzlibrary{arrows.meta,calc,tikzmark}
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
   \newcommand{\highlight}[1]{\StringTok{#1}}
@@ -89,7 +89,7 @@ https://quarto.org/docs/authoring/markdown-basics.html
 - The command *prompt* normally looks like this:  
   \OtherTok{\texttt{>}}  
   <!-- `>`{.r} -->
-  (the colour varies, depending on the interface)
+  (the colour varies depending on the interface)
   
   - This is $\R$'s way of saying "I am ready to accept new commands".
   - Type a new command on the line after this prompt (i.e., *input*).
@@ -178,8 +178,8 @@ demo()
 help.start()    
 ```
 
-\tikz[remember picture]{ \node (n1) {};}\
-A great place to start, 
+\
+\tikzmarknode{n1}{A} great place to start, 
 especially if you are comfortable reading 
 documentation for a programming language.  
 More on this later.
@@ -187,13 +187,21 @@ More on this later.
 :::
 ::: {.column width="60%"}
 
-- some plots and graphs that can be made with $\R$
+\begin{itemize}
 
-- image-like graphics and maps that can be made with $\R$
+\item[\tikzmarknode{b1}{$\bullet$}]
+  some plots and graphs that can be made with $\R$
 
-- a demonstration of linear modelling & GLMs
+\item[\tikzmarknode{b2}{$\bullet$}]
+  image-like graphics and maps that can be made with $\R$
 
-- a list of available demos
+\item[\tikzmarknode{b3}{$\bullet$}]
+  a demonstration of linear modelling \& GLMs
+
+\item[\tikzmarknode{b4}{$\bullet$}]
+  a list of available demos
+
+\end{itemize}
 
 \
 
@@ -216,7 +224,11 @@ https://tex.stackexchange.com/questions/9559/drawing-on-an-image-wit%E2%80%8C%E2
 -->
 
 \begin{tikzpicture}[remember picture, overlay]
-  \draw [ultra thick, gray, -{Latex}] (n1.south) -- ++(0,4ex);
+  \draw [ultra thick, gray, -{Latex}] ( $ (n1.north) +(0,2pt) $ ) -- ++(0,4ex);
+  \draw [ultra thick, gray, -{Latex}] (b1.west) -- ++(-14ex,-1.5ex);
+  \draw [ultra thick, gray, -{Latex}] (b2.west) -- ++(-17ex,1.5ex);
+  \draw [ultra thick, gray, -{Latex}] (b3.west) -- ++(-16ex,4ex);
+  \draw [ultra thick, gray, -{Latex}] (b4.west) -- ++(-23ex,7ex);
 \end{tikzpicture}
 
 <!--
