@@ -127,92 +127,55 @@ cat("Output (results)")
 
 # $\Rlogo$ is a show-off
 
-<!-- Trying to display a code block, with explanations of each line side-by-side.
-But the code block is always misaligned with the text in the other column in Beamer.
-:( -->
-:::::: {.columns}
-::: {.column width="30%"}
-```{r showoff1, eval=FALSE}
-demo(graphics)
-```
-:::
-::: {.column width="70%"}
-- some plots and graphs that can be made with $\R$
-:::
-::::::
++--------------------+----------------------------------------------------------+
+| ``` r              |                                                          |
+| demo(graphics)     | - some plots and graphs that can be made with $\R$       |
+| ```                |                                                          |
++--------------------+----------------------------------------------------------+
+| ``` r              |                                                          |
+| demo(image)        | - image-like graphics and maps                           |
+| ```                |   that can be produced with $\R$                         |
++--------------------+----------------------------------------------------------+
+| ``` r              |                                                          |
+| demo(lm.glm)       | - a demonstration of linear modelling & GLMs             |
+| ```                |                                                          |
++--------------------+----------------------------------------------------------+
+| ``` r              |                                                          |
+| demo()             | - a list of available demos                              |
+| ```                |                                                          |
++--------------------+----------------------------------------------------------+
+| ``` r              | |                                                        |
+| help.start()       | | **&larr;** A great place to start,                     |
+| ```                | |     especially if you are comfortable reading          |
+|                    | |     documentation for a programming language.          |
+|                    | |     More on this later.                                |
+|                    |                                                          |
++--------------------+----------------------------------------------------------+
+
+## Note
+
+\R{} will not only show the output, but also _the code used to produce it_.
+
+<!--
+The descriptions in this section could be entered as comments directly in the code block.
+This would be much simpler in terms of the content (Markdown).
+But the comment character hasn't been introduced yet,
+and I need a clear way to explain the commands in the meantime.
+-->
+
+:::::::: {.content-hidden}
+# $\Rlogo$ is a show-off (alt)
 
 :::::: {.columns}
-::: {.column width="30%"}
-```{r showoff2, eval=FALSE}
-demo(image)
-```
-:::
-::: {.column width="70%"}
-\
-
-- image-like graphics and maps that can be made with $\R$
-:::
-::::::
-
-:::::: {.columns}
-::: {.column width="30%"}
-```{r showoff3, eval=FALSE}
-demo()
-```
-:::
-::: {.column width="70%"}
-a line of plain text.
-:::
-::::::
-
-:::::: {.columns}
-::: {.column width="30%"}
-Text with `print("inline code")`{.r}.
-:::
-::: {.column width="70%"}
-- bullet point
-:::
-::::::
-
-:::::: {.columns}
-::: {.column width="30%"}
-```{r, eval=FALSE}
-demo()
-```
-:::
-::: {.column width="70%"}
-<!-- blank line to help with alignment: mixing content and presentation! :( -->\
-
-**&larr;** description.
-:::
-::::::
-
-:::::: {.columns}
-::: {.column width="30%"}
-```{r, eval=FALSE}
-demo()
-```
-:::
-::: {.column width="70%"}
-```
-a block of monospace text.
-```
-:::
-::::::
-
-
-# $\Rlogo$ is a show-off (2)
-
-:::::: {.columns}
-::: {.column width="50%"}
+::: {.column width="40%"}
 
 ```{r showoff, eval=FALSE}
-demo(graphics)  # 
-demo(image)     # 
-demo(lm.glm)    # 
-demo()          # 
+demo(graphics)  
+demo(image)     
+demo(lm.glm)    
+demo()          
 
-help.start()    #
+help.start()    
 ```
 
 \tikz[remember picture]{ \node (n1) {};}\
@@ -222,7 +185,7 @@ documentation for a programming language.
 More on this later.
 
 :::
-::: {.column width="50%"}
+::: {.column width="60%"}
 
 - some plots and graphs that can be made with $\R$
 
@@ -236,8 +199,8 @@ More on this later.
 
 ## Note
 
-\R{} will not only\ 
-show the output, but also\ 
+\R{} will not only
+show the output, but also\
 _the code used to produce it_.
 
 :::
@@ -253,7 +216,7 @@ https://tex.stackexchange.com/questions/9559/drawing-on-an-image-wit%E2%80%8C%E2
 -->
 
 \begin{tikzpicture}[remember picture, overlay]
-  \draw [ultra thick, gray, -{Latex}] (n1.south) -- ++(0,5ex);
+  \draw [ultra thick, gray, -{Latex}] (n1.south) -- ++(0,4ex);
 \end{tikzpicture}
 
 <!--
@@ -262,6 +225,7 @@ This would be much simpler in terms of the content (Markdown).
 But the comment character hasn't been introduced yet,
 and I need a clear way to explain the commands in the meantime.
 -->
+::::::::
 
 
 # $\Rlogo$ is a calculator
