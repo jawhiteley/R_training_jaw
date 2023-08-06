@@ -351,6 +351,73 @@ assign('x', 3)
 ::::::
 
 
+# Retrieve values
+
+When a variable *name* is evaluated, it returns the stored *value*. 
+
+:::::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+A
+A_log
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+B
+x
+```
+
+:::
+::::::
+
+```{r}
+B.seq
+```
+
+
+# Built-in variables
+
+Some words and letters already have values in $\R$  
+and should **never be used as variable names**.
+
+:::::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+pi
+```
+
+:::
+::: {.column width="50%"}
+
+```{r, eval=FALSE}
+version
+```
+```{r, echo=FALSE}
+cat("... information about the\n current version of R ...")
+```
+
+:::
+::::::
+
+```{r}
+letters
+LETTERS
+```
+
+
+# Reserved words
+
+Some words and letters already have special meaning in the R language (*keywords*) 
+and should **never be used as variable names**.
+
+
+
+
 # References & More Information
 
 ```{r, eval=FALSE}
