@@ -107,14 +107,14 @@ https://quarto.org/docs/authoring/markdown-basics.html
   +
   ```
 
-  it means the last command was _incomplete_ and $\R$ is waiting for more input. 
+  it means the last command was _incomplete_ and $\R$ is waiting for more input.  
   $\R$ will not do anything until the command is completed or cancelled.
   
   - This usually means you forgot a closing\
     *quote* \important{\texttt{"}}, *parenthesis* \important{\texttt{(}}, 
     *bracket* \important{\texttt{[}}, or *brace* \important{\texttt{\{}}
     
-- \highlight{You can \textit{cancel} the current command at any time by pressing \texttt{escape}} (\important{\texttt{esc}})
+- \highlight{You can \textit{cancel} the current command by pressing \texttt{escape}} (\important{\texttt{esc}})
 
 
 # The $\Rlogo$ console
@@ -259,7 +259,7 @@ and I need a clear way to explain the commands in the meantime.
 ```{r calculator}
 1 + 1
 2 * 2
-2^3
+2 ^ 3
 ```
 
 :::
