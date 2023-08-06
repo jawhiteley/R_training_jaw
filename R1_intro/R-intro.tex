@@ -280,15 +280,19 @@ inteface}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{The
+\begin{frame}[fragile]{The
 \(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
 command-line}
 \protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-command-line}{}
 \begin{itemize}
 \item
   The command \emph{prompt} normally looks like this:\\
-  \OtherTok{\texttt{>}}\\
-  (the colour varies depending on the interface)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
 
   \begin{itemize}
   \tightlist
@@ -304,11 +308,16 @@ command-line}
   \emph{execute} the current \emph{command} }
 \item
   If the prompt looks like this:\\
-  \OtherTok{\texttt{+}}\\
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{+}
+\end{Highlighting}
+\end{Shaded}
+
   it means the last command was \emph{incomplete} and \(\texttt{R}\) is
-  waiting for more input.\\
-  \(\texttt{R}\) will not do anything until the command is completed or
-  cancelled.
+  waiting for more input. \(\texttt{R}\) will not do anything until the
+  command is completed or cancelled.
 
   \begin{itemize}
   \tightlist
@@ -337,9 +346,11 @@ In this presentation,
   like this:
 \end{itemize}
 
+\hypertarget{format_input}{%
+\label{format_input}}%
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{Input}\NormalTok{ (commands)}
+\NormalTok{Input (commands)}
 \end{Highlighting}
 \end{Shaded}
 

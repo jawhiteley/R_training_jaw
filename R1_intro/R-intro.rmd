@@ -87,9 +87,13 @@ https://quarto.org/docs/authoring/markdown-basics.html
 # The $\Rlogo$ command-line
 
 - The command *prompt* normally looks like this:  
-  \OtherTok{\texttt{>}}  
-  <!-- `>`{.r} -->
-  (the colour varies depending on the interface)
+  <!-- \OtherTok{\texttt{>}} -->
+  
+  ``` default
+  >
+  ```
+  
+  <!-- \annote{(the colour varies depending on the interface)} -->
   
   - This is $\R$'s way of saying "I am ready to accept new commands".
   - Type a new command on the line after this prompt (i.e., *input*).
@@ -97,8 +101,13 @@ https://quarto.org/docs/authoring/markdown-basics.html
 - **Press \important{\texttt{return}}/\important{\texttt{enter}} to *execute* the current *command* **
 
 - If the prompt looks like this:  
-  \OtherTok{\texttt{+}}  
-  it means the last command was _incomplete_ and $\R$ is waiting for more input.  
+  <!-- \OtherTok{\texttt{+}} -->
+  
+  ``` default
+  +
+  ```
+
+  it means the last command was _incomplete_ and $\R$ is waiting for more input. 
   $\R$ will not do anything until the command is completed or cancelled.
   
   - This usually means you forgot a closing\
@@ -114,7 +123,7 @@ In this presentation,
 
 + *commands* that can be entered in the *command-line* look like this:
 
-```{r format_input, include=TRUE, eval=FALSE}
+``` default {#format_input}
 Input (commands)
 ```
 
@@ -216,6 +225,8 @@ _the code used to produce it_.
 
 
 <!-- Overlay arrows:
+https://tex.stackexchange.com/questions/209052/how-to-get-tikzmark-to-work
+https://texdoc.org/serve/tikzmark/0
 https://tikz.dev/tikz-arrows
 https://www.overleaf.com/latex/templates/beamer-arrows/wmqkckggvjsd
 https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specified-position-in-a-frame-and-write-some-notes-on
