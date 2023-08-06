@@ -35,8 +35,11 @@ Quarto Pandoc Markdown, with native support for flowcharts and diagrams
 and other extensions (like callouts and code annotation):
 https://quarto.org/docs/authoring/markdown-basics.html
 
-+ Can I define global 'styles' with options for different output formats, 
-  and reduce the amount of custom LaTeX?
+Can I define global 'styles' with options for different output formats, 
+and reduce the amount of custom LaTeX?
+  
++ https://tug.org/tug2020/preprints/MacFarlane-Keynote-slides.pdf
++ https://stackoverflow.com/questions/23825317/how-to-convert-markdown-css-pdf
 ```
 
 
@@ -52,15 +55,19 @@ https://quarto.org/docs/authoring/markdown-basics.html
 + True or False: Warnings can be ignored, but an Error means I made a mistake.
 + True or False: Error messages will tell me how to fix the problem.
 
+<!--
+# Introductions - activity
+
+-->
 
 # Learning Objectives
 
 * Get familiar with the ![]( `r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em} _interface_
+* Use technical _terms_ for $\R$ concepts
 * Enter _commands_
   * input & output: using $\R$ interactively
   * use some common _functions_
 * Understand _Errors_ & _Warnings_
-* Use technical _terms_ for $\R$ concepts
 * How to get Help
 
 
@@ -68,10 +75,27 @@ https://quarto.org/docs/authoring/markdown-basics.html
 
 - **$\R$** started as an _open-source_ implementation of the  
   **`S`** statistical computing language (S-PLUS)
+  
   - `S` was created at Bell Laboratories in 1976
   - $\R$ was based on the `S` syntax (mostly v3), but works very differently "under the hood".
+  
 - **$\R$** was created by [**R**]{.underline}oss Ihaka and [**R**]{.underline}obert Gentleman at the University of Aukland in the early 1990s.
 
+
+# The $\Rlogo$ Interface
+
+- 'base $\R$' has a slightly different interface for each **O**perating **S**ystem (OS)
+  - GUI = **G**raphical **U**ser **I**nterface
+- $\R$ can also run inside of a terminal (no GUI) or other software (different GUI).
+
+## [**I**ntegrated **D**evelopment **E**nvironment](https://en.wikipedia.org/wiki/Integrated_development_environment) (IDE)
+
+- An IDE is like an extra interface layer on top of 'base $\R$'
+- IDEs often add convenient tools to make writing code easier (e.g., syntax highlighting),
+  and for developing larger projects with multiple files.
+- **[RStudio](https://posit.co/products/open-source/rstudio/)** is one of the most popular cross-platform IDEs for $\R$.
+  - RStudio is available in open source (free/libre) and commercial^[for organizations not able to use software licensed with AGPL] editions.
+  
 
 # A quick tour of 'base $\R$'
 
@@ -79,29 +103,39 @@ $\Rlogo$
 
 # A quick tour of RStudio
 
+<!-- https://www.rstudio.com/about/logos/ -->
 
+  
+# Interacting with $\Rlogo$
 
-# The $\Rlogo$ interface
+- Regardless of the interface, 
+  you interact with $\R$ primarily using a _command line_
+  
+  <!-- - aka, a **c**ommand **l**ine **i**nterface (cli) -->
 
-- $\R$ has a slightly different interface for each **O**perating **S**ystem (OS)
-  - GUI = **G**raphical **U**ser **I**nterface
-- In every case, you interact with R primarily using a _command line_
-  - aka “Question-and-Answer Model”
+- “Question-and-Answer Model”
+
   - | You ask $\R$ to do something (a *command*),  
     |      and $\R$ tells you the answer (*result*).
-  - Instructions are given to $\R$ using the *R language*.
+    
+- Instructions are given to $\R$ using the *R language*.
 
+::: notes
+R is designed so that users can start by using it *interactively* (what we will do today), and then gradually use it for more programming as their needs and skills grow.
 
+  - Not "point-and-click": no menus or wizards to guide you through steps of an analysis or procedure.
+:::
+
+  
 # The $\Rlogo$ command-line
 
 - The command *prompt* normally looks like this:
-  <!-- \OtherTok{\texttt{>}} -->
-  
+
   ``` default
   >
   ```
   
-  <!-- \annote{(the colour varies depending on the interface)} -->
+  \annote{(the colour varies depending on the interface)}
   
   - This is $\R$'s way of saying "I am ready to accept new commands".
   - Type a new command on the line after this prompt (i.e., *input*).
@@ -119,8 +153,7 @@ $\Rlogo$
 # The $\Rlogo$ command-line (cont'd)
 
 - If the prompt looks like this:  
-  <!-- \OtherTok{\texttt{+}} -->
-  
+
   ``` default
   +
   ```
@@ -141,15 +174,17 @@ In this presentation,
 
 + *commands* that can be entered in the *command-line* look like this:
 
-``` default {#format_input}
-Input (commands)
-```
+  ``` default {#format_input}
+  Input (commands)
+  ```
+
+  - You can try these yourself!
 
 + Expected output (results) look like this:
 
-```{r format_output, include=TRUE, eval=TRUE, echo=FALSE}
-cat("Output (results)")
-```
+  ```{r format_output, include=TRUE, eval=TRUE, echo=FALSE}
+  cat("Output (results)")
+  ```
 
 
 # $\Rlogo$ is a show-off

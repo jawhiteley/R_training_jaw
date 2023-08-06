@@ -204,6 +204,8 @@
   \includegraphics[width=\textwidth,height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}
   \emph{interface}
 \item
+  Use technical \emph{terms} for \(\texttt{R}\) concepts
+\item
   Enter \emph{commands}
 
   \begin{itemize}
@@ -216,8 +218,6 @@
 \item
   Understand \emph{Errors} \& \emph{Warnings}
 \item
-  Use technical \emph{terms} for \(\texttt{R}\) concepts
-\item
   How to get Help
 \end{itemize}
 \end{frame}
@@ -226,7 +226,6 @@
 \(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)?}
 \protect\hypertarget{why-is-it-named-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg}{}
 \begin{itemize}
-\tightlist
 \item
   \textbf{\(\texttt{R}\)} started as an \emph{open-source}
   implementation of the\\
@@ -247,6 +246,53 @@
 \end{itemize}
 \end{frame}
 
+\begin{frame}{The
+\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+Interface}
+\protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-interface}{}
+\begin{itemize}
+\tightlist
+\item
+  `base \(\texttt{R}\)' has a slightly different interface for each
+  \textbf{O}perating \textbf{S}ystem (OS)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    GUI = \textbf{G}raphical \textbf{U}ser \textbf{I}nterface
+  \end{itemize}
+\item
+  \(\texttt{R}\) can also run inside of a terminal (no GUI) or other
+  software (different GUI).
+\end{itemize}
+
+\begin{block}{\href{https://en.wikipedia.org/wiki/Integrated_development_environment}{\textbf{I}ntegrated
+\textbf{D}evelopment \textbf{E}nvironment} (IDE)}
+\protect\hypertarget{integrated-development-environment-ide}{}
+\begin{itemize}
+\tightlist
+\item
+  An IDE is like an extra interface layer on top of `base
+  \(\texttt{R}\)'
+\item
+  IDEs often add convenient tools to make writing code easier (e.g.,
+  syntax highlighting), and for developing larger projects with multiple
+  files.
+\item
+  \textbf{\href{https://posit.co/products/open-source/rstudio/}{RStudio}}
+  is one of the most popular cross-platform IDEs for \(\texttt{R}\).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    RStudio is available in open source (free/libre) and
+    commercial\footnote<.->{for organizations not able to use software
+      licensed with AGPL} editions.
+  \end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
 \begin{frame}{A quick tour of `base \(\texttt{R}\)'}
 \protect\hypertarget{a-quick-tour-of-base-textttr}{}
 \(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
@@ -256,37 +302,35 @@
 \protect\hypertarget{a-quick-tour-of-rstudio}{}
 \end{frame}
 
-\begin{frame}{The
-\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
-interface}
-\protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-interface}{}
+\begin{frame}{Interacting with
+\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)}
+\protect\hypertarget{interacting-with-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg}{}
 \begin{itemize}
-\tightlist
 \item
-  \(\texttt{R}\) has a slightly different interface for each
-  \textbf{O}perating \textbf{S}ystem (OS)
+  Regardless of the interface, you interact with \(\texttt{R}\)
+  primarily using a \emph{command line}
 
   \begin{itemize}
   \tightlist
   \item
-    GUI = \textbf{G}raphical \textbf{U}ser \textbf{I}nterface
+    aka, a \textbf{c}ommand \textbf{l}ine \textbf{i}nterface (cli)
   \end{itemize}
 \item
-  In every case, you interact with R primarily using a \emph{command
-  line}
+  aka ``Question-and-Answer Model''
 
   \begin{itemize}
-  \item
-    aka ``Question-and-Answer Model''
   \item
     You ask \(\texttt{R}\) to do something (a \emph{command}),\\
     \hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}and
     \(\texttt{R}\) tells you the answer (\emph{result}).
-  \item
-    Instructions are given to \(\texttt{R}\) using the \emph{R
-    language}.
   \end{itemize}
+\item
+  Instructions are given to \(\texttt{R}\) using the \emph{R language}.
 \end{itemize}
+
+R is designed so that users can start by using it \emph{interactively}
+(what we will do today), and then gradually use it for more programming
+as their needs and skills grow.
 \end{frame}
 
 \begin{frame}[fragile]{The
@@ -302,6 +346,8 @@ command-line}
 \NormalTok{\textgreater{}}
 \end{Highlighting}
 \end{Shaded}
+
+  {\footnotesize (the colour varies depending on the interface)}
 
   \begin{itemize}
   \tightlist
@@ -340,7 +386,7 @@ command-line (cont'd)}
 \protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-command-line-contd}{}
 \begin{itemize}
 \item
-  If the prompt looks like this:\\
+  If the prompt looks like this:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -374,11 +420,9 @@ console}
 In this presentation,
 
 \begin{itemize}
-\tightlist
 \item
   \emph{commands} that can be entered in the \emph{command-line} look
   like this:
-\end{itemize}
 
 \hypertarget{format_input}{%
 \label{format_input}}%
@@ -388,15 +432,18 @@ In this presentation,
 \end{Highlighting}
 \end{Shaded}
 
-\begin{itemize}
-\tightlist
+  \begin{itemize}
+  \tightlist
+  \item
+    You can try these yourself!
+  \end{itemize}
 \item
   Expected output (results) look like this:
-\end{itemize}
 
 \begin{verbatim}
 ## Output (results)
 \end{verbatim}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
