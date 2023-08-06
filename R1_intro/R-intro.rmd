@@ -100,6 +100,16 @@ https://quarto.org/docs/authoring/markdown-basics.html
   
 - **Press \important{\texttt{return}}/\important{\texttt{enter}} to *execute* the current *command* **
 
+- If you can still edit the command next to the prompt, then it has not been submitted to $\R$ to execute (it is still waiting for input).
+
+- If the last prompt is not empty (i.e., there is text beside it)  
+  _and_ you cannot edit what is beside the prompt,  
+  it means $\R$ is still processing the last command and is not ready to accept a new command yet.
+  
+  - Wait for a new empty prompt to appear before entering the next command.
+
+# The $\Rlogo$ command-line (cont'd)
+
 - If the prompt looks like this:  
   <!-- \OtherTok{\texttt{+}} -->
   
@@ -114,7 +124,7 @@ https://quarto.org/docs/authoring/markdown-basics.html
     *quote* \important{\texttt{"}}, *parenthesis* \important{\texttt{(}}, 
     *bracket* \important{\texttt{[}}, or *brace* \important{\texttt{\{}}
     
-- \highlight{You can \textit{cancel} the current command by pressing \texttt{escape}} (\important{\texttt{esc}})
+- \highlight{You can \textit{cancel} the current command at any time by pressing \texttt{escape}} (\important{\texttt{esc}})
 
 
 # The $\Rlogo$ console

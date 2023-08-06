@@ -307,6 +307,30 @@ command-line}
   \textbf{Press \AlertTok{\texttt{return}}/\AlertTok{\texttt{enter}} to
   \emph{execute} the current \emph{command} }
 \item
+  If you can still edit the command next to the prompt, then it has not
+  been submitted to \(\texttt{R}\) to execute (it is still waiting for
+  input).
+\item
+  If the last prompt is not empty (i.e., there is text beside it)\\
+  \emph{and} you cannot edit what is beside the prompt,\\
+  it means \(\texttt{R}\) is still processing the last command and is
+  not ready to accept a new command yet.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Wait for a new empty prompt to appear before entering the next
+    command.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{The
+\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+command-line (cont'd)}
+\protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-command-line-contd}{}
+\begin{itemize}
+\item
   If the prompt looks like this:\\
 
 \begin{Shaded}
@@ -329,7 +353,7 @@ command-line}
     \emph{brace} \AlertTok{\texttt{\{}}
   \end{itemize}
 \item
-  \StringTok{You can \textit{cancel} the current command by pressing \texttt{escape}}
+  \StringTok{You can \textit{cancel} the current command at any time by pressing \texttt{escape}}
   (\AlertTok{\texttt{esc}})
 \end{itemize}
 \end{frame}
