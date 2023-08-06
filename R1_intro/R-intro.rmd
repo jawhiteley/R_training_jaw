@@ -469,7 +469,15 @@ Some words and letters already have special meaning in the R language (*keywords
 and should **never be used as variable names**.
 
 
+# [Quiz](#pop-quiz) Review
 
+<!-- paste in questions from [Pop Quiz][], above. -->
+
+::: notes
+`## Answers (for discussion)`
+
+answer in notes
+:::
 
 # References & More Information
 
