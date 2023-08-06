@@ -177,7 +177,6 @@ cat("Output (results)")
 
 <!--
 The descriptions in this section could be entered as comments directly in the code block.
-This would be much simpler in terms of the content (Markdown).
 But the comment character hasn't been introduced yet,
 and I need a clear way to explain the commands in the meantime.
 -->
