@@ -21,6 +21,7 @@ header-includes: |
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+options(width = 56)  # to fit output on slides: either smaller font or shorter width (or both)
 ```
 
 ```{r NOTES, include=FALSE, eval=FALSE}
@@ -450,7 +451,7 @@ pi
 version
 ```
 ```{r, echo=FALSE}
-cat("... information about the\n current version of R ...")
+cat("... information about \nthis version of R ...")
 ```
 
 :::
@@ -476,24 +477,19 @@ and should **never be used as variable names**.
 help.start()
 ```
 
-Available from the above screen:
-  
+Available from the screen above (offline):
+
   - [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
-  
   - [The R Language Definition](https://cran.r-project.org/doc/manuals/r-release/R-lang.html)
 
 Online:
 
 + [RStudio Education](https://education.rstudio.com/) ([education.rstudio.com](https://education.rstudio.com/))
-
   - tutorials, workshop materials, and other resources.
-
 + [$\Rlogo$](https://r-project.org/) [Manuals](https://cran.r-project.org/manuals.html)
   (<https://cran.r-project.org/manuals.html>)
-
 + $\Rlogo$ [Contributed Documentation](https://cran.r-project.org/other-docs.html)
   - e.g., <http://cran.r-project.org/doc/contrib/usingR.pdf>
-
 + Internet search
   - [Stack Overflow](https://stackoverflow.com/questions/tagged/r) ([stackoverflow.com](https://stackoverflow.com/))
   - [Cookbook for R](http://www.cookbook-r.com/) ([www.cookbook-r.com](http://www.cookbook-r.com/))

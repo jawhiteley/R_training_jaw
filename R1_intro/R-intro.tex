@@ -309,14 +309,8 @@ Interface}
 \item
   Regardless of the interface, you interact with \(\texttt{R}\)
   primarily using a \emph{command line}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    aka, a \textbf{c}ommand \textbf{l}ine \textbf{i}nterface (cli)
-  \end{itemize}
 \item
-  aka ``Question-and-Answer Model''
+  ``Question-and-Answer Model''
 
   \begin{itemize}
   \item
@@ -328,9 +322,16 @@ Interface}
   Instructions are given to \(\texttt{R}\) using the \emph{R language}.
 \end{itemize}
 
-R is designed so that users can start by using it \emph{interactively}
-(what we will do today), and then gradually use it for more programming
-as their needs and skills grow.
+\note{R is designed so that users can start by using it
+\emph{interactively} (what we will do today), and then gradually use it
+for more programming as their needs and skills grow.
+
+\begin{itemize}
+\tightlist
+\item
+  Not ``point-and-click'': no menus or wizards to guide you through
+  steps of an analysis or procedure.
+\end{itemize}}
 \end{frame}
 
 \begin{frame}[fragile]{The
@@ -829,12 +830,15 @@ When a variable \emph{name} is evaluated, it returns the stored
 \end{Shaded}
 
 \begin{verbatim}
-##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
-##  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
-##  [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
-##  [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
-##  [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
-##  [91]  91  92  93  94  95  96  97  98  99 100
+##   [1]   1   2   3   4   5   6   7   8   9  10  11  12
+##  [13]  13  14  15  16  17  18  19  20  21  22  23  24
+##  [25]  25  26  27  28  29  30  31  32  33  34  35  36
+##  [37]  37  38  39  40  41  42  43  44  45  46  47  48
+##  [49]  49  50  51  52  53  54  55  56  57  58  59  60
+##  [61]  61  62  63  64  65  66  67  68  69  70  71  72
+##  [73]  73  74  75  76  77  78  79  80  81  82  83  84
+##  [85]  85  86  87  88  89  90  91  92  93  94  95  96
+##  [97]  97  98  99 100
 \end{verbatim}
 \end{frame}
 
@@ -864,8 +868,8 @@ and should \textbf{never be used as variable names}.
 \end{Shaded}
 
 \begin{verbatim}
-## ... information about the
-##  current version of R ...
+## ... information about 
+## this version of R ...
 \end{verbatim}
 \end{column}
 \end{columns}
@@ -877,8 +881,8 @@ and should \textbf{never be used as variable names}.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
-## [20] "t" "u" "v" "w" "x" "y" "z"
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+## [14] "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
 \end{verbatim}
 
 \begin{Shaded}
@@ -888,8 +892,8 @@ and should \textbf{never be used as variable names}.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
-## [20] "T" "U" "V" "W" "X" "Y" "Z"
+##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M"
+## [14] "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
 \end{verbatim}
 \end{frame}
 
@@ -907,9 +911,10 @@ Some words and letters already have special meaning in the R language
 \end{Highlighting}
 \end{Shaded}
 
-Available from the above screen:
+Available from the screen above (offline):
 
 \begin{itemize}
+\tightlist
 \item
   \href{https://cran.r-project.org/doc/manuals/r-release/R-intro.html}{An
   Introduction to R}
@@ -921,6 +926,7 @@ Available from the above screen:
 Online:
 
 \begin{itemize}
+\tightlist
 \item
   \href{https://education.rstudio.com/}{RStudio Education}
   (\href{https://education.rstudio.com/}{education.rstudio.com})
