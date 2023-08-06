@@ -45,7 +45,7 @@ https://quarto.org/docs/authoring/markdown-basics.html
 \annote{\fade{We will review these \textit{at the end}, so you can see how much you have learned.}}
 
 + What does 'CRAN' stand for?
-+ Why is it called '$\R$'?
++ Why is it named '$\R$'?
 + How can you use $\R$ _interactively_?
 + How do you find out what a function does & how to use it?
 + How do you store values to re-use later?
@@ -73,20 +73,28 @@ https://quarto.org/docs/authoring/markdown-basics.html
 - **$\R$** was created by [**R**]{.underline}oss Ihaka and [**R**]{.underline}obert Gentleman at the University of Aukland in the early 1990s.
 
 
-# The $\Rlogo$ inteface
+# A quick tour of 'base $\R$'
+
+$\Rlogo$
+
+# A quick tour of RStudio
+
+
+
+# The $\Rlogo$ interface
 
 - $\R$ has a slightly different interface for each **O**perating **S**ystem (OS)
   - GUI = **G**raphical **U**ser **I**nterface
 - In every case, you interact with R primarily using a _command line_
   - aka “Question-and-Answer Model”
-  - You ask $\R$ to do something (a *command*),  
-    \qquad{} and $\R$ tells you the answer (*result*).
+  - | You ask $\R$ to do something (a *command*),  
+    |      and $\R$ tells you the answer (*result*).
   - Instructions are given to $\R$ using the *R language*.
 
 
 # The $\Rlogo$ command-line
 
-- The command *prompt* normally looks like this:  
+- The command *prompt* normally looks like this:
   <!-- \OtherTok{\texttt{>}} -->
   
   ``` default
@@ -98,13 +106,13 @@ https://quarto.org/docs/authoring/markdown-basics.html
   - This is $\R$'s way of saying "I am ready to accept new commands".
   - Type a new command on the line after this prompt (i.e., *input*).
   
-- **Press \important{\texttt{return}}/\important{\texttt{enter}} to *execute* the current *command* **
+- **Press \important{\texttt{return}}/\important{\texttt{enter}} to *run* the current *command* **
 
 - If you can still edit the command next to the prompt, then it has not been submitted to $\R$ to execute (it is still waiting for input).
 
 - If the last prompt is not empty (i.e., there is text beside it)  
   _and_ you cannot edit what is beside the prompt,  
-  it means $\R$ is still processing the last command and is not ready to accept a new command yet.
+  it means $\R$ is still running the last command and is not ready to accept a new command yet.
   
   - Wait for a new empty prompt to appear before entering the next command.
 
