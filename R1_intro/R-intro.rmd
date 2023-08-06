@@ -175,7 +175,7 @@ In this presentation,
 
 + *commands* that can be entered in the *command-line* look like this:
 
-  ``` default {#format_input}
+  ``` default{#format_input}
   Input (commands)
   ```
 
