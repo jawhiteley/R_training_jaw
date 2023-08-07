@@ -8,6 +8,7 @@ output:
     keep_tex: yes
 header-includes: |
   \setbeamertemplate{itemize item}[circle]
+  \setbeamertemplate{enumerate item}[circle]
   \usepackage{tikz}
   \usetikzlibrary{arrows.meta,calc,tikzmark}
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
@@ -72,16 +73,21 @@ and reduce the amount of custom LaTeX?
 * How to get Help
 
 
-# Why is it named $\Rlogo$?
+# Why is it named '$\R$'?
 
-- **$\R$** started as an _open-source_ implementation of the  
-  **`S`** statistical computing language (S-PLUS)
+1. **$\R$** started as an _open-source_ implementation of the  
+   **`S`** statistical computing language (S-PLUS)^[https://www.r-project.org/about.html]
   
-  - `S` was created at Bell Laboratories in 1976
-  - $\R$ was based on the `S` syntax (mostly v3), but works very differently "under the hood".
+   - `S` was created at Bell Laboratories in 1976^[https://en.wikipedia.org/wiki/S_(programming_language)]
+   
+   - $\R$ was based on the `S` syntax (mostly v3), but works very differently "under the hood".
   
-- **$\R$** was created by [**R**]{.underline}oss Ihaka and [**R**]{.underline}obert Gentleman at the University of Aukland in the early 1990s.
+2. **$\R$** was created by [**R**]{.underline}oss Ihaka and [**R**]{.underline}obert Gentleman 
+   --- aka "R & R"^[https://www.r-project.org/contributors.html] --- 
+   at the University of Aukland in the early 1990s.
 
+\
+_Read more about $\R$'s history on [Wikipedia](https://en.wikipedia.org/wiki/R_(programming_language)#History)_^[https://en.wikipedia.org/wiki/R_(programming_language)#History]
 
 # The $\Rlogo$ Interface
 

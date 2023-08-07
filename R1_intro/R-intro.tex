@@ -143,6 +143,7 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{enumerate item}[circle]
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,calc,tikzmark}
 \newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
@@ -222,28 +223,31 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Why is it named
-\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)?}
-\protect\hypertarget{why-is-it-named-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg}{}
-\begin{itemize}
+\begin{frame}[fragile]{Why is it named `\(\texttt{R}\)'?}
+\protect\hypertarget{why-is-it-named-textttr}{}
+\begin{enumerate}
 \item
   \textbf{\(\texttt{R}\)} started as an \emph{open-source}
   implementation of the\\
-  \textbf{\texttt{S}} statistical computing language (S-PLUS)
+  \textbf{\texttt{S}} statistical computing language
+  (S-PLUS)\footnote<.->{\url{https://www.r-project.org/about.html}}
 
   \begin{itemize}
-  \tightlist
   \item
-    \texttt{S} was created at Bell Laboratories in 1976
+    \texttt{S} was created at Bell Laboratories in 1976\footnote<.->{\url{https://en.wikipedia.org/wiki/S_(programming_language)}}
   \item
     \(\texttt{R}\) was based on the \texttt{S} syntax (mostly v3), but
     works very differently ``under the hood''.
   \end{itemize}
 \item
   \textbf{\(\texttt{R}\)} was created by \ul{\textbf{R}}oss Ihaka and
-  \ul{\textbf{R}}obert Gentleman at the University of Aukland in the
-  early 1990s.
-\end{itemize}
+  \ul{\textbf{R}}obert Gentleman --- aka ``R \& R''\footnote<.->{\url{https://www.r-project.org/contributors.html}}
+  --- at the University of Aukland in the early 1990s.
+\end{enumerate}
+
+\hfill\break
+\emph{Read more about \(\texttt{R}\)'s history on
+\href{https://en.wikipedia.org/wiki/R_(programming_language)\#History}{Wikipedia}}\footnote<.->{\url{https://en.wikipedia.org/wiki/R_(programming_language)\#History}}
 \end{frame}
 
 \begin{frame}{The
