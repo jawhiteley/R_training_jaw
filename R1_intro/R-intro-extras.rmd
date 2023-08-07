@@ -43,13 +43,15 @@ Otherwise, you can [download](#download-r) and install $\R$ from CRAN ([next&rar
 
 1. Go to [www.r-project.org](https://www.r-project.org/) in your web browser
 
-2. Click on [CRAN](https://cran.r-project.org/) in the menu on left (under "**Download**")  
+2. Click on '[CRAN](https://cran.r-project.org/)' in the menu on left (under "**Download**")  
+
+   - CRAN = [C]{.underline}omprehensive [R]{.underline} [A]{.underline}rchive [N]{.underline}etwork
    
 3. Choose a "mirror" (server) that is close to where you are, or at an institution that you trust.  
    If you're not sure, you can use one of:
    
-   - <https://cloud.r-project.org/>
-   - <https://cran.r-project.org/>
+   - [cloud.r-project.org](https://cloud.r-project.org/)
+   - [cran.r-project.org](https://cran.r-project.org/)
    
 4. Click on the link for your computer Operating System: Linux, macOS, or Windows
    (in the top section labelled "**Download and Install R**")
@@ -67,7 +69,7 @@ Otherwise, you can [download](#download-r) and install $\R$ from CRAN ([next&rar
 + It works on **multiple platforms**
 + It has sophisticated **graphics** capabilities
   - Produce publication-quality graphs in the same software as your
-    analysis. No post-processing in Illustrator or Photoshop.
+    analysis. No need for post-processing in Illustrator or Photoshop.
 + It's **flexible**, **powerful**, and **innovative**
   - Advanced methods are often available in R before other statistical software.
 + It can be used interactively, or to run pre-written *scripts*
@@ -117,14 +119,15 @@ Otherwise, you can [download](#download-r) and install $\R$ from CRAN ([next&rar
 :::::: {.columns}
 ::: {.column width="50%"}
 
-$\R$ is a _programming language_. 
-
-Learning any programming language is a journey.
-
-It always feels like there's more to learn.
+| Learning any programming language is a journey.
+| 
+| It always feels like there's more to learn.
+| 
+| 
 
 $\R$ is designed so that users can start by using it _interactively_ (as in this workshop), 
 and then gradually use it for more programming as their needs and skills grow.
+
 <!--   - Most real statistical analysis requires some programming. -->
 
 :::
@@ -270,7 +273,7 @@ ls(all.names = TRUE)
 
 - 'Valid' names following the rules above can be referred to easily in code.
 
-- Names with any character are actually possible, but must be quoted with backticks (`` ` ``)
+- Names with any character are actually possible, but must be quoted with backticks (`` ` ``{.r})
   - **This is not recommended practice**, but occasionally useful when you need to refer to an element of an object, such as list items or data frame columns, that have non-standard names.
 
 ```{r}
@@ -284,15 +287,17 @@ print(`(my) [strange] {variable} 'name' "!@#$"`)
 ## Matrix math
 
 - $\R$ can do _matrix math_ --- which is used in many statistical procedures
+
   - But the _syntax_ is different from the usual math operators
 
 - Using a regular multiplication symbol (`*`) results in *element*-wise multiplication
+
   - each _element_ (item) in matrix1 is multiplied by the corresponding _element_ in matrix2, etc.
 
 ```{r results='hide'}
 c(1, 2, 3) * c(3, 2, 1)
 ```
-- _Matrix multiplication_ is specified by this operator: `%*%`{/r}
+- _Matrix multiplication_ is specified by this operator: `%*%`{.r}
 
 ```{r results='hide'}
 c(1, 2, 3) %*% c(3, 2, 1)
