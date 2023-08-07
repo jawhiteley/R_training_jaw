@@ -95,8 +95,59 @@ Otherwise, you can [download](#download-r) and install $\R$ from CRAN ([next&rar
 [^osi]: https://opensource.org/definition-annotated/
 
 
-# Learning R
+# Using $\Rlogo$
 
+## $\R$ is a programming language
+
+- $\R$ is command-driven
+  - Not "point and click"
+  - No menus, pop-up windows, or wizards
+- $\R$ will not tell you what to do, or guide you through the steps of an analysis or method. 
+  $\R$ provides no structure.
+- $\R$ will do all the calculations for you, and  
+  it will do _exactly what you tell it_ (not necessarily _what you want_).
+- This means $\R$ has the flexibility and power to do 
+  *exactly what you want, exactly how you want it done*.
+- **The hard part is figuring out 
+  _how to do what you want_**
+
+
+## Learning $\R$
+
+:::::: {.columns}
+::: {.column width="50%"}
+
+$\R$ is a _programming language_. 
+
+Learning any programming language is a journey.
+
+It always feels like there's more to learn.
+
+$\R$ is designed so that users can start by using it _interactively_ (as in this workshop), 
+and then gradually use it for more programming as their needs and skills grow.
+<!--   - Most real statistical analysis requires some programming. -->
+
+:::
+::: {.column width="50%"}
+
+<!-- ![comic: trying to learn any programming language](https://rladiessydney.org/img/bblearning.jpg){height=\textheight} -->
+```{r echo=FALSE, fig.align="center", out.height="50%"}
+# https://www.togaware.com/linux/survivor/bookdown-insert-image-from-url.html
+img_url <- "https://rladiessydney.org/img/bblearning.jpg"
+if (knitr::is_html_output())
+ {
+   knitr::include_graphics(img_url)
+ } else {
+   knitr::include_url(img_url)
+ }
+```
+
+source: 
+[R-ladies Sydney](https://rladiessydney.org/courses/ryouwithme/01-basicbasics-0/), 
+[Real Python](https://twitter.com/realpython)
+
+:::
+::::::
 
 
 # Names
