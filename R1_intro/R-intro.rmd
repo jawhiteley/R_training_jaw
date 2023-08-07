@@ -98,7 +98,7 @@ and reduce the amount of custom LaTeX?
   - RStudio is available in open source (free/libre) and commercial^[for organizations not able to use software licensed with AGPL] editions.
   
 
-# A quick tour of 'base $\R$'
+# A quick tour of the 'base $\R$ GUI'
 
 $\Rlogo$
 
@@ -109,10 +109,11 @@ $\Rlogo$
   
 # Interacting with $\Rlogo$
 
-- Regardless of the interface, 
+- Regardless of the GUI, 
   you interact with $\R$ primarily using a _command line_
   
-  <!-- - aka, a **c**ommand **l**ine **i**nterface (cli) -->
+  - aka a **c**ommand **l**ine **i**nterface (cli)
+  - the command line is usually in the *console*
 
 - “Question-and-Answer Model”
 
@@ -128,6 +129,19 @@ R is designed so that users can start by using it *interactively* (what we will 
 :::
 
   
+# The $\Rlogo$ console
+
+The *console* is a window or pane where you will find:
+
+- The _command line_
+
+  - where you will enter commands for $\R$ to run
+
+- Results of commands and other output
+
+- Messages, Warnings, and Errors 
+
+
 # The $\Rlogo$ command-line
 
 - The command *prompt* normally looks like this:
@@ -151,7 +165,7 @@ R is designed so that users can start by using it *interactively* (what we will 
   
   - Wait for a new empty prompt to appear before entering the next command.
 
-# The $\Rlogo$ command-line (cont'd)
+# The $\Rlogo$ command-line (continued)
 
 - If the prompt looks like this:  
 
@@ -169,7 +183,7 @@ R is designed so that users can start by using it *interactively* (what we will 
 - \highlight{You can \textit{cancel} the current command at any time by pressing \texttt{escape}} (\important{\texttt{esc}})
 
 
-# The $\Rlogo$ console
+# Input & Output
 
 In this presentation, 
 
@@ -186,6 +200,12 @@ In this presentation,
   ```{r format_output, include=TRUE, eval=TRUE, echo=FALSE}
   cat("Output (results)")
   ```
+
+# Some early commands
+
+<!-- screenshot of opening message:
+$\R$ gives you suggestions of commands when it starts (in the console) 
+-->
 
 
 # $\Rlogo$ is a show-off
