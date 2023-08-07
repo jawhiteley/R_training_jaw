@@ -133,6 +133,8 @@ and then gradually use it for more programming as their needs and skills grow.
 :::
 ::: {.column width="50%"}
 
+<!-- embedding an image from an online url isn't working for me,
+but at least the code chunk below doesn't produce errors. :( -->
 <!-- ![comic: trying to learn any programming language](https://rladiessydney.org/img/bblearning.jpg){height=\textheight} -->
 ```{r echo=FALSE, fig.align="center", out.height="50%"}
 # https://www.togaware.com/linux/survivor/bookdown-insert-image-from-url.html

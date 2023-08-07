@@ -528,3 +528,14 @@ Books:
   - [A Beginner's Guide to R](https://link.springer.com/book/10.1007/978-0-387-93837-0)
   - [Introductory Statistics with R](https://link.springer.com/book/10.1007/978-0-387-79054-1)
 -->
+
+::: notes
+
+Other training materials and tutorials:
+
+[RStudio Education](https://education.rstudio.com/)
+https://rladiessydney.org/courses/ryouwithme/01-basicbasics-0/
+https://moderndive.netlify.app/1-getting-started.html
+https://cengel.github.io/R-intro/
+
+:::
