@@ -6,8 +6,11 @@ date: "`r Sys.Date()`"
 output: 
   beamer_presentation:
     theme: "Boadilla"
+    slide_level: 2
+    toc: true
 header-includes: |
   \setbeamertemplate{itemize item}[circle]
+  \setbeamertemplate{enumerate item}[circle]
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
   \newcommand{\highlight}[1]{\StringTok{#1}}
@@ -21,22 +24,84 @@ header-includes: |
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Matrix math
+# Get $\Rlogo$
 
-- $\R$ can do _matrix math_ --- which are uses in many statistical procedures
-  - But the _syntax_ is different from the usual math operators
-- Using a regular multiplication symbol (`*`) results in *element*-wise multiplication
-  - each _element_ (item) in matrix1 is multiplied by the corresponding _element_ in matrix2, etc.
-```{r results='hide'}
-c(1, 2, 3) * c(3, 2, 1)
-```
-- _Matrix multiplication_ is specified by this operator: `%*%`
-```{r results='hide'}
-c(1, 2, 3) %*% c(3, 2, 1)
-```
+## Check your Operating System
+
+On **Linux**, $\R$ is often available in your _package management system_,  
+and can be installed directly from there.
+
+On **macOS**, $\R$ can be installed directly with one of:
+
++ [Homebrew](https://brew.sh/) ([formula `r`](https://formulae.brew.sh/formula/r#default))
++ [MacPorts](https://ports.macports.org/port/R/)
+
+Otherwise, you can [download](#download-r) and install $\R$ from CRAN ([next&rarr;](#download-r))
 
 
-# Symbolic _Variables_
+## Download $\Rlogo$ {#download-r}
+
+1. Go to [www.r-project.org](https://www.r-project.org/) in your web browser
+
+2. Click on [CRAN](https://cran.r-project.org/) in the menu on left (under "**Download**")  
+   
+3. Choose a "mirror" (server) that is close to where you are, or at an institution that you trust.  
+   If you're not sure, you can use one of:
+   
+   - <https://cloud.r-project.org/>
+   - <https://cran.r-project.org/>
+   
+4. Click on the link for your computer Operating System: Linux, macOS, or Windows
+   (in the top section labelled "**Download and Install R**")
+
+5. The next steps depend on your computer’s Operating System
+   - follow the instructions on the subsequent web pages
+
+
+# About [$\Rlogo$](https://www.r-project.org/)
+
+## Why $\Rlogo$?
+
++ It's **fast & lean**
+  - Load only the components you need at the time
++ It works on **multiple platforms**
++ It has sophisticated **graphics** capabilities
+  - Produce publication-quality graphs in the same software as your
+    analysis. No post-processing in Illustrator or Photoshop.
++ It's **flexible**, **powerful**, and **innovative**
+  - Advanced methods are often available in R before other statistical software.
++ It can be used interactively, or to run pre-written *scripts*
+  - Scripts provide automatic record of how an analysis was performed, 
+    that can be re-produced even years later.
+
+## $\Rlogo$ is **Free/Libre** Open Source Software (FLOSS)
+
+* Free as in 'beer': you do not have to pay $ for it.
+* Free as in 'speech': You have the _freedom_ to ...
+  - use it for any purpose
+  - study how it works and adapt it to your needs
+  - redistribute copies to your friends & neighbours
+  - improve it and release improvements publicly
+  
+* The source code is _open_ ("open source"[^wikipedia][^osi])
+  - the source code is publicly available
+  - the license allows for anyone to copy, modify, or distribute the code.
+  - open collaboration is encouraged
+  - anyone can propose changes and improvements, 
+    but a _Core Team_ controls what changes are integrated into the versions 
+    released & distributed by the [R Project](https://www.r-project.org/)
+
+[^wikipedia]: <https://en.wikipedia.org/wiki/Open_source>
+[^osi]: https://opensource.org/definition-annotated/
+
+
+# Learning R
+
+
+
+# Names
+
+## Symbolic _Variables_
 
 - You can store values (*objects*) in symbolic variables (*names*)\
   using an *assignment operator*
@@ -82,7 +147,7 @@ assign('x', 3)    # assign the value 3 to the variable ‘x’
 https://stackoverflow.com/questions/1741820/what-are-the-differences-between-and-assignment-operators
 -->
 
-# Variable / Object Names
+## Variable / Object Names
 
 - In $\R$, all variables are *objects*
   - In $\R$, **everything** is an *object*
@@ -108,7 +173,7 @@ assign('x', 3)
 ```
 
 
-# Object Names: Details
+## Object Names: Details
 
 Names can start with a **letter** or a **period** _(more on this later)_
 
@@ -124,7 +189,7 @@ _myvar <- F
 my var <- F
 ```
 
-## <!-- empty subheader to separate the next part -->
+### <!-- empty subheader to separate the next part -->
 
 For more information about object names in \R{}, see:
 
@@ -136,7 +201,7 @@ For more information about object names in \R{}, see:
 
 
 
-# Object Names: Hidden
+## Object Names: Hidden
 
 - Names starting with a period (`.`) are special and normally hidden from users.
 
@@ -150,7 +215,7 @@ ls(all.names = TRUE)
   - Therefore, most users should avoid doing this unless they know what they are doing and have a good reason to do so.
 
 
-# Object Names: Advanced
+## Object Names: Advanced
 
 - 'Valid' names following the rules above can be referred to easily in code.
 
@@ -160,6 +225,26 @@ ls(all.names = TRUE)
 ```{r}
 `(my) [strange] {variable} 'name' "!@#$"` <- T
 print(`(my) [strange] {variable} 'name' "!@#$"`)
+```
+
+
+# Special Operators
+
+## Matrix math
+
+- $\R$ can do _matrix math_ --- which is used in many statistical procedures
+  - But the _syntax_ is different from the usual math operators
+
+- Using a regular multiplication symbol (`*`) results in *element*-wise multiplication
+  - each _element_ (item) in matrix1 is multiplied by the corresponding _element_ in matrix2, etc.
+
+```{r results='hide'}
+c(1, 2, 3) * c(3, 2, 1)
+```
+- _Matrix multiplication_ is specified by this operator: `%*%`{/r}
+
+```{r results='hide'}
+c(1, 2, 3) %*% c(3, 2, 1)
 ```
 
 
