@@ -1,0 +1,3 @@
+Screenshots of RStudio captured in Windows 10
+Display Resolution: 1920 x 1440
+Scale: 150%
