@@ -133,7 +133,7 @@ On your turn:
 ::: {.column width="50%"}
 
 ![What is this?\
-© John Speirs/Comedywildlifephoto.com](images/john-speirs_i-guess-summers-over.jpg){width=100%}
+© [John Speirs/Comedywildlifephoto.com](https://www.comedywildlifephoto.com/gallery/comedy-wildlife-2021-competition-winners.php)](images/john-speirs_i-guess-summers-over.jpg){width=100%}
 
 :::
 ::::::
