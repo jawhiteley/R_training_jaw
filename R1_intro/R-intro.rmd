@@ -6,6 +6,8 @@ output:
   beamer_presentation: 
     theme: Boadilla
     keep_tex: yes
+params:
+  is_virtual: TRUE    # is this presentation for a virtual (T) or in-person (F) environment?
 header-includes: |
   \setbeamertemplate{itemize item}[circle]
   \setbeamertemplate{enumerate item}[circle]
@@ -57,10 +59,84 @@ and reduce the amount of custom LaTeX?
 + True or False: Warnings can be ignored, but an Error means I made a mistake.
 + True or False: Error messages will tell me how to fix the problem.
 
-<!--
-# Introductions - activity
+```{r welcome, echo=FALSE, results='asis'}
+if (params$is_virtual) {
+  cat("\\ 
+  \n## Answer in the chat:
+  \n
+  \nWhat emoji best describes your current mood or state of mind?
+  ")
+}
+```
 
--->
+
+# Introductions
+
+- Name
+- Pronouns
+- Job Title, role
+- Have you used $\R$ before?
+- Have you used a programming language before?
+- _optional_: a hobby or activity you enjoy?
+
+::: notes
+
+Other icebreaker questions:
+
+- Favourite candy or treat as a child?
+- Favourite music band or genre?
+- Favourite book?
+- Highlight of the past month / year (personal or professional)?
+
+If available on platform, online polls:
+
+- Where are you joining from?
+- Have you used `R` before?
+- Have you used a programming language before?
+
+If a chat is available, put answer to a question there:
+
+- What emoji best describes your current mood or state of mind?
+- Favourite emoji?
+
+More icebreaker ideas:
+
+- https://blog.slido.com/virtual-icebreakers/
+- https://www.mural.co/blog/virtual-meeting-ice-breakers
+
+:::
+
+
+# <!-- interactive --> Icebreaker activity
+
+:::::: {.columns}
+::: {.column width="50%"}
+
+**What is this?**  
+  1--3 word description, for&nbsp;example:
+  
+  - "This is grey"
+  - "This looks uncomfortable"
+
+<!-- empty line for spacing -->\
+On your turn:
+
+1. Previous person's name
+2. Their answer to the question
+
+3. Your name
+4. Your answer
+
+5. Name of the person to go next
+
+:::
+::: {.column width="50%"}
+
+![What is this?\
+© John Speirs/Comedywildlifephoto.com](images/john-speirs_i-guess-summers-over.jpg){width=100%}
+
+:::
+::::::
 
 
 # Learning Objectives
