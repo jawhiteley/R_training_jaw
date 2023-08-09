@@ -431,8 +431,16 @@ Interface}
 \protect\hypertarget{a-quick-tour-of-the-base-textttr-gui}{}
 \begin{figure}
 \centering
-\includegraphics[width=0.9\textwidth,height=\textheight]{images/R-screenshot-win-plot.png}
-\caption{screenshot of R GUI}
+\begin{tikzpicture}
+  \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.9\textwidth]{images/R-screenshot-win-plot.png}};
+  \begin{scope}[x={(image.south east)},y={(image.north west)}]
+    \draw[ultra thick, rounded corners, draw=red, fill=white, fill opacity=0.5] (0,0.15) rectangle (0.54,0.87);
+    \node[align=center, font=\Large\bfseries] at (0.27,0.30) {console};
+    \draw[ultra thick, rounded corners, draw=red, fill=white, fill opacity=0.5] (0.4,0.02) rectangle (0.8,0.82);
+    \node[align=center, font=\Large\bfseries] at (0.65,0.42) {plot\\ window};
+  \end{scope}
+\end{tikzpicture}
+\caption{Screenshot of the R GUI in Windows.}
 \end{figure}
 \end{frame}
 
@@ -441,7 +449,7 @@ Interface}
 \begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth,height=\textheight]{images/RStudio-screenshot-4pane-default.png}
-\caption{screenshot of RStudio}
+\caption{Screenshot of RStudio.}
 \end{figure}
 \end{frame}
 

@@ -44,6 +44,15 @@ and reduce the amount of custom LaTeX?
   
 + https://tug.org/tug2020/preprints/MacFarlane-Keynote-slides.pdf
 + https://stackoverflow.com/questions/23825317/how-to-convert-markdown-css-pdf
+
+Overlay graphics using Tikz:
+https://tex.stackexchange.com/questions/209052/how-to-get-tikzmark-to-work
+https://texdoc.org/serve/tikzmark/0
+https://tikz.dev/tikz-arrows
+https://www.overleaf.com/latex/templates/beamer-arrows/wmqkckggvjsd
+https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specified-position-in-a-frame-and-write-some-notes-on
+https://tex.stackexchange.com/questions/347492/how-can-i-draw-arrows-from-items-to-a-picture-in-beamer
+https://tex.stackexchange.com/questions/9559/drawing-on-an-image-wit%E2%80%8C%E2%80%8Bh-tikz/
 ```
 
 
@@ -186,13 +195,27 @@ _Read more about the history of $\R$  on [Wikipedia](https://en.wikipedia.org/wi
 
 # A quick tour of the 'base $\R$ GUI'
 
-![screenshot of R GUI](images/R-screenshot-win-plot.png){width=90%}
+<!-- ![Screenshot of the R GUI in Windows.](images/R-screenshot-win-plot.png){width=90%} -->
+\begin{figure}
+\centering
+\begin{tikzpicture}
+  \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.9\textwidth]{images/R-screenshot-win-plot.png}};
+  \begin{scope}[x={(image.south east)},y={(image.north west)}]
+    \draw[ultra thick, rounded corners, draw=red, fill=white, fill opacity=0.5] (0,0.15) rectangle (0.54,0.87);
+    \node[align=center, font=\Large\bfseries] at (0.27,0.30) {console};
+    \draw[ultra thick, rounded corners, draw=red, fill=white, fill opacity=0.5] (0.4,0.02) rectangle (0.8,0.82);
+    \node[align=center, font=\Large\bfseries] at (0.65,0.42) {plot\\ window};
+  \end{scope}
+\end{tikzpicture}
+\caption{Screenshot of the R GUI in Windows.}
+\end{figure}
+
 
 # A quick tour of RStudio
 
 <!-- RStudio is pretty strict about the use of its logo: https://www.rstudio.com/about/logos/ -->
 
-![screenshot of RStudio](images/RStudio-screenshot-4pane-default.png){width=90%}
+![Screenshot of RStudio.](images/RStudio-screenshot-4pane-default.png){width=90%}
 
   
 # Interacting with $\Rlogo$
@@ -386,17 +409,6 @@ _the code used to produce it_.
 
 :::
 ::::::
-
-
-<!-- Overlay arrows:
-https://tex.stackexchange.com/questions/209052/how-to-get-tikzmark-to-work
-https://texdoc.org/serve/tikzmark/0
-https://tikz.dev/tikz-arrows
-https://www.overleaf.com/latex/templates/beamer-arrows/wmqkckggvjsd
-https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specified-position-in-a-frame-and-write-some-notes-on
-https://tex.stackexchange.com/questions/347492/how-can-i-draw-arrows-from-items-to-a-picture-in-beamer
-https://tex.stackexchange.com/questions/9559/drawing-on-an-image-wit%E2%80%8C%E2%80%8Bh-tikz/
--->
 
 \begin{tikzpicture}[remember picture, overlay]
   \draw [ultra thick, gray, -{Latex}] ( $ (n1.north) +(0,2pt) $ ) -- ++(0,4ex);
