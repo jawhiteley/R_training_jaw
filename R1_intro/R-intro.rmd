@@ -62,14 +62,17 @@ and reduce the amount of custom LaTeX?
 
 -->
 
+
 # Learning Objectives
 
-* Get familiar with the ![]( `r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em} _interface_
+* Get familiar with the ![]( `r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em}[^Rlogo] *interface*
 * Use technical _terms_ for $\R$ concepts
-* Enter _commands_
-  * input & output: using $\R$ interactively
-  * use some common _functions_
-* Understand _Errors_ & _Warnings_
+* Enter *commands*
+  * use $\R$ interactively: understand input & output
+  * use some common *functions*
+* Get familiar with '$\R$ objects'
+  * store & retrieve values
+* Understand *Errors*, *Warnings*, and *Messages*
 * How to get Help
 
 
@@ -87,7 +90,8 @@ and reduce the amount of custom LaTeX?
    at the University of Aukland in the early 1990s.
 
 \
-_Read more about $\R$'s history on [Wikipedia](https://en.wikipedia.org/wiki/R_(programming_language)#History)_^[https://en.wikipedia.org/wiki/R_(programming_language)#History]
+_Read more about the history of $\R$  on [Wikipedia](https://en.wikipedia.org/wiki/R_(programming_language)#History)_^[https://en.wikipedia.org/wiki/R_(programming_language)#History]
+
 
 # The $\Rlogo$ Interface
 
@@ -110,7 +114,7 @@ _Read more about $\R$'s history on [Wikipedia](https://en.wikipedia.org/wiki/R_(
 
 # A quick tour of RStudio
 
-<!-- https://www.rstudio.com/about/logos/ -->
+<!-- RStudio is pretty strict about the use of its logo: https://www.rstudio.com/about/logos/ -->
 
 ![screenshot of RStudio](images/RStudio-screenshot-4pane-default.png){width=90%}
 
@@ -173,6 +177,7 @@ The *console* is a window or pane where you will find:
   
   - Wait for a new empty prompt to appear before entering the next command.
 
+
 # The $\Rlogo$ command-line (continued)
 
 - If the prompt looks like this:  
@@ -208,6 +213,7 @@ In this presentation,
   ```{r format_output, include=TRUE, eval=TRUE, echo=FALSE}
   cat("Output (results)")
   ```
+
 
 # Some early commands
 
@@ -252,6 +258,7 @@ The descriptions in this section could be entered as comments directly in the co
 But the comment character hasn't been introduced yet,
 and I need a clear way to explain the commands in the meantime.
 -->
+
 
 :::::::: {.content-hidden}
 # $\Rlogo$ is a show-off (alt)
@@ -507,13 +514,16 @@ and should **never be used as variable names**.
 answer in notes
 :::
 
+
+
+
 # References & More Information
 
 ```{r, eval=FALSE}
 help.start()
 ```
 
-Available from the screen above (offline):
+Accessible from the screen above (offline):
 
   - [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
   - [The R Language Definition](https://cran.r-project.org/doc/manuals/r-release/R-lang.html)
@@ -522,7 +532,7 @@ Online:
 
 + [RStudio Education](https://education.rstudio.com/) ([education.rstudio.com](https://education.rstudio.com/))
   - tutorials, workshop materials, and other resources.
-+ [$\Rlogo$](https://r-project.org/) [Manuals](https://cran.r-project.org/manuals.html)
++ $\Rlogo$ [Manuals](https://cran.r-project.org/manuals.html)
   (<https://cran.r-project.org/manuals.html>)
 + $\Rlogo$ [Contributed Documentation](https://cran.r-project.org/other-docs.html)
   - e.g., <http://cran.r-project.org/doc/contrib/usingR.pdf>
@@ -539,11 +549,16 @@ Books:
 
 ::: notes
 
-Other training materials and tutorials:
+Other training materials and tutorials used as inspiration:
 
-[RStudio Education](https://education.rstudio.com/)
-https://rladiessydney.org/courses/ryouwithme/01-basicbasics-0/
-https://moderndive.netlify.app/1-getting-started.html
-https://cengel.github.io/R-intro/
+- [A Beginner's Guide to R](https://link.springer.com/book/10.1007/978-0-387-93837-0)
+- [Introductory Statistics with R](https://link.springer.com/book/10.1007/978-0-387-79054-1)
+- [RStudio Education](https://education.rstudio.com/)
+- https://rladiessydney.org/courses/ryouwithme/01-basicbasics-0/
+- https://moderndive.netlify.app/1-getting-started.html
+- https://cengel.github.io/R-intro/
+
+[^Rlogo]: The R logo ($\Rlogo$) is [© 2016 The R Foundation](https://www.r-project.org/logo/) and used as-is under the terms of the [**CC-BY-SA 4.0** license](https://creativecommons.org/licenses/by-sa/4.0/)
 
 :::
+
