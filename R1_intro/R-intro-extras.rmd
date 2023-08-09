@@ -96,6 +96,18 @@ Otherwise, you can [download](#download-r) and install $\R$ from CRAN ([next&rar
 [^wikipedia]: <https://en.wikipedia.org/wiki/Open_source>
 [^osi]: https://opensource.org/definition-annotated/
 
+::: notes
+
+Software licenses typically set conditions on _sharing_ the software or source code, not what you do with it. 
+Many licenses allow the software to be used for commercial purposes (you can even sell it), but some require derivative works to be released under the same (public) license, which prevents their code or software from being used as part of _proprietary software_.
+
+See the following sites for lists, summaries, and descriptions of open-source licenses:
+
+- The Open Source Initiative ([opensource.org](https://opensource.org/licenses/))
+- [Choosealicense.com](https://choosealicense.com/appendix/) (A [GitHub](https://github.com/) project)
+
+:::
+
 
 # Using $\Rlogo$
 
