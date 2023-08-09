@@ -53,6 +53,7 @@ https://www.overleaf.com/latex/templates/beamer-arrows/wmqkckggvjsd
 https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specified-position-in-a-frame-and-write-some-notes-on
 https://tex.stackexchange.com/questions/347492/how-can-i-draw-arrows-from-items-to-a-picture-in-beamer
 https://tex.stackexchange.com/questions/9559/drawing-on-an-image-wit%E2%80%8C%E2%80%8Bh-tikz/
+https://tex.stackexchange.com/questions/448838/tikz-node-text-formatting-problems
 ```
 
 
@@ -198,13 +199,14 @@ _Read more about the history of $\R$  on [Wikipedia](https://en.wikipedia.org/wi
 <!-- ![Screenshot of the R GUI in Windows.](images/R-screenshot-win-plot.png){width=90%} -->
 \begin{figure}
 \centering
-\begin{tikzpicture}
+\begin{tikzpicture}[overlay/.style={ultra thick, draw=red, fill=white, fill opacity=0.5, text opacity=1},
+                    note/.style={align=center, font=\Large\bfseries}]
   \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.9\textwidth]{images/R-screenshot-win-plot.png}};
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
-    \draw[ultra thick, rounded corners, draw=red, fill=white, fill opacity=0.5] (0,0.15) rectangle (0.54,0.87);
-    \node[align=center, font=\Large\bfseries] at (0.27,0.30) {console};
-    \draw[ultra thick, rounded corners, draw=red, fill=white, fill opacity=0.5] (0.4,0.02) rectangle (0.8,0.82);
-    \node[align=center, font=\Large\bfseries] at (0.65,0.42) {plot\\ window};
+    \draw[overlay] (0,0.15) rectangle (0.54,0.87);
+    \node[note] at (0.27,0.30) {console};
+    \draw[overlay] (0.4,0.02) rectangle (0.8,0.82);
+    \node[note] at (0.65,0.42) {plot\\ window};
   \end{scope}
 \end{tikzpicture}
 \caption{Screenshot of the R GUI in Windows.}
@@ -215,9 +217,51 @@ _Read more about the history of $\R$  on [Wikipedia](https://en.wikipedia.org/wi
 
 <!-- RStudio is pretty strict about the use of its logo: https://www.rstudio.com/about/logos/ -->
 
-![Screenshot of RStudio.](images/RStudio-screenshot-4pane-default.png){width=90%}
+:::::: {.columns}
+::: {.column width="75%"}
 
+The RStudio GUI has 4 'panes' that contain 'tabs'. 
+
+<!-- ![Screenshot of RStudio.](images/RStudio-screenshot-4pane-default.png){width=90%} -->
+\begin{figure}
+\centering
+\begin{tikzpicture}[overlay/.style={ultra thick, draw=red, fill=white, fill opacity=0.5, text opacity=1},
+                    circler/.style={radius=3ex},
+                    note/.style={align=center, font=\Large\bfseries}]
+  \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=\textwidth]{images/RStudio-screenshot-4pane-default.png}};
+  \begin{scope}[x={(image.south east)},y={(image.north west)}]
+    \draw[overlay] (0.45,0.7) circle[circler] node[note] {1};
+    \draw[overlay] (0.45,0.2) circle[radius=3ex] node[note] {2};
+    \draw[overlay] (0.80,0.7) circle[radius=3ex] node[note] {3};
+    \draw[overlay] (0.80,0.2) circle[radius=3ex] node[note] {4};
+  \end{scope}
+\end{tikzpicture}
+\caption{Screenshot of RStudio (default layout).}
+\end{figure}
+
+:::
+::: {.column width="25%"}
+
+left:
+
+  1. top: **Source**^[empty until you create or open a file]
+
+  2. bottom: **Console, Terminal, ...**
+
+
+right:
+
+  3. top:  
+     **Environment, History, ...**
   
+  4. bottom: 
+     **Files, Plots, Help, ...**
+
+
+:::
+::::::
+
+
 # Interacting with $\Rlogo$
 
 - Regardless of the GUI, 
