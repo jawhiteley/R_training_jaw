@@ -106,11 +106,13 @@ _Read more about $\R$'s history on [Wikipedia](https://en.wikipedia.org/wiki/R_(
 
 # A quick tour of the 'base $\R$ GUI'
 
-$\Rlogo$
+![screenshot of R GUI](images/R-screenshot-win-plot.png){width=90%}
 
 # A quick tour of RStudio
 
 <!-- https://www.rstudio.com/about/logos/ -->
+
+![screenshot of RStudio](images/RStudio-screenshot-4pane-default.png){width=90%}
 
   
 # Interacting with $\Rlogo$
@@ -118,7 +120,7 @@ $\Rlogo$
 - Regardless of the GUI, 
   you interact with $\R$ primarily using a _command line_
   
-  - aka a **c**ommand **l**ine **i**nterface (cli)
+  - aka a [c]{.underline}ommand [l]{.underline}ine [i]{.underline}nterface (cli)
   - the command line is usually in the *console*
 
 - “Question-and-Answer Model”
