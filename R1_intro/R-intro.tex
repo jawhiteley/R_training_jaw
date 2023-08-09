@@ -431,14 +431,16 @@ Interface}
 \protect\hypertarget{a-quick-tour-of-the-base-textttr-gui}{}
 \begin{figure}
 \centering
-\begin{tikzpicture}[overlay/.style={ultra thick, draw=red, fill=white, fill opacity=0.5, text opacity=1},
+\begin{tikzpicture}[overlay/.style={ultra thick, rounded corners, draw=red, fill=white, fill opacity=0.5, text opacity=1},
                     note/.style={align=center, font=\Large\bfseries}]
-  \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.9\textwidth]{images/R-screenshot-win-plot.png}};
+  \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.9\textwidth]{images/R-screenshot-script-plot-win.png}};
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
     \draw[overlay] (0,0.15) rectangle (0.54,0.87);
-    \node[note] at (0.27,0.30) {console};
-    \draw[overlay] (0.4,0.02) rectangle (0.8,0.82);
-    \node[note] at (0.65,0.42) {plot\\ window};
+    \node[note] at (0.14,0.27) {console};
+    \draw[overlay] (0.245,0.065) rectangle (0.585,0.76);
+    \node[note] at (0.415,0.41) {source};
+    \draw[overlay] (0.588,0.07) rectangle (0.987,0.87);
+    \node[note] at (0.788,0.47) {plot\\ window};
   \end{scope}
 \end{tikzpicture}
 \caption{Screenshot of the R GUI in Windows.}
