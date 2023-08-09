@@ -291,11 +291,11 @@ In this presentation,
   ```
 
 
-# Some early commands
+# $\Rlogo$ offers suggestions
 
-<!-- screenshot of opening message:
-$\R$ gives you suggestions of commands when it starts (in the console) 
--->
+Read the opening message carefully.
+
+![$\R$ offers suggestions of commands to try in the console when it starts.](images/R-screenshot-win-default.png){width=90%}
 
 
 # $\Rlogo$ is a show-off
@@ -468,12 +468,13 @@ to return the *value*.
 # $\Rlogo$ command-line tips
 
 - With the cursor next to the empty prompt (\OtherTok{\texttt{>}}),  
-  use the up & down \important{arrow keys} (&uarr;&darr;) to
-  re-produce previous commands
-- This lets you 
-  “scroll through your *command history*”
-- Press \important{up} (\important{$\uparrow$}) once, and you get the last command you entered 
-  without having to copy & paste
+  use the up & down \important{arrow keys} (&uarr;&darr;) 
+  to re-produce previous commands.
+  
+- This lets you “scroll through your *command history*”.
+  
+- Press \important{up} (\important{$\uparrow$}) once, and you get the last command you entered  
+  without having to copy & paste.
 
 
 # Symbolic _variables_
@@ -481,7 +482,7 @@ to return the *value*.
 In R, everything is an _object_, and each has a name -->
 
 - You can store values (*objects*) in symbolic variables (*names*) 
-  using an *assignment operator*
+  using an *assignment operator*:
   
 -------- ------------------------------------------------------------------
 `<-`{.r} assign the *value* on the **right** to the *name* on the **left**
@@ -499,7 +500,7 @@ In R, everything is an _object_, and each has a name -->
 |periods    |\StringTok{\texttt{.}}      |
 |underscores|\StringTok{\texttt{\_}}     |
 
-- Names _should begin with a **\StringTok{letter}**_
+- Names _should begin with a **\StringTok{letter}**_.
 
 :::
 ::: {.column width="50%"}
