@@ -13,6 +13,7 @@ header-includes: |
   \setbeamertemplate{enumerate item}[circle]
   \usepackage{tikz}
   \usetikzlibrary{arrows.meta,calc,tikzmark,fit}
+  \AtBeginEnvironment{verbatim}{\small}% reduce font size in R output
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
   \newcommand{\highlight}[1]{\StringTok{#1}}
@@ -23,8 +24,9 @@ header-includes: |
 ---
 
 ```{r setup, include=FALSE}
+## https://yihui.org/knitr/options/
 knitr::opts_chunk$set(echo = TRUE)
-options(width = 56)  # to fit output on slides: either smaller font or shorter width (or both)
+options(width = 60)  # to fit output on slides: either smaller font or shorter width (or both)
 ```
 
 ```{r NOTES, include=FALSE, eval=FALSE}
@@ -45,7 +47,7 @@ and reduce the amount of custom LaTeX?
 + https://tug.org/tug2020/preprints/MacFarlane-Keynote-slides.pdf
 + https://stackoverflow.com/questions/23825317/how-to-convert-markdown-css-pdf
 
-Overlay graphics using Tikz:
+# Overlay graphics using Tikz:
 https://tex.stackexchange.com/questions/209052/how-to-get-tikzmark-to-work
 https://texdoc.org/serve/tikzmark/0
 https://tikz.dev/tikz-arrows
@@ -54,6 +56,11 @@ https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specifi
 https://tex.stackexchange.com/questions/347492/how-can-i-draw-arrows-from-items-to-a-picture-in-beamer
 https://tex.stackexchange.com/questions/9559/drawing-on-an-image-wit%E2%80%8C%E2%80%8Bh-tikz/
 https://tex.stackexchange.com/questions/448838/tikz-node-text-formatting-problems
+
+# Customizing R code chunks and output
+https://yihui.org/knitr/options/
+https://tex.stackexchange.com/questions/669717/how-do-i-change-the-default-font-size-of-verbatim-at-document-level
+https://texdoc.org/serve/fancyvrb/0
 ```
 
 
@@ -567,6 +574,31 @@ to return the *value*.
 
 
 # Vectors
+
+- The most basic kind of *object* in $\R$ is a *vector*
+- Think of a vector as a list of related values (data),  
+  which are all the same type
+- A single value is an "*atomic vector*" (a vector with a length of 1)
+
+:::::: {.columns}
+::: {.column width="25%"}
+
+:::
+::: {.column width="50%"}
+
+```{r, echo=c(4)}
+opts.width <- getOption('width')
+options(width = 30)
+2
+1:10
+options(width = opts.width)
+```
+
+:::
+::: {.column width="25%"}
+
+:::
+::::::
 
 
 # Some data *types* (of *atomic vectors*)
