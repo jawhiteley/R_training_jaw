@@ -313,7 +313,7 @@ The *console* is a window or pane where you will find:
 
 - Results of commands and other output
 
-- Messages, Warnings, and Errors 
+- `Messages`, \WarningTok{Warnings}, and \ErrorTok{Errors} 
 
 
 # The $\Rlogo$ command-line
