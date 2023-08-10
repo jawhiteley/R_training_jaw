@@ -145,7 +145,7 @@
 \setbeamertemplate{itemize item}[circle]
 \setbeamertemplate{enumerate item}[circle]
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,calc,tikzmark}
+\usetikzlibrary{arrows.meta,calc,tikzmark,fit}
 \newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
 \newcommand{\highlight}[1]{\StringTok{#1}}
@@ -675,9 +675,17 @@ Read the opening message carefully.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.9\textwidth,height=\textheight]{images/R-screenshot-win-default.png}
-\caption{\(\texttt{R}\) offers suggestions of commands to try in the
-console when it starts.}
+\begin{tikzpicture}[overlay/.style={ultra thick, rounded corners, draw=red, fill=none},
+                    note/.style={anchor=west, align=left, font=\Large\bfseries},
+                    ->/.style={ultra thick, red, -{Latex}[round]}]
+  \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.9\textwidth]{images/R-screenshot-win-default}};
+  \begin{scope}[x={(image.south east)},y={(image.north west)}]
+    \node (rect) [overlay, fit={(0,0.36) (0.42,0.46)}, inner sep=0] {};
+    \node (note)  [note, text width=12em] at (0.55,0.41) {\textcolor[rgb]{0.60,0.00,0.00}{$\R$ offers suggestions to start with}};
+    \draw [->] (note.west) -> (rect.east);
+  \end{scope}
+\end{tikzpicture}
+\caption{$\texttt{R}$ offers suggestions of commands to \KeywordTok{\texttt{Type}} in the console when it starts.}
 \end{figure}
 \end{frame}
 
