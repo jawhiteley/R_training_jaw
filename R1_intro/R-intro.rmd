@@ -57,6 +57,18 @@ https://tex.stackexchange.com/questions/448838/tikz-node-text-formatting-problem
 ```
 
 
+# Prerequisites
+
+- Access to a copy of the [$\Rlogo$](https://www.r-project.org)[^Rlogo] software
+
+  - i.e., a "binary executable"
+  
+  - Go to _[www.r-project.org](https://www.r-project.org)_ to get a copy,  
+    or ask your system administrator.
+  
+- No previous experience with R or programming required.
+
+
 # Pop Quiz
 
 \annote{\fade{We will review these \textit{at the end}, so you can see how much you have learned.}}
@@ -151,7 +163,7 @@ On your turn:
 
 # Learning Objectives
 
-* Get familiar with the ![]( `r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em}[^Rlogo] *interface*
+* Get familiar with the ![]( `r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em} *interface*
 * Use technical _terms_ for $\R$ concepts
 * Enter *commands*
   * use $\R$ interactively: understand input & output
@@ -552,6 +564,12 @@ to return the *value*.
   
 - Press \important{up} (\important{$\uparrow$}) once, and you get the last command you entered  
   without having to copy & paste.
+
+
+# Vectors
+
+
+# Some data *types* (of *atomic vectors*)
 
 
 # Symbolic _variables_
