@@ -56,10 +56,14 @@ https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specifi
 https://tex.stackexchange.com/questions/347492/how-can-i-draw-arrows-from-items-to-a-picture-in-beamer
 https://tex.stackexchange.com/questions/9559/drawing-on-an-image-wit%E2%80%8C%E2%80%8Bh-tikz/
 https://tex.stackexchange.com/questions/448838/tikz-node-text-formatting-problems
+https://tex.stackexchange.com/questions/590889/crop-pdf-graphics
+https://stackoverflow.com/questions/48203496/how-to-trim-a-picture-with-rmarkdown-html
 
 # Customizing R code chunks and output
 https://yihui.org/knitr/options/
 https://tex.stackexchange.com/questions/669717/how-do-i-change-the-default-font-size-of-verbatim-at-document-level
+https://tex.stackexchange.com/questions/161678/decreasing-font-size-in-verbatim
+https://groups.google.com/g/comp.text.tex/c/YlKONnmYOV8
 https://texdoc.org/serve/fancyvrb/0
 ```
 
