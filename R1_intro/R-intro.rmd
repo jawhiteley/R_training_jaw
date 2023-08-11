@@ -764,6 +764,12 @@ answer in notes
 :::
 
 
+<!-- To ADD:
++ the `c()` function for making vectors
++ Installing packages
++ Script files
++ Rmarkdown & R notebooks
+-->
 
 
 # References & More Information
