@@ -107,10 +107,13 @@ if (params$is_virtual) {
 
 - Name
 - Pronouns
-- Job Title, role
+- Job title, role
+- _optional_: a hobby or activity you enjoy?
+
+<!-- -->
+
 - Have you used $\R$ before?
 - Have you used a programming language before?
-- _optional_: a hobby or activity you enjoy?
 
 ::: notes
 
@@ -151,8 +154,7 @@ More icebreaker ideas:
   - "This is grey"
   - "This looks uncomfortable"
   
-**OR**  
-How would you caption this image?
+**OR** caption this image?
 
 <!-- empty line for spacing -->\
 On your turn:
