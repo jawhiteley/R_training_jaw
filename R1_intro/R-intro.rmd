@@ -8,6 +8,8 @@ output:
     colortheme: default
     keep_tex: yes
     highlight: tango
+    slide_level: 2
+    toc: false
 params:
   is_virtual: TRUE    # is this presentation for a virtual (T) or in-person (F) environment?
 header-includes: |
@@ -38,7 +40,7 @@ options(width = 60)  # to fit output on slides: either smaller font or shorter w
 ```
 
 
-# Prerequisites
+## Prerequisites
 
 - Access to a copy of the [$\Rlogo$](https://www.r-project.org)[^Rlogo] software
 
@@ -50,7 +52,7 @@ options(width = 60)  # to fit output on slides: either smaller font or shorter w
 - No previous experience with R or programming required.
 
 
-# Pop Quiz
+## Pop Quiz
 
 \annote{\fade{We will review these \textit{at the end}, so you can see how much you have learned.}}
 
@@ -65,7 +67,7 @@ options(width = 60)  # to fit output on slides: either smaller font or shorter w
 ```{r welcome, echo=FALSE, results='asis'}
 if (params$is_virtual) {
   cat("\\ 
-  \n## Answer in the chat:
+  \n### Answer in the chat:
   \n
   \nWhat emoji best describes your current mood or state of mind?
   ")
@@ -73,7 +75,7 @@ if (params$is_virtual) {
 ```
 
 
-# Introductions
+## Introductions
 
 - Name
 - Pronouns
@@ -113,7 +115,7 @@ More icebreaker ideas:
 :::
 
 
-# <!-- interactive --> Icebreaker activity
+## <!-- interactive --> Icebreaker activity
 
 :::::: {.columns .onlytextwidth}
 ::: {.column width="48%"}
@@ -147,7 +149,7 @@ On your turn:
 ::::::
 
 
-# Learning Objectives
+## Learning Objectives
 
 * Get familiar with the ![]( `r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em} *interface*
 * Use technical _terms_ for $\R$ concepts
@@ -160,7 +162,7 @@ On your turn:
 * How to get Help
 
 
-# Why is it named '$\R$'?
+## Why is it named '$\R$'?
 
 1. **$\R$** started as an _open-source_ implementation of the  
    **`S`** statistical computing language (S-PLUS)^[https://www.r-project.org/about.html]
@@ -177,13 +179,15 @@ On your turn:
 _Read more about the history of $\R$  on [Wikipedia](https://en.wikipedia.org/wiki/R_(programming_language)#History)_^[https://en.wikipedia.org/wiki/R_(programming_language)#History]
 
 
-# The $\Rlogo$ Interface
+# Interacting with $\R$ (Interface)
+
+## The $\Rlogo$ Interface
 
 - 'base $\R$' has a slightly different interface for each **O**perating **S**ystem (OS)
   - GUI = **G**raphical **U**ser **I**nterface
 - $\R$ can also run inside of a terminal (no GUI) or other software (different GUI).
 
-## [**I**ntegrated **D**evelopment **E**nvironment](https://en.wikipedia.org/wiki/Integrated_development_environment) (IDE)
+### [**I**ntegrated **D**evelopment **E**nvironment](https://en.wikipedia.org/wiki/Integrated_development_environment) (IDE)
 
 - An IDE is like an extra interface layer on top of 'base $\R$'
 - IDEs often add convenient tools to make writing code easier (e.g., syntax highlighting),
@@ -192,7 +196,7 @@ _Read more about the history of $\R$  on [Wikipedia](https://en.wikipedia.org/wi
   - RStudio is available in open source (free/libre) and commercial^[for organizations not able to use software licensed with AGPL] editions.
   
 
-# A quick tour of the 'base $\R$ GUI'
+## A quick tour of the 'base $\R$ GUI'
 
 <!-- ![Screenshot of the R GUI in Windows.](images/R-screenshot-win-plot.png){width=90%} -->
 \begin{figure}
@@ -213,7 +217,7 @@ _Read more about the history of $\R$  on [Wikipedia](https://en.wikipedia.org/wi
 \end{figure}
 
 
-# A quick tour of RStudio
+## A quick tour of RStudio
 
 <!-- RStudio is pretty strict about the use of its logo: https://www.rstudio.com/about/logos/ -->
 
@@ -267,7 +271,7 @@ right:
 ::::::
 
 
-# Interacting with $\Rlogo$
+## Interacting with $\Rlogo$
 
 - Regardless of the GUI, 
   you interact with $\R$ primarily using a _command\ line_
@@ -289,7 +293,7 @@ R is designed so that users can start by using it *interactively* (what we will 
 :::
 
   
-# The $\Rlogo$ console
+## The $\Rlogo$ console
 
 The *console* is a window or pane where you will find:
 
@@ -302,7 +306,7 @@ The *console* is a window or pane where you will find:
 - `Messages`, \WarningTok{Warnings}, and \ErrorTok{Errors} 
 
 
-# The $\Rlogo$ command-line
+## The $\Rlogo$ command-line
 
 - The command *prompt* normally looks like this:
 
@@ -326,7 +330,7 @@ The *console* is a window or pane where you will find:
   - Wait for a new empty prompt to appear before entering the next command.
 
 
-# The $\Rlogo$ command-line (continued)
+## The $\Rlogo$ command-line (continued)
 
 - If the prompt looks like this:  
 
@@ -344,7 +348,9 @@ The *console* is a window or pane where you will find:
 - \highlight{You can \textit{cancel} the current command at any time by pressing \texttt{escape}} (\important{\texttt{esc}})
 
 
-# Input & Output
+# Warming up: some early commands
+
+## Input & Output
 
 In this presentation, 
 
@@ -363,7 +369,7 @@ In this presentation,
   ```
 
 
-# $\Rlogo$ offers suggestions
+## $\Rlogo$ offers suggestions
 
 Read the opening message carefully.
 
@@ -384,7 +390,7 @@ Read the opening message carefully.
 \end{figure}
 
 
-# $\Rlogo$ is a show-off
+## $\Rlogo$ is a show-off
 
 +--------------------+----------------------------------------------------------+
 | ``` r              |                                                          |
@@ -411,7 +417,7 @@ Read the opening message carefully.
 |                    |                                                          |
 +--------------------+----------------------------------------------------------+
 
-## Note
+### Note
 
 \R{} will not only show the output, but also _the code used to produce it_.
 
@@ -423,7 +429,7 @@ and I need a clear way to explain the commands in the meantime.
 
 
 :::::::: {.content-hidden}
-# $\Rlogo$ is a show-off (alt)
+## $\Rlogo$ is a show-off (alt)
 
 :::::: {.columns}
 ::: {.column width="40%"}
@@ -464,7 +470,7 @@ More on this later.
 
 \
 
-## Note
+### Note
 
 \R{} will not only
 show the output, but also\
@@ -490,7 +496,7 @@ and I need a clear way to explain the commands in the meantime.
 ::::::::
 
 
-# $\Rlogo$ is a calculator
+## $\Rlogo$ is a calculator
 
 :::::: {.columns .onlytextwidth}
 ::: {.column width="45%"}
@@ -540,7 +546,7 @@ to return the *value*.
 :::
 
 
-# $\Rlogo$ command-line tips
+## $\Rlogo$ command-line tips
 
 - With the cursor next to the empty prompt (\OtherTok{\texttt{>}}),  
   use the up & down \important{arrow keys} (&uarr;&darr;) 
@@ -552,7 +558,9 @@ to return the *value*.
   without having to copy & paste.
 
 
-# Vectors
+# Simple $\R$ objects
+
+## Vectors
 
 - The most basic kind of *object* in $\R$ is a *vector*
 
@@ -594,7 +602,7 @@ options(width = opts.width)
 \end{tikzpicture}
 
 
-# Vectors
+## Vectors
 
 - Vectors can be used in calculations
 
@@ -616,7 +624,7 @@ options(width = opts.width)
 <!-- 1,000 random numbers from a normal distribution -->
 
 
-# Some data *types* (of *atomic vectors*)
+## Some data *types* (of *atomic vectors*)
 
 :::::: {.columns align=center}
 ::: {.column width="45%"}
@@ -662,7 +670,9 @@ as.character(c(1,2,NA,4))
 \end{tikzpicture}
 
 
-# Symbolic _variables_
+# Storing & retrieving values
+
+## Symbolic _variables_
 <!-- variables vs objects?  Objects vs names?  
 In R, everything is an _object_, and each has a name -->
 
@@ -701,7 +711,7 @@ assign('x', 3)
 ::::::
 
 
-# Retrieve values
+## Retrieve values
 
 When a variable *name* is evaluated, it returns the stored *value*. 
 
@@ -729,7 +739,7 @@ B.seq
 ```
 
 
-# Built-in variables
+## Built-in variables
 
 Some words and letters already have values in $\R$  
 and should **never be used as variable names**.
@@ -760,7 +770,7 @@ LETTERS
 ```
 
 
-# Reserved words
+## Reserved words
 
 Some words and letters already have special meaning in the R language (*keywords*) 
 and should **never be used as variable names**.
@@ -800,6 +810,17 @@ and should **never be used as variable names**.
 
 
 
+# Functions
+
+# Operators
+
+# Messages, Warnings, and Errors
+
+# Help & documentation
+
+# Installing packages
+
+# Saving code (files)
 
 <!-- To ADD:
 + Case-Sensitive
@@ -816,7 +837,9 @@ and should **never be used as variable names**.
 -->
 
 
-# [Quiz](#pop-quiz) Review
+# Backmatter
+
+## [Quiz](#pop-quiz) Review
 
 <!-- paste in questions from [Pop Quiz][], above. -->
 
@@ -829,7 +852,7 @@ Answers in notes
 
 
 
-# References & More Information
+## References & More Information
 
 ```{r, eval=FALSE}
 help.start()
@@ -876,7 +899,7 @@ Other training materials and tutorials used as inspiration:
 
 
 ```{r NOTES, include=FALSE, eval=FALSE}
-# Notes on formatting output
+## Notes on formatting output
 
 https://pandoc.org/MANUAL.html#pandocs-markdown
 https://pandoc.org/MANUAL.html#slide-shows
@@ -895,7 +918,7 @@ and reduce the amount of custom LaTeX?
 + https://tug.org/tug2020/preprints/MacFarlane-Keynote-slides.pdf
 + https://stackoverflow.com/questions/23825317/how-to-convert-markdown-css-pdf
 
-# Overlay graphics using Tikz:
+## Overlay graphics using Tikz:
 https://tex.stackexchange.com/questions/209052/how-to-get-tikzmark-to-work
 https://texdoc.org/serve/tikzmark/0
 https://tikz.dev/tikz-arrows
@@ -907,7 +930,7 @@ https://tex.stackexchange.com/questions/448838/tikz-node-text-formatting-problem
 https://tex.stackexchange.com/questions/590889/crop-pdf-graphics
 https://stackoverflow.com/questions/48203496/how-to-trim-a-picture-with-rmarkdown-html
 
-# Customizing R code chunks and output
+## Customizing R code chunks and output
 https://yihui.org/knitr/options/
 https://tex.stackexchange.com/questions/669717/how-do-i-change-the-default-font-size-of-verbatim-at-document-level
 https://tex.stackexchange.com/questions/161678/decreasing-font-size-in-verbatim
