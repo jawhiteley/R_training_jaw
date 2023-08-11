@@ -14,7 +14,11 @@ header-includes: |
   \setbeamertemplate{enumerate item}[circle]
   \usepackage{tikz}
   \usetikzlibrary{arrows.meta,calc,tikzmark,fit}
-  \AtBeginEnvironment{verbatim}{\small}% reduce font size in R output
+  %\AtBeginEnvironment{verbatim}{\small}% reduce font size in R output
+  % https://stackoverflow.com/questions/35734525/reduce-space-between-code-chunks-and-code-output-in-rmarkdown-beamer-presentatio
+  \makeatletter
+    \def\verbatim{\small\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
+  \makeatother
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
   \newcommand{\highlight}[1]{\StringTok{#1}}
