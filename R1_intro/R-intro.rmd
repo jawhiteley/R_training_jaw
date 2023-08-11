@@ -142,14 +142,17 @@ More icebreaker ideas:
 
 # <!-- interactive --> Icebreaker activity
 
-:::::: {.columns}
-::: {.column width="50%"}
+:::::: {.columns .onlytextwidth}
+::: {.column width="48%"}
 
 **What is this?**  
   1--3 word description, for\ example:
   
   - "This is grey"
   - "This looks uncomfortable"
+  
+**OR**  
+How would you caption this image?
 
 <!-- empty line for spacing -->\
 On your turn:
@@ -165,8 +168,8 @@ On your turn:
 :::
 ::: {.column width="50%"}
 
-![What is this?\
-© [John Speirs/Comedywildlifephoto.com](https://www.comedywildlifephoto.com/gallery/comedy-wildlife-2021-competition-winners.php)](images/john-speirs_i-guess-summers-over.jpg){width=100%}
+![Caption this image<!-- of a pigeon with a leaf on its face -->.\
+©\ [John\ Speirs/\linebreak[0]Comedywildlifephoto.com](https://www.comedywildlifephoto.com/gallery/comedy-wildlife-2021-competition-winners.php)](images/john-speirs_i-guess-summers-over.jpg){width=100%}
 
 :::
 ::::::
@@ -242,8 +245,8 @@ _Read more about the history of $\R$  on [Wikipedia](https://en.wikipedia.org/wi
 
 <!-- RStudio is pretty strict about the use of its logo: https://www.rstudio.com/about/logos/ -->
 
-:::::: {.columns}
-::: {.column width="75%"}
+:::::: {.columns .onlytextwidth}
+::: {.column width="73%"}
 
 The RStudio GUI has 4 'panes' that contain 'tabs'. 
 
@@ -517,8 +520,8 @@ and I need a clear way to explain the commands in the meantime.
 
 # $\Rlogo$ is a calculator
 
-:::::: {.columns}
-::: {.column width="50%"}
+:::::: {.columns .onlytextwidth}
+::: {.column width="45%"}
 
 ```{r calculator}
 1 + 1
@@ -527,7 +530,7 @@ and I need a clear way to explain the commands in the meantime.
 ```
 
 :::
-::: {.column width="50%"}
+::: {.column width="45%"}
 
 ```{r calculator2}
 10 - 1
@@ -644,7 +647,7 @@ options(width = opts.width)
 # Some data *types* (of *atomic vectors*)
 
 :::::: {.columns align=center}
-::: {.column width="50%"}
+::: {.column width="45%"}
 
 ### ***numeric***
 
@@ -662,7 +665,7 @@ options(width = opts.width)
 - `TRUE`{.r} or `FALSE`{.r}
 
 :::
-::: {.column width="50%"}
+::: {.column width="45%"}
 
 ```{r data_types, results='hide'}
 class(1.23)
@@ -692,8 +695,8 @@ In R, everything is an _object_, and each has a name -->
 `<-`{.r} assign the *value* on the **right** to the *name* on the **left**
 ---------------------------------------------------------------------------
 
-:::::: {.columns}
-::: {.column width="50%"}
+:::::: {.columns .onlytextwidth}
+::: {.column width="48%"}
 
 - Names can include:
 
@@ -707,7 +710,7 @@ In R, everything is an _object_, and each has a name -->
 - Names _should begin with a **\StringTok{letter}**_.
 
 :::
-::: {.column width="50%"}
+::: {.column width="48%"}
 ```{r assignment, results='hide'}
 A <- 10
 B <- 10 * 10
@@ -724,8 +727,8 @@ assign('x', 3)
 
 When a variable *name* is evaluated, it returns the stored *value*. 
 
-:::::: {.columns}
-::: {.column width="50%"}
+:::::: {.columns .onlytextwidth}
+::: {.column width="45%"}
 
 ```{r}
 A
@@ -733,7 +736,7 @@ A_log
 ```
 
 :::
-::: {.column width="50%"}
+::: {.column width="45%"}
 
 ```{r}
 B
@@ -753,15 +756,15 @@ B.seq
 Some words and letters already have values in $\R$  
 and should **never be used as variable names**.
 
-:::::: {.columns}
-::: {.column width="50%"}
+:::::: {.columns .onlytextwidth}
+::: {.column width="45%"}
 
 ```{r}
 pi
 ```
 
 :::
-::: {.column width="50%"}
+::: {.column width="45%"}
 
 ```{r, eval=FALSE}
 version
