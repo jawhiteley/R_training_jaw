@@ -25,7 +25,7 @@ header-includes: |
 
 ```{r setup, include=FALSE}
 ## https://yihui.org/knitr/options/
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, background='#DEDEF7', comment='')
 options(width = 60)  # to fit output on slides: either smaller font or shorter width (or both)
 ```
 
@@ -580,17 +580,22 @@ to return the *value*.
 # Vectors
 
 - The most basic kind of *object* in $\R$ is a *vector*
+
 - Think of a vector as a list of related values (data),  
-  which are all the same type
+  which are _all the same type_
+  
 - A single value is an "*atomic vector*" (a vector with a length of 1)
 
-:::::: {.columns}
-::: {.column width="25%"}
+<!-- empty paragraph for space -->\
 
+:::::: {.columns align=center}
+::: {.column width="25%"}
+\centering
+\important{\Large\textbf{\tikzmarknode{index}{\textit{index}:}\\ the item\\ number}}
 :::
 ::: {.column width="50%"}
 
-```{r, echo=c(4)}
+```{r, echo=4}
 opts.width <- getOption('width')
 options(width = 30)
 2
@@ -600,9 +605,18 @@ options(width = opts.width)
 
 :::
 ::: {.column width="25%"}
-
+\centering
+\important{\Large\textbf{\tikzmarknode{value}{\textit{value}}}}
 :::
 ::::::
+
+\begin{tikzpicture}[remember picture, overlay, 
+                    arr/.style={ultra thick, red, -{Latex}[round]}]
+  \draw[arr] (index.east) -> ++(0.9cm, 0.1cm);
+  \draw[arr] (index.east) to[out=0,in=180] ++(1.1cm, -1cm);
+  \draw[arr] (value.west) -> ++(-6cm, 0.7cm);
+  \draw[arr] (value.west) -- ++(-5.7cm, 0.2cm) to[out=180,in=90] ++(-0.2cm, -0.4cm);
+\end{tikzpicture}
 
 
 # Some data *types* (of *atomic vectors*)
