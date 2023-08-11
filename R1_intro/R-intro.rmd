@@ -6,6 +6,7 @@ output:
   beamer_presentation: 
     theme: Boadilla
     keep_tex: yes
+    highlight: tango
 params:
   is_virtual: TRUE    # is this presentation for a virtual (T) or in-person (F) environment?
 header-includes: |
