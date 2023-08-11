@@ -30,44 +30,6 @@ knitr::opts_chunk$set(echo = TRUE, background='#DEDEF7', comment='')
 options(width = 60)  # to fit output on slides: either smaller font or shorter width (or both)
 ```
 
-```{r NOTES, include=FALSE, eval=FALSE}
-https://pandoc.org/MANUAL.html#pandocs-markdown
-https://pandoc.org/MANUAL.html#slide-shows
-https://pandoc.org/MANUAL.html#custom-styles
-
-Tips for controlling highlighting and styles in markdown:
-https://stackoverflow.com/questions/53530985/custom-highlighting-style-in-rmarkdown 
-
-Quarto Pandoc Markdown, with native support for flowcharts and diagrams
-and other extensions (like callouts and code annotation):
-https://quarto.org/docs/authoring/markdown-basics.html
-
-Can I define global 'styles' with options for different output formats, 
-and reduce the amount of custom LaTeX?
-  
-+ https://tug.org/tug2020/preprints/MacFarlane-Keynote-slides.pdf
-+ https://stackoverflow.com/questions/23825317/how-to-convert-markdown-css-pdf
-
-# Overlay graphics using Tikz:
-https://tex.stackexchange.com/questions/209052/how-to-get-tikzmark-to-work
-https://texdoc.org/serve/tikzmark/0
-https://tikz.dev/tikz-arrows
-https://www.overleaf.com/latex/templates/beamer-arrows/wmqkckggvjsd
-https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specified-position-in-a-frame-and-write-some-notes-on
-https://tex.stackexchange.com/questions/347492/how-can-i-draw-arrows-from-items-to-a-picture-in-beamer
-https://tex.stackexchange.com/questions/9559/drawing-on-an-image-wit%E2%80%8C%E2%80%8Bh-tikz/
-https://tex.stackexchange.com/questions/448838/tikz-node-text-formatting-problems
-https://tex.stackexchange.com/questions/590889/crop-pdf-graphics
-https://stackoverflow.com/questions/48203496/how-to-trim-a-picture-with-rmarkdown-html
-
-# Customizing R code chunks and output
-https://yihui.org/knitr/options/
-https://tex.stackexchange.com/questions/669717/how-do-i-change-the-default-font-size-of-verbatim-at-document-level
-https://tex.stackexchange.com/questions/161678/decreasing-font-size-in-verbatim
-https://groups.google.com/g/comp.text.tex/c/YlKONnmYOV8
-https://texdoc.org/serve/fancyvrb/0
-```
-
 
 # Prerequisites
 
@@ -848,4 +810,45 @@ Other training materials and tutorials used as inspiration:
 [^Rlogo]: The R logo ($\Rlogo$) is [© 2016 The R Foundation](https://www.r-project.org/logo/) and used as-is under the terms of the [**CC-BY-SA 4.0** license](https://creativecommons.org/licenses/by-sa/4.0/)
 
 :::
+
+
+```{r NOTES, include=FALSE, eval=FALSE}
+# Notes on formatting output
+
+https://pandoc.org/MANUAL.html#pandocs-markdown
+https://pandoc.org/MANUAL.html#slide-shows
+https://pandoc.org/MANUAL.html#custom-styles
+
+Tips for controlling highlighting and styles in markdown:
+https://stackoverflow.com/questions/53530985/custom-highlighting-style-in-rmarkdown 
+
+Quarto Pandoc Markdown, with native support for flowcharts and diagrams
+and other extensions (like callouts and code annotation):
+https://quarto.org/docs/authoring/markdown-basics.html
+
+Can I define global 'styles' with options for different output formats, 
+and reduce the amount of custom LaTeX?
+  
++ https://tug.org/tug2020/preprints/MacFarlane-Keynote-slides.pdf
++ https://stackoverflow.com/questions/23825317/how-to-convert-markdown-css-pdf
+
+# Overlay graphics using Tikz:
+https://tex.stackexchange.com/questions/209052/how-to-get-tikzmark-to-work
+https://texdoc.org/serve/tikzmark/0
+https://tikz.dev/tikz-arrows
+https://www.overleaf.com/latex/templates/beamer-arrows/wmqkckggvjsd
+https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specified-position-in-a-frame-and-write-some-notes-on
+https://tex.stackexchange.com/questions/347492/how-can-i-draw-arrows-from-items-to-a-picture-in-beamer
+https://tex.stackexchange.com/questions/9559/drawing-on-an-image-wit%E2%80%8C%E2%80%8Bh-tikz/
+https://tex.stackexchange.com/questions/448838/tikz-node-text-formatting-problems
+https://tex.stackexchange.com/questions/590889/crop-pdf-graphics
+https://stackoverflow.com/questions/48203496/how-to-trim-a-picture-with-rmarkdown-html
+
+# Customizing R code chunks and output
+https://yihui.org/knitr/options/
+https://tex.stackexchange.com/questions/669717/how-do-i-change-the-default-font-size-of-verbatim-at-document-level
+https://tex.stackexchange.com/questions/161678/decreasing-font-size-in-verbatim
+https://groups.google.com/g/comp.text.tex/c/YlKONnmYOV8
+https://texdoc.org/serve/fancyvrb/0
+```
 
