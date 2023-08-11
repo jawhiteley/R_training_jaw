@@ -1312,10 +1312,42 @@ this version of R ...
 \end{verbatim}
 \end{frame}
 
-\begin{frame}{Reserved words}
+\begin{frame}[fragile]{Reserved words}
 \protect\hypertarget{reserved-words}{}
 Some words and letters already have special meaning in the R language
 (\emph{keywords}) and should \textbf{never be used as variable names}.
+
+\small
+
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[draw=none, fill=lightgray, fill opacity = 0.2] 
+      ($ (pic cs:tl) +(0,\baselineskip) $) rectangle ($ (pic cs:br) +(0,-0.2\baselineskip) $);
+\end{tikzpicture}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2157}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2255}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5588}}@{}}
+\toprule()
+\endhead
+\tikzmarknode{tl}{} \VERB|\ConstantTok{NA}| & ``Not Available'' &
+placeholder for unknown or missing values \\
+~\VERB|\ConstantTok{NaN}| & ``Not a Number'' & placeholder for
+\emph{undefined} numeric values \\
+~\VERB|\ConstantTok{NULL}| & \emph{a special object} & placeholder for
+missing \emph{objects} \\
+~\VERB|\ConstantTok{Inf}| & Infiniti & \\
+~\VERB|\ConstantTok{TRUE}| & Logical value & \\
+~\VERB|\ConstantTok{FALSE}| & Logical value &
+\hfill\tikzmarknode{br}{} \\
+~\VERB|\NormalTok{T}| & short for \VERB|\ConstantTok{TRUE}| & \\
+~\VERB|\NormalTok{F}| & short for \VERB|\ConstantTok{FALSE}| & \\
+~\VERB|\NormalTok{c,q,t,C,D,I}| & \(\texttt{R}\) functions & \\
+~\VERB|\NormalTok{diff, df, pt}| & \(\texttt{R}\) functions & \\
+\bottomrule()
+\end{longtable}
+
+\normalfont
 \end{frame}
 
 \begin{frame}[fragile]{\protect\hyperlink{pop-quiz}{Quiz} Review}
