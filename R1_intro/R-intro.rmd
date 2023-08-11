@@ -595,7 +595,7 @@ to return the *value*.
 :::
 ::: {.column width="50%"}
 
-```{r, echo=4}
+```{r vector_demo, echo=4}
 opts.width <- getOption('width')
 options(width = 30)
 2
@@ -619,7 +619,66 @@ options(width = opts.width)
 \end{tikzpicture}
 
 
+# Vectors
+
+- Vectors can be used in calculations
+
+- Operations are applied to each item
+  (*element-wise*)
+  
+  ```{r vectors_1, results='hide'}
+  sum( c(1, 2, 3, 4, 5) )
+  1:10 +2
+  1:5 * 5:1
+  ```
+- Vectors can be used to plot data in a graph
+
+  ```{r vectors_2, results='hide', fig.keep='none'}
+  plot( rnorm(1000) )
+  hist( rnorm(1000) )
+  ```
+  
+<!-- 1,000 random numbers from a normal distribution -->
+
+
 # Some data *types* (of *atomic vectors*)
+
+:::::: {.columns align=center}
+::: {.column width="50%"}
+
+### ***numeric***
+
+* Includes *integers*, *real* (decimal / *double*), and *complex* numbers.
+* `1.23`{.r}
+
+### ***character*** (*string*)
+
+* in single `'`{.r} or double `"`{.r} quotes. 
+* `'hello world'`{.r}
+* `"1.23"`{.r}
+
+### ***logical***
+
+- `TRUE`{.r} or `FALSE`{.r}
+
+:::
+::: {.column width="50%"}
+
+```{r data_types, results='hide'}
+class(1.23)
+class('hello')
+class("1.23")
+class(FALSE)
+
+typeof(1.23)
+typeof(1:10)
+
+as.character(c(1,2,NA,4))
+```
+
+<!-- converting from one type to another = "*coercion*" -->
+:::
+::::::
 
 
 # Symbolic _variables_

@@ -1033,8 +1033,90 @@ command-line tips}
 \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Some data \emph{types} (of \emph{atomic vectors})}
+\begin{frame}[fragile]{Vectors}
+\protect\hypertarget{vectors-1}{}
+\begin{itemize}
+\item
+  Vectors can be used in calculations
+\item
+  Operations are applied to each item (\emph{element-wise})
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{( }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{) )}
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{+}\DecValTok{2}
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{5} \SpecialCharTok{*} \DecValTok{5}\SpecialCharTok{:}\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Vectors can be used to plot data in a graph
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{( }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{) )}
+\FunctionTok{hist}\NormalTok{( }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{) )}
+\end{Highlighting}
+\end{Shaded}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Some data \emph{types} (of \emph{atomic
+vectors})}
 \protect\hypertarget{some-data-types-of-atomic-vectors}{}
+\begin{columns}[c]
+\begin{column}{0.5\textwidth}
+\begin{block}{\textbf{\emph{numeric}}}
+\protect\hypertarget{numeric}{}
+\begin{itemize}
+\tightlist
+\item
+  Includes \emph{integers}, \emph{real} (decimal / \emph{double}), and
+  \emph{complex} numbers.
+\item
+  \VERB|\FloatTok{1.23}|
+\end{itemize}
+\end{block}
+
+\begin{block}{\textbf{\emph{character}} (\emph{string})}
+\protect\hypertarget{character-string}{}
+\begin{itemize}
+\tightlist
+\item
+  in single \VERB|\StringTok{\textquotesingle{}}| or double
+  \VERB|\StringTok{"}| quotes.
+\item
+  \VERB|\StringTok{\textquotesingle{}hello world\textquotesingle{}}|
+\item
+  \VERB|\StringTok{"1.23"}|
+\end{itemize}
+\end{block}
+
+\begin{block}{\textbf{\emph{logical}}}
+\protect\hypertarget{logical}{}
+\begin{itemize}
+\tightlist
+\item
+  \VERB|\ConstantTok{TRUE}| or \VERB|\ConstantTok{FALSE}|
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(}\FloatTok{1.23}\NormalTok{)}
+\FunctionTok{class}\NormalTok{(}\StringTok{\textquotesingle{}hello\textquotesingle{}}\NormalTok{)}
+\FunctionTok{class}\NormalTok{(}\StringTok{"1.23"}\NormalTok{)}
+\FunctionTok{class}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{)}
+
+\FunctionTok{typeof}\NormalTok{(}\FloatTok{1.23}\NormalTok{)}
+\FunctionTok{typeof}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{)}
+
+\FunctionTok{as.character}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\ConstantTok{NA}\NormalTok{,}\DecValTok{4}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{Symbolic \emph{variables}}
