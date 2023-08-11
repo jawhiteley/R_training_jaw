@@ -514,8 +514,8 @@ sqrt(9)
 ::::::
 
 - These are *expressions*
-- *Expressions* are *evaluated*, and the *value* (result) is *returned*\
-  (sometimes *invisibly*)
+- *Expressions* are *evaluated*, and the *value* (result) is *returned* 
+  (sometimes\ *invisibly*)
 
 ::: notes
 
@@ -603,7 +603,7 @@ options(width = opts.width)
   
   ```{r vectors_1, results='hide'}
   sum( c(1, 2, 3, 4, 5) )
-  1:10 +2
+  1:10 + 2
   1:5 * 5:1
   ```
 - Vectors can be used to plot data in a graph
@@ -651,9 +651,15 @@ typeof(1:10)
 as.character(c(1,2,NA,4))
 ```
 
-<!-- converting from one type to another = "*coercion*" -->
+\tikzmarknode{as}{}`as.*()`{.r}: converting from one type to another = *coercion*
+
 :::
 ::::::
+
+\begin{tikzpicture}[remember picture, overlay, 
+                    arr/.style={ultra thick, gray, -{Latex}[round]}]
+  \draw[arr] ($ (as) +(1ex,1.5ex) $) -> ++(0,\baselineskip);
+\end{tikzpicture}
 
 
 # Symbolic _variables_
@@ -760,15 +766,6 @@ Some words and letters already have special meaning in the R language (*keywords
 and should **never be used as variable names**.
 
 
-# [Quiz](#pop-quiz) Review
-
-<!-- paste in questions from [Pop Quiz][], above. -->
-
-::: notes
-`## Answers (for discussion)`
-
-answer in notes
-:::
 
 
 <!-- To ADD:
@@ -777,6 +774,19 @@ answer in notes
 + Script files
 + Rmarkdown & R notebooks
 -->
+
+
+# [Quiz](#pop-quiz) Review
+
+<!-- paste in questions from [Pop Quiz][], above. -->
+
+::: notes
+`## Answers (for discussion)`
+
+Answers in notes
+:::
+
+
 
 
 # References & More Information

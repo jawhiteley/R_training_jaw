@@ -935,8 +935,7 @@ is a calculator}
   These are \emph{expressions}
 \item
   \emph{Expressions} are \emph{evaluated}, and the \emph{value} (result)
-  is \emph{returned}\\
-  (sometimes \emph{invisibly})
+  is \emph{returned} (sometimes~\emph{invisibly})
 \end{itemize}
 
 \note{The bullet points are accurate, but I note that the
@@ -1031,7 +1030,6 @@ command-line tips}
 
 \begin{tikzpicture}[remember picture, overlay, 
                     arr/.style={ultra thick, red, -{Latex}[round]}]
-
   \draw[arr] (index.east) -> ++(0.9cm, 0.1cm);
   \draw[arr] (index.east) to[out=0,in=180] ++(1.1cm, -1cm);
   \draw[arr] (value.west) -> ++(-6cm, 0.7cm);
@@ -1050,7 +1048,7 @@ command-line tips}
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{sum}\NormalTok{( }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{) )}
-\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{+}\DecValTok{2}
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{+} \DecValTok{2}
 \DecValTok{1}\SpecialCharTok{:}\DecValTok{5} \SpecialCharTok{*} \DecValTok{5}\SpecialCharTok{:}\DecValTok{1}
 \end{Highlighting}
 \end{Shaded}
@@ -1121,8 +1119,16 @@ vectors})}
 \FunctionTok{as.character}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\ConstantTok{NA}\NormalTok{,}\DecValTok{4}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
+
+\tikzmarknode{as}{}\VERB|\NormalTok{as.}\SpecialCharTok{*}\NormalTok{()}|:
+converting from one type to another = \emph{coercion}
 \end{column}
 \end{columns}
+
+\begin{tikzpicture}[remember picture, overlay, 
+                    arr/.style={ultra thick, gray, -{Latex}[round]}]
+  \draw[arr] ($ (as) +(1ex,1.5ex) $) -> ++(0,\baselineskip);
+\end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]{Symbolic \emph{variables}}
@@ -1316,7 +1322,7 @@ Some words and letters already have special meaning in the R language
 \protect\hypertarget{quiz-review}{}
 \note{\texttt{\#\#\ Answers\ (for\ discussion)}
 
-answer in notes}
+Answers in notes}
 \end{frame}
 
 \begin{frame}[fragile]{References \& More Information}
