@@ -802,7 +802,14 @@ and should **never be used as variable names**.
 
 
 <!-- To ADD:
-+ the `c()` function for making vectors
++ Case-Sensitive
++ Functions
+  + arguments
+  + calling functions (syntax)
+  + the `c()` function for making vectors
++ Operators
++ Errors & Warnings & Messages
++ Help
 + Installing packages
 + Script files
 + Rmarkdown & R notebooks
