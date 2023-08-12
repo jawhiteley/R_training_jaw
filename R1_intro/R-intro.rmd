@@ -28,6 +28,7 @@ header-includes: |
   \setlength{\OuterFrameSep}{4pt}
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
+  \newcommand{\ctop}{\vspace{\OuterFrameSep}}  % for aligning text with the top of a code block in a table
   \newcommand{\highlight}[1]{\StringTok{#1}}
   \newcommand{\important}[1]{\AlertTok{#1}}
   \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
@@ -412,7 +413,7 @@ Read the opening message carefully.
 | demo()             | - a list of available demos                              |
 | ```                |                                                          |
 +--------------------+----------------------------------------------------------+
-| ``` r              | |                                                        |
+| ``` r              | \ctop{}                                                  |
 | help.start()       | | **&larr;** A great place to start,                     |
 | ```                | |     especially if you are comfortable reading          |
 |                    | |     documentation for a programming language.          |
@@ -812,6 +813,26 @@ and should **never be used as variable names**.
 \normalfont
 
 
+## $\Rlogo$ is case-sensitive
+
++----------------+----------------+----------------+:--------------:+
+| ``` r          | \ctop{}        | ``` r          |                |
+| R.version      | a variable     | pi             |                |
+| ```            |                | ```            |                |
++----------------+----------------+----------------+----------------+
+| ``` r          | \ctop{}        | \ctop{}        | \ctop{}        |
+| R.Version()    | a *function*   | \AlertTok{%    |                |
+| ```            |                | \textit{PI}}   |                |
++----------------+----------------+----------------+----------------+
+| ``` r          | \ctop{}        | ``` r          |                |
+| letters        | a-z            | NA             |                |
+| ```            |                | ```            |                |
++----------------+----------------+----------------+----------------+
+| ``` r          | \ctop{}        | \ctop{}        | \ctop{}        |
+| LETTERS        | A-Z            | \AlertTok{%    |                |
+| ```            |                | \textit{na}}   |                |
++----------------+----------------+----------------+----------------+
+
 
 # Functions
 
@@ -826,7 +847,6 @@ and should **never be used as variable names**.
 # Saving code (files)
 
 <!-- To ADD:
-+ Case-Sensitive
 + Functions
   + arguments
   + calling functions (syntax)

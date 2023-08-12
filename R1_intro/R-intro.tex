@@ -157,6 +157,7 @@
 \setlength{\OuterFrameSep}{4pt}
 \newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
+\newcommand{\ctop}{\vspace{\OuterFrameSep}}  % for aligning text with the top of a code chunk
 \newcommand{\highlight}[1]{\StringTok{#1}}
 \newcommand{\important}[1]{\AlertTok{#1}}
 \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
@@ -176,7 +177,7 @@
 
 \title{A Gentle Introduction to R}
 \author{Jonathan Whiteley}
-\date{2023-08-11}
+\date{2023-08-12}
 
 \begin{document}
 \frame{\titlepage}
@@ -801,7 +802,8 @@ is a show-off}
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\hfill\break
+\vspace{\OuterFrameSep}{}
+
 \textbf{←} A great place to start,\\
 \hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}especially
 if you are comfortable reading\\
@@ -1373,6 +1375,88 @@ missing \emph{objects} \\
 \end{longtable}
 
 \normalfont
+\end{frame}
+
+\begin{frame}[fragile]{\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+is case-sensitive}
+\protect\hypertarget{includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-is-case-sensitive}{}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2361}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2361}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2361}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2361}}@{}}
+\toprule\noalign{}
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.version}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\vspace{\OuterFrameSep}{}
+
+a variable
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pi}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{R.Version}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\vspace{\OuterFrameSep}{}
+
+a \emph{function}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\vspace{\OuterFrameSep}{}
+\AlertTok{%
+\textit{PI}}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\vspace{\OuterFrameSep}{}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letters}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\vspace{\OuterFrameSep}{}
+
+a-z
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\ConstantTok{NA}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LETTERS}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\vspace{\OuterFrameSep}{}
+
+A-Z
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\vspace{\OuterFrameSep}{}
+\AlertTok{%
+\textit{na}}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\vspace{\OuterFrameSep}{}
+\end{minipage} \\
+\bottomrule\noalign{}
+\end{longtable}
 \end{frame}
 
 \hypertarget{functions}{%
