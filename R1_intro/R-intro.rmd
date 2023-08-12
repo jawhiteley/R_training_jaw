@@ -1006,9 +1006,47 @@ all.equal(a * a, 2)
 
 # Errors, Warnings, and Messages
 
+## Errors
+
+- When R receives a command it does not understand, or cannot execute, it outputs an ***error*** to the *console*.
+  - This is in the form of a message that begins with the word "\ErrorTok{\texttt{Error}}".
+  
+- A command that produces an *error* is **not** executed.
+  - neither are any commands after the error.
+
+```{r errors1_code, eval=FALSE, echo=TRUE}
+Fail <- 1 + "2"
+```
+```{r errors1_out, eval=TRUE, echo=FALSE}
+try( Fail <- 1 + "2" )
+```
+```{r errors2_code, eval=FALSE, echo=TRUE}
+Fail
+```
+```{r errors2_out, eval=TRUE, echo=FALSE}
+try( Fail )
+```
+
+- When an error occurs, **$\R$ stops running** commands and returns to the command-line.
+  - Your *session* is still active: $\R$ didn't quit, and you can enter more commands.
+  
+## Warnings
+
+- Some commands still work, but did not run exactly as $\R$ (or the developers) think is "ideal", and may produce a ***warning*** instead.
+  - This is in the form of a message that begins with the word "\WarningTok{\texttt{Warning}}".
+  
+- These do not interrupt what R is doing: it will keep running, but tell you that there were warnings. 
+  - _It is up to you to review the warnings and decide if they are important_.
+  - Use the `warnings()`{.r} command to review them.
+  
+```{r warnings}
+oops <- log(-1)
+```
+
+
 ## Messages, Warnings, and Errors
 
-+ ***Messages*** are for information, and a sign that things are working fine (at least, according to the programmers who created the functions you are using).
++ ***Messages*** are for information, and a sign that things are working fine (at least, according to the programmers who created the function).
 
   + \textcolor[rgb]{0,0.6,0}{Think of messages as a green traffic light: you are safe to continue.}
 

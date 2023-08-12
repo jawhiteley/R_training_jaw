@@ -1795,13 +1795,113 @@ for small differences, such as
 \section{Errors, Warnings, and
 Messages}\label{errors-warnings-and-messages}}
 
+\begin{frame}[fragile]{Errors}
+\protect\hypertarget{errors}{}
+\begin{itemize}
+\tightlist
+\item
+  When R receives a command it does not understand, or cannot execute,
+  it outputs an \textbf{\emph{error}} to the \emph{console}.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This is in the form of a message that begins with the word
+    ``\ErrorTok{\texttt{Error}}''.
+  \end{itemize}
+\item
+  A command that produces an \emph{error} is \textbf{not} executed.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    neither are any commands after the error.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Fail }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{+} \StringTok{"2"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error in 1 + "2" : non-numeric argument to binary operator
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Fail}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error in eval(expr, envir, enclos) : object 'Fail' not found
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  When an error occurs, \textbf{\(\texttt{R}\) stops running} commands
+  and returns to the command-line.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Your \emph{session} is still active: \(\texttt{R}\) didn't quit, and
+    you can enter more commands.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Warnings}
+\protect\hypertarget{warnings}{}
+\begin{itemize}
+\tightlist
+\item
+  Some commands still work, but did not run exactly as \(\texttt{R}\)
+  (or the developers) think is ``ideal'', and may produce a
+  \textbf{\emph{warning}} instead.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This is in the form of a message that begins with the word
+    ``\WarningTok{\texttt{Warning}}''.
+  \end{itemize}
+\item
+  These do not interrupt what R is doing: it will keep running, but tell
+  you that there were warnings.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{It is up to you to review the warnings and decide if they are
+    important}.
+  \item
+    Use the \VERB|\FunctionTok{warnings}\NormalTok{()}| command to
+    review them.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{oops }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning in log(-1): NaNs produced
+\end{verbatim}
+\end{frame}
+
 \begin{frame}{Messages, Warnings, and Errors}
 \protect\hypertarget{messages-warnings-and-errors}{}
 \begin{itemize}
 \item
   \textbf{\emph{Messages}} are for information, and a sign that things
   are working fine (at least, according to the programmers who created
-  the functions you are using).
+  the function).
 
   \begin{itemize}
   \tightlist
