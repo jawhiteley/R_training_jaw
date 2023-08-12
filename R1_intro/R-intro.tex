@@ -155,6 +155,7 @@
   \preto{\@verbatim}{\topsep=-4pt \partopsep=0pt}
 \makeatother
 \setlength{\OuterFrameSep}{4pt}
+\setlength{\parskip}{\baselineskip}   % incease space between regular paragraphs, without affecting lists
 \newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
 \newcommand{\ctop}{\vspace{\OuterFrameSep}}  % for aligning text with the top of a code block in a table
@@ -1061,8 +1062,8 @@ objects}{Simple \textbackslash texttt\{R\} objects}}\label{simple-textttr-object
 \end{tikzpicture}
 \end{frame}
 
-\begin{frame}[fragile]{Vectors}
-\protect\hypertarget{vectors-1}{}
+\begin{frame}[fragile]{Using vectors}
+\protect\hypertarget{using-vectors}{}
 \begin{itemize}
 \item
   Vectors can be used in calculations
@@ -1555,18 +1556,246 @@ Remove \emph{all variables} from memory\\
 \begin{Highlighting}[]
 \NormalTok{pi}
 \NormalTok{pi }\OtherTok{\textless{}{-}} \StringTok{"pie"}
-\NormalTok{pi           }\CommentTok{\# oops!}
+\NormalTok{pi}
 \FunctionTok{rm}\NormalTok{(pi)}
 \NormalTok{pi}
 \end{Highlighting}
 \end{Shaded}
 \end{frame}
 
-\hypertarget{functions}{%
-\section{Functions}\label{functions}}
-
 \hypertarget{operators}{%
 \section{Operators}\label{operators}}
+
+\begin{frame}[fragile]{Operators}
+\protect\hypertarget{operators-1}{}
+\emph{Operators} are special symbols that go between two values, to
+perform an \emph{operation} on both values (the \emph{operands}) and
+return the \emph{result}.
+
+\begin{itemize}
+\tightlist
+\item
+  For example: \VERB|\DecValTok{2} \SpecialCharTok{*} \DecValTok{3}| is
+  a way of saying ``\emph{multiply} 2 and 3 together''
+\item
+  Operations are evaluated one pair at a time, according to precedence
+  (\emph{order of operations}).
+\end{itemize}
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Arithmetic Operators}
+\protect\hypertarget{arithmetic-operators}{}
+The usual math symbols:
+\VERB|\SpecialCharTok{+}\NormalTok{, }\SpecialCharTok{{-}}\NormalTok{, }\SpecialCharTok{*}\NormalTok{, }\SpecialCharTok{/}\NormalTok{, }\SpecialCharTok{\^{}}|,
+etc.
+\end{block}
+
+\begin{block}{Comparison (\emph{Relational}) Operators}
+\protect\hypertarget{comparison-relational-operators}{}
+For comparing two values:
+\VERB|\SpecialCharTok{==}\NormalTok{, }\SpecialCharTok{!=}\NormalTok{, }\SpecialCharTok{\textgreater{}}\NormalTok{, }\SpecialCharTok{\textless{}}|,
+etc.
+\end{block}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\begin{block}{Assignment Operators}
+\protect\hypertarget{assignment-operators}{}
+Assign values to symbolic variables:
+\VERB|\OtherTok{\textless{}{-}}\NormalTok{, }\OtherTok{{-}\textgreater{}}\NormalTok{, }\OtherTok{=}|,
+etc.
+\end{block}
+
+\begin{block}{Boolean Operators}
+\protect\hypertarget{boolean-operators}{}
+Combining logical values
+(\VERB|\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}|):
+\VERB|\SpecialCharTok{!}\NormalTok{, }\SpecialCharTok{\&}\NormalTok{, }\SpecialCharTok{\VerbBar{}}|,
+etc.
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Comparisons}
+\protect\hypertarget{comparisons}{}
+Comparison of 2 values results in \emph{logical values}:
+\VERB|\ConstantTok{TRUE}|~or~\VERB|\ConstantTok{FALSE}|
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1389}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.7361}}@{}}
+\toprule\noalign{}
+\endhead
+\VERB|\SpecialCharTok{==}| & \begin{minipage}[t]{\linewidth}\raggedright
+``equal'' --- \AlertTok{Note the \textbf{two} equals signs.}\\
+Not to be confused with a single equals sign\\
+\hspace*{0.333em}(used to \emph{assign} values).\strut
+\end{minipage} \\
+\VERB|\SpecialCharTok{!=}| & ``not equal'' \\
+\VERB|\SpecialCharTok{\textgreater{}}| & ``greater than'' \\
+\VERB|\SpecialCharTok{\textless{}}| & ``less than'' \\
+\VERB|\SpecialCharTok{\textgreater{}=}| & ``greater than or equal
+to'' \\
+\VERB|\SpecialCharTok{\textless{}=}| & ``less than or equal to'' \\
+\bottomrule\noalign{}
+\end{longtable}
+\end{frame}
+
+\begin{frame}[fragile]{Comparisons: examples}
+\protect\hypertarget{comparisons-examples}{}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.45\textwidth}
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \SpecialCharTok{==} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \SpecialCharTok{\textless{}=} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \SpecialCharTok{\textless{}} \StringTok{"a"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+\end{column}
+
+\begin{column}{0.45\textwidth}
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \SpecialCharTok{\textless{}} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \SpecialCharTok{!=} \StringTok{"foo"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{0} \SpecialCharTok{==} \ConstantTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Comparing decimals (`floating point' arithmetic)}
+\protect\hypertarget{comparing-decimals-floating-point-arithmetic}{}
+Computers can't represent \emph{all} values accurately, and there is
+often some rounding that occurs (even at 50+ decimal places). As a
+result, `floating point' values may not be \emph{reliably equal}.
+\footnote<.->{R FAQ:
+  ``\href{https://cran.r-project.org/doc/FAQ/R-FAQ.html\#Why-doesn_0027t-R-think-these-numbers-are-equal_003f}{Why
+  doesn't R think these numbers are equal?}''} \footnote<.->{See
+  Stackoverflow:
+  ``\href{https://stackoverflow.com/questions/9508518/why-are-these-numbers-not-equal}{Why
+  are these numbers not equal?}'' for other solutions}
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.45\textwidth}
+\vspace{\OuterFrameSep}{}
+
+This is a common source of confusion, but it is a fact of how computers
+handle floating point arithmetic, and not specific to \(\texttt{R}\).
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\NormalTok{a }\SpecialCharTok{*}\NormalTok{ a }\SpecialCharTok{==} \DecValTok{2}  \CommentTok{\# should be TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\SpecialCharTok{*}\NormalTok{ a }\SpecialCharTok{{-}} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 4.441e-16
+\end{verbatim}
+\end{column}
+\end{columns}
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.48\textwidth}
+Two common solutions:
+
+\begin{enumerate}
+\item
+  \VERB|\FunctionTok{round}\NormalTok{()}| decimal values when comparing
+  them
+\item
+  use a function with a tolerance for small differences, such as
+  \VERB|\FunctionTok{all.equal}\NormalTok{()}|
+\end{enumerate}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{round}\NormalTok{(a }\SpecialCharTok{*}\NormalTok{ a, }\DecValTok{8}\NormalTok{) }\SpecialCharTok{==} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{all.equal}\NormalTok{(a }\SpecialCharTok{*}\NormalTok{ a, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+\end{column}
+\end{columns}
+\end{frame}
+
+\hypertarget{functions}{%
+\section{Functions}\label{functions}}
 
 \hypertarget{messages-warnings-and-errors}{%
 \section{Messages, Warnings, and

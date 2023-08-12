@@ -26,6 +26,7 @@ header-includes: |
     \preto{\@verbatim}{\topsep=-4pt \partopsep=0pt}
   \makeatother
   \setlength{\OuterFrameSep}{4pt}
+  \setlength{\parskip}{\baselineskip}   % incease space between regular paragraphs, without affecting lists
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
   \newcommand{\ctop}{\vspace{\OuterFrameSep}}  % for aligning text with the top of a code block in a table
@@ -606,7 +607,7 @@ options(width = opts.width)
 \end{tikzpicture}
 
 
-## Vectors
+## Using vectors
 
 - Vectors can be used in calculations
 
@@ -883,9 +884,125 @@ pi
 ```
 
 
-# Functions
-
 # Operators
+
+## Operators
+
+*Operators* are special symbols that go between two values, to perform an
+*operation* on both values (the *operands*) and return the *result*.
+
+- For example: `2 * 3`{.r} is a way of saying "*multiply* 2 and 3 together"
+- Operations are evaluated one pair at a time, according to precedence (*order of operations*).
+
+:::::: {.columns .onlytextwidth}
+::: {.column width="48%"}
+
+### Arithmetic Operators
+The usual math symbols: `+, -, *, /, ^`{.r}, etc. 
+
+### Comparison (*Relational*) Operators
+For comparing two values: `==, !=, >, <`{.r}, etc.
+
+:::
+::: {.column width="48%"}
+
+### Assignment Operators
+Assign values to symbolic variables: `<-, ->, =`{.r}, etc.
+
+### Boolean Operators
+Combining logical values (`TRUE, FALSE`{.r}): `!, &, |`{.r}, etc.
+
+:::
+::::::
+
+
+## Comparisons
+
+Comparison of 2 values results in
+*logical values*: `TRUE`{.r}\ or\ `FALSE`{.r}
+
+----      ----------------------------------------------------
+`==`{.r}  "equal"  ---  
+          \important{Note the \textbf{two} equals signs.}  \
+          Not to be confused with a single equals sign\
+          \ (used to *assign* values). 
+          
+`!=`{.r}  "not equal"
+
+`>`{.r}   "greater than"
+
+`<`{.r}   "less than"
+
+`>=`{.r}  "greater than or equal to"
+
+`<=`{.r}  "less than or equal to"
+--------------------------------------------------------------
+
+
+## Comparisons: examples
+
+:::::: {.columns .onlytextwidth}
+::: {.column width="45%"}
+
+```{r comparisons1}
+1 == 2
+1 <= 2
+1 < "a"
+```
+
+:::
+::: {.column width="45%"}
+
+```{r comparisons2}
+1 < 2
+1 != "foo"
+0 == FALSE
+```
+
+:::
+::::::
+
+
+## Comparing decimals ('floating point' arithmetic)
+
+Computers can't represent _all_ values accurately, and there is often some rounding that occurs (even at 50+ decimal places).  As a result, 'floating point' values may not be _reliably equal_.
+^[R FAQ: "[Why doesn’t R think these numbers are equal?](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f)"]
+<!-- this footnote really belongs with the solutions, below, but putting it there would put it at the bottom of the _column_, and I want it at the bottom of the *page* -->
+^[See Stackoverflow: "[Why are these numbers not equal?](https://stackoverflow.com/questions/9508518/why-are-these-numbers-not-equal)" for other solutions]
+
+:::::: {.columns .onlytextwidth}
+::: {.column width="45%"}
+\ctop{}
+This is a common source of confusion, but it is a fact of how computers handle floating point arithmetic, and not specific to $\R$.
+:::
+::: {.column width="48%"}
+```{r comparing_decimals}
+a <- sqrt(2)
+a * a == 2  # should be TRUE
+a * a - 2
+```
+:::
+::::::
+
+:::::: {.columns .onlytextwidth}
+::: {.column width="48%"}
+Two common solutions:
+
+1. `round()`{.r} decimal values when comparing them
+
+2. use a function with a tolerance for small differences, such as `all.equal()`{.r}
+
+:::
+::: {.column width="48%"}
+```{r comparing_round}
+round(a * a, 8) == 2
+all.equal(a * a, 2)
+```
+:::
+::::::
+
+
+# Functions
 
 # Messages, Warnings, and Errors
 
