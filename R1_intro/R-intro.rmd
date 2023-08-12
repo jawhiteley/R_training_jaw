@@ -51,6 +51,7 @@ options(width = 60)  # to fit output on slides: either smaller font or shorter w
   
 - No previous experience with R or programming required.
 
+# Welcome
 
 ## Pop Quiz
 
@@ -784,7 +785,7 @@ and should **never be used as variable names**.
 
 --------------------  ---------------------  --------------------------------------------------------
 \tikzmarknode{tl}{}                          <!-- R will trigger an Error if you try to use these: -->
-`NA`{.r}              "Not Available"        placeholder for unknown or missing values
+  `NA`{.r}            "Not Available"        placeholder for unknown or missing values
 
 \ `NaN`{.r}           "Not a Number"         placeholder for *undefined* numeric values
 
