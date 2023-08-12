@@ -1758,16 +1758,10 @@ handle floating point arithmetic, and not specific to \(\texttt{R}\).
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.48\textwidth}
-Two common solutions:
-
-\begin{enumerate}
-\item
-  \VERB|\FunctionTok{round}\NormalTok{()}| decimal values when comparing
-  them
-\item
-  use a function with a tolerance for small differences, such as
-  \VERB|\FunctionTok{all.equal}\NormalTok{()}|
-\end{enumerate}
+Two common solutions: 1. \VERB|\FunctionTok{round}\NormalTok{()}|
+decimal values when comparing them 2. use a function with a tolerance
+for small differences, such as
+\VERB|\FunctionTok{all.equal}\NormalTok{()}|
 \end{column}
 
 \begin{column}{0.48\textwidth}
@@ -1797,9 +1791,50 @@ Two common solutions:
 \hypertarget{functions}{%
 \section{Functions}\label{functions}}
 
-\hypertarget{messages-warnings-and-errors}{%
-\section{Messages, Warnings, and
-Errors}\label{messages-warnings-and-errors}}
+\hypertarget{errors-warnings-and-messages}{%
+\section{Errors, Warnings, and
+Messages}\label{errors-warnings-and-messages}}
+
+\begin{frame}{Messages, Warnings, and Errors}
+\protect\hypertarget{messages-warnings-and-errors}{}
+\begin{itemize}
+\item
+  \textbf{\emph{Messages}} are for information, and a sign that things
+  are working fine (at least, according to the programmers who created
+  the functions you are using).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textcolor[rgb]{0,0.6,0}{Think of messages as a green traffic light: you are safe to continue.}
+  \end{itemize}
+\item
+  \textbf{\emph{Warnings}} indicate something unusual happened, but
+  \(\texttt{R}\) is able to continue. You'll have to assess if it's
+  worth worrying about.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textcolor[rgb]{0.9,0.7,0}{Think of warnings as a yellow traffic light: you can go, but be careful and pay attention, in case there is a problem.
+    }
+  \end{itemize}
+\item
+  \textbf{\emph{Errors}} indicate something is wrong, and \(\texttt{R}\)
+  had to stop. You'll have to figure out what caused the error, fix it,
+  and try again.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textcolor[rgb]{0.8,0,0}{Think of errors as a red traffic light: stop --- something is wrong!
+    }
+  \end{itemize}
+\end{itemize}
+
+\note{Credit to Chester Ismay \& Albert Kim for the traffic light
+analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
+\end{frame}
 
 \hypertarget{help-documentation}{%
 \section{Help \& documentation}\label{help-documentation}}
