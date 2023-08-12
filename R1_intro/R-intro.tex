@@ -157,12 +157,12 @@
 \setlength{\OuterFrameSep}{4pt}
 \newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
-\newcommand{\ctop}{\vspace{\OuterFrameSep}}  % for aligning text with the top of a code chunk
+\newcommand{\ctop}{\vspace{\OuterFrameSep}}  % for aligning text with the top of a code block in a table
 \newcommand{\highlight}[1]{\StringTok{#1}}
 \newcommand{\important}[1]{\AlertTok{#1}}
 \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
 \newcommand{\annote}[1]{{\footnotesize #1}}
-\newcommand{\name}[1]{\textit{texttt{\VariableTok{#1}}}}
+\newcommand{\name}[1]{\textit{\VariableTok{\texttt{#1}}}}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -1457,6 +1457,109 @@ A-Z
 \end{minipage} \\
 \bottomrule\noalign{}
 \end{longtable}
+\end{frame}
+
+\begin{frame}[fragile]{Use variables in calculations}
+\protect\hypertarget{use-variables-in-calculations}{}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.45\textwidth}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A }\SpecialCharTok{+}\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 15
+\end{verbatim}
+\end{column}
+
+\begin{column}{0.45\textwidth}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B}\SpecialCharTok{/}\NormalTok{A}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 10
+\end{verbatim}
+\end{column}
+\end{columns}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Weight }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{60}\NormalTok{ , }\DecValTok{72}\NormalTok{ , }\DecValTok{57}\NormalTok{ , }\DecValTok{90}\NormalTok{ , }\DecValTok{95}\NormalTok{ , }\DecValTok{72}\NormalTok{ )}
+\NormalTok{Height }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.7}\NormalTok{, }\FloatTok{1.8}\NormalTok{, }\FloatTok{1.6}\NormalTok{, }\FloatTok{1.9}\NormalTok{, }\FloatTok{1.7}\NormalTok{, }\FloatTok{1.9}\NormalTok{)}
+\NormalTok{BMI }\OtherTok{\textless{}{-}}\NormalTok{ Weight }\SpecialCharTok{/}\NormalTok{ Height}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{BMI}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 20.76 22.22 22.27 24.93 32.87 19.94
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(Height, Weight)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Housekeeping}
+\protect\hypertarget{housekeeping}{}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.2917}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.6250}}@{}}
+\toprule\noalign{}
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ls}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\vspace{\OuterFrameSep}{}
+
+List all variables you have created
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\vspace{\OuterFrameSep}{}
+
+Remove the variable `\textit{\VariableTok{\texttt{x}}}' from memory
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list=}\FunctionTok{ls}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\vspace{\OuterFrameSep}{}
+
+Remove \emph{all variables} from memory\\
+(clear memory)\strut
+\end{minipage} \\
+\bottomrule\noalign{}
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pi}
+\NormalTok{pi }\OtherTok{\textless{}{-}} \StringTok{"pie"}
+\NormalTok{pi           }\CommentTok{\# oops!}
+\FunctionTok{rm}\NormalTok{(pi)}
+\NormalTok{pi}
+\end{Highlighting}
+\end{Shaded}
 \end{frame}
 
 \hypertarget{functions}{%

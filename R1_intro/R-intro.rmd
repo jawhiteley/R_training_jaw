@@ -33,7 +33,7 @@ header-includes: |
   \newcommand{\important}[1]{\AlertTok{#1}}
   \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
   \newcommand{\annote}[1]{{\footnotesize #1}}
-  \newcommand{\name}[1]{\textit{texttt{\VariableTok{#1}}}}
+  \newcommand{\name}[1]{\textit{\VariableTok{\texttt{#1}}}}
 ---
 
 ```{r setup, include=FALSE}
@@ -834,6 +834,55 @@ and should **never be used as variable names**.
 +----------------+----------------+----------------+----------------+
 
 
+## Use variables in calculations
+
+:::::: {.columns .onlytextwidth}
+::: {.column width="45%"}
+```{r}
+A +5
+```
+:::
+::: {.column width="45%"}
+```{r}
+B/A
+```
+:::
+::::::
+
+```{r calc_var, fig.keep='none'}
+Weight <- c(60 , 72 , 57 , 90 , 95 , 72 )
+Height <- c(1.7, 1.8, 1.6, 1.9, 1.7, 1.9)
+BMI <- Weight / Height^2
+BMI
+plot(Height, Weight)
+```
+
+
+## Housekeeping
+
++--------------------+--------------------------------------------+
+| ``` r              | \ctop{}                                    |
+| ls()               | List all variables you have created        |
+| ```                |                                            |
++--------------------+--------------------------------------------+
+| ``` r              | \ctop{}                                    |
+| rm(x)              | Remove the variable ‘\name{x}’ from memory |
+| ```                |                                            |
++--------------------+--------------------------------------------+
+| ``` r              | \ctop{}                                    |
+| rm(list=ls())      | Remove _all variables_ from memory\        |
+| ```                | (clear memory)                             |
++--------------------+--------------------------------------------+
+
+```{r bad_pie, results='hide'}
+pi
+pi <- "pie"
+pi
+rm(pi)
+pi
+```
+
+
 # Functions
 
 # Operators
@@ -847,11 +896,11 @@ and should **never be used as variable names**.
 # Saving code (files)
 
 <!-- To ADD:
++ Operators
 + Functions
   + arguments
   + calling functions (syntax)
   + the `c()` function for making vectors
-+ Operators
 + Errors & Warnings & Messages
 + Help
 + Installing packages
