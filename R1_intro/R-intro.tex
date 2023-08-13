@@ -152,10 +152,10 @@
 % https://stackoverflow.com/questions/35734525/reduce-space-between-code-chunks-and-code-output-in-rmarkdown-beamer-presentatio
 \makeatletter
   \def\verbatim{\small\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
-  \preto{\@verbatim}{\topsep=-4pt \partopsep=0pt}
+  %\preto{\@verbatim}{\topsep=-4pt \partopsep=0pt}
 \makeatother
 \setlength{\OuterFrameSep}{4pt}
-\setlength{\parskip}{\baselineskip}   % incease space between regular paragraphs, without affecting lists
+%\setlength{\parskip}{\baselineskip}   % incease space between regular paragraphs, without affecting _compact_ lists: "lazy" lists are affected (each item is a paragraph?)
 \newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
 \newcommand{\ctop}{\vspace{\OuterFrameSep}}  % for aligning text with the top of a code block in a table
@@ -163,7 +163,7 @@
 \newcommand{\important}[1]{\AlertTok{#1}}
 \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
 \newcommand{\annote}[1]{{\footnotesize #1}}
-\newcommand{\name}[1]{\textit{\VariableTok{\texttt{#1}}}}
+\newcommand{\name}[1]{\VariableTok{\texttt{#1}}}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -182,6 +182,19 @@
 
 \begin{document}
 \frame{\titlepage}
+
+\begin{frame}[fragile]{Debugging}
+\protect\hypertarget{debugging}{}
+\texttt{\textbackslash{}baselineskip}: \the\baselineskip
+
+\texttt{\textbackslash{}parskip}: \the\parskip
+
+\texttt{\textbackslash{}topsep}: \the\topsep
+
+\texttt{\textbackslash{}partopsep}: \the\partopsep
+
+\texttt{\textbackslash{}OuterFrameSep}: \the\OuterFrameSep
+\end{frame}
 
 \begin{frame}{Prerequisites}
 \protect\hypertarget{prerequisites}{}
@@ -204,6 +217,9 @@
     get a copy,\\
     or ask your system administrator.
   \end{itemize}
+\item
+  Knowledge of common mathematical operations: arithmetic, logarithms,
+  etc.
 \item
   No previous experience with R or programming required.
 \end{itemize}
@@ -414,7 +430,8 @@ On your turn:
   --- at the University of Aukland in the early 1990s.
 \end{enumerate}
 
-\hfill\break
+\bigskip
+
 \emph{Read more about the history of \(\texttt{R}\) on
 \href{https://en.wikipedia.org/wiki/R_(programming_language)\#History}{Wikipedia}}\footnote<.->{\url{https://en.wikipedia.org/wiki/R_(programming_language)\#History}}
 \end{frame}
@@ -606,15 +623,13 @@ command-line}
 \protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-command-line}{}
 \begin{itemize}
 \item
-  The command \emph{prompt} normally looks like this:
+  The command \emph{prompt} normally looks like this\footnote<.->{\textcolor[rgb]{0.66,0.66,0.66}{the colour of the prompt varies depending on the interface}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{\textgreater{}}
 \end{Highlighting}
 \end{Shaded}
-
-  {\footnotesize (the colour varies depending on the interface)}
 
   \begin{itemize}
   \tightlist
@@ -1496,7 +1511,7 @@ List all variables you have created
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
 \vspace{\OuterFrameSep}{}
 
-Remove the variable `\textit{\VariableTok{\texttt{x}}}' from memory
+Remove the variable `\VariableTok{\texttt{x}}' from memory
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{Shaded}
@@ -1719,10 +1734,17 @@ handle floating point arithmetic, and not specific to \(\texttt{R}\).
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.48\textwidth}
-Two common solutions: 1. \VERB|\FunctionTok{round}\NormalTok{()}|
-decimal values when comparing them 2. use a function with a tolerance
-for small differences, such as
-\VERB|\FunctionTok{all.equal}\NormalTok{()}|
+Two common solutions:
+
+\begin{enumerate}
+\tightlist
+\item
+  \VERB|\FunctionTok{round}\NormalTok{()}| decimal values when comparing
+  them
+\item
+  use a function with a tolerance for small differences, such as
+  \VERB|\FunctionTok{all.equal}\NormalTok{()}|
+\end{enumerate}
 \end{column}
 
 \begin{column}{0.48\textwidth}
@@ -1865,7 +1887,7 @@ Messages}\label{errors-warnings-and-messages}}
   \begin{itemize}
   \tightlist
   \item
-    This is in the form of a message that begins with the word
+    This is a message that begins with the word
     ``\ErrorTok{\texttt{Error}}''.
   \end{itemize}
 \item
@@ -1925,7 +1947,7 @@ Error in eval(expr, envir, enclos) : object 'Fail' not found
   \begin{itemize}
   \tightlist
   \item
-    This is in the form of a message that begins with the word
+    This is a message that begins with the word
     ``\WarningTok{\texttt{Warning}}''.
   \end{itemize}
 \item
