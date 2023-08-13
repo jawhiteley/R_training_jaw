@@ -1085,26 +1085,29 @@ oops <- log(-1)
 ```
 
 
-## Messages, Warnings, and Errors
-
-+ ***Messages*** are for information, and a sign that things are working fine (at least, according to the programmers who created the function).
-
-  + \textcolor[rgb]{0,0.6,0}{Think of messages as a green traffic light: you are safe to continue.}
-
-+ ***Warnings*** indicate something unusual happened, but $\R$ is able to continue.  You'll have to assess if it's worth worrying about.
-
-  + \textcolor[rgb]{0.9,0.7,0}{Think of warnings as a yellow traffic light: you can go, but be careful and pay attention, in case there is a problem.
-}
+##  Errors, Warnings, and Messages
 
 + ***Errors*** indicate something is wrong, and $\R$ had to stop.  You'll have to figure out what caused the error, fix it, and try again.
 
   + \textcolor[rgb]{0.8,0,0}{Think of errors as a red traffic light: stop --- something is wrong!
 }
 
++ ***Warnings*** indicate something unusual happened, but $\R$ is able to continue.  You'll have to assess if it's worth worrying about.
+
+  + \textcolor[rgb]{0.9,0.7,0}{Think of warnings as a yellow traffic light: you can go, but be careful and pay attention, in case there is a problem.
+}
+
++ Other ***Messages*** are for information, and a sign that things are working fine (at least, according to the programmers who created the function).
+
+  + \textcolor[rgb]{0,0.6,0}{Think of messages as a green traffic light: you are safe to continue.}
+
 ::: notes
 Credit to Chester Ismay & Albert Kim for the traffic light analogy:
 https://moderndive.netlify.app/1-getting-started.html
 :::
+
+
+
 
 # Help & documentation
 

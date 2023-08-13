@@ -1976,18 +1976,19 @@ Warning in log(-1): NaNs produced
 \end{verbatim}
 \end{frame}
 
-\begin{frame}{Messages, Warnings, and Errors}
-\protect\hypertarget{messages-warnings-and-errors}{}
+\begin{frame}{Errors, Warnings, and Messages}
+\protect\hypertarget{errors-warnings-and-messages-1}{}
 \begin{itemize}
 \item
-  \textbf{\emph{Messages}} are for information, and a sign that things
-  are working fine (at least, according to the programmers who created
-  the function).
+  \textbf{\emph{Errors}} indicate something is wrong, and \(\texttt{R}\)
+  had to stop. You'll have to figure out what caused the error, fix it,
+  and try again.
 
   \begin{itemize}
   \tightlist
   \item
-    \textcolor[rgb]{0,0.6,0}{Think of messages as a green traffic light: you are safe to continue.}
+    \textcolor[rgb]{0.8,0,0}{Think of errors as a red traffic light: stop --- something is wrong!
+    }
   \end{itemize}
 \item
   \textbf{\emph{Warnings}} indicate something unusual happened, but
@@ -2001,15 +2002,14 @@ Warning in log(-1): NaNs produced
     }
   \end{itemize}
 \item
-  \textbf{\emph{Errors}} indicate something is wrong, and \(\texttt{R}\)
-  had to stop. You'll have to figure out what caused the error, fix it,
-  and try again.
+  Other \textbf{\emph{Messages}} are for information, and a sign that
+  things are working fine (at least, according to the programmers who
+  created the function).
 
   \begin{itemize}
   \tightlist
   \item
-    \textcolor[rgb]{0.8,0,0}{Think of errors as a red traffic light: stop --- something is wrong!
-    }
+    \textcolor[rgb]{0,0.6,0}{Think of messages as a green traffic light: you are safe to continue.}
   \end{itemize}
 \end{itemize}
 
