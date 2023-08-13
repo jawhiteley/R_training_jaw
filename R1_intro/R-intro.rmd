@@ -25,11 +25,10 @@ header-includes: |
     \def\verbatim{\small\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
     %\preto{\@verbatim}{\topsep=-4pt \partopsep=0pt}
   \makeatother
-  \setlength{\OuterFrameSep}{4pt}
-  %\setlength{\parskip}{\baselineskip}   % incease space between regular paragraphs, without affecting _compact_ lists: "lazy" lists are affected (each item is a paragraph?)
+  %\setlength{\OuterFrameSep}{4pt}
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
-  \newcommand{\ctop}{\vspace{\OuterFrameSep}}  % for aligning text with the top of a code block in a table
+  \newcommand{\ctop}{\vspace{0.2\baselineskip}}  % for aligning text with the top of a code block in a table
   \newcommand{\highlight}[1]{\StringTok{#1}}
   \newcommand{\important}[1]{\AlertTok{#1}}
   \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
@@ -619,6 +618,7 @@ typeof(1:10)
 as.character(c(1,2,NA,4))
 ```
 \vspace{-\baselineskip}\tikzmarknode[anchor=north west, inner sep=0]{code_bl}{}
+\bigskip
 
 \tikzmarknode{as}{}`as.*()`{.r}: converting from one type to another = *coercion*
 
@@ -630,7 +630,7 @@ as.character(c(1,2,NA,4))
   \node[anchor=south west,inner sep=0, fit={(code_bl)(code_tr)}] (code) {};
   \begin{scope}[shift=(code.south west),x=(code.south east),y=(code.north west)]
     \draw let \p1 = (as.north) in 
-      [arr] ($ (as.north) +(1ex,1.5ex) $) -- ($ (\x1,0) +(1ex,\OuterFrameSep+0.5ex) $);
+      [arr] ($ (as.north) +(1ex,1.5ex) $) -- ($ (\x1,0) +(1ex,0.5ex) $);
   \end{scope}
 \end{tikzpicture}
 

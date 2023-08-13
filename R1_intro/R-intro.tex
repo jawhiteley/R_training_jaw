@@ -154,11 +154,10 @@
   \def\verbatim{\small\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
   %\preto{\@verbatim}{\topsep=-4pt \partopsep=0pt}
 \makeatother
-\setlength{\OuterFrameSep}{4pt}
-%\setlength{\parskip}{\baselineskip}   % incease space between regular paragraphs, without affecting _compact_ lists: "lazy" lists are affected (each item is a paragraph?)
+%\setlength{\OuterFrameSep}{4pt}
 \newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
-\newcommand{\ctop}{\vspace{\OuterFrameSep}}  % for aligning text with the top of a code block in a table
+\newcommand{\ctop}{\vspace{0.2\baselineskip}}  % for aligning text with the top of a code block in a table
 \newcommand{\highlight}[1]{\StringTok{#1}}
 \newcommand{\important}[1]{\AlertTok{#1}}
 \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
@@ -818,7 +817,7 @@ is a show-off}
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 
 \textbf{←} A great place to start,\\
 \hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}especially
@@ -1117,6 +1116,7 @@ vectors})}
 \end{Shaded}
 
 \vspace{-\baselineskip}\tikzmarknode[anchor=north west, inner sep=0]{code_bl}{}
+\bigskip
 
 \tikzmarknode{as}{}\VERB|\NormalTok{as.}\SpecialCharTok{*}\NormalTok{()}|:
 converting from one type to another = \emph{coercion}
@@ -1128,7 +1128,7 @@ converting from one type to another = \emph{coercion}
   \node[anchor=south west,inner sep=0, fit={(code_bl)(code_tr)}] (code) {};
   \begin{scope}[shift=(code.south west),x=(code.south east),y=(code.north west)]
     \draw let \p1 = (as.north) in 
-      [arr] ($ (as.north) +(1ex,1.5ex) $) -- ($ (\x1,0) +(1ex,\OuterFrameSep+0.5ex) $);
+      [arr] ($ (as.north) +(1ex,1.5ex) $) -- ($ (\x1,0) +(1ex,0.5ex) $);
   \end{scope}
 \end{tikzpicture}
 \end{frame}
@@ -1371,7 +1371,7 @@ is case-sensitive}
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 
 a variable
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1388,15 +1388,15 @@ a variable
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 
 a \emph{function}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 \AlertTok{%
 \textit{PI}}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\centering
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{Shaded}
@@ -1405,7 +1405,7 @@ a \emph{function}
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 
 a-z
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1422,15 +1422,15 @@ a-z
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 
 A-Z
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 \AlertTok{%
 \textit{na}}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\centering
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 \end{minipage} \\
 \bottomrule\noalign{}
 \end{longtable}
@@ -1498,7 +1498,7 @@ A-Z
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 
 List all variables you have created
 \end{minipage} \\
@@ -1509,7 +1509,7 @@ List all variables you have created
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 
 Remove the variable `\VariableTok{\texttt{x}}' from memory
 \end{minipage} \\
@@ -1520,7 +1520,7 @@ Remove the variable `\VariableTok{\texttt{x}}' from memory
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 
 Remove \emph{all variables} from memory\\
 (clear memory)\strut
@@ -1702,7 +1702,7 @@ result, `floating point' values may not be \emph{reliably equal}.
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.45\textwidth}
-\vspace{\OuterFrameSep}{}
+\vspace{0.2\baselineskip}{}
 
 This is a common source of confusion, but it is a fact of how computers
 handle floating point arithmetic, and not specific to \(\texttt{R}\).
