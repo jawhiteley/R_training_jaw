@@ -1066,6 +1066,25 @@ log( 8 , base = 2 )
 
 [^operators_are_functions]: technically, operators are special functions with exactly 1 (*unary*) or 2 (*binary*) *arguments*.  See section 3.1.4 "[Operators](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Operators)" in the [R Language Definition](https://cran.r-project.org/doc/manuals/r-release/R-lang.html).
 
+
+## Function arguments
+
+<!-- updates: clarify use of "=", default values? -->
+
+- *arguments* are the values passed to a function when it is *called*
+
+  - these are values the function needs to do its thing
+  - some change _how_ the function operates (these are usually optional)
+  <!-- because they have a default value -->
+
+- arguments can be *passed by order* or *passed by name*
+
+  - *passed by order* means the arguments are specified in the correct order
+
+  - *passed by name* means the arguments can be in any order, but must be declared by name.  
+    e.g.: `argument = value`{.r}
+
+
 # Errors, Warnings, and Messages
 
 ## Errors
