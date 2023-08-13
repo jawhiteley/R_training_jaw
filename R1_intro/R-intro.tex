@@ -1691,8 +1691,8 @@ to'' \\
 \begin{frame}[fragile]{Comparing decimals (`floating point' arithmetic)}
 \protect\hypertarget{comparing-decimals-floating-point-arithmetic}{}
 Computers can't represent \emph{all} values accurately, and there is
-often some rounding that occurs (even at 50+ decimal places). As a
-result, `floating point' values may not be \emph{reliably equal}.
+often some rounding that occurs (even at 50+ decimal places).\\
+As a result, `floating point' values may not be \emph{reliably equal}.
 \footnote<.->{R FAQ:
   ``\href{https://cran.r-project.org/doc/FAQ/R-FAQ.html\#Why-doesn_0027t-R-think-these-numbers-are-equal_003f}{Why
   doesn't R think these numbers are equal?}''} \footnote<.->{See
@@ -1858,18 +1858,26 @@ Two common solutions:
     optional)
   \end{itemize}
 \item
+  arguments are separated by a comma (\VERB|\NormalTok{,}|)
+\item
   arguments can be \emph{passed by order} or \emph{passed by name}
 
   \begin{itemize}
   \item
     \emph{passed by order} means the arguments are specified in the
-    correct order
+    correct order, without a name
   \item
     \emph{passed by name} means the arguments can be in any order, but
-    must be declared by name.\\
-    e.g.: \VERB|\NormalTok{argument }\OtherTok{=}\NormalTok{ value}|
+    must be declared by name:
+    \VERB|\NormalTok{argument }\OtherTok{=}\NormalTok{ value}|
   \end{itemize}
 \end{itemize}
+
+\begin{block}{!}
+\protect\hypertarget{section}{}
+Note the \textbf{single} equals sign (\VERB|\OtherTok{=}|), used to
+assign values to function arguments by name
+\end{block}
 \end{frame}
 
 \hypertarget{errors-warnings-and-messages}{%

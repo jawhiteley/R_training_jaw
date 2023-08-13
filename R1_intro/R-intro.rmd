@@ -924,7 +924,8 @@ Comparison of 2 values results in
 
 ## Comparing decimals ('floating point' arithmetic)
 
-Computers can't represent _all_ values accurately, and there is often some rounding that occurs (even at 50+ decimal places).  As a result, 'floating point' values may not be _reliably equal_.
+Computers can't represent _all_ values accurately, and there is often some rounding that occurs (even at 50+ decimal places).  
+As a result, 'floating point' values may not be _reliably equal_.
 ^[R FAQ: "[Why doesn’t R think these numbers are equal?](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f)"]
 <!-- this footnote really belongs with the solutions, below, but putting it there would put it at the bottom of the _column_, and I want it at the bottom of the *page* -->
 ^[See Stackoverflow: "[Why are these numbers not equal?](https://stackoverflow.com/questions/9508518/why-are-these-numbers-not-equal)" for other solutions]
@@ -1029,7 +1030,7 @@ log( 8 , base = 2 )
 
 ## Function arguments
 
-<!-- updates: clarify use of "=", default values? -->
+<!-- update: clarify default values -->
 
 - *arguments* are the values passed to a function when it is *called*
 
@@ -1037,12 +1038,18 @@ log( 8 , base = 2 )
   - some change _how_ the function operates (these are usually optional)
   <!-- because they have a default value -->
 
+- arguments are separated by a comma (`,`{.r})
+
 - arguments can be *passed by order* or *passed by name*
 
-  - *passed by order* means the arguments are specified in the correct order
+  - *passed by order* means the arguments are specified in the correct order, without a name
 
-  - *passed by name* means the arguments can be in any order, but must be declared by name.  
-    e.g.: `argument = value`{.r}
+  - *passed by name* means the arguments can be in any order, but must be declared by name: `argument = value`{.r}
+    
+### !
+
+Note the **single** equals sign (`=`{.r}),
+used to assign values to function arguments by name
 
 
 # Errors, Warnings, and Messages
