@@ -1031,6 +1031,8 @@ objects}{Simple \textbackslash texttt\{R\} objects}}\label{simple-textttr-object
 \end{column}
 
 \begin{column}{0.5\textwidth}
+\hfill\tikzmarknode[anchor=north west, inner sep=0]{code_tr}{}
+
 \begin{verbatim}
 [1] 2
 \end{verbatim}
@@ -1045,6 +1047,8 @@ objects}{Simple \textbackslash texttt\{R\} objects}}\label{simple-textttr-object
  [1]  1  2  3  4  5  6  7  8
  [9]  9 10
 \end{verbatim}
+
+\tikzmarknode[anchor=north west, inner sep=0]{code_bl}{}\vspace{-\baselineskip}
 \end{column}
 
 \begin{column}{0.25\textwidth}
@@ -1055,10 +1059,17 @@ objects}{Simple \textbackslash texttt\{R\} objects}}\label{simple-textttr-object
 
 \begin{tikzpicture}[remember picture, overlay, 
                     arr/.style={ultra thick, red, -{Latex}[round]}]
-  \draw[arr] (index.east) -- ++(0.5cm,0cm) -- ++(0,0.2cm) -> ++(0.4cm,0cm);
-  \draw[arr] (index.east) -- ++(0.5cm,0cm) -- ++(0,-1.1cm) -> ++(0.6cm,0cm);
-  \draw[arr] (value.west) -> ++(-6cm,0.7cm);
-  \draw[arr] (value.west) -- ++(-5.9cm,0cm) to ++(0cm,-0.3cm);
+  \node[anchor=south west,inner sep=0, fit={(code_bl)(code_tr)}] (code) {};
+  \begin{scope}[shift=(code.south west),x=(code.south east),y=(code.north west)]
+    \draw let \p1 = (index.east) in 
+      [arr] (index.east) -- (-0.5cm,\y1) -- (-0.5cm,0.86) -> (-0.01,0.86);
+    \draw let \p1 = (index.east) in 
+      [arr] (index.east) -- (-0.5cm,\y1) -- (-0.5cm,0.35) -> (0.02,0.35);
+    \draw let \p1 = (value.west) in 
+      [arr] (value.west) -- (0.25,\y1) -- (0.25,0.86) -> (0.18,0.86);
+    \draw let \p1 = (value.west) in 
+      [arr] (value.west) -- (0.25,\y1) -- (0.21,0.44);
+  \end{scope}
 \end{tikzpicture}
 \end{frame}
 
@@ -1159,7 +1170,8 @@ converting from one type to another = \emph{coercion}
                     arr/.style={ultra thick, gray, -{Latex}[round]}]
   \node[anchor=south west,inner sep=0, fit={(code_bl)(code_tr)}] (code) {};
   \begin{scope}[shift=(code.south west),x=(code.south east),y=(code.north west)]
-    \draw[arr] ($ (as.north) +(1ex,1.5ex) $) -- ($ (0,0) +(1ex,\OuterFrameSep+0.5ex) $);
+    \draw let \p1 = (as.north) in 
+      [arr] ($ (as.north) +(1ex,1.5ex) $) -- ($ (\x1,0) +(1ex,\OuterFrameSep+0.5ex) $);
   \end{scope}
 \end{tikzpicture}
 \end{frame}
