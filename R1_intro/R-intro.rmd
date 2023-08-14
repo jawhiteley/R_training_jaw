@@ -45,22 +45,38 @@ options(width = 60)  # to fit output on slides: either smaller font or shorter w
 
 ## Debugging
 
+:::::: {.columns}
+::: {.column width="50%"}
+
 `\baselineskip`: $\the\baselineskip$  
 `\parskip`: $\the\parskip$  
+`\parsep`: $\the\parsep$  
+`\itemsep`: $\the\itemsep$  
 `\topsep`: $\the\topsep$  
 `\partopsep`: $\the\partopsep$  
 `\OuterFrameSep`: $\the\OuterFrameSep$
 
+:::
+::: {.column width="50%"}
+
 \begin{Shaded}
+baselineskip: \the\baselineskip  \\
+parskip: \the\parskip  \\
+parsep: \the\parsep  \\
+itemsep: \the\itemsep  \\
 topsep: \the\topsep \\
 partopsep: \the\partopsep \\
 OuterFrameSep: \the\OuterFrameSep \\
 \end{Shaded}
 
+:::
+::::::
+
 ```{r debugging, echo=FALSE}
-message('pandoc version: ', rmarkdown::pandoc_version())
-message('knitr version: ', packageVersion("knitr"))
-message('rmarkdown version: ', packageVersion("rmarkdown"))
+message("pandoc version: ", rmarkdown::pandoc_version())
+message("knitr version: ", packageVersion("knitr"),
+        "\nrmarkdown version: ", packageVersion("rmarkdown")
+        )
 ```
 
 
