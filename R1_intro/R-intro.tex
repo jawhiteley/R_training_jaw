@@ -85,7 +85,7 @@
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
 % Add ',fontsize=\small' for more characters per line
 \usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
+\definecolor{shadecolor}{RGB}{242,242,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
@@ -184,15 +184,40 @@
 
 \begin{frame}[fragile]{Debugging}
 \protect\hypertarget{debugging}{}
-\texttt{\textbackslash{}baselineskip}: \the\baselineskip
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\textbackslash{}baselineskip}: \the\baselineskip
+\item
+  \texttt{\textbackslash{}parskip}: \the\parskip
+\item
+  \texttt{\textbackslash{}topsep}: \the\topsep
+\item
+  \texttt{\textbackslash{}partopsep}: \the\partopsep
+\item
+  \texttt{\textbackslash{}OuterFrameSep}: \the\OuterFrameSep
+\end{itemize}
 
-\texttt{\textbackslash{}parskip}: \the\parskip
+\begin{Shaded}
+\begin{itemize}
+\tightlist
+\item topsep: \the\topsep
+\item partopsep: \the\partopsep
+\item OuterFrameSep: \the\OuterFrameSep
+\end{itemize}
+\end{Shaded}
 
-\texttt{\textbackslash{}topsep}: \the\topsep
+\begin{verbatim}
+pandoc version: 3.1.1
+\end{verbatim}
 
-\texttt{\textbackslash{}partopsep}: \the\partopsep
+\begin{verbatim}
+knitr version: 1.43
+\end{verbatim}
 
-\texttt{\textbackslash{}OuterFrameSep}: \the\OuterFrameSep
+\begin{verbatim}
+rmarkdown version: 2.23
+\end{verbatim}
 \end{frame}
 
 \begin{frame}{Prerequisites}
