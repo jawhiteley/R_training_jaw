@@ -19,10 +19,10 @@ header-includes: |
   %\usepackage{layout}    % add `\layout` to the document to show page layout and parameter values
   \usepackage{tikz}
   \usetikzlibrary{arrows.meta,calc,tikzmark,fit, positioning}
-  %\AtBeginEnvironment{verbatim}{\small}% reduce font size in R output
+  \AtBeginEnvironment{verbatim}{\small}    % reduce font size in R output
   % https://stackoverflow.com/questions/35734525/reduce-space-between-code-chunks-and-code-output-in-rmarkdown-beamer-presentatio
   \makeatletter
-    \def\verbatim{\small\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
+    %\def\verbatim{\small\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
     %\preto{\@verbatim}{\topsep=-4pt \partopsep=0pt}
   \makeatother
   %\setlength{\OuterFrameSep}{4pt}
