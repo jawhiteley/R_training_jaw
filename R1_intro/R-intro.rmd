@@ -45,19 +45,16 @@ options(width = 60)  # to fit output on slides: either smaller font or shorter w
 
 ## Debugging
 
-- `\baselineskip`: \the\baselineskip
-- `\parskip`: \the\parskip
-- `\topsep`: \the\topsep
-- `\partopsep`: \the\partopsep
-- `\OuterFrameSep`: \the\OuterFrameSep
+`\baselineskip`: $\the\baselineskip$  
+`\parskip`: $\the\parskip$  
+`\topsep`: $\the\topsep$  
+`\partopsep`: $\the\partopsep$  
+`\OuterFrameSep`: $\the\OuterFrameSep$
 
 \begin{Shaded}
-\begin{itemize}
-\tightlist
-\item topsep: \the\topsep
-\item partopsep: \the\partopsep
-\item OuterFrameSep: \the\OuterFrameSep
-\end{itemize}
+topsep: \the\topsep \\
+partopsep: \the\partopsep \\
+OuterFrameSep: \the\OuterFrameSep \\
 \end{Shaded}
 
 ```{r debugging, echo=FALSE}
