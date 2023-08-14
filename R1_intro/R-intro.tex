@@ -45,21 +45,18 @@
   \frame{\subsectionpage}
 }
 \usepackage{amsmath,amssymb}
+\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math} % this also loads fontspec
+  \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-\usepackage{lmodern}
 \usetheme[]{Boadilla}
-\ifPDFTeX\else
-  % xetex/luatex font selection
-\fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \IfFileExists{microtype.sty}{% use microtype if available
@@ -138,7 +135,7 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\usepackage{soul}
+\usepackage[normalem]{ulem}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -155,7 +152,7 @@
   %\preto{\@verbatim}{\topsep=-4pt \partopsep=0pt}
 \makeatother
 %\setlength{\OuterFrameSep}{4pt}
-\newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
+\newcommand{\Rlogo}{\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
 \newcommand{\ctop}{\vspace{0.2\baselineskip}}  % for aligning text with the top of a code block in a table
 \newcommand{\highlight}[1]{\StringTok{#1}}
@@ -168,7 +165,7 @@
 \fi
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same}
+\urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={A Gentle Introduction to R},
   pdfauthor={Jonathan Whiteley},
@@ -177,35 +174,44 @@
 
 \title{A Gentle Introduction to R}
 \author{Jonathan Whiteley}
-\date{2023-08-13}
+\date{2023-08-14}
 
 \begin{document}
 \frame{\titlepage}
 
 \begin{frame}[fragile]{Debugging}
 \protect\hypertarget{debugging}{}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
 \texttt{\textbackslash{}baselineskip}: \(\the\baselineskip\)\\
 \texttt{\textbackslash{}parskip}: \(\the\parskip\)\\
+\texttt{\textbackslash{}parsep}: \(\the\parsep\)\\
+\texttt{\textbackslash{}itemsep}: \(\the\itemsep\)\\
 \texttt{\textbackslash{}topsep}: \(\the\topsep\)\\
 \texttt{\textbackslash{}partopsep}: \(\the\partopsep\)\\
 \texttt{\textbackslash{}OuterFrameSep}: \(\the\OuterFrameSep\)
+\end{column}
 
+\begin{column}{0.5\textwidth}
 \begin{Shaded}
+baselineskip: \the\baselineskip  \\
+parskip: \the\parskip  \\
+parsep: \the\parsep  \\
+itemsep: \the\itemsep  \\
 topsep: \the\topsep \\
 partopsep: \the\partopsep \\
 OuterFrameSep: \the\OuterFrameSep \\
 \end{Shaded}
+\end{column}
+\end{columns}
 
 \begin{verbatim}
-pandoc version: 3.1.1
+pandoc version: 2.19.2
 \end{verbatim}
 
 \begin{verbatim}
-knitr version: 1.43
-\end{verbatim}
-
-\begin{verbatim}
-rmarkdown version: 2.23
+knitr version: 1.41
+rmarkdown version: 2.19
 \end{verbatim}
 \end{frame}
 
@@ -214,9 +220,9 @@ rmarkdown version: 2.23
 \begin{itemize}
 \item
   Access to a copy of the
-  \href{https://www.r-project.org}{\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)}\footnote<.->{The
+  \href{https://www.r-project.org}{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)}\footnote<.->{The
     R logo
-    (\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\))
+    (\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\))
     is \href{https://www.r-project.org/logo/}{© 2016 The R Foundation}
     and used as-is under the terms of the
     \href{https://creativecommons.org/licenses/by-sa/4.0/}{\textbf{CC-BY-SA
@@ -392,7 +398,7 @@ On your turn:
 \tightlist
 \item
   Get familiar with the
-  \includegraphics[width=\textwidth,height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}
+  \includegraphics[width=\textwidth,height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}
   \emph{interface}
 \item
   Use technical \emph{terms} for \(\texttt{R}\) concepts
@@ -438,8 +444,8 @@ On your turn:
     works very differently ``under the hood''.
   \end{itemize}
 \item
-  \textbf{\(\texttt{R}\)} was created by \ul{\textbf{R}}oss Ihaka and
-  \ul{\textbf{R}}obert Gentleman --- aka ``R \& R''\footnote<.->{\url{https://www.r-project.org/contributors.html}}
+  \textbf{\(\texttt{R}\)} was created by \uline{\textbf{R}}oss Ihaka and
+  \uline{\textbf{R}}obert Gentleman --- aka ``R \& R''\footnote<.->{\url{https://www.r-project.org/contributors.html}}
   --- at the University of Aukland in the early 1990s.
 \end{enumerate}
 
@@ -454,9 +460,9 @@ On your turn:
 (Interface)}{Interacting with \textbackslash texttt\{R\} (Interface)}}\label{interacting-with-textttr-interface}}
 
 \begin{frame}{The
-\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 Interface}
-\protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-interface}{}
+\protect\hypertarget{the-includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-interface}{}
 \begin{itemize}
 \tightlist
 \item
@@ -569,8 +575,8 @@ right:
 \end{frame}
 
 \begin{frame}{Interacting with
-\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)}
-\protect\hypertarget{interacting-with-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg}{}
+\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)}
+\protect\hypertarget{interacting-with-includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg}{}
 \begin{itemize}
 \item
   Regardless of the GUI, you interact with \(\texttt{R}\) primarily
@@ -579,7 +585,7 @@ right:
   \begin{itemize}
   \tightlist
   \item
-    aka a \ul{c}ommand \ul{l}ine \ul{i}nterface (cli)
+    aka a \uline{c}ommand \uline{l}ine \uline{i}nterface (cli)
   \item
     the command line is usually in the \emph{console}
   \end{itemize}
@@ -609,9 +615,9 @@ for more programming as their needs and skills grow.
 \end{frame}
 
 \begin{frame}[fragile]{The
-\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 console}
-\protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-console}{}
+\protect\hypertarget{the-includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-console}{}
 The \emph{console} is a window or pane where you will find:
 
 \begin{itemize}
@@ -631,9 +637,9 @@ The \emph{console} is a window or pane where you will find:
 \end{frame}
 
 \begin{frame}[fragile]{The
-\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 command-line}
-\protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-command-line}{}
+\protect\hypertarget{the-includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-command-line}{}
 \begin{itemize}
 \item
   The command \emph{prompt} normally looks like this\footnote<.->{\textcolor[rgb]{0.66,0.66,0.66}{the colour of the prompt varies depending on the interface}}:
@@ -676,9 +682,9 @@ command-line}
 \end{frame}
 
 \begin{frame}[fragile]{The
-\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 command-line (continued)}
-\protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-command-line-continued}{}
+\protect\hypertarget{the-includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-command-line-continued}{}
 \begin{itemize}
 \item
   If the prompt looks like this:
@@ -721,8 +727,6 @@ In this presentation,
   \emph{commands} that can be entered in the \emph{command-line} look
   like this:
 
-\hypertarget{format_input}{%
-\label{format_input}}%
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{Input (commands)}
@@ -743,9 +747,9 @@ Output (results)
 \end{itemize}
 \end{frame}
 
-\begin{frame}{\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\begin{frame}{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 offers suggestions}
-\protect\hypertarget{includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-offers-suggestions}{}
+\protect\hypertarget{includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-offers-suggestions}{}
 Read the opening message carefully.
 
 \begin{figure}
@@ -764,13 +768,13 @@ Read the opening message carefully.
 \end{figure}
 \end{frame}
 
-\begin{frame}[fragile]{\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\begin{frame}[fragile]{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 is a show-off}
-\protect\hypertarget{includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-is-a-show-off}{}
+\protect\hypertarget{includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-is-a-show-off}{}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.2625}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.7375}}@{}}
-\toprule\noalign{}
+\toprule()
 \endhead
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{Shaded}
@@ -841,7 +845,7 @@ for a programming language.\\
 \hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}More
 on this later.
 \end{minipage} \\
-\bottomrule\noalign{}
+\bottomrule()
 \end{longtable}
 
 \begin{block}{Note}
@@ -851,9 +855,9 @@ to produce it}.
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\begin{frame}[fragile]{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 is a calculator}
-\protect\hypertarget{includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-is-a-calculator}{}
+\protect\hypertarget{includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-is-a-calculator}{}
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.45\textwidth}
 \begin{Shaded}
@@ -957,9 +961,9 @@ evaluator', such as \texttt{eval()}) to return the \emph{value}.
 ``All expressions have a value.'' (s3 `Evaluation of expressions')}
 \end{frame}
 
-\begin{frame}{\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\begin{frame}{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 command-line tips}
-\protect\hypertarget{includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-command-line-tips}{}
+\protect\hypertarget{includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-command-line-tips}{}
 \begin{itemize}
 \item
   With the cursor next to the empty prompt (\OtherTok{\texttt{>}}),\\
@@ -1160,11 +1164,11 @@ converting from one type to another = \emph{coercion}
 \end{itemize}
 
 \begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
+\toprule()
 \endhead
 \VERB|\OtherTok{\textless{}{-}}| & assign the \emph{value} on the
 \textbf{right} to the \emph{name} on the \textbf{left} \\
-\bottomrule\noalign{}
+\bottomrule()
 \end{longtable}
 
 \begin{columns}[T,onlytextwidth]
@@ -1176,13 +1180,13 @@ converting from one type to another = \emph{coercion}
 \end{itemize}
 
 \begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
+\toprule()
 \endhead
 letters & \StringTok{\texttt{a-z A-Z}} \\
 numbers & \StringTok{\texttt{0-9}} \\
 periods & \StringTok{\texttt{.}} \\
 underscores & \StringTok{\texttt{\_}} \\
-\bottomrule\noalign{}
+\bottomrule()
 \end{longtable}
 
 \begin{itemize}
@@ -1231,7 +1235,7 @@ When a variable \emph{name} is evaluated, it returns the stored
 \end{Shaded}
 
 \begin{verbatim}
-[1] 2.303
+[1] 2.302585
 \end{verbatim}
 \end{column}
 
@@ -1290,7 +1294,7 @@ and should \textbf{never be used as variable names}.
 \end{Shaded}
 
 \begin{verbatim}
-[1] 3.142
+[1] 3.141593
 \end{verbatim}
 \end{column}
 
@@ -1346,7 +1350,7 @@ Some words and letters already have special meaning in the R language
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2157}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2255}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5588}}@{}}
-\toprule\noalign{}
+\toprule()
 \endhead
 \tikzmarknode{tl}{} \VERB|\ConstantTok{NA}| & ``Not Available'' &
 placeholder for unknown or missing values \\
@@ -1362,21 +1366,21 @@ missing \emph{objects} \\
 ~\VERB|\NormalTok{F}| & short for \VERB|\ConstantTok{FALSE}| & \\
 ~\VERB|\NormalTok{c,q,t,C,D,I}| & \(\texttt{R}\) functions & \\
 ~\VERB|\NormalTok{diff, df, pt}| & \(\texttt{R}\) functions & \\
-\bottomrule\noalign{}
+\bottomrule()
 \end{longtable}
 
 \normalfont
 \end{frame}
 
-\begin{frame}[fragile]{\(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+\begin{frame}[fragile]{\(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
 is case-sensitive}
-\protect\hypertarget{includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-is-case-sensitive}{}
+\protect\hypertarget{includegraphicsheight1emcprogra1rr-411.3dochtmllogo.jpg-is-case-sensitive}{}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2361}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2361}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2361}}
   >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2361}}@{}}
-\toprule\noalign{}
+\toprule()
 \endhead
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{Shaded}
@@ -1446,7 +1450,7 @@ A-Z
 \end{minipage} & \begin{minipage}[t]{\linewidth}\centering
 \vspace{0.2\baselineskip}{}
 \end{minipage} \\
-\bottomrule\noalign{}
+\bottomrule()
 \end{longtable}
 \end{frame}
 
@@ -1488,7 +1492,7 @@ A-Z
 \end{Shaded}
 
 \begin{verbatim}
-[1] 20.76 22.22 22.27 24.93 32.87 19.94
+[1] 20.76125 22.22222 22.26562 24.93075 32.87197 19.94460
 \end{verbatim}
 
 \begin{Shaded}
@@ -1503,7 +1507,7 @@ A-Z
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.2917}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.6250}}@{}}
-\toprule\noalign{}
+\toprule()
 \endhead
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{Shaded}
@@ -1539,7 +1543,7 @@ Remove the variable `\VariableTok{\texttt{x}}' from memory
 Remove \emph{all variables} from memory\\
 (clear memory)\strut
 \end{minipage} \\
-\bottomrule\noalign{}
+\bottomrule()
 \end{longtable}
 
 \begin{Shaded}
@@ -1616,7 +1620,7 @@ Comparison of 2 values results in \emph{logical values}:
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1389}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.7361}}@{}}
-\toprule\noalign{}
+\toprule()
 \endhead
 \VERB|\SpecialCharTok{==}| & \begin{minipage}[t]{\linewidth}\raggedright
 ``equal'' --- \AlertTok{Note the \textbf{two} equals signs.}\\
@@ -1629,7 +1633,7 @@ Not to be confused with a single equals sign\\
 \VERB|\SpecialCharTok{\textgreater{}=}| & ``greater than or equal
 to'' \\
 \VERB|\SpecialCharTok{\textless{}=}| & ``less than or equal to'' \\
-\bottomrule\noalign{}
+\bottomrule()
 \end{longtable}
 \end{frame}
 
@@ -1741,7 +1745,7 @@ handle floating point arithmetic, and not specific to \(\texttt{R}\).
 \end{Shaded}
 
 \begin{verbatim}
-[1] 4.441e-16
+[1] 4.440892e-16
 \end{verbatim}
 \end{column}
 \end{columns}
@@ -1939,7 +1943,7 @@ Error in 1 + "2" : non-numeric argument to binary operator
 \end{Shaded}
 
 \begin{verbatim}
-Error in eval(expr, envir, enclos) : object 'Fail' not found
+Error in try(Fail) : object 'Fail' not found
 \end{verbatim}
 
 \begin{itemize}
@@ -2095,11 +2099,11 @@ Online:
     tutorials, workshop materials, and other resources.
   \end{itemize}
 \item
-  \(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+  \(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
   \href{https://cran.r-project.org/manuals.html}{Manuals}
   (\url{https://cran.r-project.org/manuals.html})
 \item
-  \(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
+  \(\includegraphics[height=1em]{C:/PROGRA~1/R/R-41~1.3/doc/html/logo.jpg}\)
   \href{https://cran.r-project.org/other-docs.html}{Contributed
   Documentation}
 
