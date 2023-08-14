@@ -44,6 +44,15 @@ options(width = 60)  # to fit output on slides: either smaller font or shorter w
 
 
 ## Debugging
+\small
+
+`\baselineskip`: $\the\baselineskip$  \hfill
+`\parskip`: $\the\parskip$  
+`\itemsep`: $\the\itemsep$  \hfill
+`\parsep`: $\the\parsep$  
+`\topsep`: $\the\topsep$  \hfill
+`\partopsep`: $\the\partopsep$  
+`\OuterFrameSep`: $\the\OuterFrameSep$
 
 :::::: {.columns}
 ::: {.column width="50%"}
