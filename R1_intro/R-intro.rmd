@@ -25,10 +25,18 @@ header-includes: |
     %\def\verbatim{\small\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
     %\preto{\@verbatim}{\topsep=-4pt \partopsep=0pt}
   \makeatother
-  %\setlength{\OuterFrameSep}{4pt}
+  % Set some lengths explicitly, for reproducibility across environments with different defaults
+  % Using fixed values (without rubber lengths) allows for more predictability in sizes,
+  %  which is useful for graphical overlays, though it may not be as flexible.
+  % See p. 145 of "The LaTeX Companion" (2e) for a diagram and explanation of some of these parameters.
+  %\setlength{\partopsep}{0pt}
+  %\setlength{\topsep}{4pt}
+  %\setlength{\parsep}{0pt}
+  %\setlength{\itemsep}{0.5\topsep}
+  %\setlength{\OuterFrameSep}{4pt}  % = \topsep by default in `framed` package
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
-  \newcommand{\ctop}{\vspace{0.2\baselineskip}}  % for aligning text with the top of a code block in a table
+  \newcommand{\ctop}{\vspace{\topsep}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seems like a good approximation; '\topsep+\parskip+\partopsep' seems logical, but might be too much, if it loses the rubber values)
   \newcommand{\highlight}[1]{\StringTok{#1}}
   \newcommand{\important}[1]{\AlertTok{#1}}
   \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
