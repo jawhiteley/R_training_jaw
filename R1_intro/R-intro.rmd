@@ -22,21 +22,26 @@ header-includes: |
   \AtBeginEnvironment{verbatim}{\small}    % reduce font size in R output
   % https://stackoverflow.com/questions/35734525/reduce-space-between-code-chunks-and-code-output-in-rmarkdown-beamer-presentatio
   \makeatletter
-    %\def\verbatim{\small\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
-    %\preto{\@verbatim}{\topsep=-4pt \partopsep=0pt}
+    \preto{\@verbatim}{\topsep=0pt \partopsep=-10pt}
   \makeatother
   % Set some lengths explicitly, for reproducibility across environments with different defaults
   % Using fixed values (without rubber lengths) allows for more predictability in sizes,
   %  which is useful for graphical overlays, though it may not be as flexible.
   % See p. 145 of "The LaTeX Companion" (2e) for a diagram and explanation of some of these parameters.
-  %\setlength{\partopsep}{0pt}
-  %\setlength{\topsep}{4pt}
-  %\setlength{\parsep}{0pt}
-  %\setlength{\itemsep}{0.5\topsep}
-  %\setlength{\OuterFrameSep}{4pt}  % = \topsep by default in `framed` package
+  \setlength{\partopsep}{0pt}
+  \setlength{\topsep}{0pt}
+  % My first instinct is to set \parsep to 0 (so paragraphs in the same item are closer together)
+  %  and set \itemsep to a rubber value; but the default is the opposite!
+  %  So all paragraphs are the same distance apart, regardless of item number...
+  % The \tightlist command sets \itemsep and \parskip to 0, but does not change \parsep.
+  \setlength{\parsep}{6pt plus2pt minus2pt}
+  \setlength{\itemsep}{0pt}
+  % For the most part, I don't actually want any space around the Shaded environments,
+  %  but it's the easiest way I found to reliably reserve space above the code chunks in columns underneath code output (verbatim).
+  \setlength{\OuterFrameSep}{4pt}  % = \topsep by default in `framed` package (but this is only applied at the start of the environment: the default value of \OuterFrameSep is otherwise \maxdimen!)
+  \newcommand{\ctop}{\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seemed like a good approximation, depending on other parametes; '\topsep+\parskip+\partopsep' seemed logical, but might be too much, maybe because it loses the rubber values)
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
-  \newcommand{\ctop}{\vspace{\topsep}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seems like a good approximation; '\topsep+\parskip+\partopsep' seems logical, but might be too much, if it loses the rubber values)
   \newcommand{\highlight}[1]{\StringTok{#1}}
   \newcommand{\important}[1]{\AlertTok{#1}}
   \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
@@ -55,12 +60,13 @@ options(width = 60)  # to fit output on slides: either smaller font or shorter w
 \small
 
 `\baselineskip`: $\the\baselineskip$  \hfill
-`\parskip`: $\the\parskip$  
-`\itemsep`: $\the\itemsep$  \hfill
+`\lineskip`: $\the\lineskip$  
+`\parskip`: $\the\parskip$  \hfill
 `\parsep`: $\the\parsep$  
-`\topsep`: $\the\topsep$  \hfill
-`\partopsep`: $\the\partopsep$  
-`\OuterFrameSep`: $\the\OuterFrameSep$
+`\itemsep`: $\the\itemsep$  \hfill
+`\topsep`: $\the\topsep$  
+`\partopsep`: $\the\partopsep$  \hfill
+`\OuterFrameSep`: $\the\OuterFrameSep$  
 
 :::::: {.columns}
 ::: {.column width="50%"}
@@ -1279,7 +1285,9 @@ https://tex.stackexchange.com/questions/669717/how-do-i-change-the-default-font-
 https://tex.stackexchange.com/questions/161678/decreasing-font-size-in-verbatim
 https://groups.google.com/g/comp.text.tex/c/YlKONnmYOV8
 https://stackoverflow.com/questions/35734525/reduce-space-between-code-chunks-and-code-output-in-rmarkdown-beamer-presentatio
+https://tex.stackexchange.com/questions/43331/control-vertical-space-before-and-after-verbatim-environment
 https://tex.stackexchange.com/questions/687779/control-vertical-space-after-verbatim-environment
+https://tex.stackexchange.com/questions/184019/how-to-suppress-extra-vertical-space-before-after-fancy-verbatim-environments/534447
 
 ## Other formatting tricks & solutions
 https://tex.stackexchange.com/questions/11622/add-space-between-paragraphs-in-beamer
