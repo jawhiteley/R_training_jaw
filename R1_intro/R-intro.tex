@@ -2010,7 +2010,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x130814c78>
+<bytecode: 0x12d6de078>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2071,12 +2071,6 @@ Messages}\label{errors-warnings-and-messages}}
   \end{itemize}
 \item
   A command that produces an \emph{error} is \textbf{not} executed.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    neither are any commands after the error.
-  \end{itemize}
 \end{itemize}
 
 \begin{Shaded}
@@ -2101,6 +2095,9 @@ Error in eval(expr, envir, enclos) : object 'Fail' not found
 
 \begin{itemize}
 \tightlist
+\item
+  Error messages tell you what went wrong, not how to fix it:\\
+  that's up to you to figure out.
 \item
   When an error occurs, \textbf{\(\texttt{R}\) stops running} commands
   and returns to the command-line.

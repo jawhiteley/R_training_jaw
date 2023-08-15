@@ -1159,7 +1159,7 @@ var(1:20)
   - This is a message that begins with the word "\ErrorTok{\texttt{Error}}".
   
 - A command that produces an *error* is **not** executed.
-  - neither are any commands after the error.
+  <!-- - neither are any commands after the error. -->
 
 ```{r errors1_code, eval=FALSE, echo=TRUE}
 Fail <- 1 + "2"
@@ -1174,6 +1174,8 @@ Fail
 try( Fail )
 ```
 
+- Error messages tell you what went wrong, not how to fix it:  
+  that's up to you to figure out.
 - When an error occurs, **$\R$ stops running** commands and returns to the command-line.
   - Your *session* is still active: $\R$ didn't quit, and you can enter more commands.
 
