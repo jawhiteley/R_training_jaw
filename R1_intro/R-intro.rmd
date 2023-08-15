@@ -582,11 +582,11 @@ to return the *value*.
 
 \hfill\tikzmarknode[anchor=north west, inner sep=0]{code_tr}{}
 ```{r vector_demo, echo=4}
-opts.width <- getOption('width')
+.opts.width <- getOption('width')
 options(width = 30)
 2
 1:10
-options(width = opts.width)
+options(width = .opts.width)
 ```
 \tikzmarknode[anchor=north west, inner sep=0]{code_bl}{}\vspace{-\baselineskip}
 
@@ -887,6 +887,10 @@ plot(Height, Weight)
 | ```                | (clear memory)                             |
 +--------------------+--------------------------------------------+
 
+```{r, echo=FALSE}
+## run this command, which is in a non-executable block in the table.
+rm(list=ls())
+```
 ```{r bad_pie, results='hide'}
 pi
 pi <- "pie"
@@ -1106,6 +1110,34 @@ Note the **single** equals sign (`=`{.r}),
 used to assign values to function arguments by name
 
 
+## Calling Functions
+
+- Some functions can be called without arguments.
+- \textbf{You still need the parentheses\important{()} !}
+- The same word without \important{\texttt{()}} refers to an *object* (*variable*):  
+  adding the \important{\texttt{()}} specifies a *function call*
+- Typing a function name without brackets usually outputs the _raw code_ for that function
+  (unless another object has been defined with the same name).
+  - i.e., the *value* of the function object itself.
+
+:::::: {.columns .onlytextwidth}
+::: {.column width="48%"}
+```{r function_call, echo=3}
+.opts.width <- getOption('width')
+options(width = 30)
+ls()
+```
+:::
+::: {.column width="48%"}
+```{r function_not_call, echo=1}
+ls
+options(width = .opts.width)
+```
+:::
+::::::
+
+
+
 # Errors, Warnings, and Messages
 
 ## Errors
@@ -1131,7 +1163,8 @@ try( Fail )
 
 - When an error occurs, **$\R$ stops running** commands and returns to the command-line.
   - Your *session* is still active: $\R$ didn't quit, and you can enter more commands.
-  
+
+
 ## Warnings
 
 - Some commands still work, but did not run exactly as $\R$ (or the developers) think is "ideal", and may produce a ***warning*** instead.
@@ -1177,16 +1210,17 @@ https://moderndive.netlify.app/1-getting-started.html
 # Saving code (files)
 
 <!-- To ADD:
-+ Operators
 + Functions
   + arguments
   + calling functions (syntax)
   + the `c()` function for making vectors
-+ Errors & Warnings & Messages
 + Help
++ Flow-control?
+  + if
+  + loops
 + Installing packages
 + Script files
-+ Rmarkdown & R notebooks
+  + Rmarkdown & R notebooks
 -->
 
 

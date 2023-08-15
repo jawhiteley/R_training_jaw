@@ -195,7 +195,7 @@
 
 \title{A Gentle Introduction to R}
 \author{Jonathan Whiteley}
-\date{2023-08-14}
+\date{2023-08-15}
 
 \begin{document}
 \frame{\titlepage}
@@ -1932,6 +1932,89 @@ Two common solutions:
 Note the \textbf{single} equals sign (\VERB|\OtherTok{=}|), used to
 assign values to function arguments by name
 \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Calling Functions}
+\protect\hypertarget{calling-functions}{}
+\begin{itemize}
+\tightlist
+\item
+  Some functions can be called without arguments.
+\item
+  \textbf{You still need the parentheses\AlertTok{()} !}
+\item
+  The same word without \AlertTok{\texttt{()}} refers to an
+  \emph{object} (\emph{variable}):\\
+  adding the \AlertTok{\texttt{()}} specifies a \emph{function call}
+\item
+  Typing a function name without brackets usually outputs the \emph{raw
+  code} for that function (unless another object has been defined with
+  the same name).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    i.e., the \emph{value} of the function object itself.
+  \end{itemize}
+\end{itemize}
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ls}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "a"
+\end{verbatim}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ls}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE, 
+    pattern, sorted = TRUE) 
+{
+    if (!missing(name)) {
+        pos <- tryCatch(name, error = function(e) e)
+        if (inherits(pos, "error")) {
+            name <- substitute(name)
+            if (!is.character(name)) 
+                name <- deparse(name)
+            warning(gettextf("%s converted to character string", 
+                sQuote(name)), domain = NA)
+            pos <- name
+        }
+    }
+    all.names <- .Internal(ls(envir, all.names, sorted))
+    if (!missing(pattern)) {
+        if ((ll <- length(grep("[", pattern, fixed = TRUE))) && 
+            ll != length(grep("]", pattern, fixed = TRUE))) {
+            if (pattern == "[") {
+                pattern <- "\\["
+                warning("replaced regular expression pattern '[' by  '\\\\['")
+            }
+            else if (length(grep("[^\\\\]\\[<-", pattern))) {
+                pattern <- sub("\\[<-", "\\\\\\[<-", pattern)
+                warning("replaced '[<-' by '\\\\[<-' in regular expression pattern")
+            }
+        }
+        grep(pattern, all.names, value = TRUE)
+    }
+    else all.names
+}
+<bytecode: 0x118395078>
+<environment: namespace:base>
+\end{verbatim}
+\end{column}
+\end{columns}
 \end{frame}
 
 \hypertarget{errors-warnings-and-messages}{%
