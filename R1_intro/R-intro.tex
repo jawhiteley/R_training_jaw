@@ -151,7 +151,7 @@
 \AtBeginEnvironment{verbatim}{\small}    % reduce font size in R output
 % https://stackoverflow.com/questions/35734525/reduce-space-between-code-chunks-and-code-output-in-rmarkdown-beamer-presentatio
 \makeatletter
-  \preto{\@verbatim}{\topsep=0pt \partopsep=-10pt}
+  \preto{\@verbatim}{\topsep=0pt \partopsep=0pt \itemsep=0pt}
 \makeatother
 % Set some lengths explicitly, for reproducibility across environments with different defaults
 % Using fixed values (without rubber lengths) allows for more predictability in sizes,
@@ -168,7 +168,12 @@
 % For the most part, I don't actually want any space around the Shaded environments,
 %  but it's the easiest way I found to reliably reserve space above the code chunks in columns underneath code output (verbatim).
 \setlength{\OuterFrameSep}{4pt}  % = \topsep by default in `framed` package (but this is only applied at the start of the environment: the default value of \OuterFrameSep is otherwise \maxdimen!)
-\newcommand{\ctop}{\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seemed like a good approximation, depending on other parametes; '\topsep+\parskip+\partopsep' seemed logical, but might be too much, maybe because it loses the rubber values)
+\newlength\ShadedFrameSep 
+\ifdim\OuterFrameSep=\maxdimen 
+  \ShadedFrameSep=\topsep \else 
+  \ShadedFrameSep=\OuterFrameSep 
+\fi
+\newcommand{\ctop}{\vspace{\ShadedFrameSep}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seemed like a good approximation, depending on other parametes; '\topsep+\parskip+\partopsep' seemed logical, but might be too much, maybe because it loses the rubber values)
 \newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
 \newcommand{\highlight}[1]{\StringTok{#1}}
@@ -864,7 +869,7 @@ is a show-off}
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 
 \textbf{←} A great place to start,\\
 \hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}especially
@@ -1418,7 +1423,7 @@ is case-sensitive}
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 
 a variable
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1435,15 +1440,15 @@ a variable
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 
 a \emph{function}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 \AlertTok{%
 \textit{PI}}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\centering
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{Shaded}
@@ -1452,7 +1457,7 @@ a \emph{function}
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 
 a-z
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1469,15 +1474,15 @@ a-z
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 
 A-Z
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 \AlertTok{%
 \textit{na}}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\centering
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 \end{minipage} \\
 \bottomrule\noalign{}
 \end{longtable}
@@ -1545,7 +1550,7 @@ A-Z
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 
 List all variables you have created
 \end{minipage} \\
@@ -1556,7 +1561,7 @@ List all variables you have created
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 
 Remove the variable `\VariableTok{\texttt{x}}' from memory
 \end{minipage} \\
@@ -1567,7 +1572,7 @@ Remove the variable `\VariableTok{\texttt{x}}' from memory
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 
 Remove \emph{all variables} from memory\\
 (clear memory)\strut
@@ -1749,13 +1754,15 @@ As a result, `floating point' values may not be \emph{reliably equal}.
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.45\textwidth}
-\vspace{\ifdim\OuterFrameSep=\maxdimen \topsep \else \OuterFrameSep \fi}{}
+\vspace{\ShadedFrameSep}{}
 
 This is a common source of confusion, but it is a fact of how computers
 handle floating point arithmetic, and not specific to \(\texttt{R}\).
 \end{column}
 
 \begin{column}{0.48\textwidth}
+\vspace{-\ShadedFrameSep}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\DecValTok{2}\NormalTok{)}
@@ -1797,7 +1804,7 @@ Two common solutions:
 \begin{column}{0.48\textwidth}
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{round}\NormalTok{(a }\SpecialCharTok{*}\NormalTok{ a, }\DecValTok{8}\NormalTok{) }\SpecialCharTok{==} \DecValTok{2}
+\FunctionTok{round}\NormalTok{(a }\SpecialCharTok{*}\NormalTok{ a, }\DecValTok{8}\NormalTok{) }\SpecialCharTok{==} \DecValTok{2}  \CommentTok{\#(1)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1807,7 +1814,7 @@ Two common solutions:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{all.equal}\NormalTok{(a }\SpecialCharTok{*}\NormalTok{ a, }\DecValTok{2}\NormalTok{)}
+\FunctionTok{all.equal}\NormalTok{(a }\SpecialCharTok{*}\NormalTok{ a, }\DecValTok{2}\NormalTok{)   }\CommentTok{\#(2)}
 \end{Highlighting}
 \end{Shaded}
 
