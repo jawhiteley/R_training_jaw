@@ -174,6 +174,7 @@
   \ShadedFrameSep=\OuterFrameSep 
 \fi
 \newcommand{\ctop}{\vspace{\ShadedFrameSep}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seemed like a good approximation, depending on other parametes; '\topsep+\parskip+\partopsep' seemed logical, but might be too much, maybe because it loses the rubber values)
+\newcommand{\chup}{\vspace{-\ShadedFrameSep}}  % move code chunk up, to gobble whitespace above?
 \newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
 \newcommand{\highlight}[1]{\StringTok{#1}}
@@ -1761,7 +1762,7 @@ handle floating point arithmetic, and not specific to \(\texttt{R}\).
 \end{column}
 
 \begin{column}{0.48\textwidth}
-\vspace{-\ShadedFrameSep}
+\vspace{-\ShadedFrameSep}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2010,7 +2011,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x12d6de078>
+<bytecode: 0x105c7dc78>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2200,15 +2201,194 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \protect\hypertarget{help}{}
 \begin{itemize}
 \item
-  R \emph{documentation} (help files)
+  \protect\hyperlink{textttr-documentation}{R \emph{documentation}}
+  (help files)
 \item
-  Books
+  \protect\hyperlink{help-books}{Books}
 \item
-  Web sites
+  \protect\hyperlink{help-web-sites}{Web sites}
 \item
-  Cheat sheets / Reference cards
+  \protect\hyperlink{help-reference-cards-cheat-sheets}{Cheat sheets /
+  Reference cards}
 \item
   Each Other
+\end{itemize}
+\end{frame}
+
+\begin{frame}{HELP: Books}
+\protect\hypertarget{help-books}{}
+\begin{itemize}
+\item
+  Springer publishing:
+  ``\textbf{\href{https://www.springer.com/series/6991}{Use R!}}''
+  series
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Some older:
+    \href{https://link.springer.com/book/10.1007/978-0-387-93837-0}{A
+    Beginner's Guide to R} (2009)
+  \item
+    Some more recent:
+    \href{https://link.springer.com/book/10.1007/978-3-319-45599-0}{Data
+    Wrangling with R} (2016)
+  \item
+    Some focus on specific methods, e.g.:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \href{https://link.springer.com/book/10.1007/978-3-319-71404-2}{Numerical
+      Ecology with R} (2018)
+    \item
+      \href{https://link.springer.com/book/10.1007/978-1-4614-7618-4}{Applied
+      Spatial Data Analysis with R} (2013)
+    \end{itemize}
+  \end{itemize}
+\item
+  Other suggestions on the R web site:
+  \href{https://www.r-project.org/doc/bib/R-books.html}{www.r-project.org/doc/bib/R-books.html}
+\item
+  R packages can change quickly: be careful if older content refers to
+  old versions of packages, or packages that are deprecated.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Concepts or general methods may still be relevant.
+  \end{itemize}
+\item
+  Many are available in physical or digital formats (or both)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{HELP: Web Sites}
+\protect\hypertarget{help-web-sites}{}
+\begin{itemize}
+\item
+  R web site: \href{http://www.r-project.org}{www.r-project.org}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    especially the ``Documentation'' section
+  \item
+    \href{https://www.r-project.org/mail.html}{e-mail lists}
+  \end{itemize}
+\item
+  \href{https://education.rstudio.com/}{RStudio Education}:
+  \href{https://education.rstudio.com/}{education.rstudio.com}
+\item
+  R-bloggers.com \href{http://www.r-cookbok.com}{www.r-cookbok.com}
+\item
+  \href{https://stackoverflow.com/questions/tagged/r}{Stack Overflow}
+  (\href{https://stackoverflow.com/questions/tagged/r}{stackoverflow.com})
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Q\&A site: search for your question, or ask your own
+  \end{itemize}
+\item
+  \href{http://www.cookbook-r.com/}{Cookbook for R}
+  (\href{http://www.cookbook-r.com/}{www.cookbook-r.com})
+\item
+  Your preferred search engine \ldots{}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{HELP: Reference cards / cheat sheets}
+\protect\hypertarget{help-reference-cards-cheat-sheets}{}
+\begin{itemize}
+\item
+  \url{https://cran.r-project.org/doc/contrib/Short-refcard.pdf}
+\item
+  \url{https://cran.r-project.org/doc/contrib/refcard.pdf}
+\item
+  \href{https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf}{RStudio
+  IDE cheat sheet}
+\item
+  Search the internet for
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ``R cheat sheet''
+  \item
+    ``R reference card''
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\(\texttt{R}\) Documentation}
+\protect\hypertarget{textttr-documentation}{}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.45\textwidth}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{help.start}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{images/R-screenshot-help-start}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\vspace{\ShadedFrameSep}{}
+
+\begin{itemize}
+\tightlist
+\item
+  A great place to start
+\item
+  HTML documentation with tutorials, concepts, and examples.
+\item
+  Browse or search for something specific, or just explore.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{\(\texttt{R}\) Documentation: find it}
+\protect\hypertarget{textttr-documentation-find-it}{}
+\end{frame}
+
+\begin{frame}{\(\texttt{R}\) Documentation: read it}
+\protect\hypertarget{textttr-documentation-read-it}{}
+\end{frame}
+
+\begin{frame}[fragile]{Help: example}
+\protect\hypertarget{help-example}{}
+\begin{itemize}
+\tightlist
+\item
+  Create an unsorted vector of numbers
+\item
+  Find out how to sort it
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{unsorted\_vector }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{6}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{, }\FloatTok{9.5}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\FunctionTok{help.search}\NormalTok{(}\StringTok{"sort"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pause
+
+\begin{itemize}
+\tightlist
+\item
+  Now try including a character string in the vector
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Sort again
+  \end{itemize}
+\item
+  Try to sort it in reverse order
 \end{itemize}
 \end{frame}
 

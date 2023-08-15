@@ -45,6 +45,7 @@ header-includes: |
     \ShadedFrameSep=\OuterFrameSep 
   \fi
   \newcommand{\ctop}{\vspace{\ShadedFrameSep}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seemed like a good approximation, depending on other parametes; '\topsep+\parskip+\partopsep' seemed logical, but might be too much, maybe because it loses the rubber values)
+  \newcommand{\chup}{\vspace{-\ShadedFrameSep}}  % move code chunk up, to gobble whitespace above?
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
   \newcommand{\highlight}[1]{\StringTok{#1}}
@@ -993,7 +994,7 @@ As a result, 'floating point' values may not be _reliably equal_.
 This is a common source of confusion, but it is a fact of how computers handle floating point arithmetic, and not specific to $\R$.
 :::
 ::: {.column width="48%"}
-\vspace{-\ShadedFrameSep}
+\chup{}
 <!-- Simpler example (with longer lines): .3 + .6 == .9 -->
 ```{r comparing_decimals}
 a <- sqrt(2)
@@ -1222,16 +1223,106 @@ https://moderndive.netlify.app/1-getting-started.html
 
 ## HELP
 
-+ R *documentation* (help files) 
++ [R *documentation*](#textttr-documentation) (help files) 
 
-+ Books
++ [Books](#help-books)
 
-+ Web sites
++ [Web sites](#help-web-sites)
 
-+ Cheat sheets / Reference cards 
++ [Cheat sheets / Reference cards](#help-reference-cards-cheat-sheets)
 
 + Each Other
 
+
+## HELP: Books
+
++ Springer publishing: "**[Use R!](https://www.springer.com/series/6991)**" series
+  - Some older: [A Beginner's Guide to R](https://link.springer.com/book/10.1007/978-0-387-93837-0) (2009)
+  - Some more recent: [Data Wrangling with R](https://link.springer.com/book/10.1007/978-3-319-45599-0) (2016)
+  - Some focus on specific methods, e.g.: 
+    - [Numerical Ecology with R](https://link.springer.com/book/10.1007/978-3-319-71404-2) (2018)
+    - [Applied Spatial Data Analysis with R](https://link.springer.com/book/10.1007/978-1-4614-7618-4) (2013)
+    
++ Other suggestions on the R web site: [www.r-project.org/doc/bib/R-books.html](https://www.r-project.org/doc/bib/R-books.html)
+
+- R packages can change quickly: be careful if older content refers to old versions of packages, or packages that are deprecated.  
+  - Concepts or general methods may still be relevant.
+  
++ Many are available in physical or digital formats (or both)
+
+<!-- 
+![Cover of "A Beginner's Guide to R"](https://media.springernature.com/full/springer-static/cover-hires/book/978-0-387-93837-0?as=webp)
+![Cover of "A Beginner's Guide to R"](https://media.springernature.com/full/springer-static/cover-hires/book/978-3-319-71404-2?as=webp)
+-->
+
+
+## HELP: Web Sites
+
+- R web site: [www.r-project.org](http://www.r-project.org)
+  - especially the "Documentation" section
+  - [e-mail lists](https://www.r-project.org/mail.html)
+- [RStudio Education](https://education.rstudio.com/): [education.rstudio.com](https://education.rstudio.com/)
+- R-bloggers.com [www.r-cookbok.com](http://www.r-cookbok.com)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/r) ([stackoverflow.com](https://stackoverflow.com/questions/tagged/r))
+  - Q&A site: search for your question, or ask your own
+- [Cookbook for R](http://www.cookbook-r.com/) ([www.cookbook-r.com](http://www.cookbook-r.com/))
+
+- Your preferred search engine ...
+
+
+## HELP: Reference cards / cheat sheets
+
+- https://cran.r-project.org/doc/contrib/Short-refcard.pdf 
+- https://cran.r-project.org/doc/contrib/refcard.pdf
+- [RStudio IDE cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf)
+
+- Search the internet for
+  - "R cheat sheet"
+  - "R reference card"
+
+
+## $\R$ Documentation
+
+:::::: {.columns .onlytextwidth align="t"}
+::: {.column width="45%"}
+```{r help, eval=FALSE}
+help.start()
+```
+
+![](images/R-screenshot-help-start)
+
+:::
+::: {.column width="50%"}
+\ctop{}
++ A great place to start
++ HTML documentation with tutorials, concepts, and examples.
++ Browse or search for something specific, or just explore.
+:::
+::::::
+
+
+## $\R$ Documentation: find it
+
+
+
+## $\R$ Documentation: read it
+
+
+## Help: example
+
+- Create an unsorted vector of numbers 
+- Find out how to sort it
+
+```{r help_sort, results='hide'}
+unsorted_vector <- c(1, 6, -2, 9.5, 4)
+help.search("sort")
+```
+
+\pause
+- Now try including a character string in the vector 
+  - Sort again
+
+- Try to sort it in reverse order
 
 # Working with objects
 
