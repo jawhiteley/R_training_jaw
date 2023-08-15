@@ -994,6 +994,7 @@ This is a common source of confusion, but it is a fact of how computers handle f
 :::
 ::: {.column width="48%"}
 \vspace{-\ShadedFrameSep}
+<!-- Simpler example (with longer lines): .3 + .6 == .9 -->
 ```{r comparing_decimals}
 a <- sqrt(2)
 a * a == 2  # should be TRUE
