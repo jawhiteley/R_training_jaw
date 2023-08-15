@@ -1280,6 +1280,13 @@ https://moderndive.netlify.app/1-getting-started.html
   - "R cheat sheet"
   - "R reference card"
 
+::: notes
+Other cheat sheets for Posit (RStudio) packages:
+https://posit.co/resources/cheatsheets/
+Posit Cheat Sheets:
+https://posit.cloud/learn/cheat-sheets
+:::
+
 
 ## $\R$ Documentation
 
