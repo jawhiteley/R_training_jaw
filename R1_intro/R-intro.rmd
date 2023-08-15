@@ -11,11 +11,13 @@ output:
     toc: false
     keep_tex: yes
 fontsize: 11pt
+navigation: vertical # horizontal or vertical or frame
 params:
   is_virtual: TRUE    # is this presentation for a virtual (T) or in-person (F) environment?
 header-includes: |
   \setbeamertemplate{itemize item}[circle]
   \setbeamertemplate{enumerate item}[circle]
+  %\useoutertheme{miniframes}    % for progress bars along the top of each frame
   %\usepackage{layout}    % add `\layout` to the document to show page layout and parameter values
   \usepackage{tikz}
   \usetikzlibrary{arrows.meta,calc,tikzmark,fit, positioning}

@@ -10,7 +10,7 @@
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
-\beamertemplatenavigationsymbolsempty
+\beamertemplatenavigationsymbolsvertical
 % Prevent slide breaks in the middle of a paragraph
 \widowpenalties 1 10000
 \raggedbottom
@@ -145,6 +145,7 @@
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \setbeamertemplate{itemize item}[circle]
 \setbeamertemplate{enumerate item}[circle]
+%\useoutertheme{miniframes}    % for progress bars along the top of each frame
 %\usepackage{layout}    % add `\layout` to the document to show page layout and parameter values
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,calc,tikzmark,fit, positioning}
@@ -2011,7 +2012,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x12a5bfe78>
+<bytecode: 0x117397678>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2319,6 +2320,10 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
     ``R reference card''
   \end{itemize}
 \end{itemize}
+
+\note{Other cheat sheets for Posit (RStudio) packages:
+\url{https://posit.co/resources/cheatsheets/} Posit Cheat Sheets:
+\url{https://posit.cloud/learn/cheat-sheets}}
 \end{frame}
 
 \begin{frame}[fragile]{\(\texttt{R}\) Documentation}
