@@ -2010,11 +2010,45 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x118395078>
+<bytecode: 0x147232c78>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{A complex example}
+\protect\hypertarget{a-complex-example}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Var }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{( ((x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{) }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(x))}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{/}\NormalTok{ (}\FunctionTok{length}\NormalTok{(x) }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{) )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Try breaking this up and run each piece one at a time to see all the
+  steps.
+\end{itemize}
+
+\pause
+
+\begin{itemize}
+\tightlist
+\item
+  The shorter version:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 35
+\end{verbatim}
 \end{frame}
 
 \hypertarget{errors-warnings-and-messages}{%

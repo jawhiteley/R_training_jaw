@@ -1136,6 +1136,18 @@ options(width = .opts.width)
 :::
 ::::::
 
+## A complex example
+
+```{r complex_expr_fun, results='hide'}
+Var <- sum( ((x <- 1:20) - mean(x))^2 / (length(x) -1) )
+```
++ Try breaking this up and run each piece one at a time to see all the steps.
+
+\pause
++ The shorter version:
+```{r complex_simple_fun}
+var(1:20)
+```
 
 
 # Errors, Warnings, and Messages
