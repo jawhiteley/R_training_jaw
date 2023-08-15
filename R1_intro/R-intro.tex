@@ -10,7 +10,7 @@
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
-\beamertemplatenavigationsymbolsvertical
+\beamertemplatenavigationsymbolsempty
 % Prevent slide breaks in the middle of a paragraph
 \widowpenalties 1 10000
 \raggedbottom
@@ -149,6 +149,15 @@
 %\usepackage{layout}    % add `\layout` to the document to show page layout and parameter values
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,calc,tikzmark,fit, positioning}
+% https://tex.stackexchange.com/questions/136143/tikz-animated-figure-in-beamer
+% This won't hide parts of a drawing that have an opacity set in the picture or manually (it overrides the opacity here).
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
 \AtBeginEnvironment{verbatim}{\small}    % reduce font size in R output
 % https://stackoverflow.com/questions/35734525/reduce-space-between-code-chunks-and-code-output-in-rmarkdown-beamer-presentatio
 \makeatletter
@@ -1870,31 +1879,35 @@ Two common solutions:
 \label{fig:function}
 \end{figure}
 
+\pause
 \begin{tikzpicture}[remember picture, overlay,
                     note/.style={font=\Large\itshape},
                     frame1/.style={ultra thick, draw=red, fill=none, fill opacity=0.1, minimum height=2\baselineskip, inner sep=2pt},
                     frame2/.style={ultra thick, draw=blue, fill=lightgray, fill opacity=0.5, minimum height=2\baselineskip, inner sep=1pt},
                     link1/.style={very thick},
                     link2/.style={thick}]
-  \node (frame_fun)    [frame1, fit=(fun)] at ($ (fun) +(-2pt,0.1pt) $) {};
-  \node (frame_popen)  [frame2, fit=(popen)] at ($ (popen) +(1.4pt,-1.25pt) $) {};
-  \node (frame_pclose) [frame2, fit=(pclose)] at ($ (pclose) +(-1.25pt,-1.25pt) $) {};
-  \node (frame_arg1)   [frame1, fit=(arg1)] at ($ (arg1) +(0pt,-1.25pt) $) {};
-  \node (frame_comma)  [frame2, fit=(comma)] at ($ (comma) +(0,2.65pt) $) {};
-  \node (frame_arg2)   [frame1, fit=(arg2)] at ($ (arg2) +(0pt,-1.25pt) $) {};
-  \node (frame_args)   [frame1, fit=(frame_arg1)(frame_comma)(frame_arg2), inner sep=0.8pt] {};
-  \node (note_fun)     [note, anchor=east, align=right, left=2ex of fun.west] {function name};
-  \node (note_parens)  [note, above=2ex of frame_args] {parentheses};
-  \node (note_args)    [note, anchor=west, align=left, below right=-1ex and 3ex of frame_args.south east] {arguments};
-  \node (note_arg1)    [note, anchor=east, align=right, below left=2ex and 3ex of frame_arg1.south] {argument 1};
-  \node (note_arg2)    [note, anchor=west, align=left, below right=2ex and 0pt of frame_arg2.south] {argument 2};
-  \node (note_comma)   [note, below=4ex of frame_comma.south] {comma};
-  \draw [link1] (note_parens.south) -- (frame_popen.north);
-  \draw [link1] (note_parens.south) -- (frame_pclose.north);
-  \draw [ultra thick, draw=red] (note_args.west) -- (frame_args.south east);
-  \draw [link1] (note_arg1.east) -- (frame_arg1.south);
-  \draw [link1] (note_arg2.west) -- (frame_arg2.south);
-  \draw [link1] (note_comma.north) -- (frame_comma.south);
+  \node (note_fun)     [visible on=<2->, note, anchor=east, align=right, left=2ex of fun.west] {function name};
+  \node (frame_fun)    [visible on=<2->, frame1, fit=(fun)] at ($ (fun) +(-2pt,0.1pt) $) {};
+  \pause
+  \node (frame_popen)  [visible on=<3->, frame2, fit=(popen)] at ($ (popen) +(1.4pt,-1.25pt) $) {};
+  \node (frame_pclose) [visible on=<3->, frame2, fit=(pclose)] at ($ (pclose) +(-1.25pt,-1.25pt) $) {};
+  \node (frame_arg1)   [visible on=<5->, frame1, fit=(arg1)] at ($ (arg1) +(0pt,-1.25pt) $) {};
+  \node (frame_arg2)   [visible on=<5->, frame1, fit=(arg2)] at ($ (arg2) +(0pt,-1.25pt) $) {};
+  \node (frame_args)   [visible on=<4->, frame1, fit=(frame_arg1)(frame_arg2), inner sep=0.8pt] {};
+  \node (note_parens)  [visible on=<3->, note, above=2ex of frame_args] {parentheses};
+  \draw [visible on=<3->, link1] (note_parens.south) -- (frame_popen.north);
+  \draw [visible on=<3->, link1] (note_parens.south) -- (frame_pclose.north);
+  \pause
+  \node (note_args)    [visible on=<4->, note, anchor=west, align=left, below right=-1ex and 3ex of frame_args.south east] {arguments};
+  \draw [visible on=<4->, ultra thick, draw=red] (note_args.west) -- (frame_args.south east);
+  \pause
+  \node (frame_comma)  [visible on=<5->, frame2, fit=(comma)] at ($ (comma) +(0,2.65pt) $) {};
+  \node (note_comma)   [visible on=<5->, note, below=4ex of frame_comma.south] {comma};
+  \node (note_arg1)    [visible on=<5->, note, anchor=east, align=right, below left=2ex and 3ex of frame_arg1.south] {argument 1};
+  \node (note_arg2)    [visible on=<5->, note, anchor=west, align=left, below right=2ex and 0pt of frame_arg2.south] {argument 2};
+  \draw [visible on=<5->, link1] (note_arg1.east) -- (frame_arg1.south);
+  \draw [visible on=<5->, link1] (note_arg2.west) -- (frame_arg2.south);
+  \draw [visible on=<5->, link1] (note_comma.north) -- (frame_comma.south);
 \end{tikzpicture}
 \end{frame}
 
@@ -2012,7 +2025,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x117397678>
+<bytecode: 0x111240e78>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
