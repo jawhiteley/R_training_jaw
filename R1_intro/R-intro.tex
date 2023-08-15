@@ -1070,11 +1070,11 @@ objects}{Simple \textbackslash texttt\{R\} objects}}\label{simple-textttr-object
   \node[anchor=south west,inner sep=0, fit={(code_bl)(code_tr)}] (code) {};
   \begin{scope}[shift=(code.south west),x=(code.south east),y=(code.north west)]
     \draw let \p1 = (index.east) in 
-      [arr] (index.east) -- (-0.5cm,\y1) -- (-0.5cm,0.86) -> (-0.01,0.86);
+      [arr] (index.east) -- (-0.5cm,\y1) -- (-0.5cm,0.88) -> (-0.01,0.88);
     \draw let \p1 = (index.east) in 
-      [arr] (index.east) -- (-0.5cm,\y1) -- (-0.5cm,0.35) -> (0.02,0.35);
+      [arr] (index.east) -- (-0.5cm,\y1) -- (-0.5cm,0.37) -> (0.02,0.37);
     \draw let \p1 = (value.west) in 
-      [arr] (value.west) -- (0.25,\y1) -- (0.25,0.86) -> (0.18,0.86);
+      [arr] (value.west) -- (0.25,\y1) -- (0.25,0.87) -> (0.18,0.87);
     \draw let \p1 = (value.west) in 
       [arr] (value.west) -- (0.25,\y1) -- (0.21,0.44);
   \end{scope}
@@ -1180,7 +1180,7 @@ converting from one type to another = \emph{coercion}
   \node[anchor=south west,inner sep=0, fit={(code_bl)(code_tr)}] (code) {};
   \begin{scope}[shift=(code.south west),x=(code.south east),y=(code.north west)]
     \draw let \p1 = (as.north) in 
-      [arr] ($ (as.north) +(1ex,1.5ex) $) -- ($ (\x1,0) +(1ex,0.5ex) $);
+      [arr] ($ (as.north) +(1ex,1.5ex) $) -- ($ (\x1,0) +(1ex,\ShadedFrameSep+0.5ex) $);
   \end{scope}
 \end{tikzpicture}
 \end{frame}
