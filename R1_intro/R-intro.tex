@@ -2011,7 +2011,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x12841da78>
+<bytecode: 0x12a5bfe78>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2452,6 +2452,30 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 
 \begin{frame}{\(\texttt{R}\) Documentation: read it}
 \protect\hypertarget{textttr-documentation-read-it}{}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\raggedleft
+\begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=white, fill opacity=0.5, text opacity=1},
+                    note/.style={darkred, font=\large\itshape},
+                    arr/.style={ultra thick, darkred, -{Latex}[round]}]
+  \node[draw,anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq1.png}};
+  \begin{scope}[x={(image.south east)},y={(image.north west)}]
+    \node[note, align=right, anchor=north east] at (0,1) {function name\\ (or topic)};
+  \end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{\(\texttt{R}\) Documentation: read it (end)}
+\protect\hypertarget{textttr-documentation-read-it-end}{}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\raggedleft
+\begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=white, fill opacity=0.5, text opacity=1},
+                    note/.style={darkred, font=\large\itshape},
+                    arr/.style={ultra thick, darkred, -{Latex}[round]}]
+  \node[draw,anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq2.png}};
+  \begin{scope}[x={(image.south east)},y={(image.north west)}]
+    \node[note, align=right, anchor=north east] at (0,1) {Details};
+  \end{scope}
+\end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]{Help: example}
