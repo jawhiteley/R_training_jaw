@@ -2011,7 +2011,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x105c7dc78>
+<bytecode: 0x12841da78>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2345,13 +2345,109 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
   HTML documentation with tutorials, concepts, and examples.
 \item
   Browse or search for something specific, or just explore.
+\item
+  Click on ``packages'' to see a list of installed packages,
+
+  \begin{itemize}
+  \tightlist
+  \item
+    documentation about each package (e.g., ``vignettes''),
+  \item
+    functions included in a package
+  \end{itemize}
 \end{itemize}
 \end{column}
 \end{columns}
 \end{frame}
 
-\begin{frame}{\(\texttt{R}\) Documentation: find it}
+\begin{frame}[fragile]{\(\texttt{R}\) Documentation: find it}
 \protect\hypertarget{textttr-documentation-find-it}{}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.3766}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.6234}}@{}}
+\toprule\noalign{}
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\vspace{-\ShadedFrameSep}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?help}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\tightlist
+\item
+  Documentation about documentation, and how to search it
+\end{itemize}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\vspace{-\ShadedFrameSep}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?c}
+\FunctionTok{help.search}\NormalTok{(}\StringTok{"c"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\tightlist
+\item
+  read about the often-used `combine' \emph{function}
+\end{itemize}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\vspace{-\ShadedFrameSep}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?seq}
+\end{Highlighting}
+\end{Shaded}
+
+\tikzmarknode[inner
+ sep=0pt]{bl}{}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\hfill\tikzmarknode[inner sep=0pt]{tr}{}
+\vspace{-\parsep}
+
+\begin{itemize}
+\tightlist
+\item
+  read about a function for making a \emph{sequence}
+\end{itemize}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\vspace{-\ShadedFrameSep}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?help.search}
+\FunctionTok{help.search}\NormalTok{(}\StringTok{"t{-}test"}\NormalTok{)}
+\NormalTok{??}\StringTok{\textquotesingle{}t{-}test\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\tightlist
+\item
+  use
+  \VERB|\FunctionTok{help.search}\NormalTok{(}\StringTok{""}\NormalTok{)}|
+  or \VERB|\NormalTok{??}|\\
+  to search for a term when you don't know the name of the function,\\
+  but you know what you want to do.
+\end{itemize}\strut
+\end{minipage} \\
+\bottomrule\noalign{}
+\end{longtable}
+
+\pause
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[rounded corners, ultra thick, draw=red, fill=none, fill opacity = 0.2] 
+      ($ (pic cs:bl) +(-.5ex,0pt) $) rectangle ($ (pic cs:tr) +(0pt,1ex) $);
+\end{tikzpicture}
 \end{frame}
 
 \begin{frame}{\(\texttt{R}\) Documentation: read it}

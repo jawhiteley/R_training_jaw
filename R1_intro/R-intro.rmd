@@ -1297,12 +1297,47 @@ help.start()
 + A great place to start
 + HTML documentation with tutorials, concepts, and examples.
 + Browse or search for something specific, or just explore.
++ Click on “packages” to see a list of installed packages,
+  - documentation about each package (e.g., "vignettes"),
+  - functions included in a package
 :::
 ::::::
 
 
 ## $\R$ Documentation: find it
 
++----------------------------+-----------------------------------------------+
+| \chup{}                    |                                               |
+| ``` r                      |                                               |
+| ?help                      | - Documentation about documentation,          |
+| ```                        |   and how to search it                        |
++----------------------------+-----------------------------------------------+
+| \chup{}                    |                                               |
+| ``` r                      |                                               |
+| ?c                         | - read about the often-used                   |
+| help.search("c")           |   'combine' *function*                        |
+| ```                        |                                               |
++----------------------------+-----------------------------------------------+
+| \chup{}                    | \hfill\tikzmarknode[inner sep=0pt]{tr}{}      |
+| ``` r                      | \vspace{-\parsep}                             |
+| ?seq                       | - read about a function                       |
+| ```                        |   for making a *sequence*                     |
+| \tikzmarknode[inner        |                                               | 
+|  sep=0pt]{bl}{}            |                                               |
++----------------------------+-----------------------------------------------+
+| \chup{}                    |                                               |
+| ``` r                      |                                               |
+| ?help.search               | - use `help.search("")`{.r} or `??`{.r} \     |
+| help.search("t-test")      |   to search for a term when you don't know    |
+| ??'t-test'                 |   the name of the function, \                 |
+| ```                        |   but you know what you want to do.           |
++----------------------------+-----------------------------------------------+
+
+\pause
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[rounded corners, ultra thick, draw=red, fill=none, fill opacity = 0.2] 
+      ($ (pic cs:bl) +(-.5ex,0pt) $) rectangle ($ (pic cs:tr) +(0pt,1ex) $);
+\end{tikzpicture}
 
 
 ## $\R$ Documentation: read it
