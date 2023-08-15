@@ -73,7 +73,7 @@ options(width = 60)  # to fit output on slides: either smaller font or shorter w
 `\partopsep`: $\the\partopsep$  \hfill
 `\OuterFrameSep`: $\the\OuterFrameSep$  
 
-:::::: {.columns}
+:::::: {.columns align="c"}
 ::: {.column width="50%"}
 
 `\baselineskip`: $\the\baselineskip$  
@@ -987,7 +987,7 @@ As a result, 'floating point' values may not be _reliably equal_.
 <!-- this footnote really belongs with the solutions, below, but putting it there would put it at the bottom of the _column_, and I want it at the bottom of the *page* -->
 ^[See Stackoverflow: "[Why are these numbers not equal?](https://stackoverflow.com/questions/9508518/why-are-these-numbers-not-equal)" for other solutions]
 
-:::::: {.columns .onlytextwidth}
+:::::: {.columns .onlytextwidth align=top}
 ::: {.column width="45%"}
 \ctop{}
 This is a common source of confusion, but it is a fact of how computers handle floating point arithmetic, and not specific to $\R$.
@@ -1217,7 +1217,24 @@ https://moderndive.netlify.app/1-getting-started.html
 
 # Help & documentation
 
+## HELP
+
++ R *documentation* (help files) 
+
++ Books
+
++ Web sites
+
++ Cheat sheets / Reference cards 
+
++ Each Other
+
+
+# Working with objects
+
+
 # Installing packages
+
 
 # Saving code (files)
 
@@ -1227,12 +1244,12 @@ https://moderndive.netlify.app/1-getting-started.html
   + calling functions (syntax)
   + the `c()` function for making vectors
 + Help
-+ Flow-control?
-  + if
-  + loops
 + Installing packages
 + Script files
   + Rmarkdown & R notebooks
++ Flow-control?
+  + if
+  + loops
 -->
 
 
