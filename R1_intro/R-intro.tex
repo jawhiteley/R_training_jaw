@@ -2027,7 +2027,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x127bd0278>
+<bytecode: 0x12910e278>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2477,10 +2477,10 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \protect\hypertarget{textttr-documentation-read-it}{}
 
 \raggedleft
-\begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=white, fill opacity=0.5, text opacity=1},
+\begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=none, fill opacity=0.5, text opacity=1},
                     lab/.style={darkred, font=\large\itshape},
-                    note/.style={font=\tiny, rounded corners, gray, fill=lightgray, fill opacity=.2, text opacity=1, inner sep=4pt},
-                    arr/.style={thick, darkred, -{Latex}[round]}]
+                    note/.style={font=\scriptsize, align=none, rounded corners, gray, fill=lightgray, fill opacity=.2, text opacity=1, inner sep=1ex},
+                    arr/.style={draw=darkred, thick, -{Latex}[round]}]
   \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq1.png}};
 % \textheight is larger than what actually fits in the frame body, even with the footer removed by the [plain] frame option. :(
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
@@ -2496,12 +2496,24 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
       {arguments};
       \draw [arr] (args.east) -> (.05,.67);
       \draw [arr] (args.east) -> (.01,.53);
-    \node (args_default) [note, align=left, anchor=165, text width=2.5cm] at (0.58,0.74) 
+    \node (args_def_note) [note, anchor=150, text width=3cm] at (0.58,0.74) 
       {arguments followed by '\texttt{\OtherTok{=}}' have a \textit{default value}: if you don't include these in your function call, they are automatically assigned the default value shown here, after the '\texttt{\OtherTok{=}}'.};
-      \draw let \p1 = (args_default.165) in [arr] (args_default.165) -- (.25,\y1) -> (.25,.695);
-    % Add labels for default values?
-    \node (details) [lab, align=right, anchor=east, text width=4cm] at (0,0.05) 
-      {Details on how the function works};
+      \draw let \p1 = (args_def_note.146) in 
+        [arr] (\x1,\y1) -- (.25,\y1) -> (.25,.695);
+      % Add labels for default values?  
+  \begin{scope}[transparency group, opacity=0.5]
+    \node (args_default) [lab, align=center, anchor=60] 
+      at ($ (.261,.683) +(.24,-.08) $) {default\\ values};
+      % Not 100% confident in this path specification, but looks ok
+      \draw[-] [arr, tips=false, rounded corners] (.261,.683) to[out=-90,in=0] ++(0ex,-.5ex) -- ++(.275,0) to[out=180,in=-90] ++(0ex,.5ex);
+      \draw[-] let \p1 = (args_default.60) in 
+        [arr, tips=false] ($ (\x1,.683) +(0,-.5ex) $) -- (\x1,\y1);
+      \draw let \p1 = (args_default.60) in [arr, {Tee Barb[inset=0pt, width=1ex]}-] 
+        (.123,.683) -- ++(0,-.04) -- ($ (\x1,.683) +(0,-.04) $);
+      \draw [arr, {Tee Barb[inset=0pt, width=1ex]}-] (.196,.683) -- ++(0,-.04);
+  \end{scope}
+    \node (details) [lab, align=right, anchor=south east, text width=3cm] at (0,0) 
+      {details on how the function works};
   \end{scope}
 \end{tikzpicture}
 \end{frame}
@@ -2512,14 +2524,25 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \protect\hypertarget{textttr-documentation-read-it-end}{}
 
 \raggedleft
-\begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=white, fill opacity=0.5, text opacity=1},
+\begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=none, fill opacity=0.5, text opacity=1},
                     lab/.style={darkred, font=\large\itshape},
-                    note/.style={font=\tiny, rounded corners, gray, fill=lightgray, fill opacity=.2, text opacity=1, inner sep=4pt},
+                    note/.style={font=\scriptsize, align=none, rounded corners, gray, fill=lightgray, fill opacity=.2, text opacity=1, inner sep=1ex},
                     arr/.style={thick, darkred, -{Latex}[round]}]
   \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq2.png}};
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
-    \node[lab, align=right, anchor=north east] at (0,0.9) 
-      {Details};
+    \node (details) [lab, align=right, anchor=north east] at (0,0.9) 
+      {details};
+    \node (value) [lab, align=right, anchor=east] at (0,0.61) 
+      {\textbf{value} returned};
+    \node (references) [lab, align=right, anchor=north east, text width=3cm] at (0,0.49) 
+      {\setlength{\baselineskip}{1ex}\small publications that describe the function or algorithm\\ (theory \& concepts)\par};
+    \node (examples_note) [note, align=right, anchor=north east, text width=3cm] at (0,0.27) 
+      {Copy \& paste \textbf{Examples} into the console to try them out. Try changing the example code to do what you want.};
+      \draw [box] (0.01,0.025) rectangle (.99,.28);
+    \node (examples_note2) [note, anchor=north east, text width=3.8cm] at (.98,.27) 
+      {You can also click the "Run examples" link or use `\texttt{\FunctionTok{example}\NormalTok{(seq)}}' in the console to run all the example code in this section.};
+      \draw let \p1 = (examples_note2.north west) in 
+        [arr, draw=lightgray, transparency group, opacity=.5] (\x1,.222) -> (.15,.222);
   \end{scope}
 \end{tikzpicture}
 \end{frame}
