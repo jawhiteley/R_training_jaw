@@ -1372,12 +1372,16 @@ help.start()
 \raggedleft
 \begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=white, fill opacity=0.5, text opacity=1},
                     note/.style={darkred, font=\large\itshape},
-                    arr/.style={ultra thick, darkred, -{Latex}[round]}]
+                    arr/.style={thick, darkred, -{Latex}[round]}]
   \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq1.png}};
 % \textheight is larger than what actually fits in the frame body, even with the footer removed by the [plain] frame option. :(
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
-    \node[note, align=right, anchor=north east] at (-0.01,1) 
+    \node (fun_name) [note, align=right, anchor=north east] at (-0.05,1) 
       {function name\\ (or topic)};
+      \draw [arr] (fun_name) -> (.01, .975);
+    \node (pkg_name) [note, align=left, anchor=north west] at (0.17,1) 
+      {package};
+      \draw [arr] (pkg_name) -> (.12, .975);
   \end{scope}
 \end{tikzpicture}
 ```
@@ -1522,20 +1526,11 @@ and reduce the amount of custom LaTeX?
 + https://tug.org/tug2020/preprints/MacFarlane-Keynote-slides.pdf
 + https://stackoverflow.com/questions/23825317/how-to-convert-markdown-css-pdf
 
-## Overlay graphics using Tikz:
-https://tex.stackexchange.com/questions/209052/how-to-get-tikzmark-to-work
-https://texdoc.org/serve/tikzmark/0
-https://tikz.dev/tikz-arrows
-https://www.overleaf.com/latex/templates/beamer-arrows/wmqkckggvjsd
-https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specified-position-in-a-frame-and-write-some-notes-on
-https://tex.stackexchange.com/questions/347492/how-can-i-draw-arrows-from-items-to-a-picture-in-beamer
-https://tex.stackexchange.com/questions/9559/drawing-on-an-image-wit%E2%80%8C%E2%80%8Bh-tikz/
-https://tex.stackexchange.com/questions/448838/tikz-node-text-formatting-problems
-https://tex.stackexchange.com/questions/590889/crop-pdf-graphics
-https://stackoverflow.com/questions/48203496/how-to-trim-a-picture-with-rmarkdown-html
-https://tex.stackexchange.com/questions/223650/tikz-node-position-in-draw-environment
 
-## Customizing R code chunks and output
+## RMarkdown & pandoc formatting tricks & solutions
+https://www.garrickadenbuie.com/blog/add-a-generated-table-of-contents-anywhere-in-rmarkdown/
+
+### Customizing R code chunks and output
 https://yihui.org/knitr/options/
 https://texdoc.org/serve/fancyvrb/0
 https://tex.stackexchange.com/questions/669717/how-do-i-change-the-default-font-size-of-verbatim-at-document-level
@@ -1548,10 +1543,24 @@ https://tex.stackexchange.com/questions/184019/how-to-suppress-extra-vertical-sp
 https://tex.stackexchange.com/questions/370334/use-color-in-verbatim-environment
 https://tex.stackexchange.com/questions/47050/how-does-changing-colour-affect-spacing
 
-## Other formatting tricks & solutions
+## Beamer formatting & customization
 https://tex.stackexchange.com/questions/11622/add-space-between-paragraphs-in-beamer
-https://www.garrickadenbuie.com/blog/add-a-generated-table-of-contents-anywhere-in-rmarkdown/
 https://tex.stackexchange.com/questions/278429/is-there-a-simple-command-for-the-available-height-in-a-beamer-slide
 https://tex.stackexchange.com/questions/44218/set-image-to-full-all-available-space-in-beamer-without-overlapping-other-eleme/44298#44298
+
+## Overlay graphics using Tikz:
+https://tex.stackexchange.com/questions/209052/how-to-get-tikzmark-to-work
+https://texdoc.org/serve/tikzmark/0
+https://tikz.dev/tikz-arrows
+https://www.overleaf.com/latex/templates/beamer-arrows/wmqkckggvjsd
+https://tex.stackexchange.com/questions/199218/how-to-draw-an-arrow-to-a-specified-position-in-a-frame-and-write-some-notes-on
+https://tex.stackexchange.com/questions/347492/how-can-i-draw-arrows-from-items-to-a-picture-in-beamer
+https://tex.stackexchange.com/questions/9559/drawing-on-an-image-wit%E2%80%8C%E2%80%8Bh-tikz/
+https://tex.stackexchange.com/questions/448838/tikz-node-text-formatting-problems
+https://tex.stackexchange.com/questions/590889/crop-pdf-graphics
+https://stackoverflow.com/questions/48203496/how-to-trim-a-picture-with-rmarkdown-html
+https://tex.stackexchange.com/questions/223650/tikz-node-position-in-draw-environment
+https://tex.stackexchange.com/questions/45420/overlay-an-entire-slide-with-a-semitransparent-rectangle-in-beamer
+
 ```
 

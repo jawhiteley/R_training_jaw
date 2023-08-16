@@ -2027,7 +2027,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x126ed6278>
+<bytecode: 0x116b00878>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2479,12 +2479,16 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \raggedleft
 \begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=white, fill opacity=0.5, text opacity=1},
                     note/.style={darkred, font=\large\itshape},
-                    arr/.style={ultra thick, darkred, -{Latex}[round]}]
+                    arr/.style={thick, darkred, -{Latex}[round]}]
   \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq1.png}};
 % \textheight is larger than what actually fits in the frame body, even with the footer removed by the [plain] frame option. :(
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
-    \node[note, align=right, anchor=north east] at (-0.01,1) 
+    \node (fun_name) [note, align=right, anchor=north east] at (-0.05,1) 
       {function name\\ (or topic)};
+      \draw [arr] (fun_name) -> (.01, .975);
+    \node (pkg_name) [note, align=left, anchor=north west] at (0.17,1) 
+      {package};
+      \draw [arr] (pkg_name) -> (.12, .975);
   \end{scope}
 \end{tikzpicture}
 \end{frame}
