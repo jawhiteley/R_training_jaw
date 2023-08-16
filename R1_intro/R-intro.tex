@@ -2027,7 +2027,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x116b00878>
+<bytecode: 0x127bd0278>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2478,17 +2478,30 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 
 \raggedleft
 \begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=white, fill opacity=0.5, text opacity=1},
-                    note/.style={darkred, font=\large\itshape},
+                    lab/.style={darkred, font=\large\itshape},
+                    note/.style={font=\tiny, rounded corners, gray, fill=lightgray, fill opacity=.2, text opacity=1, inner sep=4pt},
                     arr/.style={thick, darkred, -{Latex}[round]}]
   \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq1.png}};
 % \textheight is larger than what actually fits in the frame body, even with the footer removed by the [plain] frame option. :(
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
-    \node (fun_name) [note, align=right, anchor=north east] at (-0.05,1) 
+    \node (fun_name) [lab, align=right, anchor=north east] at (-0.05,1) 
       {function name\\ (or topic)};
       \draw [arr] (fun_name) -> (.01, .975);
-    \node (pkg_name) [note, align=left, anchor=north west] at (0.17,1) 
+    \node (pkg_name) [lab, align=left, anchor=north west] at (0.17,1) 
       {package};
       \draw [arr] (pkg_name) -> (.12, .975);
+    \node (title) [lab, align=left, anchor=west] at (0.61,0.94) 
+      {title};
+    \node (args) [lab, align=right, anchor=east] at (-0.05,0.6) 
+      {arguments};
+      \draw [arr] (args.east) -> (.05,.67);
+      \draw [arr] (args.east) -> (.01,.53);
+    \node (args_default) [note, align=left, anchor=165, text width=2.5cm] at (0.58,0.74) 
+      {arguments followed by '\texttt{\OtherTok{=}}' have a \textit{default value}: if you don't include these in your function call, they are automatically assigned the default value shown here, after the '\texttt{\OtherTok{=}}'.};
+      \draw let \p1 = (args_default.165) in [arr] (args_default.165) -- (.25,\y1) -> (.25,.695);
+    % Add labels for default values?
+    \node (details) [lab, align=right, anchor=east, text width=4cm] at (0,0.05) 
+      {Details on how the function works};
   \end{scope}
 \end{tikzpicture}
 \end{frame}
@@ -2500,11 +2513,12 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 
 \raggedleft
 \begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=white, fill opacity=0.5, text opacity=1},
-                    note/.style={darkred, font=\large\itshape},
-                    arr/.style={ultra thick, darkred, -{Latex}[round]}]
+                    lab/.style={darkred, font=\large\itshape},
+                    note/.style={font=\tiny, rounded corners, gray, fill=lightgray, fill opacity=.2, text opacity=1, inner sep=4pt},
+                    arr/.style={thick, darkred, -{Latex}[round]}]
   \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq2.png}};
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
-    \node[note, align=right, anchor=north east] at (0,1) 
+    \node[lab, align=right, anchor=north east] at (0,0.9) 
       {Details};
   \end{scope}
 \end{tikzpicture}
