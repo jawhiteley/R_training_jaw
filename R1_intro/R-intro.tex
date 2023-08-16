@@ -185,6 +185,7 @@
 \fi
 \newcommand{\ctop}{\vspace{\ShadedFrameSep}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seemed like a good approximation, depending on other parametes; '\topsep+\parskip+\partopsep' seemed logical, but might be too much, maybe because it loses the rubber values)
 \newcommand{\chup}{\vspace{-\ShadedFrameSep}}  % move code chunk up, to gobble whitespace above?
+\definecolor{darkred}{rgb}{0.6,0,0}
 \newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
 \newcommand{\highlight}[1]{\StringTok{#1}}
@@ -206,7 +207,7 @@
 
 \title{A Gentle Introduction to R}
 \author{Jonathan Whiteley}
-\date{2023-08-15}
+\date{2023-08-16}
 
 \begin{document}
 \frame{\titlepage}
@@ -679,7 +680,7 @@ The \emph{console} is a window or pane where you will find:
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{The
+\begin{frame}[fragile,squeeze]{The
 \(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
 command-line}
 \protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-command-line}{}
@@ -724,7 +725,7 @@ command-line}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{The
+\begin{frame}[fragile,squeeze]{The
 \(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
 command-line (continued)}
 \protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-command-line-continued}{}
@@ -887,8 +888,8 @@ is a show-off}
 if you are comfortable reading\\
 \hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}documentation
 for a programming language.\\
-\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}More
-on this later.
+\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\emph{More
+on this later.}
 \end{minipage} \\
 \bottomrule\noalign{}
 \end{longtable}
@@ -1751,7 +1752,8 @@ to'' \\
 \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Comparing decimals (`floating point' arithmetic)}
+\begin{frame}[fragile,squeeze]{Comparing decimals (`floating point'
+arithmetic)}
 \protect\hypertarget{comparing-decimals-floating-point-arithmetic}{}
 Computers can't represent \emph{all} values accurately, and there is
 often some rounding that occurs (even at 50+ decimal places).\\
@@ -2025,7 +2027,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x111240e78>
+<bytecode: 0x126ed6278>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2468,30 +2470,38 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{\(\texttt{R}\) Documentation: read it}
+\begin{frame}[shrink]{}
+\protect\hypertarget{section-1}{}
+% The frame option 'plain' could also be used to hide the header and footer (if any)
+% Manually insert the internal target, since I've removed the frame title
 \protect\hypertarget{textttr-documentation-read-it}{}
-\definecolor{darkred}{rgb}{0.8,0,0}
+
 \raggedleft
 \begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=white, fill opacity=0.5, text opacity=1},
                     note/.style={darkred, font=\large\itshape},
                     arr/.style={ultra thick, darkred, -{Latex}[round]}]
-  \node[draw,anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq1.png}};
+  \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq1.png}};
+% \textheight is larger than what actually fits in the frame body, even with the footer removed by the [plain] frame option. :(
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
-    \node[note, align=right, anchor=north east] at (0,1) {function name\\ (or topic)};
+    \node[note, align=right, anchor=north east] at (-0.01,1) 
+      {function name\\ (or topic)};
   \end{scope}
 \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{\(\texttt{R}\) Documentation: read it (end)}
+\begin{frame}[shrink]{}
+\protect\hypertarget{section-2}{}
+% Manually insert the internal target, since I've removed the frame title
 \protect\hypertarget{textttr-documentation-read-it-end}{}
-\definecolor{darkred}{rgb}{0.8,0,0}
+
 \raggedleft
 \begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=white, fill opacity=0.5, text opacity=1},
                     note/.style={darkred, font=\large\itshape},
                     arr/.style={ultra thick, darkred, -{Latex}[round]}]
-  \node[draw,anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq2.png}};
+  \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq2.png}};
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
-    \node[note, align=right, anchor=north east] at (0,1) {Details};
+    \node[note, align=right, anchor=north east] at (0,1) 
+      {Details};
   \end{scope}
 \end{tikzpicture}
 \end{frame}

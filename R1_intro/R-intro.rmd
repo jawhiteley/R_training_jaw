@@ -57,6 +57,7 @@ header-includes: |
   \fi
   \newcommand{\ctop}{\vspace{\ShadedFrameSep}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seemed like a good approximation, depending on other parametes; '\topsep+\parskip+\partopsep' seemed logical, but might be too much, maybe because it loses the rubber values)
   \newcommand{\chup}{\vspace{-\ShadedFrameSep}}  % move code chunk up, to gobble whitespace above?
+  \definecolor{darkred}{rgb}{0.6,0,0}
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
   \newcommand{\R}{\texttt{R}}
   \newcommand{\highlight}[1]{\StringTok{#1}}
@@ -391,7 +392,7 @@ The *console* is a window or pane where you will find:
 - `Messages`, \WarningTok{Warnings}, and \ErrorTok{Errors} 
 
 
-## The $\Rlogo$ command-line
+## The $\Rlogo$ command-line {.squeeze}
 
 - The command *prompt* normally looks like this^[\fade{the colour of the prompt varies depending on the interface}]:
 
@@ -412,7 +413,7 @@ The *console* is a window or pane where you will find:
   - Wait for a new empty prompt to appear before entering the next command.
 
 
-## The $\Rlogo$ command-line (continued)
+## The $\Rlogo$ command-line (continued) {.squeeze}
 
 - If the prompt looks like this:  
 
@@ -495,7 +496,7 @@ Read the opening message carefully.
 | help.start()       | | **&larr;** A great place to start,                     |
 | ```                | |     especially if you are comfortable reading          |
 |                    | |     documentation for a programming language.          |
-|                    | |     More on this later.                                |
+|                    | |     _More on this later._                              |
 |                    |                                                          |
 +--------------------+----------------------------------------------------------+
 
@@ -991,7 +992,7 @@ Comparison of 2 values results in
 ::::::
 
 
-## Comparing decimals ('floating point' arithmetic)
+## Comparing decimals ('floating point' arithmetic) {.squeeze}
 
 Computers can't represent _all_ values accurately, and there is often some rounding that occurs (even at 50+ decimal places).  
 As a result, 'floating point' values may not be _reliably equal_.
@@ -1361,34 +1362,41 @@ help.start()
       ($ (pic cs:bl) +(-.5ex,0pt) $) rectangle ($ (pic cs:tr) +(0pt,1ex) $);
 \end{tikzpicture}
 
-
-## $\R$ Documentation: read it
+## <!-- $\R$ Documentation: read it --> {.shrink}
 
 ```{=latex}
-\definecolor{darkred}{rgb}{0.8,0,0}
+% The frame option 'plain' could also be used to hide the header and footer (if any)
+% Manually insert the internal target, since I've removed the frame title
+\protect\hypertarget{textttr-documentation-read-it}{}
+
 \raggedleft
 \begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=white, fill opacity=0.5, text opacity=1},
                     note/.style={darkred, font=\large\itshape},
                     arr/.style={ultra thick, darkred, -{Latex}[round]}]
-  \node[draw,anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq1.png}};
+  \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq1.png}};
+% \textheight is larger than what actually fits in the frame body, even with the footer removed by the [plain] frame option. :(
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
-    \node[note, align=right, anchor=north east] at (0,1) {function name\\ (or topic)};
+    \node[note, align=right, anchor=north east] at (-0.01,1) 
+      {function name\\ (or topic)};
   \end{scope}
 \end{tikzpicture}
 ```
 
 
-## $\R$ Documentation: read it (end)
+## <!-- $\R$ Documentation: read it (end) -->  {.shrink}
 
 ```{=latex}
-\definecolor{darkred}{rgb}{0.8,0,0}
+% Manually insert the internal target, since I've removed the frame title
+\protect\hypertarget{textttr-documentation-read-it-end}{}
+
 \raggedleft
 \begin{tikzpicture}[box/.style={ultra thick, rounded corners, draw=darkred, fill=white, fill opacity=0.5, text opacity=1},
                     note/.style={darkred, font=\large\itshape},
                     arr/.style={ultra thick, darkred, -{Latex}[round]}]
-  \node[draw,anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq2.png}};
+  \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=\textheight]{images/R-help-seq2.png}};
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
-    \node[note, align=right, anchor=north east] at (0,1) {Details};
+    \node[note, align=right, anchor=north east] at (0,1) 
+      {Details};
   \end{scope}
 \end{tikzpicture}
 ```
@@ -1543,5 +1551,7 @@ https://tex.stackexchange.com/questions/47050/how-does-changing-colour-affect-sp
 ## Other formatting tricks & solutions
 https://tex.stackexchange.com/questions/11622/add-space-between-paragraphs-in-beamer
 https://www.garrickadenbuie.com/blog/add-a-generated-table-of-contents-anywhere-in-rmarkdown/
+https://tex.stackexchange.com/questions/278429/is-there-a-simple-command-for-the-available-height-in-a-beamer-slide
+https://tex.stackexchange.com/questions/44218/set-image-to-full-all-available-space-in-beamer-without-overlapping-other-eleme/44298#44298
 ```
 
