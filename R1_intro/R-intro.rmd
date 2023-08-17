@@ -23,6 +23,7 @@ header-includes: |
   \usetikzlibrary{arrows.meta,calc,tikzmark,fit, positioning}
   % https://tex.stackexchange.com/questions/136143/tikz-animated-figure-in-beamer
   % This won't hide parts of a drawing that have an opacity set in the picture or manually (it overrides the opacity here).
+  % see also the `overlay-beamer-styles` tikz library: https://tex.stackexchange.com/questions/639922/using-tikz-with-pause-command-in-rmarkdown-or-quarto-presentation
   \tikzset{
     invisible/.style={opacity=0},
     visible on/.style={alt={#1{}{invisible}}},
@@ -1479,6 +1480,7 @@ help.search("sort")
 + Installing packages
 + Script files
   + Rmarkdown & R notebooks
+  + Code style guide?
 + Flow-control?
   + if
   + loops
@@ -1582,6 +1584,11 @@ https://tex.stackexchange.com/questions/687779/control-vertical-space-after-verb
 https://tex.stackexchange.com/questions/184019/how-to-suppress-extra-vertical-space-before-after-fancy-verbatim-environments/534447
 https://tex.stackexchange.com/questions/370334/use-color-in-verbatim-environment
 https://tex.stackexchange.com/questions/47050/how-does-changing-colour-affect-spacing
+
+### Tikz graphics within RMarkdown or Quarto (knitr engines)
+https://community.rstudio.com/t/tikz-in-r-markdown-with-html-output/54260
+https://gist.github.com/andrewheiss/4ece621813a27dfdcaef7f1c2d773237
+https://stackoverflow.com/questions/71760913/using-tikz-in-quarto-presentation
 
 ## Beamer formatting & customization
 https://tex.stackexchange.com/questions/11622/add-space-between-paragraphs-in-beamer
