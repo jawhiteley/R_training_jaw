@@ -1575,6 +1575,7 @@ https://www.garrickadenbuie.com/blog/add-a-generated-table-of-contents-anywhere-
 ### Customizing R code chunks and output
 https://yihui.org/knitr/options/
 https://texdoc.org/serve/fancyvrb/0
+https://ctan.math.illinois.edu/macros/latex/contrib/framed/framed.pdf
 https://tex.stackexchange.com/questions/669717/how-do-i-change-the-default-font-size-of-verbatim-at-document-level
 https://tex.stackexchange.com/questions/161678/decreasing-font-size-in-verbatim
 https://groups.google.com/g/comp.text.tex/c/YlKONnmYOV8
@@ -1585,12 +1586,9 @@ https://tex.stackexchange.com/questions/184019/how-to-suppress-extra-vertical-sp
 https://tex.stackexchange.com/questions/370334/use-color-in-verbatim-environment
 https://tex.stackexchange.com/questions/47050/how-does-changing-colour-affect-spacing
 
-### Tikz graphics within RMarkdown or Quarto (knitr engines)
-https://community.rstudio.com/t/tikz-in-r-markdown-with-html-output/54260
-https://gist.github.com/andrewheiss/4ece621813a27dfdcaef7f1c2d773237
-https://stackoverflow.com/questions/71760913/using-tikz-in-quarto-presentation
-
 ## Beamer formatting & customization
+https://tug.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf
+https://ctan.mirror.globo.tech/info/texbytopic/TeXbyTopic.pdf
 https://tex.stackexchange.com/questions/11622/add-space-between-paragraphs-in-beamer
 https://tex.stackexchange.com/questions/278429/is-there-a-simple-command-for-the-available-height-in-a-beamer-slide
 https://tex.stackexchange.com/questions/44218/set-image-to-full-all-available-space-in-beamer-without-overlapping-other-eleme/44298#44298
@@ -1609,5 +1607,9 @@ https://stackoverflow.com/questions/48203496/how-to-trim-a-picture-with-rmarkdow
 https://tex.stackexchange.com/questions/223650/tikz-node-position-in-draw-environment
 https://tex.stackexchange.com/questions/45420/overlay-an-entire-slide-with-a-semitransparent-rectangle-in-beamer
 
+### Tikz graphics within RMarkdown or Quarto (knitr engines)
+https://community.rstudio.com/t/tikz-in-r-markdown-with-html-output/54260
+https://gist.github.com/andrewheiss/4ece621813a27dfdcaef7f1c2d773237
+https://stackoverflow.com/questions/71760913/using-tikz-in-quarto-presentation
 ```
 
