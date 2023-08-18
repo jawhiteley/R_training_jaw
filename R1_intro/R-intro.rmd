@@ -1571,6 +1571,9 @@ and reduce the amount of custom LaTeX?
 
 ## RMarkdown & pandoc formatting tricks & solutions
 https://www.garrickadenbuie.com/blog/add-a-generated-table-of-contents-anywhere-in-rmarkdown/
+https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html
+https://bookdown.org/yihui/rmarkdown-cookbook/lua-filters.html
+https://cran.r-project.org/web/packages/rmarkdown/vignettes/lua-filters.html
 
 ### Customizing R code chunks and output
 https://yihui.org/knitr/options/
