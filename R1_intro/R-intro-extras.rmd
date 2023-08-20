@@ -305,16 +305,16 @@ print(`(my) [strange] {variable} 'name' "!@#$"`)
 
   - But the _syntax_ is different from the usual math operators
 
-- Using a regular multiplication symbol (`*`) results in *element*-wise multiplication
+- Using a regular multiplication symbol (`*`{.r}) results in *element*-wise multiplication
 
   - each _element_ (item) in matrix1 is multiplied by the corresponding _element_ in matrix2, etc.
 
-```{r results='hide'}
+```{r}
 c(1, 2, 3) * c(3, 2, 1)
 ```
 - _Matrix multiplication_ is specified by this operator: `%*%`{.r}
 
-```{r results='hide'}
+```{r}
 c(1, 2, 3) %*% c(3, 2, 1)
 ```
 
