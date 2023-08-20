@@ -4,6 +4,7 @@ author: "Jonathan Whiteley"
 date: "`r Sys.Date()`"
 output: 
   beamer_presentation: 
+    latex_engine: xelatex # ensures certain characters (like '^') are rendered correctly
     theme: Boadilla
     colortheme: default
     highlight: my_tango.theme

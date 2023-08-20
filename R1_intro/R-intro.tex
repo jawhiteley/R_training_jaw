@@ -151,6 +151,7 @@
 \usetikzlibrary{arrows.meta,calc,tikzmark,fit, positioning}
 % https://tex.stackexchange.com/questions/136143/tikz-animated-figure-in-beamer
 % This won't hide parts of a drawing that have an opacity set in the picture or manually (it overrides the opacity here).
+% see also the `overlay-beamer-styles` tikz library: https://tex.stackexchange.com/questions/639922/using-tikz-with-pause-command-in-rmarkdown-or-quarto-presentation
 \tikzset{
   invisible/.style={opacity=0},
   visible on/.style={alt={#1{}{invisible}}},
@@ -207,7 +208,7 @@
 
 \title{A Gentle Introduction to R}
 \author{Jonathan Whiteley}
-\date{2023-08-16}
+\date{2023-08-19}
 
 \begin{document}
 \frame{\titlepage}
@@ -2027,7 +2028,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x139a0c078>
+<bytecode: 0x135cc9878>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
