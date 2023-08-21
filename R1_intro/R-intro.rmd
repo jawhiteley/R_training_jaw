@@ -1456,7 +1456,8 @@ unsorted_vector <- c(1, 6, -2, 9.5, 4)
 help.search("sort")
 ```
 
-\pause
+. . .
+
 - Now try including a character string in the vector 
   - Sort again
 
@@ -1465,6 +1466,87 @@ help.search("sort")
 
 
 # Working with objects
+
+## Some *object* types
+
+An "object" is a way of packaging information in $\R$.
+
+### vector
+
+- a collection of *values*, all of the **same** *type*.
+
+### list
+
+- a collection of **different** *types* of values, or even *objects*.
+
+### factor
+
+- a collection of values (*vector*)  
+  from a finite list of possible values (*levels*)
+
+### data frame
+
+- a list of *vectors*, *factors*, or other objects of the same length (\# rows) 
+- *columns* = "variables" ; *rows* = "cases"
+
+
+## Working with *objects* {.squeeze}
+
++--------------------------:+---------------------------+
+| \ctop{}                   |                           |
+| the object *class*        | ``` r                     |
+|                           | class(pi)                 |
+|                           | ```                       |
++---------------------------+---------------------------+
+| \ctop{}                   |                           |
+| the object *type*         | ``` r                     |
+|                           | typeof(pi)                |
+|                           | ```                       |
++---------------------------+---------------------------+
+| \ctop{}                   |                           |
+| the object's *structure*  | ``` r                     |
+|                           | str(pi)                   |
+|                           | ```                       |
++---------------------------+---------------------------+
+| \ctop{}                   |                           |
+| the object's *attributes* | ``` r                     |
+|                           | attributes(pi)            |
+|                           | ```                       |
++---------------------------+---------------------------+
+| \ctop{}                   |                           |
+| is it a *vector*?         | ``` r                     |
+|                           | is.vector(pi)             |
+|                           | ```                       |
++---------------------------+---------------------------+
+
+:::::: {.columns align=center}
+::: {.column width="15%"}
+:::
+::: {.column width="30%"}
+\raggedleft
+\ctop{}
+Replace '`pi`{.r}' in the above statements with one of these examples
+:::
+::: {.column width="35%"}
+``` r
+letters
+1:10
+version
+```
+:::
+::: {.column width="10%"}
+:::
+::::::
+
+
+## Working with a *data frame* {.shrink}
+
+
+## *Structure* of a *data frame*
+
+
+## Indexing
+
 
 
 # Installing packages
