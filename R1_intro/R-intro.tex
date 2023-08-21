@@ -2028,7 +2028,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x114bd0278>
+<bytecode: 0x1546cee78>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2874,6 +2874,71 @@ Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':  84 o
 
 \begin{frame}{Indexing}
 \protect\hypertarget{indexing}{}
+\begin{itemize}
+\tightlist
+\item
+  You can refer to parts of an object by their \emph{index} or
+  \emph{name} (if they have one)
+\end{itemize}
+
+\begin{figure}
+\centering\large\ttfamily
+
+\begin{shaded}
+\tikzmarknode{obj_name_i}{\NormalTok{CO2}}%
+\tikzmarknode{bopen}{[}%
+  \tikzmarknode{rows}{\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}}%
+  \tikzmarknode{comma}{,}
+  \tikzmarknode{cols}{\DecValTok{3}}%
+\tikzmarknode{bclose}{]}%
+\end{shaded}
+
+\caption*{}
+\label{fig:index}
+\end{figure}
+
+
+\begin{figure}
+\centering\large\ttfamily
+
+\begin{shaded}
+\tikzmarknode{obj_name_n}{\NormalTok{CO2}}%
+\tikzmarknode{dollarsign}{\SpecialCharTok{\$}}%
+\tikzmarknode{name}{\NormalTok{Treatment}}%
+\end{shaded}
+
+\caption*{}
+\label{fig:index_name}
+\end{figure}
+
+\begin{tikzpicture}[remember picture, overlay,
+                    boxr/.style={ultra thick, rounded corners, draw=darkred, 
+                      fill=none, fill opacity=0.5, text opacity=1},
+                    lab/.style={darkred, font=\large\itshape},
+                    arr/.style={ultra thick, darkred, -{Latex}[round], shorten >=1ex}]
+  \node (obj_lab) [lab, anchor=east] 
+    at ($ (obj_name_i.south west)!0.4!(obj_name_n.north west) $) {object name};
+  \node (rows_lab) [lab, align=center, anchor=north] 
+    at (rows |- obj_lab.north east) {\textbf{rows}\phantom{l}\\ (dim. 1)};
+  \node (cols_lab) [lab, align=center, anchor=north west] 
+    at ($ (cols.south east |- obj_lab.north east) +(1ex,0pt) $) 
+    {\textbf{columns}\\ (dim. 2)};
+  \node (dollar_lab) [lab, align=center, anchor=north, text height=2ex] 
+    at ($ (dollarsign) +(0,-4ex) $) {\$ operator};
+  \node (name_lab) [lab, align=center, anchor=north west, text height=2ex] 
+    at ($ (name.south east |- dollar_lab.north) +(0pt,0pt) $) 
+    {item name};
+  \draw [arr] (obj_lab.east) -> (obj_name_i.south);
+  \draw [arr] (obj_lab.east) -> (obj_name_n.north);
+  \draw [arr] (rows_lab.north) -> (rows.south);
+  \draw [arr] (cols_lab.north west) -> (cols.south);
+  \draw [arr] (dollar_lab.north) -> (dollarsign.south);
+  \draw [arr] (name_lab.west) -> (name.south);
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Indexing examples}
+\protect\hypertarget{indexing-examples}{}
 \end{frame}
 
 \hypertarget{installing-packages}{%
