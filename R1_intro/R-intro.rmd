@@ -595,7 +595,7 @@ to return the *value*.
 :::
 ::: {.column width="50%"}
 
-\hfill\tikzmarknode[anchor=north west, inner sep=0]{code_tr}{}
+\hfill\tikzmarknode[anchor=south east, inner sep=0]{code_tr}{}
 ```{r vector_demo, echo=4}
 .opts.width <- getOption('width')
 options(width = 30)
@@ -1541,8 +1541,70 @@ version
 
 ## Working with a *data frame* {.shrink}
 
++------------------------------:+-----------------------+
+| \ctop{}                       |                       |
+|                               | ``` r                 |
+| load a built-in data file     | data(CO2)             |
+| \bigskip                      | ```                   |
++-------------------------------+-----------------------+
+| \ctop{}                       |                       |
+|                               | ``` r                 |
+| peek at the first few rows    | head(CO2)             |
+|                               | ```                   |
++-------------------------------+-----------------------+
+| \ctop{}                       |                       |
+|                               | ``` r                 |
+| the object's *structure*      | str(CO2)              |
+|                               | ```                   |
++-------------------------------+-----------------------+
+| \ctop{}                       |                       |
+|                               | ``` r                 |
+| *names* of items              | names(CO2)            |
+| in the object                 | ```                   |
++-------------------------------+-----------------------+
+| \ctop{}                       |                       |
+|                               | ``` r                 |
+| the object *class*            | class(CO2)            |
+|                               | ```                   |
++-------------------------------+-----------------------+
+| \ctop{}                       |                       |
+|                               | ``` r                 |
+| the object *type*             | typeof(CO2)           |
+|                               | ```                   |
++-------------------------------+-----------------------+
+| \ctop{}                       |                       |
+|                               | ``` r                 |
+| the object's *attributes*     | attributes(CO2)       |
+|                               | ```                   |
++-------------------------------+-----------------------+
+| \ctop{}                       |                       |
+|                               | ``` r                 |
+| summary statistics            | summary(CO2)          |
+|                               | ```                   |
++-------------------------------+-----------------------+
+| \ctop{}                       |                       |
+|                               | ``` r                 |
+| plot of all variable          | plot(CO2)             |
+| combinations                  | ```                   |
++-------------------------------+-----------------------+
 
-## *Structure* of a *data frame*
+
+## *Structure* of a *data frame* {.shrink}
+
+\hfill\tikzmarknode[anchor=north east, inner sep=0pt]{code_tr}{}
+```{r data.frame_str, echo=2}
+data(CO2)  # previous slide doesn't have *executable* code chunks, so ensure it is loaded for future examples.
+str(CO2)
+```
+\tikzmarknode[anchor=south west, inner sep=0pt]{code_bl}{}
+<!-- extra blank lines to force Beamer to shrink the text
+so that the long lines of output are visible on the slide -->
+\
+\
+\
+\
+\
+\
 
 
 ## Indexing

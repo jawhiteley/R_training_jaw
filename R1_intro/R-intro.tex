@@ -1052,7 +1052,7 @@ objects}{Simple \textbackslash texttt\{R\} objects}}\label{simple-textttr-object
 \end{column}
 
 \begin{column}{0.5\textwidth}
-\hfill\tikzmarknode[anchor=north west, inner sep=0]{code_tr}{}
+\hfill\tikzmarknode[anchor=south east, inner sep=0]{code_tr}{}
 
 \begin{verbatim}
 [1] 2
@@ -2028,7 +2028,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x124ff4a78>
+<bytecode: 0x114bd0278>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2723,12 +2723,153 @@ these examples
 \end{columns}
 \end{frame}
 
-\begin{frame}[shrink]{Working with a \emph{data frame}}
+\begin{frame}[fragile,shrink]{Working with a \emph{data frame}}
 \protect\hypertarget{working-with-a-data-frame}{}
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4444}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedleft
+\vspace{\ShadedFrameSep}{}
+
+load a built-in data file \bigskip
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(CO2)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedleft
+\vspace{\ShadedFrameSep}{}
+
+peek at the first few rows
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(CO2)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedleft
+\vspace{\ShadedFrameSep}{}
+
+the object's \emph{structure}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(CO2)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedleft
+\vspace{\ShadedFrameSep}{}
+
+\emph{names} of items in the object
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(CO2)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedleft
+\vspace{\ShadedFrameSep}{}
+
+the object \emph{class}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(CO2)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedleft
+\vspace{\ShadedFrameSep}{}
+
+the object \emph{type}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{typeof}\NormalTok{(CO2)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedleft
+\vspace{\ShadedFrameSep}{}
+
+the object's \emph{attributes}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{attributes}\NormalTok{(CO2)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedleft
+\vspace{\ShadedFrameSep}{}
+
+summary statistics
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(CO2)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedleft
+\vspace{\ShadedFrameSep}{}
+
+plot of all variable combinations
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(CO2)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\bottomrule\noalign{}
+\end{longtable}
 \end{frame}
 
-\begin{frame}{\emph{Structure} of a \emph{data frame}}
+\begin{frame}[fragile,shrink]{\emph{Structure} of a \emph{data frame}}
 \protect\hypertarget{structure-of-a-data-frame}{}
+\hfill\tikzmarknode[anchor=north east, inner sep=0pt]{code_tr}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(CO2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':  84 obs. of  5 variables:
+ $ Plant    : Ord.factor w/ 12 levels "Qn1"<"Qn2"<"Qn3"<..: 1 1 1 1 1 1 1 2 2 2 ...
+ $ Type     : Factor w/ 2 levels "Quebec","Mississippi": 1 1 1 1 1 1 1 1 1 1 ...
+ $ Treatment: Factor w/ 2 levels "nonchilled","chilled": 1 1 1 1 1 1 1 1 1 1 ...
+ $ conc     : num  95 175 250 350 500 675 1000 95 175 250 ...
+ $ uptake   : num  16 30.4 34.8 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
+ - attr(*, "formula")=Class 'formula'  language uptake ~ conc | Plant
+  .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
+ - attr(*, "outer")=Class 'formula'  language ~Treatment * Type
+  .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
+ - attr(*, "labels")=List of 2
+  ..$ x: chr "Ambient carbon dioxide concentration"
+  ..$ y: chr "CO2 uptake rate"
+ - attr(*, "units")=List of 2
+  ..$ x: chr "(uL/L)"
+  ..$ y: chr "(umol/m^2 s)"
+\end{verbatim}
+
+\tikzmarknode[anchor=south west, inner sep=0pt]{code_bl}{}
+
+\hfill\break
+\hfill\break
+\hfill\break
+\hfill\break
+\hfill\break
+\hfill\break
 \end{frame}
 
 \begin{frame}{Indexing}
