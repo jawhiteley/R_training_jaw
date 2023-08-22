@@ -1948,10 +1948,7 @@ help.start
 
 <!-- To ADD:
 + Functions
-  + arguments (default values)
-  + calling functions (syntax)
   + the `c()` function for making vectors
-+ Installing packages
 + Script files
   + Rmarkdown & R notebooks
   + Code style guide?
