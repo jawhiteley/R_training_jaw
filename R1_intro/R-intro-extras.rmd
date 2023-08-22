@@ -9,16 +9,14 @@ output:
     theme: "Boadilla"
     slide_level: 2
     toc: true
+    includes:
+      in_header: "preamble-include.tex"
+fontsize: 11pt
+urlcolor: darkblue
+linkcolor: darkblue
 header-includes: |
-  \setbeamertemplate{itemize item}[circle]
-  \setbeamertemplate{enumerate item}[circle]
-  \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}
-  \newcommand{\R}{\texttt{R}}
-  \newcommand{\highlight}[1]{\StringTok{#1}}
-  \newcommand{\important}[1]{\AlertTok{#1}}
-  \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
-  \newcommand{\annote}[1]{{\footnotesize #1}}
-  \newcommand{\obj}[1]{\textit{texttt{\VariableTok{#1}}}}
+  % Commands with executable R code have to be in this document, not an external .tex file.
+  \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}  
 ---
 
 ```{r setup, include=FALSE}
