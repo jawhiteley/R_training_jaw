@@ -1554,13 +1554,13 @@ version
 +-------------------------------+-----------------------+
 | \ctop{}                       |                       |
 |                               | ``` r                 |
-| the object's *structure*      | str(CO2)              |
+| the object's ***str**ucture*  | str(CO2)              |
 |                               | ```                   |
 +-------------------------------+-----------------------+
 | \ctop{}                       |                       |
 |                               | ``` r                 |
-| *names* of items              | names(CO2)            |
-| in the object                 | ```                   |
+| ***names*** of items          | names(CO2)            |
+| in the object  \bigskip       | ```                   |
 +-------------------------------+-----------------------+
 | \ctop{}                       |                       |
 |                               | ``` r                 |
@@ -1591,12 +1591,12 @@ version
 
 ## *Structure* of a *data frame* {.shrink}
 
-\hfill\tikzmarknode[anchor=north east, inner sep=0pt]{code_tr}{}
+\hfill\tikzmarknode[anchor=south east, inner sep=0pt]{code_tr}{}
 ```{r data.frame_str, echo=2}
 data(CO2)  # previous slide doesn't have *executable* code chunks, so ensure it is loaded for future examples.
 str(CO2)
 ```
-\tikzmarknode[anchor=south west, inner sep=0pt]{code_bl}{}
+\tikzmarknode[anchor=north west, inner sep=0pt]{code_bl}{}
 <!-- extra blank lines to force Beamer to shrink the text
 so that the long lines of output are visible on the slide -->
 \
@@ -1677,8 +1677,54 @@ CO2$Treatment
 ```
 
 
-## Indexing examples
+## Indexing examples {.shrink}
 
++----------------------------------------+-------------------------------------+
+| ``` r                                  |                                     |
+| names(CO2)                             | -   available *names*               |
+| ```                                    |                                     |
++----------------------------------------+-------------------------------------+
+| ``` r                                  |                                     |
+| CO2$Treatment                          | -   "\name{Treatment}" column       |
+| CO2[["Treatment"]]                     |      (name)                         |
+| ```                                    |                                     |
++----------------------------------------+-------------------------------------+
+| ``` r                                  |                                     |
+| CO2[,3]                                | -   all rows, column 3              |
+| ```                                    |                                     |
++----------------------------------------+-------------------------------------+
+| ``` r                                  |                                     |
+| CO2[3,]                                | -   row 3, all columns              |
+| ```                                    |                                     |
++----------------------------------------+-------------------------------------+
+| ``` r                                  |                                     |
+| CO2[3]                                 | -   element 3                       |
+| ```                                    |                                     |
++----------------------------------------+-------------------------------------+
+| ``` r                                  |                                     |
+| CO2[1:6,]                              | -   rows 1-6, all columns           |
+| ```                                    |                                     |
++----------------------------------------+-------------------------------------+
+| ``` r                                  |                                     |
+| CO2[c(1,2,3,4,5,6),3]                  | -   rows 1-6, column 3              |
+| ```                                    |                                     |
++----------------------------------------+-------------------------------------+
+| ``` r                                  |                                     |
+| CO2$Treatment[1:6]                     | -   elements 1-6 of                 |
+| ```                                    |     \name{Treatment} column         |
++----------------------------------------+-------------------------------------+
+| ``` r                                  |                                     |
+| CO2[CO2$conc>100,]                     | -   rows where `conc` \> 100        |
+| ```                                    |                                     |
++----------------------------------------+-------------------------------------+
+| ``` r                                  |                                     |
+| CO2[CO2$Treatment=="chilled",]         | -   rows where \                    |
+| ```                                    |     \name{Treatment} == "chilled"   |
++----------------------------------------+-------------------------------------+
+| ``` r                                  |                                     |
+| CO2[sample(nrow(CO2), 10),]            | -   10 random rows                  |
+| ```                                    |                                     |
++----------------------------------------+-------------------------------------+
 
 
 # Installing packages
