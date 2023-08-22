@@ -21,6 +21,21 @@ header-includes: |
   \setbeamertemplate{itemize item}[circle]
   \setbeamertemplate{enumerate item}[circle]
   %\useoutertheme{miniframes}    % for progress bars along the top of each frame
+  \defbeamertemplate{background canvas}{mydefault}{%
+  }
+  \defbeamertemplate{background canvas}{refcardbg}{%
+    \tikz\node[opacity=0.1]{%
+      \includegraphics[width=\paperwidth,height=\paperheight,page=1]{images/Baggott-refcard-v2.pdf}
+    };
+  }
+  \BeforeBeginEnvironment{frame}{%
+    \setbeamertemplate{background canvas}[mydefault]%
+  }
+  \makeatletter
+    \define@key{beamerframe}{refcardbg}[true]{%
+      \setbeamertemplate{background canvas}[refcardbg]%
+    }
+  \makeatother
   %\usepackage{layout}    % add `\layout` to the document to show page layout and parameter values
   \usepackage{tikz}
   \usetikzlibrary{arrows.meta,calc,tikzmark,fit, positioning}
@@ -1309,7 +1324,7 @@ https://moderndive.netlify.app/1-getting-started.html
 - Your preferred search engine ...
 
 
-## HELP: Reference cards / cheat sheets
+## HELP: Reference cards / cheat sheets {frameoptions="refcardbg"}
 
 - https://cran.r-project.org/other-docs.html
   - https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf 
