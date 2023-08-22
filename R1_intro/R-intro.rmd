@@ -73,6 +73,7 @@ header-includes: |
 ## https://yihui.org/knitr/options/
 knitr::opts_chunk$set(echo = TRUE, comment='')
 options(width = 60)  # to fit output on slides: either smaller font or shorter width (or both)
+try( remove.packages('car') )  # to trigger appropriate error messages in the demo.
 ```
 
 
@@ -1755,12 +1756,61 @@ try( recode(CO2$Type, "'Quebec'='QC'; else='MS'") )
 
 ## Trying to load a *package* that is not installed
 
+- If you try to load a package that is not installed, you will get an **Error**
 
-## Installing the 'car' package
+<!-- `remove.packages('car')` to un-install the package for demo purposes -->
+```{r echo=TRUE, eval=FALSE}
+library(car)
+```
+```{r echo=FALSE, eval=TRUE}
+try( library(car) )
+```
 
-<!-- `remove.packages('car')` to un-insall the package for demo purposes -->
+- This often happens when you run $\R$ code written on a different computer,
+  or written by someone else (on a different computer).
+
+- You have to *install* the package before you can *load* it.
+
+
+## Installing the 'car' package {.shrink}
+
+- car = "[C]{.underline}ompanion to [A]{.underline}pplied [R]{.underline}egression"
+  - includes the `recode()`{.r} function
+
++--------------------------------+---------------------------------------------+
+| ``` r                          | - Download & install the package            |
+| install.packages("car")        | - You may have to select a                  |
+| ```                            |   "CRAN mirror" (server) to use.            |
+|                                |                                             |
+|                                | \important{\textbf{%                        |
+|                                | You only need to do this \textit{once}      |
+|                                | per \texttt{R}~installation.}}              |
++--------------------------------+---------------------------------------------+
+| ``` r                          | - *Load* the package, to make all           |
+| library(car)                   |   contained *functions*, data,              |
+| ```                            |   and *documentation* available.            |
+|                                |                                             |
+|                                | \important{\textbf{This is all you need     |
+|                                | to do when you want to use it.}}            |
++--------------------------------+---------------------------------------------+
+| ``` r                          | - Information about your new package.       |
+| help(package="car")            | - See also `help.start()`{.r},              |
+| ```                            |   and click on the "Packages" link.         |
++--------------------------------+---------------------------------------------+
+
+```{r install_car, echo=FALSE, results='hide'}
+## execute the code
+install.packages("car")
+library(car)
+```
+
 
 ## Try out your new package
+
+```{r use_recode}
+?recode
+recode(CO2$Type, "'Quebec'='QC'; else='MS'")
+```
 
 
 

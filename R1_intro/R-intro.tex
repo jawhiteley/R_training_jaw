@@ -208,7 +208,7 @@
 
 \title{A Gentle Introduction to R}
 \author{Jonathan Whiteley}
-\date{2023-08-21}
+\date{2023-08-22}
 
 \begin{document}
 \frame{\titlepage}
@@ -2028,7 +2028,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x1163d0278>
+<bytecode: 0x125ecee78>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -3139,6 +3139,150 @@ Error in recode(CO2$Type, "'Quebec'='QC'; else='MS'") :
 \item
   or there's a typo in the \emph{function name}
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Trying to load a \emph{package} that is not
+installed}
+\protect\hypertarget{trying-to-load-a-package-that-is-not-installed}{}
+\begin{itemize}
+\tightlist
+\item
+  If you try to load a package that is not installed, you will get an
+  \textbf{Error}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(car)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error in library(car) : there is no package called 'car'
+\end{verbatim}
+
+\begin{itemize}
+\item
+  This often happens when you run \(\texttt{R}\) code written on a
+  different computer, or written by someone else (on a different
+  computer).
+\item
+  You have to \emph{install} the package before you can \emph{load} it.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,shrink]{Installing the `car' package}
+\protect\hypertarget{installing-the-car-package}{}
+\begin{itemize}
+\tightlist
+\item
+  car = ``\ul{C}ompanion to \ul{A}pplied \ul{R}egression''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    includes the \VERB|\FunctionTok{recode}\NormalTok{()}| function
+  \end{itemize}
+\end{itemize}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4177}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5823}}@{}}
+\toprule\noalign{}
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"car"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\tightlist
+\item
+  Download \& install the package
+\item
+  You may have to select a ``CRAN mirror'' (server) to use.
+\end{itemize}
+
+\AlertTok{\textbf{%
+You only need to do this \textit{once}
+per \texttt{R}~installation.}}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(car)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\tightlist
+\item
+  \emph{Load} the package, to make all contained \emph{functions}, data,
+  and \emph{documentation} available.
+\end{itemize}
+
+\AlertTok{\textbf{This is all you need
+to do when you want to use it.}}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{help}\NormalTok{(}\AttributeTok{package=}\StringTok{"car"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\tightlist
+\item
+  Information about your new package.
+\item
+  See also \VERB|\FunctionTok{help.start}\NormalTok{()}|, and click on
+  the ``Packages'' link.
+\end{itemize}
+\end{minipage} \\
+\bottomrule\noalign{}
+\end{longtable}
+
+\begin{verbatim}
+Installing package into '/Users/jaw/Library/R/arm64/4.3/library'
+(as 'lib' is unspecified)
+\end{verbatim}
+
+\begin{verbatim}
+Loading required package: carData
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Try out your new package}
+\protect\hypertarget{try-out-your-new-package}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?recode}
+\FunctionTok{recode}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Type, }\StringTok{"\textquotesingle{}Quebec\textquotesingle{}=\textquotesingle{}QC\textquotesingle{}; else=\textquotesingle{}MS\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] QC QC QC QC QC QC QC QC QC QC QC QC QC QC QC QC QC QC
+[19] QC QC QC QC QC QC QC QC QC QC QC QC QC QC QC QC QC QC
+[37] QC QC QC QC QC QC MS MS MS MS MS MS MS MS MS MS MS MS
+[55] MS MS MS MS MS MS MS MS MS MS MS MS MS MS MS MS MS MS
+[73] MS MS MS MS MS MS MS MS MS MS MS MS
+Levels: MS QC
+\end{verbatim}
+\end{frame}
+
+\hypertarget{review}{%
+\section{Review}\label{review}}
+
+\begin{frame}{Let's play ``\textbf{Command-R}''}
+\protect\hypertarget{lets-play-command-r}{}
+\end{frame}
+
+\begin{frame}{``\textbf{Command-R}''}
+\protect\hypertarget{command-r}{}
 \end{frame}
 
 \hypertarget{saving-code-files}{%
