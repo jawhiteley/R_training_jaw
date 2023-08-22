@@ -185,17 +185,22 @@
   \ShadedFrameSep=\topsep \else 
   \ShadedFrameSep=\OuterFrameSep 
 \fi
-\newcommand{\ctop}{\vspace{\ShadedFrameSep}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seemed like a good approximation, depending on other parametes; '\topsep+\parskip+\partopsep' seemed logical, but might be too much, maybe because it loses the rubber values)
-\newcommand{\chup}{\vspace{-\ShadedFrameSep}}  % move code chunk up, to gobble whitespace above?
+%% Custom colours
 \definecolor{darkred}{rgb}{0.8,0,0}
 \definecolor{darkblue}{rgb}{0,0,0.6}
-\newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
+%% Custom macros
+\newcommand{\ctop}{\vspace{\ShadedFrameSep}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seemed like a good approximation, depending on other parametes; '\topsep+\parskip+\partopsep' seemed logical, but might be too much, maybe because it loses the rubber values)
+\newcommand{\chup}{\vspace{-\ShadedFrameSep}}  % move code chunk up, to gobble whitespace above?
+%\newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}  %% needs to go through `knit()` to be valid.
 \newcommand{\R}{\texttt{R}}
 \newcommand{\highlight}[1]{\StringTok{#1}}
 \newcommand{\important}[1]{\textcolor{darkred}{#1}}
 \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
 \newcommand{\annote}[1]{{\footnotesize #1}}
 \newcommand{\name}[1]{\VariableTok{\texttt{#1}}}
+
+% Commands with executable R code have to be in this document, not an external .tex file.
+\newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}  
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -300,16 +305,16 @@ rmarkdown version: 2.23
 
 \begin{frame}{Pop Quiz}
 \protect\hypertarget{pop-quiz}{}
-{\footnotesize \textcolor[rgb]{0.66,0.66,0.66}{We will review these \textit{at the end}, so you can see how much you have learned.}}
+\annote{\fade{We will review these \textit{at the end}, so you can see how much you have learned.}}
 
 \begin{itemize}
 \tightlist
 \item
   What does `CRAN' stand for?
 \item
-  Why is it named `\(\texttt{R}\)'?
+  Why is it named `\(\R\)'?
 \item
-  How can you use \(\texttt{R}\) \emph{interactively}?
+  How can you use \(\R\) \emph{interactively}?
 \item
   How do you find out what a function does \& how to use it?
 \item
@@ -346,7 +351,7 @@ What emoji best describes your current mood or state of mind?
 \begin{itemize}
 \tightlist
 \item
-  Have you used \(\texttt{R}\) before?
+  Have you used \(\R\) before?
 \item
   Have you used a programming language before?
 \end{itemize}
@@ -452,19 +457,19 @@ On your turn:
   \includegraphics[width=\textwidth,height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}
   \emph{interface}
 \item
-  Use technical \emph{terms} for \(\texttt{R}\) concepts
+  Use technical \emph{terms} for \(\R\) concepts
 \item
   Enter \emph{commands}
 
   \begin{itemize}
   \tightlist
   \item
-    use \(\texttt{R}\) interactively: understand input \& output
+    use \(\R\) interactively: understand input \& output
   \item
     use some common \emph{functions}
   \end{itemize}
 \item
-  Get familiar with `\(\texttt{R}\) objects'
+  Get familiar with `\(\R\) objects'
 
   \begin{itemize}
   \tightlist
@@ -478,12 +483,12 @@ On your turn:
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Why is it named `\(\texttt{R}\)'?}
-\protect\hypertarget{why-is-it-named-textttr}{}
+\begin{frame}[fragile]{Why is it named `\(\R\)'?}
+\protect\hypertarget{why-is-it-named-r}{}
 \begin{enumerate}
 \item
-  \textbf{\(\texttt{R}\)} started as an \emph{open-source}
-  implementation of the\\
+  \textbf{\(\R\)} started as an \emph{open-source} implementation of
+  the\\
   \textbf{\texttt{S}} statistical computing language
   (S-PLUS)\footnote<.->{\url{https://www.r-project.org/about.html}}
 
@@ -491,24 +496,24 @@ On your turn:
   \item
     \texttt{S} was created at Bell Laboratories in 1976\footnote<.->{\url{https://en.wikipedia.org/wiki/S_(programming_language)}}
   \item
-    \(\texttt{R}\) was based on the \texttt{S} syntax (mostly v3), but
-    works very differently ``under the hood''.
+    \(\R\) was based on the \texttt{S} syntax (mostly v3), but works
+    very differently ``under the hood''.
   \end{itemize}
 \item
-  \textbf{\(\texttt{R}\)} was created by \ul{\textbf{R}}oss Ihaka and
+  \textbf{\(\R\)} was created by \ul{\textbf{R}}oss Ihaka and
   \ul{\textbf{R}}obert Gentleman --- aka ``R \& R''\footnote<.->{\url{https://www.r-project.org/contributors.html}}
   --- at the University of Aukland in the early 1990s.
 \end{enumerate}
 
 \bigskip
 
-\emph{Read more about the history of \(\texttt{R}\) on
+\emph{Read more about the history of \(\R\) on
 \href{https://en.wikipedia.org/wiki/R_(programming_language)\#History}{Wikipedia}}\footnote<.->{\url{https://en.wikipedia.org/wiki/R_(programming_language)\#History}}
 \end{frame}
 
-\hypertarget{interacting-with-textttr-interface}{%
-\section{\texorpdfstring{Interacting with \(\texttt{R}\)
-(Interface)}{Interacting with \textbackslash texttt\{R\} (Interface)}}\label{interacting-with-textttr-interface}}
+\hypertarget{interacting-with-r-interface}{%
+\section{\texorpdfstring{Interacting with \(\R\)
+(Interface)}{Interacting with \textbackslash R (Interface)}}\label{interacting-with-r-interface}}
 
 \begin{frame}{The
 \(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
@@ -517,7 +522,7 @@ Interface}
 \begin{itemize}
 \tightlist
 \item
-  `base \(\texttt{R}\)' has a slightly different interface for each
+  `base \(\R\)' has a slightly different interface for each
   \textbf{O}perating \textbf{S}ystem (OS)
 
   \begin{itemize}
@@ -526,8 +531,8 @@ Interface}
     GUI = \textbf{G}raphical \textbf{U}ser \textbf{I}nterface
   \end{itemize}
 \item
-  \(\texttt{R}\) can also run inside of a terminal (no GUI) or other
-  software (different GUI).
+  \(\R\) can also run inside of a terminal (no GUI) or other software
+  (different GUI).
 \end{itemize}
 
 \begin{block}{\href{https://en.wikipedia.org/wiki/Integrated_development_environment}{\textbf{I}ntegrated
@@ -536,15 +541,14 @@ Interface}
 \begin{itemize}
 \tightlist
 \item
-  An IDE is like an extra interface layer on top of `base
-  \(\texttt{R}\)'
+  An IDE is like an extra interface layer on top of `base \(\R\)'
 \item
   IDEs often add convenient tools to make writing code easier (e.g.,
   syntax highlighting), and for developing larger projects with multiple
   files.
 \item
   \textbf{\href{https://posit.co/products/open-source/rstudio/}{RStudio}}
-  is one of the most popular cross-platform IDEs for \(\texttt{R}\).
+  is one of the most popular cross-platform IDEs for \(\R\).
 
   \begin{itemize}
   \tightlist
@@ -557,8 +561,8 @@ Interface}
 \end{block}
 \end{frame}
 
-\begin{frame}{A quick tour of the `base \(\texttt{R}\) GUI'}
-\protect\hypertarget{a-quick-tour-of-the-base-textttr-gui}{}
+\begin{frame}{A quick tour of the `base \(\R\) GUI'}
+\protect\hypertarget{a-quick-tour-of-the-base-r-gui}{}
 \begin{figure}
 \centering
 \begin{tikzpicture}[overlay/.style={ultra thick, rounded corners, draw=red, fill=white, fill opacity=0.5, text opacity=1},
@@ -630,8 +634,8 @@ right:
 \protect\hypertarget{interacting-with-R-command-line}{}
 \begin{itemize}
 \item
-  Regardless of the GUI, you interact with \(\texttt{R}\) primarily
-  using a \emph{command~line}
+  Regardless of the GUI, you interact with \(\R\) primarily using a
+  \emph{command~line}
 
   \begin{itemize}
   \tightlist
@@ -645,12 +649,12 @@ right:
 
   \begin{itemize}
   \item
-    You ask \(\texttt{R}\) to do something (a \emph{command}),\\
+    You ask \(\R\) to do something (a \emph{command}),\\
     \hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}and
-    \(\texttt{R}\) tells you the answer (\emph{result}).
+    \(\R\) tells you the answer (\emph{result}).
   \end{itemize}
 \item
-  Instructions are given to \(\texttt{R}\) using the \emph{R language}.
+  Instructions are given to \(\R\) using the \emph{R language}.
 \end{itemize}
 
 \note{R is designed so that users can start by using it
@@ -678,7 +682,7 @@ The \emph{console} is a window or pane where you will find:
   \begin{itemize}
   \tightlist
   \item
-    where you will enter commands for \(\texttt{R}\) to run
+    where you will enter commands for \(\R\) to run
   \end{itemize}
 \item
   Results of commands and other output
@@ -693,7 +697,7 @@ command-line}
 \protect\hypertarget{the-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg-command-line}{}
 \begin{itemize}
 \item
-  The command \emph{prompt} normally looks like this\footnote<.->{\textcolor[rgb]{0.66,0.66,0.66}{the colour of the prompt varies depending on the interface}}:
+  The command \emph{prompt} normally looks like this\footnote<.->{\fade{the colour of the prompt varies depending on the interface}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -704,25 +708,23 @@ command-line}
   \begin{itemize}
   \tightlist
   \item
-    This is \(\texttt{R}\)'s way of saying ``I am ready to accept new
+    This is \(\R\)'s way of saying ``I am ready to accept new
     commands''.
   \item
     Type a new command on the line after this prompt (i.e.,
     \emph{input}).
   \end{itemize}
 \item
-  \textbf{Press
-  \textcolor{darkred}{\texttt{return}}/\textcolor{darkred}{\texttt{enter}}
+  \textbf{Press \important{\texttt{return}}/\important{\texttt{enter}}
   to \emph{run} the current \emph{command} }
 \item
   If you can still edit the command next to the prompt, then it has not
-  been submitted to \(\texttt{R}\) to execute (it is still waiting for
-  input).
+  been submitted to \(\R\) to execute (it is still waiting for input).
 \item
   If the last prompt is not empty (i.e., there is text beside it)\\
   \emph{and} you cannot edit what is beside the prompt,\\
-  it means \(\texttt{R}\) is still running the last command and is not
-  ready to accept a new command yet.
+  it means \(\R\) is still running the last command and is not ready to
+  accept a new command yet.
 
   \begin{itemize}
   \tightlist
@@ -747,23 +749,22 @@ command-line (continued)}
 \end{Highlighting}
 \end{Shaded}
 
-  it means the last command was \emph{incomplete} and \(\texttt{R}\) is
-  waiting for more input.\\
-  \(\texttt{R}\) will not do anything until the command is completed or
+  it means the last command was \emph{incomplete} and \(\R\) is waiting
+  for more input.\\
+  \(\R\) will not do anything until the command is completed or
   cancelled.
 
   \begin{itemize}
   \tightlist
   \item
     This usually means you forgot a closing\\
-    \emph{quote} \textcolor{darkred}{\texttt{"}}, \emph{parenthesis}
-    \textcolor{darkred}{\texttt{(}}, \emph{bracket}
-    \textcolor{darkred}{\texttt{[}}, or \emph{brace}
-    \textcolor{darkred}{\texttt{\{}}
+    \emph{quote} \important{\texttt{"}}, \emph{parenthesis}
+    \important{\texttt{(}}, \emph{bracket} \important{\texttt{[}}, or
+    \emph{brace} \important{\texttt{\{}}
   \end{itemize}
 \item
-  \StringTok{You can \textit{cancel} the current command at any time by pressing \texttt{escape}}
-  (\textcolor{darkred}{\texttt{esc}})
+  \highlight{You can \textit{cancel} the current command at any time by pressing \texttt{escape}}
+  (\important{\texttt{esc}})
 \end{itemize}
 \end{frame}
 
@@ -819,7 +820,7 @@ Read the opening message carefully.
     \draw [->] (note.west) -> (rect.east);
   \end{scope}
 \end{tikzpicture}
-\caption{$\texttt{R}$ offers suggestions of commands to \KeywordTok{\texttt{Type}} in the console when it starts.}
+\caption{$\R$ offers suggestions of commands to \KeywordTok{\texttt{Type}} in the console when it starts.}
 \end{figure}
 \end{frame}
 
@@ -841,7 +842,7 @@ is a show-off}
 \begin{itemize}
 \tightlist
 \item
-  some plots and graphs that can be made with \(\texttt{R}\)
+  some plots and graphs that can be made with \(\R\)
 \end{itemize}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -854,7 +855,7 @@ is a show-off}
 \begin{itemize}
 \tightlist
 \item
-  image-like graphics and maps that can be produced with \(\texttt{R}\)
+  image-like graphics and maps that can be produced with \(\R\)
 \end{itemize}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -890,7 +891,7 @@ is a show-off}
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 \textbf{←} A great place to start,\\
 \hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}especially
@@ -905,8 +906,8 @@ on this later.}
 
 \begin{block}{Note}
 \protect\hypertarget{note}{}
-\texttt{R}{} will not only show the output, but also \emph{the code used
-to produce it}.
+\R{} will not only show the output, but also \emph{the code used to
+produce it}.
 \end{block}
 \end{frame}
 
@@ -1022,27 +1023,26 @@ command-line tips}
 \begin{itemize}
 \item
   With the cursor next to the empty prompt (\OtherTok{\texttt{>}}),\\
-  use the up \& down \textcolor{darkred}{arrow keys} (↑↓) to re-produce
-  previous commands.
+  use the up \& down \important{arrow keys} (↑↓) to re-produce previous
+  commands.
 \item
   This lets you ``scroll through your \emph{command history}''.
 \item
-  Press \textcolor{darkred}{up} (\textcolor{darkred}{$\uparrow$}) once,
-  and you get the last command you entered\\
+  Press \important{up} (\important{$\uparrow$}) once, and you get the
+  last command you entered\\
   without having to copy \& paste.
 \end{itemize}
 \end{frame}
 
-\hypertarget{simple-textttr-objects}{%
-\section{\texorpdfstring{Simple \(\texttt{R}\)
-objects}{Simple \textbackslash texttt\{R\} objects}}\label{simple-textttr-objects}}
+\hypertarget{simple-r-objects}{%
+\section{\texorpdfstring{Simple \(\R\)
+objects}{Simple \textbackslash R objects}}\label{simple-r-objects}}
 
 \begin{frame}[fragile]{Vectors}
 \protect\hypertarget{vectors}{}
 \begin{itemize}
 \item
-  The most basic kind of \emph{object} in \(\texttt{R}\) is a
-  \emph{vector}
+  The most basic kind of \emph{object} in \(\R\) is a \emph{vector}
 \item
   Think of a vector as a list of related values (data),\\
   which are \emph{all the same type}
@@ -1056,7 +1056,7 @@ objects}{Simple \textbackslash texttt\{R\} objects}}\label{simple-textttr-object
 \begin{columns}[c]
 \begin{column}{0.25\textwidth}
 \centering
-\textcolor{darkred}{\Large\tikzmarknode{index}{\textbf{\textit{index}}:}\\ the item\\ number}
+\important{\Large\tikzmarknode{index}{\textbf{\textit{index}}:}\\ the item\\ number}
 \end{column}
 
 \begin{column}{0.5\textwidth}
@@ -1082,7 +1082,7 @@ objects}{Simple \textbackslash texttt\{R\} objects}}\label{simple-textttr-object
 
 \begin{column}{0.25\textwidth}
 \centering
-\textcolor{darkred}{\Large\textbf{\tikzmarknode{value}{\textit{value}}}}
+\important{\Large\textbf{\tikzmarknode{value}{\textit{value}}}}
 \end{column}
 \end{columns}
 
@@ -1337,7 +1337,7 @@ When a variable \emph{name} is evaluated, it returns the stored
 
 \begin{frame}[fragile]{Built-in variables}
 \protect\hypertarget{built-in-variables}{}
-Some words and letters already have values in \(\texttt{R}\)\\
+Some words and letters already have values in \(\R\)\\
 and should \textbf{never be used as variable names}.
 
 \begin{columns}[T,onlytextwidth]
@@ -1419,8 +1419,8 @@ missing \emph{objects} \\
 \hfill\tikzmarknode{br}{} \\
 ~\VERB|\NormalTok{T}| & short for \VERB|\ConstantTok{TRUE}| & \\
 ~\VERB|\NormalTok{F}| & short for \VERB|\ConstantTok{FALSE}| & \\
-~\VERB|\NormalTok{c,q,t,C,D,I}| & \(\texttt{R}\) functions & \\
-~\VERB|\NormalTok{diff, df, pt}| & \(\texttt{R}\) functions & \\
+~\VERB|\NormalTok{c,q,t,C,D,I}| & \(\R\) functions & \\
+~\VERB|\NormalTok{diff, df, pt}| & \(\R\) functions & \\
 \bottomrule\noalign{}
 \end{longtable}
 
@@ -1444,7 +1444,7 @@ is case-sensitive}
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 a variable
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1461,15 +1461,15 @@ a variable
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 a \emph{function}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 \AlertTok{%
 \textit{PI}}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\centering
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{Shaded}
@@ -1478,7 +1478,7 @@ a \emph{function}
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 a-z
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1495,15 +1495,15 @@ a-z
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 A-Z
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 \AlertTok{%
 \textit{na}}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\centering
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 \end{minipage} \\
 \bottomrule\noalign{}
 \end{longtable}
@@ -1571,7 +1571,7 @@ A-Z
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 List all variables you have created
 \end{minipage} \\
@@ -1582,9 +1582,9 @@ List all variables you have created
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
-Remove the variable `\VariableTok{\texttt{x}}' from memory
+Remove the variable `\name{x}' from memory
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{Shaded}
@@ -1593,7 +1593,7 @@ Remove the variable `\VariableTok{\texttt{x}}' from memory
 \end{Highlighting}
 \end{Shaded}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 Remove \emph{all variables} from memory\\
 (clear memory)\strut
@@ -1678,7 +1678,7 @@ Comparison of 2 values results in \emph{logical values}:
 \toprule\noalign{}
 \endhead
 \VERB|\SpecialCharTok{==}| & \begin{minipage}[t]{\linewidth}\raggedright
-``equal'' --- \textcolor{darkred}{Note the \textbf{two} equals signs.}\\
+``equal'' --- \important{Note the \textbf{two} equals signs.}\\
 Not to be confused with a single equals sign\\
 \hspace*{0.333em}(used to \emph{assign} values).\strut
 \end{minipage} \\
@@ -1776,14 +1776,14 @@ As a result, `floating point' values may not be \emph{reliably equal}.
 
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.45\textwidth}
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 This is a common source of confusion, but it is a fact of how computers
-handle floating point arithmetic, and not specific to \(\texttt{R}\).
+handle floating point arithmetic, and not specific to \(\R\).
 \end{column}
 
 \begin{column}{0.48\textwidth}
-\vspace{-\ShadedFrameSep}{}
+\chup{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1867,8 +1867,8 @@ Two common solutions:
   They are the main instructions you give to R.
 \item
   To use (or \emph{call}) a function, the command must be structured
-  properly, following the ``grammar rules'' of the \(\texttt{R}\)
-  language (\emph{syntax}).
+  properly, following the ``grammar rules'' of the \(\R\) language
+  (\emph{syntax}).
 \end{itemize}
 
 % https://tex.stackexchange.com/questions/136143/tikz-animated-figure-in-beamer
@@ -1967,12 +1967,11 @@ assign values to function arguments by name
 \item
   Some functions can be called without arguments.
 \item
-  \textbf{You still need the parentheses\textcolor{darkred}{()} !}
+  \textbf{You still need the parentheses\important{()} !}
 \item
-  The same word without \textcolor{darkred}{\texttt{()}} refers to an
+  The same word without \important{\texttt{()}} refers to an
   \emph{object} (\emph{variable}) \emph{name}:\\
-  adding the \textcolor{darkred}{\texttt{()}} specifies a \emph{function
-  call}
+  adding the \important{\texttt{()}} specifies a \emph{function call}
 \item
   Typing a function name without brackets usually outputs the \emph{raw
   code} for that function (unless another object has been defined with
@@ -2037,7 +2036,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x130584878>
+<bytecode: 0x11576a078>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2126,14 +2125,14 @@ Error in eval(expr, envir, enclos) : object 'Fail' not found
   Error messages tell you what went wrong, not how to fix it:\\
   that's up to you to figure out.
 \item
-  When an error occurs, \textbf{\(\texttt{R}\) stops running} commands
-  and returns to the command-line.
+  When an error occurs, \textbf{\(\R\) stops running} commands and
+  returns to the command-line.
 
   \begin{itemize}
   \tightlist
   \item
-    Your \emph{session} is still active: \(\texttt{R}\) didn't quit, and
-    you can enter more commands.
+    Your \emph{session} is still active: \(\R\) didn't quit, and you can
+    enter more commands.
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -2143,8 +2142,8 @@ Error in eval(expr, envir, enclos) : object 'Fail' not found
 \begin{itemize}
 \tightlist
 \item
-  Some commands still work, but did not run exactly as \(\texttt{R}\)
-  (or the developers) think is ``ideal'', and may produce a
+  Some commands still work, but did not run exactly as \(\R\) (or the
+  developers) think is ``ideal'', and may produce a
   \textbf{\emph{warning}} instead.
 
   \begin{itemize}
@@ -2160,7 +2159,7 @@ Error in eval(expr, envir, enclos) : object 'Fail' not found
   \begin{itemize}
   \tightlist
   \item
-    \textcolor{darkred}{\textit{It is up to you to review the warnings and decide if they are important}}.
+    \important{\textit{It is up to you to review the warnings and decide if they are important}}.
   \item
     Use the \VERB|\FunctionTok{warnings}\NormalTok{()}| command to
     review them.
@@ -2182,9 +2181,9 @@ Warning in log(-1): NaNs produced
 \protect\hypertarget{errors-warnings-and-messages-1}{}
 \begin{itemize}
 \item
-  \textbf{\emph{Errors}} indicate something is wrong, and \(\texttt{R}\)
-  had to stop. You'll have to figure out what caused the error, fix it,
-  and try again.
+  \textbf{\emph{Errors}} indicate something is wrong, and \(\R\) had to
+  stop. You'll have to figure out what caused the error, fix it, and try
+  again.
 
   \begin{itemize}
   \tightlist
@@ -2194,8 +2193,8 @@ Warning in log(-1): NaNs produced
   \end{itemize}
 \item
   \textbf{\emph{Warnings}} indicate something unusual happened, but
-  \(\texttt{R}\) is able to continue. You'll have to assess if it's
-  worth worrying about.
+  \(\R\) is able to continue. You'll have to assess if it's worth
+  worrying about.
 
   \begin{itemize}
   \tightlist
@@ -2375,8 +2374,8 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \url{https://rstudio.github.io/cheatsheets/}}
 \end{frame}
 
-\begin{frame}[fragile]{\(\texttt{R}\) Documentation}
-\protect\hypertarget{textttr-documentation}{}
+\begin{frame}[fragile]{\(\R\) Documentation}
+\protect\hypertarget{r-documentation}{}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.45\textwidth}
 \begin{Shaded}
@@ -2389,7 +2388,7 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \end{column}
 
 \begin{column}{0.5\textwidth}
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 \begin{itemize}
 \tightlist
@@ -2414,15 +2413,15 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{\(\texttt{R}\) Documentation: find it}
-\protect\hypertarget{textttr-documentation-find-it}{}
+\begin{frame}[fragile]{\(\R\) Documentation: find it}
+\protect\hypertarget{r-documentation-find-it}{}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.3766}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.6234}}@{}}
 \toprule\noalign{}
 \endhead
 \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{-\ShadedFrameSep}{}
+\chup{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2437,7 +2436,7 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \end{itemize}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{-\ShadedFrameSep}{}
+\chup{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2453,7 +2452,7 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \end{itemize}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{-\ShadedFrameSep}{}
+\chup{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2474,7 +2473,7 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \end{itemize}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
-\vspace{-\ShadedFrameSep}{}
+\chup{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2620,7 +2619,7 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 
 \begin{frame}{Some \emph{object} types}
 \protect\hypertarget{some-object-types}{}
-An ``object'' is a way of packaging information in \(\texttt{R}\).
+An ``object'' is a way of packaging information in \(\R\).
 
 \begin{block}{\textbf{vector}}
 \protect\hypertarget{vector}{}
@@ -2672,7 +2671,7 @@ An ``object'' is a way of packaging information in \(\texttt{R}\).
 \toprule\noalign{}
 \endhead
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 the object \emph{class}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2683,7 +2682,7 @@ the object \emph{class}
 \end{Shaded}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 the object \emph{type}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2694,7 +2693,7 @@ the object \emph{type}
 \end{Shaded}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 the object's \emph{structure}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2705,7 +2704,7 @@ the object's \emph{structure}
 \end{Shaded}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 the object's \emph{attributes}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2716,7 +2715,7 @@ the object's \emph{attributes}
 \end{Shaded}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 is it a \emph{vector}?
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2735,7 +2734,7 @@ is it a \emph{vector}?
 
 \begin{column}{0.3\textwidth}
 \raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 Replace `\VERB|\NormalTok{pi}|' in the above statements with one of
 these examples
@@ -2764,7 +2763,7 @@ these examples
 \toprule\noalign{}
 \endhead
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 load a built-in data file \bigskip
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2775,7 +2774,7 @@ load a built-in data file \bigskip
 \end{Shaded}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 peek at the first few rows
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2786,7 +2785,7 @@ peek at the first few rows
 \end{Shaded}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 the object's \emph{\textbf{str}ucture}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2797,7 +2796,7 @@ the object's \emph{\textbf{str}ucture}
 \end{Shaded}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 \textbf{\emph{names}} of items in the object \bigskip
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2808,7 +2807,7 @@ the object's \emph{\textbf{str}ucture}
 \end{Shaded}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 the object \emph{class}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2819,7 +2818,7 @@ the object \emph{class}
 \end{Shaded}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 the object \emph{type}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2830,7 +2829,7 @@ the object \emph{type}
 \end{Shaded}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 the object's \emph{attributes}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2841,7 +2840,7 @@ the object's \emph{attributes}
 \end{Shaded}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 summary statistics
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -2852,7 +2851,7 @@ summary statistics
 \end{Shaded}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedleft
-\vspace{\ShadedFrameSep}{}
+\ctop{}
 
 plot of all variable combinations
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -3001,7 +3000,7 @@ Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':  84 o
 \begin{itemize}
 \tightlist
 \item
-  ``\VariableTok{\texttt{Treatment}}'' column (name)
+  ``\name{Treatment}'' column (name)
 \end{itemize}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -3079,7 +3078,7 @@ Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':  84 o
 \begin{itemize}
 \tightlist
 \item
-  elements 1-6 of \VariableTok{\texttt{Treatment}} column
+  elements 1-6 of \name{Treatment} column
 \end{itemize}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -3106,7 +3105,7 @@ Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':  84 o
 \tightlist
 \item
   rows where\\
-  \VariableTok{\texttt{Treatment}} == ``chilled''
+  \name{Treatment} == ``chilled''
 \end{itemize}\strut
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -3133,7 +3132,7 @@ Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':  84 o
 \protect\hypertarget{intalling-packages}{}
 \begin{itemize}
 \item
-  \(\texttt{R}\) is extensible \& modular
+  \(\R\) is extensible \& modular
 
   \begin{itemize}
   \tightlist
@@ -3143,10 +3142,10 @@ Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':  84 o
     ``\emph{packages}''
   \end{itemize}
 \item
-  You can do this within \(\texttt{R}\), using simple functions
+  You can do this within \(\R\), using simple functions
 \item
-  This keeps \(\texttt{R}\) lean, fast, and avoids ``feature bloat'':
-  load only the packages you need.
+  This keeps \(\R\) lean, fast, and avoids ``feature bloat'': load only
+  the packages you need.
 \end{itemize}
 \end{frame}
 
@@ -3196,9 +3195,8 @@ Error in library(car) : there is no package called 'car'
 
 \begin{itemize}
 \item
-  This often happens when you run \(\texttt{R}\) code written on a
-  different computer, or written by someone else (on a different
-  computer).
+  This often happens when you run \(\R\) code written on a different
+  computer, or written by someone else (on a different computer).
 \item
   You have to \emph{install} the package before you can \emph{load} it.
 \end{itemize}
@@ -3239,7 +3237,7 @@ Error in library(car) : there is no package called 'car'
   use.
 \end{itemize}
 
-\textcolor{darkred}{\textbf{%
+\important{\textbf{%
 You only need to do this \textit{once}
 per \texttt{R}~installation.}}
 \end{minipage} \\
@@ -3257,7 +3255,7 @@ per \texttt{R}~installation.}}
   and \emph{documentation} available.
 \end{itemize}
 
-\textcolor{darkred}{\textbf{This is all you need
+\important{\textbf{This is all you need
 to do when you want to use it.}}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -3325,11 +3323,10 @@ Levels: MS QC
 \end{Highlighting}
 \end{Shaded}
 \item
-  Take turns using the variable `\VariableTok{\texttt{x}}' as an
-  \emph{argument} in a \emph{function} or \emph{expression}
+  Take turns using the variable `\name{x}' as an \emph{argument} in a
+  \emph{function} or \emph{expression}
 \item
-  Assign the \emph{result} to the same variable
-  `\VariableTok{\texttt{x}}'
+  Assign the \emph{result} to the same variable `\name{x}'
 \item
   You may not use the same command twice in a chain
 \item
@@ -3351,7 +3348,7 @@ Levels: MS QC
 \begin{itemize}
 \tightlist
 \item
-  Change the object \emph{type} of \VariableTok{\texttt{x}} into a :
+  Change the object \emph{type} of \name{x} into a :
 
   \begin{itemize}
   \tightlist
@@ -3361,8 +3358,7 @@ Levels: MS QC
     data frame
   \end{itemize}
 \item
-  Use \VariableTok{\texttt{x}} in a graph or
-  \VERB|\FunctionTok{plot}\NormalTok{()}|
+  Use \name{x} in a graph or \VERB|\FunctionTok{plot}\NormalTok{()}|
 
   \begin{itemize}
   \tightlist
@@ -3481,10 +3477,9 @@ Levels: MS QC
   What does `\protect\hyperlink{installing-the-car-package}{CRAN}' stand
   for?
 \item
-  \protect\hyperlink{why-is-it-named-textttr}{Why is it named
-  '\(\texttt{R}\)'}?
+  \protect\hyperlink{why-is-it-named-textttr}{Why is it named '\(\R\)'}?
 \item
-  How can you use \(\texttt{R}\)
+  How can you use \(\R\)
   \protect\hyperlink{interacting-with-R-command-line}{\emph{interactively}}?
 \item
   How do you find out
@@ -3519,8 +3514,7 @@ Levels: MS QC
     documentation, with mirrored copies on servers around the world.
   \end{itemize}
 \item
-  \protect\hyperlink{why-is-it-named-textttr}{Why is it named
-  '\(\texttt{R}\)'}?
+  \protect\hyperlink{why-is-it-named-textttr}{Why is it named '\(\R\)'}?
 
   \begin{itemize}
   \tightlist
@@ -3531,7 +3525,7 @@ Levels: MS QC
     names both start with the letter ``R''
   \end{itemize}
 \item
-  How can you use \(\texttt{R}\) \emph{interactively}?
+  How can you use \(\R\) \emph{interactively}?
 
   \begin{itemize}
   \tightlist
