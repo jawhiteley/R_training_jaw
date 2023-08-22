@@ -1882,6 +1882,66 @@ x <- data.frame(
 ::::::
 
 
+## Today's Commands
+
+:::::: {.columns .onlytextwidth}
+::: {.column width="33%"}
+``` r
++ - * / ^
+<- =     assign
+== != < > <= >=
+:
+seq
+c    
+
+sqrt 
+log 
+exp
+
+ls 
+rm
+
+```
+:::
+::: {.column width="33%"}
+``` r
+min       max 
+sum       mean 
+rnorm     var 
+summary
+
+head
+length
+str
+names
+typeof
+class
+attributes
+is.vector
+
+```
+:::
+::: {.column width="33%"}
+``` r
+install.packages
+library
+
+plot 
+hist
+
+demo
+example
+
+help         ? 
+help.search  ?? 
+help.start
+
+
+```
+:::
+::::::
+
+
 
 
 # Saving code (files)
