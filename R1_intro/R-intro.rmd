@@ -363,7 +363,7 @@ right:
 ::::::
 
 
-## Interacting with $\Rlogo$
+## Interacting with $\Rlogo$ {#interacting-with-R-command-line}
 
 - Regardless of the GUI, 
   you interact with $\R$ primarily using a _command\ line_
@@ -1379,7 +1379,7 @@ help.start()
 \end{tikzpicture}
 
 
-## <!-- $\R$ Documentation: read it --> {.shrink}
+## <!-- $\R$ Documentation: read it --> {#R-documentation-read-it .shrink}
 
 ```{=latex}
 % The frame option 'plain' could also be used to hide the header and footer (if any)
@@ -1429,7 +1429,7 @@ help.start()
 ```
 
 
-## <!-- $\R$ Documentation: read it (end) -->  {.shrink}
+## <!-- $\R$ Documentation: read it (end) -->  {#R-documentation-read-it-end .shrink}
 
 ```{=latex}
 % Manually insert the internal target, since I've removed the frame title
@@ -1796,7 +1796,7 @@ try( library(car) )
 +--------------------------------+---------------------------------------------+
 | ``` r                          | - Download & install the package            |
 | install.packages("car")        | - You may have to select a                  |
-| ```                            |   "CRAN mirror" (server) to use.            |
+| ```                            |   "CRAN mirror"[^CRAN] (server) to use.     |
 |                                |                                             |
 |                                | \important{\textbf{%                        |
 |                                | You only need to do this \textit{once}      |
@@ -1814,12 +1814,13 @@ try( library(car) )
 | ```                            |   and click on the "Packages" link.         |
 +--------------------------------+---------------------------------------------+
 
-```{r install_car, echo=FALSE, results='hide'}
+```{r install_car, echo=FALSE, results='hide', message=FALSE}
 ## execute the code
 install.packages("car")
 library(car)
 ```
 
+[^CRAN]: [C]{.underline}omprehensive [R]{.underline} [A]{.underline}rchive [N]{.underline}etwork: repositories of R software, packages, and documentation.
 
 ## Try out your new package
 
@@ -1971,25 +1972,48 @@ help.start
 
 # Backmatter
 
-<!-- To ADD:
-+ Functions
-  + the `c()` function for making vectors
-+ Script files
-  + Rmarkdown & R notebooks
-  + Code style guide?
-- Flow-control? (save for next workshop; short preview?)
-  + if
-  + loops
--->
-
 ## [Quiz](#pop-quiz) Review
 
-<!-- paste in questions from [Pop Quiz][], above. -->
+<!-- copy questions from [Pop Quiz][], above. -->
++ What does '[CRAN](#installing-the-car-package)' stand for?
++ [Why is it named '$\R$'](#why-is-it-named-textttr)?
++ How can you use $\R$ [_interactively_](#interacting-with-R-command-line)?
++ How do you find out [what a function does](#textttr-documentation-find-it) & [how to use it](#R-documentation-read-it-end)?
++ How do you [store values](#symbolic-variables) to [re-use later](#retrieve-values)?
++ True or False: [Warnings](#warnings) can be ignored, but an [Error](#errors) means I made a mistake.
++ True or False: [Error messages](#errors) will tell me how to fix the problem.
 
 ::: notes
 `## Answers (for discussion)`
 
-Answers in notes
++ What does 'CRAN' stand for?
+  - [Comprehensive R Archive Network](#installing-the-car-package)
+  - a repository of current and previous R software, packages, and documentation, with mirrored copies on servers around the world.
++ [Why is it named '$\R$'](#why-is-it-named-textttr)?
+  - An open-source implementation of the `S` statistical language
+  - Created by Ross Ihaka and Robert Gentleman (aka "R & R"), whose names both start with the letter "R"
++ How can you use $\R$ _interactively_?
+  - By entering commands in the [command-line](interacting-with-R-command-line),
+    and reading messages and output from the *console*.
++ How do you find out what a function does & how to use it?
+  - [Documentation](#textttr-documentation): e.g., the various [`help()` functions](#textttr-documentation-find-it)
+  - [`example()` function](#R-documentation-read-it-end)
+  - [Web sites](#help-web-sites); search the internet
+  - [Books](#help-books)
+  - [etc.](#help-documentation)
++ How do you store values to re-use later?
+  - [Symbolic variables](#symbolic-variables)
+  - [*assign* the value to a *name*](#symbolic-variables)
+  - Use the names in code later to [retrieve the stored value](#retrieve-values)
++ True or False: Warnings can be ignored, but an Error means I made a mistake.
+  - FALSE (trick question): 
+  - [You have to figure out if a Warning can be safely ignored](#warnings)
+  - An Error isn't necessarily your fault, but [it does mean something happened that R could not handle](#errors).
++ True or False: Error messages will tell me how to fix the problem.
+  - FALSE
+  - [Error messages will tell you what went wrong](#errors), 
+    and maybe even where the problem is;
+  - but they will rarely tell you how to fix it: you have to figure that out for yourself.
 :::
 
 
@@ -2039,6 +2063,18 @@ Other training materials and tutorials used as inspiration:
 [^Rlogo]: The R logo ($\Rlogo$) is [© 2016 The R Foundation](https://www.r-project.org/logo/) and used as-is under the terms of the [**CC-BY-SA 4.0** license](https://creativecommons.org/licenses/by-sa/4.0/)
 
 :::
+
+
+<!-- To ADD:
++ Functions
+  + the `c()` function for making vectors
++ Script files
+  + Rmarkdown & R notebooks
+  + Code style guide?
+- Flow-control? (save for next workshop; short preview?)
+  + if
+  + loops
+-->
 
 
 ```{r NOTES, include=FALSE, eval=FALSE}

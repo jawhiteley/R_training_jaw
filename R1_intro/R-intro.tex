@@ -621,7 +621,7 @@ right:
 
 \begin{frame}{Interacting with
 \(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)}
-\protect\hypertarget{interacting-with-includegraphicsheight1emlibraryframeworksr.frameworkresourcesdochtmllogo.jpg}{}
+\protect\hypertarget{interacting-with-R-command-line}{}
 \begin{itemize}
 \item
   Regardless of the GUI, you interact with \(\texttt{R}\) primarily
@@ -2028,7 +2028,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x1301a6278>
+<bytecode: 0x11bbd0278>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2472,7 +2472,7 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \end{frame}
 
 \begin{frame}[shrink]{}
-\protect\hypertarget{section-1}{}
+\protect\hypertarget{R-documentation-read-it}{}
 % The frame option 'plain' could also be used to hide the header and footer (if any)
 % Manually insert the internal target, since I've removed the frame title
 \protect\hypertarget{textttr-documentation-read-it}{}
@@ -2520,7 +2520,7 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \end{frame}
 
 \begin{frame}[shrink]{}
-\protect\hypertarget{section-2}{}
+\protect\hypertarget{R-documentation-read-it-end}{}
 % Manually insert the internal target, since I've removed the frame title
 \protect\hypertarget{textttr-documentation-read-it-end}{}
 
@@ -3202,7 +3202,8 @@ Error in library(car) : there is no package called 'car'
 \item
   Download \& install the package
 \item
-  You may have to select a ``CRAN mirror'' (server) to use.
+  You may have to select a ``CRAN mirror''\footnotemark{} (server) to
+  use.
 \end{itemize}
 
 \AlertTok{\textbf{%
@@ -3244,15 +3245,8 @@ to do when you want to use it.}}
 \end{minipage} \\
 \bottomrule\noalign{}
 \end{longtable}
-
-\begin{verbatim}
-Installing package into '/Users/jaw/Library/R/arm64/4.3/library'
-(as 'lib' is unspecified)
-\end{verbatim}
-
-\begin{verbatim}
-Loading required package: carData
-\end{verbatim}
+\footnotetext{\ul{C}omprehensive \ul{R} \ul{A}rchive \ul{N}etwork:
+  repositories of R software, packages, and documentation.}
 \end{frame}
 
 \begin{frame}[fragile]{Try out your new package}
@@ -3446,14 +3440,138 @@ Levels: MS QC
 \hypertarget{backmatter}{%
 \section{Backmatter}\label{backmatter}}
 
-\begin{frame}{Backmatter}
-\end{frame}
-
 \begin{frame}[fragile]{\protect\hyperlink{pop-quiz}{Quiz} Review}
 \protect\hypertarget{quiz-review}{}
+\begin{itemize}
+\tightlist
+\item
+  What does `\protect\hyperlink{installing-the-car-package}{CRAN}' stand
+  for?
+\item
+  \protect\hyperlink{why-is-it-named-textttr}{Why is it named
+  '\(\texttt{R}\)'}?
+\item
+  How can you use \(\texttt{R}\)
+  \protect\hyperlink{interacting-with-R-command-line}{\emph{interactively}}?
+\item
+  How do you find out
+  \protect\hyperlink{textttr-documentation-find-it}{what a function
+  does} \& \protect\hyperlink{R-documentation-read-it-end}{how to use
+  it}?
+\item
+  How do you \protect\hyperlink{symbolic-variables}{store values} to
+  \protect\hyperlink{retrieve-values}{re-use later}?
+\item
+  True or False: \protect\hyperlink{warnings}{Warnings} can be ignored,
+  but an \protect\hyperlink{errors}{Error} means I made a mistake.
+\item
+  True or False: \protect\hyperlink{errors}{Error messages} will tell me
+  how to fix the problem.
+\end{itemize}
+
 \note{\texttt{\#\#\ Answers\ (for\ discussion)}
 
-Answers in notes}
+\begin{itemize}
+\tightlist
+\item
+  What does `CRAN' stand for?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{installing-the-car-package}{Comprehensive R
+    Archive Network}
+  \item
+    a repository of current and previous R software, packages, and
+    documentation, with mirrored copies on servers around the world.
+  \end{itemize}
+\item
+  \protect\hyperlink{why-is-it-named-textttr}{Why is it named
+  '\(\texttt{R}\)'}?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    An open-source implementation of the \texttt{S} statistical language
+  \item
+    Created by Ross Ihaka and Robert Gentleman (aka ``R \& R''), whose
+    names both start with the letter ``R''
+  \end{itemize}
+\item
+  How can you use \(\texttt{R}\) \emph{interactively}?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    By entering commands in the
+    \href{interacting-with-R-command-line}{command-line}, and reading
+    messages and output from the \emph{console}.
+  \end{itemize}
+\item
+  How do you find out what a function does \& how to use it?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{textttr-documentation}{Documentation}: e.g., the
+    various
+    \protect\hyperlink{textttr-documentation-find-it}{\texttt{help()}
+    functions}
+  \item
+    \protect\hyperlink{R-documentation-read-it-end}{\texttt{example()}
+    function}
+  \item
+    \protect\hyperlink{help-web-sites}{Web sites}; search the internet
+  \item
+    \protect\hyperlink{help-books}{Books}
+  \item
+    \protect\hyperlink{help-documentation}{etc.}
+  \end{itemize}
+\item
+  How do you store values to re-use later?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{symbolic-variables}{Symbolic variables}
+  \item
+    \protect\hyperlink{symbolic-variables}{\emph{assign} the value to a
+    \emph{name}}
+  \item
+    Use the names in code later to
+    \protect\hyperlink{retrieve-values}{retrieve the stored value}
+  \end{itemize}
+\item
+  True or False: Warnings can be ignored, but an Error means I made a
+  mistake.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    FALSE (trick question):
+  \item
+    \protect\hyperlink{warnings}{You have to figure out if a Warning can
+    be safely ignored}
+  \item
+    An Error isn't necessarily your fault, but
+    \protect\hyperlink{errors}{it does mean something happened that R
+    could not handle}.
+  \end{itemize}
+\item
+  True or False: Error messages will tell me how to fix the problem.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    FALSE
+  \item
+    \protect\hyperlink{errors}{Error messages will tell you what went
+    wrong}, and maybe even where the problem is;
+  \item
+    but they will rarely tell you how to fix it: you have to figure that
+    out for yourself.
+  \end{itemize}
+\end{itemize}}
 \end{frame}
 
 \begin{frame}[fragile]{References \& More Information}
