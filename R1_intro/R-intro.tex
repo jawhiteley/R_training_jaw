@@ -2028,7 +2028,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x125ecee78>
+<bytecode: 0x10d159678>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -3277,12 +3277,99 @@ Levels: MS QC
 \hypertarget{review}{%
 \section{Review}\label{review}}
 
-\begin{frame}{Let's play ``\textbf{Command-R}''}
+\begin{frame}[fragile,shrink]{Let's play ``\textbf{Command-R}''}
 \protect\hypertarget{lets-play-command-r}{}
+\begin{itemize}
+\item
+  2 (or more) players
+
+  \begin{itemize}
+  \tightlist
+  \item
+    If you have 2 computers, use one to play and the other to consult
+    the help files.
+  \end{itemize}
+\item
+  \textbf{Start with:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Take turns using the variable `\VariableTok{\texttt{x}}' as an
+  \emph{argument} in a \emph{function} or \emph{expression}
+\item
+  Assign the \emph{result} to the same variable
+  `\VariableTok{\texttt{x}}'
+\item
+  You may not use the same command twice in a chain
+\item
+  You may use the same \emph{function} or \emph{mathematical operator},
+  but you have to use more, fewer, or different \emph{arguments} each
+  time.
+\item
+  How long can you keep the chain going without getting errors or
+  breaking the rules?
+\end{itemize}
 \end{frame}
 
-\begin{frame}{``\textbf{Command-R}''}
+\begin{frame}[fragile]{``\textbf{Command-R}''}
 \protect\hypertarget{command-r}{}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.45\textwidth}
+\begin{block}{Challenges}
+\protect\hypertarget{challenges}{}
+\begin{itemize}
+\tightlist
+\item
+  Change the object \emph{type} of \VariableTok{\texttt{x}} into a :
+
+  \begin{itemize}
+  \tightlist
+  \item
+    vector of multiple items
+  \item
+    data frame
+  \end{itemize}
+\item
+  Use \VariableTok{\texttt{x}} in a graph or
+  \VERB|\FunctionTok{plot}\NormalTok{()}|
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Careful! Some plotting functions do not return a result and may
+    break your chain.
+  \end{itemize}
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.45\textwidth}
+\textbf{Sample commands}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{*}\NormalTok{ (x}\SpecialCharTok{+}\DecValTok{10}\NormalTok{)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(x)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(x)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\NormalTok{x}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from=}\NormalTok{x[}\DecValTok{1}\NormalTok{], }\AttributeTok{to=}\DecValTok{100}\NormalTok{, }
+         \AttributeTok{by=}\DecValTok{2}\NormalTok{)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(x)}
+\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ x[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ x[}\DecValTok{2}\NormalTok{]}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{foo =} \FunctionTok{rnorm}\NormalTok{(}\FunctionTok{length}\NormalTok{(x)),}
+\NormalTok{  x}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{column}
+\end{columns}
 \end{frame}
 
 \hypertarget{saving-code-files}{%
