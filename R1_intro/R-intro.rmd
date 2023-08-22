@@ -124,7 +124,6 @@ message("knitr version: ", packageVersion("knitr"),
 ```
 
 
-
 ## Prerequisites
 
 - Access to a copy of the [$\Rlogo$](https://www.r-project.org)[^Rlogo] software
@@ -137,6 +136,8 @@ message("knitr version: ", packageVersion("knitr"),
 - Knowledge of common mathematical operations: arithmetic, logarithms, etc.
 
 - No previous experience with R or programming required.
+
+
 
 
 # Welcome
@@ -266,6 +267,8 @@ On your turn:
 
 \bigskip
 _Read more about the history of $\R$  on [Wikipedia](https://en.wikipedia.org/wiki/R_(programming_language)#History)_^[https://en.wikipedia.org/wiki/R_(programming_language)#History]
+
+
 
 
 # Interacting with $\R$ (Interface)
@@ -576,6 +579,8 @@ to return the *value*.
   without having to copy & paste.
 
 
+
+
 # Simple $\R$ objects
 
 ## Vectors
@@ -702,6 +707,8 @@ as.character(c(1,2,NA,4))
       [arr] ($ (as.north) +(1ex,1.5ex) $) -- ($ (\x1,0) +(1ex,\ShadedFrameSep+0.5ex) $);
   \end{scope}
 \end{tikzpicture}
+
+
 
 
 # Storing & retrieving values
@@ -916,6 +923,8 @@ pi
 ```
 
 
+
+
 # Operators
 
 ## Operators
@@ -1034,6 +1043,8 @@ all.equal(a * a, 2)   #(2)
 ```
 :::
 ::::::
+
+
 
 
 # Functions
@@ -1169,6 +1180,8 @@ Var <- sum( ((x <- 1:20) - mean(x))^2 / (length(x) -1) )
 ```{r complex_simple_fun}
 var(1:20)
 ```
+
+
 
 
 # Errors, Warnings, and Messages
@@ -1466,6 +1479,7 @@ help.search("sort")
 
 
 
+
 # Working with objects
 
 ## Some *object* types
@@ -1728,6 +1742,8 @@ CO2$Treatment
 +----------------------------------------+-------------------------------------+
 
 
+
+
 # Installing packages
 
 ## Intalling *packages*
@@ -1811,6 +1827,7 @@ library(car)
 ?recode
 recode(CO2$Type, "'Quebec'='QC'; else='MS'")
 ```
+
 
 
 
@@ -1946,6 +1963,11 @@ help.start
 
 # Saving code (files)
 
+
+
+
+# Backmatter
+
 <!-- To ADD:
 + Functions
   + the `c()` function for making vectors
@@ -1956,9 +1978,6 @@ help.start
   + if
   + loops
 -->
-
-
-# Backmatter
 
 ## [Quiz](#pop-quiz) Review
 
