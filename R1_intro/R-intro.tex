@@ -1,6 +1,7 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
   11pt,
@@ -186,11 +187,12 @@
 \fi
 \newcommand{\ctop}{\vspace{\ShadedFrameSep}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seemed like a good approximation, depending on other parametes; '\topsep+\parskip+\partopsep' seemed logical, but might be too much, maybe because it loses the rubber values)
 \newcommand{\chup}{\vspace{-\ShadedFrameSep}}  % move code chunk up, to gobble whitespace above?
-\definecolor{darkred}{rgb}{0.6,0,0}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{darkblue}{rgb}{0,0,0.6}
 \newcommand{\Rlogo}{\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
 \newcommand{\R}{\texttt{R}}
 \newcommand{\highlight}[1]{\StringTok{#1}}
-\newcommand{\important}[1]{\AlertTok{#1}}
+\newcommand{\important}[1]{\textcolor{darkred}{#1}}
 \newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
 \newcommand{\annote}[1]{{\footnotesize #1}}
 \newcommand{\name}[1]{\VariableTok{\texttt{#1}}}
@@ -203,7 +205,11 @@
 \hypersetup{
   pdftitle={A Gentle Introduction to R},
   pdfauthor={Jonathan Whiteley},
-  hidelinks,
+  colorlinks=true,
+  linkcolor={darkblue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={darkblue},
   pdfcreator={LaTeX via pandoc}}
 
 \title{A Gentle Introduction to R}
@@ -705,8 +711,9 @@ command-line}
     \emph{input}).
   \end{itemize}
 \item
-  \textbf{Press \AlertTok{\texttt{return}}/\AlertTok{\texttt{enter}} to
-  \emph{run} the current \emph{command} }
+  \textbf{Press
+  \textcolor{darkred}{\texttt{return}}/\textcolor{darkred}{\texttt{enter}}
+  to \emph{run} the current \emph{command} }
 \item
   If you can still edit the command next to the prompt, then it has not
   been submitted to \(\texttt{R}\) to execute (it is still waiting for
@@ -749,13 +756,14 @@ command-line (continued)}
   \tightlist
   \item
     This usually means you forgot a closing\\
-    \emph{quote} \AlertTok{\texttt{"}}, \emph{parenthesis}
-    \AlertTok{\texttt{(}}, \emph{bracket} \AlertTok{\texttt{[}}, or
-    \emph{brace} \AlertTok{\texttt{\{}}
+    \emph{quote} \textcolor{darkred}{\texttt{"}}, \emph{parenthesis}
+    \textcolor{darkred}{\texttt{(}}, \emph{bracket}
+    \textcolor{darkred}{\texttt{[}}, or \emph{brace}
+    \textcolor{darkred}{\texttt{\{}}
   \end{itemize}
 \item
   \StringTok{You can \textit{cancel} the current command at any time by pressing \texttt{escape}}
-  (\AlertTok{\texttt{esc}})
+  (\textcolor{darkred}{\texttt{esc}})
 \end{itemize}
 \end{frame}
 
@@ -807,7 +815,7 @@ Read the opening message carefully.
   \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.9\textwidth]{images/R-screenshot-win-default}};
   \begin{scope}[x={(image.south east)},y={(image.north west)}]
     \node (rect) [overlay, fit={(0,0.36) (0.42,0.46)}, inner sep=0] {};
-    \node (note)  [note, text width=12em] at (0.55,0.41) {\textcolor[rgb]{0.60,0.00,0.00}{$\R$ offers suggestions to start with}};
+    \node (note)  [note, text=darkred, text width=12em] at (0.55,0.41) {\color[rgb]{0.60,0.00,0.00}$\R$ offers suggestions to start with};
     \draw [->] (note.west) -> (rect.east);
   \end{scope}
 \end{tikzpicture}
@@ -1014,13 +1022,13 @@ command-line tips}
 \begin{itemize}
 \item
   With the cursor next to the empty prompt (\OtherTok{\texttt{>}}),\\
-  use the up \& down \AlertTok{arrow keys} (↑↓) to re-produce previous
-  commands.
+  use the up \& down \textcolor{darkred}{arrow keys} (↑↓) to re-produce
+  previous commands.
 \item
   This lets you ``scroll through your \emph{command history}''.
 \item
-  Press \AlertTok{up} (\AlertTok{$\uparrow$}) once, and you get the last
-  command you entered\\
+  Press \textcolor{darkred}{up} (\textcolor{darkred}{$\uparrow$}) once,
+  and you get the last command you entered\\
   without having to copy \& paste.
 \end{itemize}
 \end{frame}
@@ -1048,7 +1056,7 @@ objects}{Simple \textbackslash texttt\{R\} objects}}\label{simple-textttr-object
 \begin{columns}[c]
 \begin{column}{0.25\textwidth}
 \centering
-\AlertTok{\Large\textbf{\tikzmarknode{index}{\textit{index}:}\\ the item\\ number}}
+\textcolor{darkred}{\Large\tikzmarknode{index}{\textbf{\textit{index}}:}\\ the item\\ number}
 \end{column}
 
 \begin{column}{0.5\textwidth}
@@ -1074,12 +1082,12 @@ objects}{Simple \textbackslash texttt\{R\} objects}}\label{simple-textttr-object
 
 \begin{column}{0.25\textwidth}
 \centering
-\AlertTok{\Large\textbf{\tikzmarknode{value}{\textit{value}}}}
+\textcolor{darkred}{\Large\textbf{\tikzmarknode{value}{\textit{value}}}}
 \end{column}
 \end{columns}
 
 \begin{tikzpicture}[remember picture, overlay, 
-                    arr/.style={ultra thick, red, -{Latex}[round]}]
+                    arr/.style={ultra thick, darkred, -{Latex}[round]}]
   \node[anchor=south west,inner sep=0, fit={(code_bl)(code_tr)}] (code) {};
   \begin{scope}[shift=(code.south west),x=(code.south east),y=(code.north west)]
     \draw let \p1 = (index.east) in 
@@ -1258,7 +1266,7 @@ underscores & \StringTok{\texttt{\_}} \\
 \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Retrieve values}
+\begin{frame}[fragile,shrink]{Retrieve values}
 \protect\hypertarget{retrieve-values}{}
 When a variable \emph{name} is evaluated, it returns the stored
 \emph{value}.
@@ -1670,7 +1678,7 @@ Comparison of 2 values results in \emph{logical values}:
 \toprule\noalign{}
 \endhead
 \VERB|\SpecialCharTok{==}| & \begin{minipage}[t]{\linewidth}\raggedright
-``equal'' --- \AlertTok{Note the \textbf{two} equals signs.}\\
+``equal'' --- \textcolor{darkred}{Note the \textbf{two} equals signs.}\\
 Not to be confused with a single equals sign\\
 \hspace*{0.333em}(used to \emph{assign} values).\strut
 \end{minipage} \\
@@ -1959,11 +1967,12 @@ assign values to function arguments by name
 \item
   Some functions can be called without arguments.
 \item
-  \textbf{You still need the parentheses\AlertTok{()} !}
+  \textbf{You still need the parentheses\textcolor{darkred}{()} !}
 \item
-  The same word without \AlertTok{\texttt{()}} refers to an
-  \emph{object} (\emph{variable}):\\
-  adding the \AlertTok{\texttt{()}} specifies a \emph{function call}
+  The same word without \textcolor{darkred}{\texttt{()}} refers to an
+  \emph{object} (\emph{variable}) \emph{name}:\\
+  adding the \textcolor{darkred}{\texttt{()}} specifies a \emph{function
+  call}
 \item
   Typing a function name without brackets usually outputs the \emph{raw
   code} for that function (unless another object has been defined with
@@ -2028,7 +2037,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x11bbd0278>
+<bytecode: 0x117a7d078>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2151,8 +2160,7 @@ Error in eval(expr, envir, enclos) : object 'Fail' not found
   \begin{itemize}
   \tightlist
   \item
-    \emph{It is up to you to review the warnings and decide if they are
-    important}.
+    \textcolor{darkred}{\textit{It is up to you to review the warnings and decide if they are important}}.
   \item
     Use the \VERB|\FunctionTok{warnings}\NormalTok{()}| command to
     review them.
@@ -2319,9 +2327,15 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \protect\hypertarget{help-reference-cards-cheat-sheets}{}
 \begin{itemize}
 \item
-  \url{https://cran.r-project.org/doc/contrib/Short-refcard.pdf}
-\item
-  \url{https://cran.r-project.org/doc/contrib/refcard.pdf}
+  \url{https://cran.r-project.org/other-docs.html}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \url{https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf}
+  \item
+    \url{https://cran.r-project.org/doc/contrib/refcard.pdf}
+  \end{itemize}
 \item
   \href{https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf}{RStudio
   IDE cheat sheet}
@@ -3206,7 +3220,7 @@ Error in library(car) : there is no package called 'car'
   use.
 \end{itemize}
 
-\AlertTok{\textbf{%
+\textcolor{darkred}{\textbf{%
 You only need to do this \textit{once}
 per \texttt{R}~installation.}}
 \end{minipage} \\
@@ -3224,7 +3238,7 @@ per \texttt{R}~installation.}}
   and \emph{documentation} available.
 \end{itemize}
 
-\AlertTok{\textbf{This is all you need
+\textcolor{darkred}{\textbf{This is all you need
 to do when you want to use it.}}
 \end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
