@@ -1486,20 +1486,20 @@ help.search("sort")
 
 An "object" is a way of packaging information in $\R$.
 
-### vector
+### **vector**
 
 - a collection of *values*, all of the **same** *type*.
 
-### list
+### **list**
 
 - a collection of **different** *types* of values, or even *objects*.
 
-### factor
+### **factor**
 
 - a collection of values (*vector*)  
   from a finite list of possible values (*levels*)
 
-### data frame
+### **data frame**
 
 - a list of *vectors*, *factors*, or other objects of the same length (\# rows) 
 - *columns* = "variables" ; *rows* = "cases"
@@ -1907,16 +1907,17 @@ x <- data.frame(
 + - * / ^
 <- =     assign
 == != < > <= >=
-:
+:     
 seq
 c    
+
+round 
+all.equal
 
 sqrt 
 log 
 exp
 
-ls 
-rm
 
 ```
 :::
@@ -1931,6 +1932,7 @@ head
 length
 str
 names
+
 typeof
 class
 attributes
@@ -1940,6 +1942,7 @@ is.vector
 :::
 ::: {.column width="33%"}
 ``` r
+ls    rm
 install.packages
 library
 

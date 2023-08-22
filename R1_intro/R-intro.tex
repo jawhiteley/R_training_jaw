@@ -2028,7 +2028,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x143a98278>
+<bytecode: 0x1301a6278>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -2589,7 +2589,7 @@ analogy: \url{https://moderndive.netlify.app/1-getting-started.html}}
 \protect\hypertarget{some-object-types}{}
 An ``object'' is a way of packaging information in \(\texttt{R}\).
 
-\begin{block}{vector}
+\begin{block}{\textbf{vector}}
 \protect\hypertarget{vector}{}
 \begin{itemize}
 \tightlist
@@ -2598,7 +2598,7 @@ An ``object'' is a way of packaging information in \(\texttt{R}\).
 \end{itemize}
 \end{block}
 
-\begin{block}{list}
+\begin{block}{\textbf{list}}
 \protect\hypertarget{list}{}
 \begin{itemize}
 \tightlist
@@ -2608,7 +2608,7 @@ An ``object'' is a way of packaging information in \(\texttt{R}\).
 \end{itemize}
 \end{block}
 
-\begin{block}{factor}
+\begin{block}{\textbf{factor}}
 \protect\hypertarget{factor}{}
 \begin{itemize}
 \tightlist
@@ -2618,7 +2618,7 @@ An ``object'' is a way of packaging information in \(\texttt{R}\).
 \end{itemize}
 \end{block}
 
-\begin{block}{data frame}
+\begin{block}{\textbf{data frame}}
 \protect\hypertarget{data-frame}{}
 \begin{itemize}
 \tightlist
@@ -3381,16 +3381,17 @@ Levels: MS QC
 \SpecialCharTok{+} \SpecialCharTok{{-}} \ErrorTok{*} \ErrorTok{/} \ErrorTok{\^{}}
 \ErrorTok{\textless{}}\SpecialCharTok{{-}} \ErrorTok{=}\NormalTok{     assign}
 \SpecialCharTok{==} \ErrorTok{!=} \ErrorTok{\textless{}} \ErrorTok{\textgreater{}} \ErrorTok{\textless{}=} \ErrorTok{\textgreater{}=}
-\ErrorTok{:}
+\ErrorTok{:}     
 \NormalTok{seq}
 \NormalTok{c    }
+
+\NormalTok{round }
+\NormalTok{all.equal}
 
 \NormalTok{sqrt }
 \NormalTok{log }
 \NormalTok{exp}
 
-\NormalTok{ls }
-\NormalTok{rm}
 \end{Highlighting}
 \end{Shaded}
 \end{column}
@@ -3407,6 +3408,7 @@ Levels: MS QC
 \NormalTok{length}
 \NormalTok{str}
 \NormalTok{names}
+
 \NormalTok{typeof}
 \NormalTok{class}
 \NormalTok{attributes}
@@ -3418,6 +3420,7 @@ Levels: MS QC
 \begin{column}{0.33\textwidth}
 \begin{Shaded}
 \begin{Highlighting}[]
+\NormalTok{ls    rm}
 \NormalTok{install.packages}
 \NormalTok{library}
 
@@ -3440,11 +3443,11 @@ Levels: MS QC
 \hypertarget{saving-code-files}{%
 \section{Saving code (files)}\label{saving-code-files}}
 
-\begin{frame}{Saving code (files)}
-\end{frame}
-
 \hypertarget{backmatter}{%
 \section{Backmatter}\label{backmatter}}
+
+\begin{frame}{Backmatter}
+\end{frame}
 
 \begin{frame}[fragile]{\protect\hyperlink{pop-quiz}{Quiz} Review}
 \protect\hypertarget{quiz-review}{}
