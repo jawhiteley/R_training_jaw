@@ -21,21 +21,6 @@ header-includes: |
   \setbeamertemplate{itemize item}[circle]
   \setbeamertemplate{enumerate item}[circle]
   %\useoutertheme{miniframes}    % for progress bars along the top of each frame
-  \defbeamertemplate{background canvas}{mydefault}{%
-  }
-  \defbeamertemplate{background canvas}{refcardbg}{%
-    \tikz\node[opacity=0.1]{%
-      \includegraphics[width=\paperwidth,height=\paperheight,page=1]{images/Baggott-refcard-v2.pdf}
-    };
-  }
-  \BeforeBeginEnvironment{frame}{%
-    \setbeamertemplate{background canvas}[mydefault]%
-  }
-  \makeatletter
-    \define@key{beamerframe}{refcardbg}[true]{%
-      \setbeamertemplate{background canvas}[refcardbg]%
-    }
-  \makeatother
   %\usepackage{layout}    % add `\layout` to the document to show page layout and parameter values
   \usepackage{tikz}
   \usetikzlibrary{arrows.meta,calc,tikzmark,fit, positioning}
@@ -1324,23 +1309,43 @@ https://moderndive.netlify.app/1-getting-started.html
 - Your preferred search engine ...
 
 
-## HELP: Reference cards / cheat sheets {frameoptions="refcardbg"}
+## HELP: Reference cards / cheat sheets
 
-- https://cran.r-project.org/other-docs.html
+:::::: {.columns .onlytextwidth align=center}
+::: {.column width="55%"}
+
+- [CRAN Contributed Documentation](https://cran.r-project.org/other-docs.html)
+
+  - "Short Documents and Reference Cards"
+
   - https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf 
+  
   - https://cran.r-project.org/doc/contrib/refcard.pdf
   
-- [RStudio IDE cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf)
+- Cheat sheets from RStudio/Posit: 
+  [github.com/rstudio/cheatsheets](https://github.com/rstudio/cheatsheets)
+
+  - [RStudio IDE cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf)
 
 - Search the internet for
   - "R cheat sheet"
   - "R reference card"
+
+:::
+::: {.column width="40%"}
+[![](images/Baggott-refcard-v2.pdf)](https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf)
+[![](images/base-r.pdf)](https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf)
+:::
+::::::
+
 
 ::: notes
 Other cheat sheets for Posit (RStudio) packages:
 https://posit.co/resources/cheatsheets/
 Posit Cheat Sheets:
 https://posit.cloud/learn/cheat-sheets
+html versions:
+https://rstudio.github.io/cheatsheets/
 :::
 
 
@@ -2148,6 +2153,7 @@ https://ctan.mirror.globo.tech/info/texbytopic/TeXbyTopic.pdf
 https://tex.stackexchange.com/questions/11622/add-space-between-paragraphs-in-beamer
 https://tex.stackexchange.com/questions/278429/is-there-a-simple-command-for-the-available-height-in-a-beamer-slide
 https://tex.stackexchange.com/questions/44218/set-image-to-full-all-available-space-in-beamer-without-overlapping-other-eleme/44298#44298
+https://tex.stackexchange.com/questions/173201/beamer-template-with-different-style-options-for-frames
 
 ## Overlay graphics using Tikz:
 https://tex.stackexchange.com/questions/209052/how-to-get-tikzmark-to-work
