@@ -2028,7 +2028,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x103117278>
+<bytecode: 0x1163d0278>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -3095,6 +3095,51 @@ Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':  84 o
 
 \hypertarget{installing-packages}{%
 \section{Installing packages}\label{installing-packages}}
+
+\begin{frame}{Intalling \emph{packages}}
+\protect\hypertarget{intalling-packages}{}
+\begin{itemize}
+\item
+  \(\texttt{R}\) is extensible \& modular
+
+  \begin{itemize}
+  \tightlist
+  \item
+    you can add features (\emph{functions}) and capabilities by
+    \emph{installing} and \emph{loading} extra components called
+    ``\emph{packages}''
+  \end{itemize}
+\item
+  You can do this within \(\texttt{R}\), using simple functions
+\item
+  This keeps \(\texttt{R}\) lean, fast, and avoids ``feature bloat'':
+  load only the packages you need.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Try a function that does not exist (yet)}
+\protect\hypertarget{try-a-function-that-does-not-exist-yet}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?recode}
+\FunctionTok{recode}\NormalTok{(CO2}\SpecialCharTok{$}\NormalTok{Type, }\StringTok{"\textquotesingle{}Quebec\textquotesingle{}=\textquotesingle{}QC\textquotesingle{}; else=\textquotesingle{}MS\textquotesingle{}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error in recode(CO2$Type, "'Quebec'='QC'; else='MS'") : 
+  could not find function "recode"
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  This often happens when you forget to \emph{load} a \emph{package}
+  that contains the \emph{function} you are trying to use.
+\item
+  or there's a typo in the \emph{function name}
+\end{itemize}
+\end{frame}
 
 \hypertarget{saving-code-files}{%
 \section{Saving code (files)}\label{saving-code-files}}

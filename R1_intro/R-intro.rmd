@@ -1729,6 +1729,47 @@ CO2$Treatment
 
 # Installing packages
 
+## Intalling *packages*
+
+- $\R$ is extensible & modular
+  - you can add features (*functions*) and capabilities by *installing* and *loading* extra components called “*packages*”
+  
+- You can do this within $\R$, using simple functions
+
+- This keeps $\R$ lean, fast, and avoids "feature bloat": load only the packages you need.
+
+
+## Try a function that does not exist (yet)
+
+```{r, eval=FALSE}
+?recode
+recode(CO2$Type, "'Quebec'='QC'; else='MS'")
+```
+```{r, echo=FALSE}
+try( recode(CO2$Type, "'Quebec'='QC'; else='MS'") )
+```
+
+- This often happens when you forget to *load* a *package* that contains the *function* you are trying to use.
+- or there's a typo in the *function name*
+
+
+## Trying to load a *package* that is not installed
+
+
+## Installing the 'car' package
+
+<!-- `remove.packages('car')` to un-insall the package for demo purposes -->
+
+## Try out your new package
+
+
+
+# Review
+
+## Let's play "**Command-R**"
+
+## "**Command-R**"
+
 
 # Saving code (files)
 
@@ -1737,12 +1778,11 @@ CO2$Treatment
   + arguments (default values)
   + calling functions (syntax)
   + the `c()` function for making vectors
-+ Working objects
 + Installing packages
 + Script files
   + Rmarkdown & R notebooks
   + Code style guide?
-+ Flow-control?
+- Flow-control? (save for next workshop; short preview?)
   + if
   + loops
 -->
