@@ -144,6 +144,11 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+%% Custom LaTeX code to include in Beamer presentations from RMarkdown
+%% Jonathan Whiteley, 2023
+%% To be included in RMarkdown files:
+%%    includes:
+%%      in_header: "preamble-include.tex"
 \setbeamertemplate{itemize item}[circle]
 \setbeamertemplate{enumerate item}[circle]
 %\useoutertheme{miniframes}    % for progress bars along the top of each frame
@@ -219,7 +224,7 @@
 
 \title{A Gentle Introduction to R}
 \author{Jonathan Whiteley}
-\date{2023-08-22}
+\date{2023-08-23}
 
 \begin{document}
 \frame{\titlepage}
@@ -2036,7 +2041,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x11576a078>
+<bytecode: 0x157b59c78>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}

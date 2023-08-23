@@ -7,10 +7,11 @@ output:
   beamer_presentation:
     latex_engine: xelatex # ensures certain characters (like '^') are rendered correctly
     theme: "Boadilla"
+    highlight: ../shared/my_tango.theme
     slide_level: 2
     toc: true
     includes:
-      in_header: "preamble-include.tex"
+      in_header: "../shared/preamble-include.tex"
 fontsize: 11pt
 urlcolor: darkblue
 linkcolor: darkblue
