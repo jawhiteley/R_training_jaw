@@ -7,16 +7,18 @@ output:
     latex_engine: xelatex # ensures certain characters (like '^') are rendered correctly
     theme: Boadilla
     colortheme: default
-    highlight: ../shared/my_tango.theme
+    highlight: ../../shared/my_tango.theme
     slide_level: 2
     toc: false
-    keep_tex: yes
+    keep_tex: yes    # uncomment to keep tex file in output directory; I have stopped tracking this file in the git repo.
     includes:
-      in_header: "../shared/preamble-include.tex"
+      in_header: "../../shared/preamble-include.tex"
 fontsize: 11pt
 urlcolor: darkblue
 linkcolor: darkblue
 #navigation: vertical # horizontal or vertical or frame
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "..") })
 params:
   is_virtual: TRUE    # is this presentation for a virtual (T) or in-person (F) environment?
 header-includes: |
@@ -27,6 +29,7 @@ header-includes: |
 ```{r setup, include=FALSE}
 ## https://yihui.org/knitr/options/
 knitr::opts_chunk$set(echo = TRUE, comment='')
+# options(tinytex.engine_args = '--output-directory=..')  # almost worked, but produced errors
 options(width = 60)  # to fit output on slides: either smaller font or shorter width (or both)
 try( remove.packages('car') )  # to trigger appropriate error messages in the demo.
 ```

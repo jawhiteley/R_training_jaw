@@ -7,14 +7,16 @@ output:
   beamer_presentation:
     latex_engine: xelatex # ensures certain characters (like '^') are rendered correctly
     theme: "Boadilla"
-    highlight: ../shared/my_tango.theme
+    highlight: ../../shared/my_tango.theme
     slide_level: 2
     toc: true
     includes:
-      in_header: "../shared/preamble-include.tex"
+      in_header: "../../shared/preamble-include.tex"
 fontsize: 11pt
 urlcolor: darkblue
 linkcolor: darkblue
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "..") })
 header-includes: |
   % Commands with executable R code have to be in this document, not an external .tex file.
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}  
