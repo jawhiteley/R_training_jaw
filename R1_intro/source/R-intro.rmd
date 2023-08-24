@@ -10,17 +10,30 @@ output:
     highlight: ../../shared/my_tango.theme
     slide_level: 2
     toc: false
-    #keep_tex: yes    # uncomment to keep tex file in output directory; I have stopped tracking this file in the git repo.
+    keep_tex: yes
     includes:
       in_header: "../../shared/preamble-include.tex"
 fontsize: 11pt
 urlcolor: darkblue
 linkcolor: darkblue
 #navigation: vertical # horizontal or vertical or frame
-knit: (function(inputFile, encoding) {
-  rmarkdown::render(inputFile, encoding = encoding, output_dir = "..") })
 params:
   is_virtual: TRUE    # is this presentation for a virtual (T) or in-person (F) environment?
+## https://bookdown.org/yihui/rmarkdown-cookbook/custom-knit.html
+## https://stackoverflow.com/questions/76964346/can-you-specify-different-folders-for-tex-and-pdf-output-files-in-r-markdown
+knit: 
+  (function(inputFile, ...) {
+    render_out <- rmarkdown::render(inputFile, ...);
+    out_path <- unlist( strsplit(render_out, split = "/") );
+    out_path <- file.path("..", out_path[length(out_path)]);
+    message("copying output \nfrom '", render_out, "'\n  to '", normalizePath(out_path), "'" );
+    success <- file.copy( render_out, out_path, overwrite = TRUE );
+    if (!isFALSE(success)) {
+      message("Output file copied to '", normalizePath(out_path), "'" );
+      message("Deleting file '", render_out, "'" );
+      file.remove( render_out )
+    };
+  })
 header-includes: |
   % Commands with executable R code have to be in this document, not an external .tex file.
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}  
