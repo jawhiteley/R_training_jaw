@@ -1,0 +1,21 @@
+output: 
+  beamer_presentation: 
+    latex_engine: xelatex # ensures certain characters (like '^') are rendered correctly
+    theme: Boadilla
+    colortheme: default
+    highlight: ../../shared/my_tango.theme
+    slide_level: 2
+    toc: false
+    #keep_tex: yes
+    #keep_md: yes
+    includes:
+      in_header: "../../shared/preamble-include.tex"
+fontsize: 11pt
+urlcolor: darkblue   # defined in LaTeX preamble (in_header includes, above)
+linkcolor: darkblue  # defined in LaTeX preamble (in_header includes, above)
+#navigation: vertical # horizontal or vertical or frame
+## Output to a different directory than the source:
+## https://stackoverflow.com/questions/26174565/r-in-rstudio-how-do-i-make-knitr-output-to-a-different-folder-to-avoid-clutteri/46007686#46007686
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "..") })
+
