@@ -47,7 +47,8 @@ options(width = 60)  # to fit output on slides: either smaller font or shorter w
 try( remove.packages('car') )  # to trigger appropriate error messages in the demo.
 ```
 
-```{r debug_page, include=FALSE, eval=FALSE}
+
+```{r debugging_page, eval=FALSE, include=FALSE}
 ## Debugging
 \small
 
@@ -87,7 +88,7 @@ OuterFrameSep: \the\OuterFrameSep \\
 :::
 ::::::
 
-```{r debugging, echo=FALSE}
+```{r debugging, echo=FALSE, eval=FALSE}
 message("pandoc version: ", rmarkdown::pandoc_version())
 message("knitr version: ", packageVersion("knitr"),
         "\nrmarkdown version: ", packageVersion("rmarkdown")
