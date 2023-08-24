@@ -16,6 +16,8 @@ output:
 fontsize: 11pt
 urlcolor: darkblue   # defined in LaTeX preamble (in_header includes, above)
 linkcolor: darkblue  # defined in LaTeX preamble (in_header includes, above)
+params:
+  is_virtual: TRUE    # is this presentation for a virtual (T) or in-person (F) environment?
 ---
 
 ```{r setup, include=FALSE}
@@ -23,32 +25,122 @@ knitr::opts_chunk$set(echo = TRUE)
 options(width = 60)  # to fit output on slides
 ```
 
-
 ## Prerequisites
 
-- Access to a copy of the [![](`r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em}](https://www.r-project.org) software
+-   Access to a copy of the [![](`r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em}](https://www.r-project.org) software
 
-  - i.e., a "binary executable"
-  
-  - Go to _[www.r-project.org](https://www.r-project.org)_ to get a copy,  
-    or ask your system administrator.
+    -   i.e., a "binary executable"
 
-- Knowledge of common mathematical operations: arithmetic, logarithms, etc.
+    -   Go to [*www.r-project.org*](https://www.r-project.org) to get a copy, \
+        or ask your system administrator.
 
-- Knowledge of basic $\R$ concepts, such as 
-  *variables*, *objects*, *operators*, *functions*, etc.
-  - This is covered in the first workshop: "A Gentle Introduction to R"
+- Tidyverse packages installed on the same system as $\R$
+
+  - Please run this command in $\R$ *before* the workshop:
+    ```{r install_tidyverse, eval=FALSE}
+    install.packages("tidyverse")
+    ```
+
+-   Knowledge of common mathematical operations: arithmetic, logarithms, etc.
+
+-   Knowledge of basic $\R$ concepts, such as *variables*, *objects*, *operators*, *functions*, *packages*, etc.
+
+    -   This is covered in the first workshop: "A Gentle Introduction to R"
+
+<!-- R logo: ![](`r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em} -->
 
 
-## 
+## Learning Objectives
+
+- Load tabular data into R
+- Explore data to check that it was loaded correctly
+- Export data from R to external files
+- Data frames
+- Clean data
+  - Add & change columns
+  - Edit values systematically
+  - Change data types
+- Tidy data
+  - Change the _shape_ of a data frame
+- Re-use code, reproducible results, automated reports
+  - Scripts
+  - R Markdown, R Notebooks
+
+# Welcome
+
+## Pop Quiz
+
+\annote{\fade{We will review these \textit{at the end}, so you can see how much you have learned.}}
+
++ 
+
+```{r welcome, echo=FALSE, results='asis'}
+if (params$is_virtual) {
+  cat("\\ 
+  \n### Answer in the chat:
+  \n
+  \nWhat is your favourite emoji?  Why do you like to use it so much?
+  ")
+}
+```
 
 
-## References
+## Introductions
+
+- Name
+- Pronouns
+- Job title, role
+- _optional_: a favourite childhood treat or candy?
+
+<!-- -->
+
+- What are you hoping to learn most in today's workshop?
+
+
+# Loading data into $\R$
+
+
+# Exploring your data
+
+## Data frames
+
+# Saving data outside $\R$
+
+
+# Re-using your code: scripts and other files
+
+
+# The `tidyverse` collection of packages
+
+
+# Clean data
+
+
+# Tidy data
+
+
+# Review
+
+## Exercise
+
+
+## [Quiz](#pop-quiz) Review
+
+<!-- copy questions from [Pop Quiz][], above. -->
+
 
 ::: notes
-
-https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf
+`## Answers (for discussion)`
 
 :::
 
 
+
+
+# Backmatter
+
+## References
+
+::: notes
+<https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf>
+:::

@@ -79,6 +79,46 @@
 \makeatother
 \usepackage{xcolor}
 \newif\ifbibliography
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{242,242,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -183,7 +223,7 @@
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}{Prerequisites}
+\begin{frame}[fragile]{Prerequisites}
 \protect\hypertarget{prerequisites}{}
 \begin{itemize}
 \item
@@ -195,16 +235,30 @@
   \item
     i.e., a ``binary executable''
   \item
-    Go to \emph{\href{https://www.r-project.org}{www.r-project.org}} to
+    Go to \href{https://www.r-project.org}{\emph{www.r-project.org}} to
     get a copy,\\
     or ask your system administrator.
+  \end{itemize}
+\item
+  Tidyverse packages installed on the same system as \(\R\)
+
+  \begin{itemize}
+  \item
+    Please run this command in \(\R\) \emph{before} the workshop:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
   \end{itemize}
 \item
   Knowledge of common mathematical operations: arithmetic, logarithms,
   etc.
 \item
   Knowledge of basic \(\R\) concepts, such as \emph{variables},
-  \emph{objects}, \emph{operators}, \emph{functions}, etc.
+  \emph{objects}, \emph{operators}, \emph{functions}, \emph{packages},
+  etc.
 
   \begin{itemize}
   \tightlist
@@ -215,9 +269,135 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{}
-\protect\hypertarget{section}{}
+\begin{frame}{Learning Objectives}
+\protect\hypertarget{learning-objectives}{}
+\begin{itemize}
+\tightlist
+\item
+  Load tabular data into R
+\item
+  Explore data to check that it was loaded correctly
+\item
+  Export data from R to external files
+\item
+  Data frames
+\item
+  Clean data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add \& change columns
+  \item
+    Edit values systematically
+  \item
+    Change data types
+  \end{itemize}
+\item
+  Tidy data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Change the \emph{shape} of a data frame
+  \end{itemize}
+\item
+  Re-use code, reproducible results, automated reports
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Scripts
+  \item
+    R Markdown, R Notebooks
+  \end{itemize}
+\end{itemize}
 \end{frame}
+
+\hypertarget{welcome}{%
+\section{Welcome}\label{welcome}}
+
+\begin{frame}{Pop Quiz}
+\protect\hypertarget{pop-quiz}{}
+\annote{\fade{We will review these \textit{at the end}, so you can see how much you have learned.}}
+
+\begin{itemize}
+\tightlist
+\item
+\end{itemize}
+
+~
+
+\begin{block}{Answer in the chat:}
+\protect\hypertarget{answer-in-the-chat}{}
+What is your favourite emoji? Why do you like to use it so much?
+\end{block}
+\end{frame}
+
+\begin{frame}{Introductions}
+\protect\hypertarget{introductions}{}
+\begin{itemize}
+\tightlist
+\item
+  Name
+\item
+  Pronouns
+\item
+  Job title, role
+\item
+  \emph{optional}: a favourite childhood treat or candy?
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  What are you hoping to learn most in today's workshop?
+\end{itemize}
+\end{frame}
+
+\hypertarget{loading-data-into-r}{%
+\section{\texorpdfstring{Loading data into
+\(\R\)}{Loading data into \textbackslash R}}\label{loading-data-into-r}}
+
+\hypertarget{exploring-your-data}{%
+\section{Exploring your data}\label{exploring-your-data}}
+
+\begin{frame}{Data frames}
+\protect\hypertarget{data-frames}{}
+\end{frame}
+
+\hypertarget{saving-data-outside-r}{%
+\section{\texorpdfstring{Saving data outside
+\(\R\)}{Saving data outside \textbackslash R}}\label{saving-data-outside-r}}
+
+\hypertarget{re-using-your-code-scripts-and-other-files}{%
+\section{Re-using your code: scripts and other
+files}\label{re-using-your-code-scripts-and-other-files}}
+
+\hypertarget{the-tidyverse-collection-of-packages}{%
+\section{\texorpdfstring{The \texttt{tidyverse} collection of
+packages}{The tidyverse collection of packages}}\label{the-tidyverse-collection-of-packages}}
+
+\hypertarget{clean-data}{%
+\section{Clean data}\label{clean-data}}
+
+\hypertarget{tidy-data}{%
+\section{Tidy data}\label{tidy-data}}
+
+\hypertarget{review}{%
+\section{Review}\label{review}}
+
+\begin{frame}{Exercise}
+\protect\hypertarget{exercise}{}
+\end{frame}
+
+\begin{frame}[fragile]{\protect\hyperlink{pop-quiz}{Quiz} Review}
+\protect\hypertarget{quiz-review}{}
+\note{\texttt{\#\#\ Answers\ (for\ discussion)}}
+\end{frame}
+
+\hypertarget{backmatter}{%
+\section{Backmatter}\label{backmatter}}
 
 \begin{frame}{References}
 \protect\hypertarget{references}{}
