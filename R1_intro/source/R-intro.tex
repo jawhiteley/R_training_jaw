@@ -229,43 +229,7 @@
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}[fragile]{Debugging}
-\protect\hypertarget{debugging}{}
-\small
-
-\texttt{\textbackslash{}baselineskip}: \(\the\baselineskip\) \hfill
-\texttt{\textbackslash{}lineskip}: \(\the\lineskip\)\\
-\texttt{\textbackslash{}parskip}: \(\the\parskip\) \hfill
-\texttt{\textbackslash{}parsep}: \(\the\parsep\)\\
-\texttt{\textbackslash{}itemsep}: \(\the\itemsep\) \hfill
-\texttt{\textbackslash{}topsep}: \(\the\topsep\)\\
-\texttt{\textbackslash{}partopsep}: \(\the\partopsep\) \hfill
-\texttt{\textbackslash{}OuterFrameSep}: \(\the\OuterFrameSep\)
-
-\begin{columns}[c]
-\begin{column}{0.5\textwidth}
-\texttt{\textbackslash{}baselineskip}: \(\the\baselineskip\)\\
-\texttt{\textbackslash{}parskip}: \(\the\parskip\)\\
-\texttt{\textbackslash{}parsep}: \(\the\parsep\)\\
-\texttt{\textbackslash{}itemsep}: \(\the\itemsep\)\\
-\texttt{\textbackslash{}topsep}: \(\the\topsep\)\\
-\texttt{\textbackslash{}partopsep}: \(\the\partopsep\)\\
-\texttt{\textbackslash{}OuterFrameSep}: \(\the\OuterFrameSep\)
-\end{column}
-
-\begin{column}{0.5\textwidth}
-\begin{Shaded}
-baselineskip: \the\baselineskip  \\
-parskip: \the\parskip  \\
-parsep: \the\parsep  \\
-itemsep: \the\itemsep  \\
-topsep: \the\topsep \\
-partopsep: \the\partopsep \\
-OuterFrameSep: \the\OuterFrameSep \\
-\end{Shaded}
-\end{column}
-\end{columns}
-
+\begin{frame}[fragile]
 \begin{verbatim}
 pandoc version: 3.1.1
 \end{verbatim}
@@ -2041,7 +2005,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x11c3d0278>
+<bytecode: 0x11b9a1678>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -3606,7 +3570,7 @@ Levels: MS QC
 \end{itemize}}
 \end{frame}
 
-\begin{frame}[fragile]{References \& More Information}
+\begin{frame}[fragile,squeeze]{References \& More Information}
 \protect\hypertarget{references-more-information}{}
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3633,12 +3597,6 @@ Online:
 \item
   \href{https://education.rstudio.com/}{RStudio Education}
   (\href{https://education.rstudio.com/}{education.rstudio.com})
-
-  \begin{itemize}
-  \tightlist
-  \item
-    tutorials, workshop materials, and other resources.
-  \end{itemize}
 \item
   \(\includegraphics[height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}\)
   \href{https://cran.r-project.org/manuals.html}{Manuals}
@@ -3654,17 +3612,20 @@ Online:
     e.g., \url{http://cran.r-project.org/doc/contrib/usingR.pdf}
   \end{itemize}
 \item
-  Internet search
+  \href{https://stackoverflow.com/questions/tagged/r}{Stack Overflow}
+  (\href{https://stackoverflow.com/}{stackoverflow.com})
+\end{itemize}
 
-  \begin{itemize}
-  \tightlist
-  \item
-    \href{https://stackoverflow.com/questions/tagged/r}{Stack Overflow}
-    (\href{https://stackoverflow.com/}{stackoverflow.com})
-  \item
-    \href{http://www.cookbook-r.com/}{Cookbook for R}
-    (\href{http://www.cookbook-r.com/}{www.cookbook-r.com})
-  \end{itemize}
+Books (now old, but helped me learn):
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://link.springer.com/book/10.1007/978-0-387-93837-0}{A
+  Beginner's Guide to R}
+\item
+  \href{https://link.springer.com/book/10.1007/978-0-387-79054-1}{Introductory
+  Statistics with R}
 \end{itemize}
 
 \note{Other training materials and tutorials used as inspiration:

@@ -31,7 +31,8 @@ knit:
     if (!isFALSE(success)) {
       message("Output file copied to '", normalizePath(out_path), "'" );
       message("Deleting file '", render_out, "'" );
-      file.remove( render_out )
+      success <- file.remove( render_out );
+      if (!isFALSE(success)) message("Original file deleted.");
     };
   })
 header-includes: |
@@ -46,7 +47,7 @@ options(width = 60)  # to fit output on slides: either smaller font or shorter w
 try( remove.packages('car') )  # to trigger appropriate error messages in the demo.
 ```
 
-
+```{r debug_page, include=FALSE, eval=FALSE}
 ## Debugging
 \small
 
@@ -2015,7 +2016,7 @@ help.start
 
 
 
-## References & More Information
+## References & More Information {.squeeze}
 
 ```{r, eval=FALSE}
 help.start()
@@ -2029,21 +2030,21 @@ Accessible from the screen above (offline):
 Online:
 
 + [RStudio Education](https://education.rstudio.com/) ([education.rstudio.com](https://education.rstudio.com/))
-  - tutorials, workshop materials, and other resources.
+  <!-- - tutorials, workshop materials, and other resources. -->
 + $\Rlogo$ [Manuals](https://cran.r-project.org/manuals.html)
   (<https://cran.r-project.org/manuals.html>)
 + $\Rlogo$ [Contributed Documentation](https://cran.r-project.org/other-docs.html)
   - e.g., <http://cran.r-project.org/doc/contrib/usingR.pdf>
-+ Internet search
-  - [Stack Overflow](https://stackoverflow.com/questions/tagged/r) ([stackoverflow.com](https://stackoverflow.com/))
-  - [Cookbook for R](http://www.cookbook-r.com/) ([www.cookbook-r.com](http://www.cookbook-r.com/))
+<!-- + Internet search -->
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/r) ([stackoverflow.com](https://stackoverflow.com/))
+   <!-- - [Cookbook for R](http://www.cookbook-r.com/) ([www.cookbook-r.com](http://www.cookbook-r.com/)) -->
 
 <!-- deprecated (these are 10+ years old, but they helped me learn)
-Books:
+-->
+Books (now old, but helped me learn):
 
   - [A Beginner's Guide to R](https://link.springer.com/book/10.1007/978-0-387-93837-0)
   - [Introductory Statistics with R](https://link.springer.com/book/10.1007/978-0-387-79054-1)
--->
 
 ::: notes
 
