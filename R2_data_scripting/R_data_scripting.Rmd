@@ -2,13 +2,53 @@
 title: "A Short Introduction to Working With Data in R"
 author: "Jonathan Whiteley"
 date: "`r Sys.Date()`"
-output: beamer_presentation
+output: 
+  beamer_presentation: 
+    latex_engine: xelatex # ensures certain characters (like '^') are rendered correctly
+    theme: Boadilla
+    colortheme: default
+    highlight: ../shared/my_tango.theme
+    slide_level: 2
+    toc: false
+    keep_tex: yes
+    includes:
+      in_header: "../shared/preamble-include.tex"
+fontsize: 11pt
+urlcolor: darkblue   # defined in LaTeX preamble (in_header includes, above)
+linkcolor: darkblue  # defined in LaTeX preamble (in_header includes, above)
 ---
-<!-- References 
-https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf
--->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+options(width = 60)  # to fit output on slides
 ```
+
+
+## Prerequisites
+
+- Access to a copy of the [![](`r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em}](https://www.r-project.org) software
+
+  - i.e., a "binary executable"
+  
+  - Go to _[www.r-project.org](https://www.r-project.org)_ to get a copy,  
+    or ask your system administrator.
+
+- Knowledge of common mathematical operations: arithmetic, logarithms, etc.
+
+- Knowledge of basic $\R$ concepts, such as 
+  *variables*, *objects*, *operators*, *functions*, etc.
+  - This is covered in the first workshop: "A Gentle Introduction to R"
+
+
+## 
+
+
+## References
+
+::: notes
+
+https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf
+
+:::
+
 

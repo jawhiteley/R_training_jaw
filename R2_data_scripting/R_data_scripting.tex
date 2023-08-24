@@ -1,0 +1,227 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+  ignorenonframetext,
+]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\usetheme[]{Boadilla}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\newif\ifbibliography
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+%% Custom LaTeX code to include in Beamer presentations from RMarkdown
+%% Jonathan Whiteley, 2023
+%% To be included in RMarkdown files:
+%%    includes:
+%%      in_header: "preamble-include.tex"
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{enumerate item}[circle]
+%\useoutertheme{miniframes}    % for progress bars along the top of each frame
+%\usepackage{layout}    % add `\layout` to the document to show page layout and parameter values
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,tikzmark,fit, positioning}
+% https://tex.stackexchange.com/questions/136143/tikz-animated-figure-in-beamer
+% This won't hide parts of a drawing that have an opacity set in the picture or manually (it overrides the opacity here).
+% see also the `overlay-beamer-styles` tikz library: https://tex.stackexchange.com/questions/639922/using-tikz-with-pause-command-in-rmarkdown-or-quarto-presentation
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
+\AtBeginEnvironment{verbatim}{\small}    % reduce font size in R output
+% https://stackoverflow.com/questions/35734525/reduce-space-between-code-chunks-and-code-output-in-rmarkdown-beamer-presentatio
+\makeatletter
+  \preto{\@verbatim}{\topsep=0pt \partopsep=0pt \itemsep=0pt}
+\makeatother
+% Set some lengths explicitly, for reproducibility across environments with different defaults
+% Using fixed values (without rubber lengths) allows for more predictability in sizes,
+%  which is useful for graphical overlays, though it may not be as flexible.
+% See p. 145 of "The LaTeX Companion" (2e) for a diagram and explanation of some of these parameters.
+\setlength{\partopsep}{0pt}
+\setlength{\topsep}{0pt}
+% My first instinct is to set \parsep to 0 (so paragraphs in the same item are closer together)
+%  and set \itemsep to a rubber value; but the default is the opposite!
+%  So all paragraphs are the same distance apart, regardless of item number...
+% The \tightlist command sets \itemsep and \parskip to 0, but does not change \parsep.
+\setlength{\parsep}{6pt plus2pt minus2pt}
+\setlength{\itemsep}{0pt}
+% For the most part, I don't actually want any space around the Shaded environments,
+%  but it's the easiest way I found to reliably reserve space above the code chunks in columns underneath code output (verbatim).
+\makeatletter
+\@ifpackageloaded{framed}{
+  \setlength{\OuterFrameSep}{4pt}  % = \topsep by default in `framed` package (but this is only applied at the start of the environment: the default value of \OuterFrameSep is otherwise \maxdimen!)
+  \newlength\ShadedFrameSep 
+  \ifdim\OuterFrameSep=\maxdimen 
+    \ShadedFrameSep=\topsep \else 
+    \ShadedFrameSep=\OuterFrameSep 
+  \fi
+}{}
+\makeatother
+%% Custom colours
+\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{darkblue}{rgb}{0,0,0.6}
+%% Custom macros
+\newcommand{\ctop}{\vspace{\ShadedFrameSep}}  % for aligning text with the top of a code block in a table (0.2\baselinesep seemed like a good approximation, depending on other parametes; '\topsep+\parskip+\partopsep' seemed logical, but might be too much, maybe because it loses the rubber values)
+\newcommand{\chup}{\vspace{-\ShadedFrameSep}}  % move code chunk up, to gobble whitespace above?
+%\newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}  %% needs to go through `knit()` to be valid.
+\newcommand{\R}{\texttt{R}}
+\newcommand{\highlight}[1]{\StringTok{#1}}
+\newcommand{\important}[1]{\textcolor{darkred}{#1}}
+\newcommand{\fade}[1]{\textcolor[rgb]{0.66,0.66,0.66}{#1}}
+\newcommand{\annote}[1]{{\footnotesize #1}}
+\newcommand{\name}[1]{\VariableTok{\texttt{#1}}}
+
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={A Short Introduction to Working With Data in R},
+  pdfauthor={Jonathan Whiteley},
+  colorlinks=true,
+  linkcolor={darkblue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={darkblue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{A Short Introduction to Working With Data in R}
+\author{Jonathan Whiteley}
+\date{2023-08-24}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}{Prerequisites}
+\protect\hypertarget{prerequisites}{}
+\begin{itemize}
+\item
+  Access to a copy of the
+  \href{https://www.r-project.org}{\includegraphics[width=\textwidth,height=1em]{/Library/Frameworks/R.framework/Resources/doc/html/logo.jpg}}
+  software
+
+  \begin{itemize}
+  \item
+    i.e., a ``binary executable''
+  \item
+    Go to \emph{\href{https://www.r-project.org}{www.r-project.org}} to
+    get a copy,\\
+    or ask your system administrator.
+  \end{itemize}
+\item
+  Knowledge of common mathematical operations: arithmetic, logarithms,
+  etc.
+\item
+  Knowledge of basic \(\R\) concepts, such as \emph{variables},
+  \emph{objects}, \emph{operators}, \emph{functions}, etc.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This is covered in the first workshop: ``A Gentle Introduction to
+    R''
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\protect\hypertarget{section}{}
+\end{frame}
+
+\begin{frame}{References}
+\protect\hypertarget{references}{}
+\note{\url{https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf}}
+\end{frame}
+
+\end{document}

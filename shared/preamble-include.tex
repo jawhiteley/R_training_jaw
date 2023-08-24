@@ -38,12 +38,16 @@
 \setlength{\itemsep}{0pt}
 % For the most part, I don't actually want any space around the Shaded environments,
 %  but it's the easiest way I found to reliably reserve space above the code chunks in columns underneath code output (verbatim).
-\setlength{\OuterFrameSep}{4pt}  % = \topsep by default in `framed` package (but this is only applied at the start of the environment: the default value of \OuterFrameSep is otherwise \maxdimen!)
-\newlength\ShadedFrameSep 
-\ifdim\OuterFrameSep=\maxdimen 
-  \ShadedFrameSep=\topsep \else 
-  \ShadedFrameSep=\OuterFrameSep 
-\fi
+\makeatletter
+\@ifpackageloaded{framed}{
+  \setlength{\OuterFrameSep}{4pt}  % = \topsep by default in `framed` package (but this is only applied at the start of the environment: the default value of \OuterFrameSep is otherwise \maxdimen!)
+  \newlength\ShadedFrameSep 
+  \ifdim\OuterFrameSep=\maxdimen 
+    \ShadedFrameSep=\topsep \else 
+    \ShadedFrameSep=\OuterFrameSep 
+  \fi
+}{}
+\makeatother
 %% Custom colours
 \definecolor{darkred}{rgb}{0.8,0,0}
 \definecolor{darkblue}{rgb}{0,0,0.6}
