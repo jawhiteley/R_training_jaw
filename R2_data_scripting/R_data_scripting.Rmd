@@ -123,6 +123,9 @@ if (params$is_virtual) {
   - for () loop
 + defining your own functions
   - anonymous functions (or introduce when it becomes relevant, later)
++ Style Guides
+  - https://style.tidyverse.org/syntax.html
+  - https://google.github.io/styleguide/Rguide.html
 -->
 
 
