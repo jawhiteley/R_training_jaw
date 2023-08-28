@@ -97,20 +97,53 @@ if (params$is_virtual) {
 - What are you hoping to learn most in today's workshop?
 
 
+
+
 # Loading data into $\R$
+
+
 
 
 # Exploring your data
 
 ## Data frames
 
+
+
+
 # Saving data outside $\R$
 
 
 # Re-using your code: scripts and other files
 
+<!--
++ Flow-control
+  - if () else
+  - for () loop
++ defining your own functions
+  - anonymous functions (or introduce when it becomes relevant, later)
+-->
 
 # The `tidyverse` collection of packages
+
+##
+
+``` r
+install.packages("tidyverse")
+help(package="tidyverse")
+```
+
+- The [`tidyverse`](https://www.tidyverse.org/) is actually an "opinionated" [collection of packages](https://www.tidyverse.org/packages/) that are designed to work together.
+
+- All packages share an underlying design philosophy, grammar, and data structures.
+
+Today, we will focus on a few of the core packages for loading, cleaning, and manipulating data:
+
+* [tidyr](https://tidyr.tidyverse.org/)
+* [dplyr](https://dplyr.tidyverse.org/)
+* [readr](https://readr.tidyverse.org/), [readxl](https://readxl.tidyverse.org/)
+<!-- * [tibble](https://tibble.tidyverse.org/) -->
+
 
 ## A 'pipe' operator  {.shrink}
 

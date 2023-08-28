@@ -381,9 +381,47 @@ What is your favourite emoji? Why do you like to use it so much?
 \section{Re-using your code: scripts and other
 files}\label{re-using-your-code-scripts-and-other-files}}
 
+\begin{frame}{Re-using your code: scripts and other files}
+\end{frame}
+
 \hypertarget{the-tidyverse-collection-of-packages}{%
 \section{\texorpdfstring{The \texttt{tidyverse} collection of
 packages}{The tidyverse collection of packages}}\label{the-tidyverse-collection-of-packages}}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\FunctionTok{help}\NormalTok{(}\AttributeTok{package=}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  The \href{https://www.tidyverse.org/}{\texttt{tidyverse}} is actually
+  an ``opinionated''
+  \href{https://www.tidyverse.org/packages/}{collection of packages}
+  that are designed to work together.
+\item
+  All packages share an underlying design philosophy, grammar, and data
+  structures.
+\end{itemize}
+
+Today, we will focus on a few of the core packages for loading,
+cleaning, and manipulating data:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://tidyr.tidyverse.org/}{tidyr}
+\item
+  \href{https://dplyr.tidyverse.org/}{dplyr}
+\item
+  \href{https://readr.tidyverse.org/}{readr},
+  \href{https://readxl.tidyverse.org/}{readxl}
+\end{itemize}
+\end{frame}
 
 \begin{frame}[fragile,shrink]{A `pipe' operator}
 \protect\hypertarget{a-pipe-operator}{}
