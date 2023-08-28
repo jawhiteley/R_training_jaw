@@ -26,13 +26,12 @@ knit:
     render_out <- rmarkdown::render(inputFile, ...);
     out_path <- unlist( strsplit(render_out, split = "/") );
     out_path <- file.path("..", out_path[length(out_path)]);
-    message("copying output \nfrom '", render_out, "'\n  to '", normalizePath(out_path), "'" );
+    message("Copying output \nfrom '", render_out, "'\n  to '", normalizePath(out_path), "'" );
     success <- file.copy( render_out, out_path, overwrite = TRUE );
     if (!isFALSE(success)) {
-      message("Output file copied to '", normalizePath(out_path), "'" );
-      message("Deleting file '", render_out, "'" );
+      message("> Output file copied to '", normalizePath(out_path), "'" );
       success <- file.remove( render_out );
-      if (!isFALSE(success)) message("Original file deleted.");
+      if (!isFALSE(success)) message("> Original file deleted '", render_out, "'");
     };
   })
 header-includes: |
