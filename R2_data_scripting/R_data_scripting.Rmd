@@ -117,6 +117,7 @@ if (params$is_virtual) {
 # Re-using your code: scripts and other files
 
 <!--
++ The comment character '#'
 + Flow-control
   - if () else
   - for () loop
@@ -124,16 +125,19 @@ if (params$is_virtual) {
   - anonymous functions (or introduce when it becomes relevant, later)
 -->
 
+
+
+
 # The `tidyverse` collection of packages
 
-##
+## The `tidyverse`
 
 ``` r
 install.packages("tidyverse")
 help(package="tidyverse")
 ```
 
-- The [`tidyverse`](https://www.tidyverse.org/) is actually an "opinionated" [collection of packages](https://www.tidyverse.org/packages/) that are designed to work together.
+- The [`tidyverse`](https://www.tidyverse.org/) is an "opinionated" [collection of packages](https://www.tidyverse.org/packages/) that are designed to work together.
 
 - All packages share an underlying design philosophy, grammar, and data structures.
 
@@ -161,7 +165,7 @@ Today, we will focus on a few of the core packages for loading, cleaning, and ma
 :::
 ::: {.column width="58%"}
 
-- The [`magrittr`](https://magrittr.tidyverse.org/) [package](https://cran.r-project.org/web/packages/magrittr/index.html) (included with [`tidyverse`](https://www.tidyverse.org/packages/#program)) provides a "forward-pipe operator"<!--[^not-a-pipe]-->:
+- The [`magrittr`](https://magrittr.tidyverse.org/) [package](https://cran.r-project.org/package=magrittr) (included with [`tidyverse`](https://www.tidyverse.org/packages/#program)) provides a "forward-pipe operator"<!--[^not-a-pipe]-->:
 
   ``` r
   %>%    # ?magrittr::`%>%`
@@ -186,7 +190,7 @@ Today, we will focus on a few of the core packages for loading, cleaning, and ma
 
 ## `magrittr`'s 'forward-pipe' operator
 
-- `%>%`{.r} allows you to pass results from an expression on the left-hand side (LHS) as the first argument to a *function call* on the right-hand side (RHS).  The following are equivalent:
+- `%>%`{.r} allows you to pass results from an expression on the left-hand side (LHS) as the first argument to a *function call* on the right-hand side (RHS).  
 
 +--------------------------------+--------------------------------+
 | This expression ...            | is equivalent to:              |
