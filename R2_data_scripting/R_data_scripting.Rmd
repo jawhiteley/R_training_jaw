@@ -128,7 +128,7 @@ if (params$is_virtual) {
 :::
 ::: {.column width="58%"}
 
-- The [`magrittr`](https://magrittr.tidyverse.org/) [package](https://cran.r-project.org/web/packages/magrittr/index.html) (included in [`tidyverse`](https://www.tidyverse.org/packages/#program)) provides a "forward-pipe operator"[^not-a-pipe]:
+- The [`magrittr`](https://magrittr.tidyverse.org/) [package](https://cran.r-project.org/web/packages/magrittr/index.html) (included with [`tidyverse`](https://www.tidyverse.org/packages/#program)) provides a "forward-pipe operator"<!--[^not-a-pipe]-->:
 
   ``` r
   %>%    # ?magrittr::`%>%`
@@ -144,7 +144,7 @@ if (params$is_virtual) {
 :::
 ::::::
 
-[^not-a-pipe]: Although it is a 'pipe' operator, it does not contain a 'pipe' character (`|`), hence the reference to René Magritte's surrealist painting.
+<!-- [^not-a-pipe]: Although it is a 'pipe' operator, it does not contain a 'pipe' character (`|`), hence the reference to René Magritte's surrealist painting. -->
 
 ::: notes
 `magrittr` logo downloaded from: https://github.com/tidyverse/magrittr/blob/main/man/figures/logo.png
@@ -214,6 +214,22 @@ if (params$is_virtual) {
 
 # Tidy data
 
+## Tidy datasets
+
+> 
+> > Happy families are all alike; every unhappy family is unhappy in its own way 
+> 
+> — Leo Tolstoy 
+  \
+  \
+> Like families, tidy datasets are all alike but every messy dataset is messy in its own way.  
+> 
+> --- Hadley Wickham (doi: [10.18637/jss.v059.i10](https://doi.org/10.18637/jss.v059.i10))
+
+
+- Tidy datasets provide a standardized way to link the *structure* of a dataset (its physical layout) with its *semantics* (its meaning).
+
+  - [`tidyr` vignette](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
 
 # Review
 
