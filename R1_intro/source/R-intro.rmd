@@ -1292,8 +1292,9 @@ https://moderndive.netlify.app/1-getting-started.html
   - https://cran.r-project.org/doc/contrib/refcard.pdf
   
 - Cheat sheets from RStudio/Posit: 
-  [github.com/rstudio/cheatsheets](https://github.com/rstudio/cheatsheets)
+  [posit.co/resources/cheatsheets](https://posit.co/resources/cheatsheets/)
 
+  - [Contributed Cheatsheets](https://rstudio.github.io/cheatsheets/contributed-cheatsheets.html), including [non-English translations](https://posit.co/resources/cheatsheets/?type=translations/)
   - [RStudio IDE cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf)
 
 - Search the internet for
@@ -1311,6 +1312,10 @@ https://moderndive.netlify.app/1-getting-started.html
 ::: notes
 Other cheat sheets for Posit (RStudio) packages:
 https://posit.co/resources/cheatsheets/
+https://github.com/rstudio/cheatsheets
+Non-English Translations:
+https://posit.co/resources/cheatsheets/?type=translations
+https://rstudio.github.io/cheatsheets/translations.html
 Posit Cheat Sheets:
 https://posit.cloud/learn/cheat-sheets
 html versions:
