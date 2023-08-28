@@ -119,6 +119,13 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -218,7 +225,7 @@
 
 \title{A Short Introduction to Working With Data in R}
 \author{Jonathan Whiteley}
-\date{2023-08-24}
+\date{2023-08-28}
 
 \begin{document}
 \frame{\titlepage}
@@ -377,6 +384,190 @@ files}\label{re-using-your-code-scripts-and-other-files}}
 \hypertarget{the-tidyverse-collection-of-packages}{%
 \section{\texorpdfstring{The \texttt{tidyverse} collection of
 packages}{The tidyverse collection of packages}}\label{the-tidyverse-collection-of-packages}}
+
+\begin{frame}[fragile,shrink]{A `pipe' operator}
+\protect\hypertarget{a-pipe-operator}{}
+\begin{columns}[c,onlytextwidth]
+\begin{column}{0.38\textwidth}
+\begin{figure}
+\centering
+\includegraphics{images/MagrittePipe.jpg}
+\caption{\href{https://en.wikipedia.org/wiki/The_Treachery_of_Images}{``La
+Trahison des Images'' (``The Treachery of Images'')} or ``Ceci~n'est pas
+une pipe'' (``This~is not a pipe'') by René Magritte. }
+\end{figure}
+
+\centering
+
+\href{https://magrittr.tidyverse.org/}{\includegraphics[width=\textwidth,height=0.25\textheight]{images/magrittr_logo.png}}
+\end{column}
+
+\begin{column}{0.58\textwidth}
+\begin{itemize}
+\item
+  The \href{https://magrittr.tidyverse.org/}{\texttt{magrittr}}
+  \href{https://cran.r-project.org/web/packages/magrittr/index.html}{package}
+  (included in
+  \href{https://www.tidyverse.org/packages/\#program}{\texttt{tidyverse}})
+  provides a ``forward-pipe operator''\footnote<.->{Although it is a
+    `pipe' operator, it does not contain a `pipe' character
+    (\texttt{\textbar{}}), hence the reference to René Magritte's
+    surrealist painting.}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\%\textgreater{}\%}    \CommentTok{\# ?magrittr::\textasciigrave{}\%\textgreater{}\%\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  The \texttt{magrittr} package is automatically loaded when loading
+  most \texttt{tidyverse} packages (e.g., \texttt{tidyr},
+  \texttt{dplyr}, \texttt{ggplot2}), as these packages all use this
+  operator extensively.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    It is often unnecessary to load \texttt{magrittr} separately, unless
+    you are \textbf{not} using these other packages.
+  \end{itemize}
+\end{itemize}
+\end{column}
+\end{columns}
+
+\note{\texttt{magrittr} logo downloaded from:
+\url{https://github.com/tidyverse/magrittr/blob/main/man/figures/logo.png}}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{magrittr}`s 'forward-pipe' operator}
+\protect\hypertarget{magrittrs-forward-pipe-operator}{}
+\begin{itemize}
+\tightlist
+\item
+  \VERB|\SpecialCharTok{\%\textgreater{}\%}| allows you to pass results
+  from an expression on the left-hand side (LHS) as the first argument
+  to a \emph{function call} on the right-hand side (RHS). The following
+  are equivalent:
+\end{itemize}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4583}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4583}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+This expression \ldots{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+is equivalent to:
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{f}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{f}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{f}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{f}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{f}\NormalTok{(y, }\AttributeTok{z =}\NormalTok{ .)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{f}\NormalTok{(y, }\AttributeTok{z =}\NormalTok{ x)}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ f }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ g }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ h}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{h}\NormalTok{(}\FunctionTok{g}\NormalTok{(}\FunctionTok{f}\NormalTok{(x)))}
+\end{Highlighting}
+\end{Shaded}
+\end{minipage} \\
+\bottomrule\noalign{}
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  This can make code easier to read, as expressions are written and
+  evaluated from \emph{left to right}, rather than from \emph{inside to
+  outside} nested parentheses.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\(\R\) now has a `native' pipe operator}
+\protect\hypertarget{r-now-has-a-native-pipe-operator}{}
+\begin{itemize}
+\item
+  A pipe operator was introduced in base \(\R\) in v4.1 (May
+  2021)\footnote<.->{\url{https://cran.r-project.org/bin/windows/base/old/4.1.0/NEWS.R-4.1.0.html}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{|\textgreater{}}    \CommentTok{\# ?pipeOp}
+\end{Highlighting}
+\end{Shaded}
+\item
+  It was inspired by the ``forward pipe operator'' introduced by
+  \texttt{magrittr}, but is more streamlined. See these links for
+  details:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/}{Differences
+    between the base R and magrittr pipes}
+  \item
+    ``\href{https://towardsdatascience.com/understanding-the-native-r-pipe-98dea6d8b61b}{Understanding
+    the native R pipe \textbar\textgreater{}}''
+  \end{itemize}
+\item
+  Because it is so new, most code examples online still use
+  `\VERB|\SpecialCharTok{\%\textgreater{}\%}|' from \texttt{magrittr}.
+\item
+  This document will use `\VERB|\SpecialCharTok{\%\textgreater{}\%}|' in
+  the examples, for consistency and because it was designed to work with
+  other \texttt{tidyverse} functions.
+\item
+  But `\VERB|\SpecialCharTok{\VerbBar{}\textgreater{}}|' might work well
+  for you in simple cases,\\
+  without having to load any additional packages.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Pipes: exercise}
+\protect\hypertarget{pipes-exercise}{}
+\end{frame}
 
 \hypertarget{clean-data}{%
 \section{Clean data}\label{clean-data}}

@@ -112,6 +112,102 @@ if (params$is_virtual) {
 
 # The `tidyverse` collection of packages
 
+## A 'pipe' operator  {.shrink}
+
+:::::: {.columns .onlytextwidth align=center}
+::: {.column width="38%"}
+
+![["La Trahison des Images" ("The Treachery of Images")](https://en.wikipedia.org/wiki/The_Treachery_of_Images) or "Ceci\ n'est pas une pipe" ("This\ is not a pipe") by René Magritte. 
+<!-- [Image from Wikipedia](https://en.wikipedia.org/wiki/The_Treachery_of_Images#/media/File:MagrittePipe.jpg). -->
+](images/MagrittePipe.jpg)
+
+\centering
+
+[![`magrittr` logo.](images/magrittr_logo.png){height=25%}](https://magrittr.tidyverse.org/)
+
+:::
+::: {.column width="58%"}
+
+- The [`magrittr`](https://magrittr.tidyverse.org/) [package](https://cran.r-project.org/web/packages/magrittr/index.html) (included in [`tidyverse`](https://www.tidyverse.org/packages/#program)) provides a "forward-pipe operator"[^not-a-pipe]:
+
+  ``` r
+  %>%    # ?magrittr::`%>%`
+  ```
+
+- The `magrittr` package is automatically loaded when loading most `tidyverse` packages (e.g., `tidyr`, `dplyr`, `ggplot2`), as these packages all use this operator extensively.
+
+  - It is often unnecessary to load `magrittr` separately, unless you are **not** using these other packages.
+
+  
+  
+
+:::
+::::::
+
+[^not-a-pipe]: Although it is a 'pipe' operator, it does not contain a 'pipe' character (`|`), hence the reference to René Magritte's surrealist painting.
+
+::: notes
+`magrittr` logo downloaded from: https://github.com/tidyverse/magrittr/blob/main/man/figures/logo.png
+:::
+
+
+## `magrittr`'s 'forward-pipe' operator
+
+- `%>%`{.r} allows you to pass results from an expression on the left-hand side (LHS) as the first argument to a *function call* on the right-hand side (RHS).  The following are equivalent:
+
++--------------------------------+--------------------------------+
+| This expression ...            | is equivalent to:              |
++================================+================================+
+| ``` r                          | ``` r                          |
+| x %>% f()                      | f(x)                           |
+| ```                            | ```                            |
++--------------------------------+--------------------------------+
+| ``` r                          | ``` r                          |
+| x %>% f(y)                     | f(x, y)                        |
+| ```                            | ```                            |
++--------------------------------+--------------------------------+
+| ``` r                          | ``` r                          |
+| x %>% f(y, z = .)              | f(y, z = x)                    |
+| ```                            | ```                            |
++--------------------------------+--------------------------------+
+| ``` r                          | ``` r                          |
+| x %>% f %>% g %>% h            | h(g(f(x)))                     |
+| ```                            | ```                            |
++--------------------------------+--------------------------------+
+
+- This can make code easier to read, as expressions are written and evaluated from _left to right_, rather than from _inside to outside_ nested parentheses.
+
+
+## $\R$ now has a 'native' pipe operator
+
+- A pipe operator was introduced in base $\R$ in v4.1 (May 2021)[^R4.1]:
+
+  ``` r
+  |>    # ?pipeOp
+  ```
+
+- It was inspired by the "forward pipe operator" introduced by `magrittr`, but is more streamlined. 
+  See these links for details:
+
+  - [Differences between the base R and magrittr pipes](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/)
+  - "[Understanding the native R pipe |>](https://towardsdatascience.com/understanding-the-native-r-pipe-98dea6d8b61b)"
+
+- Because it is so new, most code examples online still use '`%>%`{.r}' from `magrittr`.
+
+- This document will use '`%>%`{.r}' in the examples, 
+  for consistency and because it was designed 
+  to work with other `tidyverse` functions.
+
+- But '`|>`{.r}' might work well for you in simple cases,  
+  without having to load any additional packages.
+
+[^R4.1]: https://cran.r-project.org/bin/windows/base/old/4.1.0/NEWS.R-4.1.0.html
+
+
+## Pipes: exercise
+
+
+
 
 # Clean data
 
