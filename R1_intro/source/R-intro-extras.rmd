@@ -130,7 +130,7 @@ See the following sites for lists, summaries, and descriptions of open-source li
 
 ## Learning $\R$
 
-:::::: {.columns}
+:::::: {.columns align=center .onlytextwidth}
 ::: {.column width="50%"}
 
 | Learning any programming language is a journey.
@@ -145,25 +145,14 @@ and then gradually use it for more programming as their needs and skills grow.
 <!--   - Most real statistical analysis requires some programming. -->
 
 :::
-::: {.column width="50%"}
+::: {.column width="48%"}
 
-<!-- embedding an image from an online url isn't working for me,
-but at least the code chunk below doesn't produce errors. :( -->
-<!-- ![comic: trying to learn any programming language](https://rladiessydney.org/img/bblearning.jpg){height=\textheight} -->
-```{r echo=FALSE, fig.align="center", out.height="50%"}
-# https://www.togaware.com/linux/survivor/bookdown-insert-image-from-url.html
-img_url <- "https://rladiessydney.org/img/bblearning.jpg"
-if (knitr::is_html_output())
- {
-   knitr::include_graphics(img_url)
- } else {
-   knitr::include_url(img_url)
- }
-```
+<!-- ![comic: trying to learn any programming language](https://rladiessydney.org/img/bblearning.jpg){width=100%} -->
 
-source: 
+![Trying to learn any programming language.  
+Source: 
 [R-ladies Sydney](https://rladiessydney.org/courses/ryouwithme/01-basicbasics-0/), 
-[Real Python](https://twitter.com/realpython)
+[Real Python](https://twitter.com/realpython)](images/bblearning.jpg){width=100%}
 
 :::
 ::::::
