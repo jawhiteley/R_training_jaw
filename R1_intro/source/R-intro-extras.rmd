@@ -309,3 +309,27 @@ c(1, 2, 3) %*% c(3, 2, 1)
 ```
 
 
+# Special Values
+
+## Missing Values
+
+- Missing values are usually represented by the special value: `NA`{.r}
+
+:::::: {.columns align=top}
+::: {.column width="45%"}
+- Many mathematical expressions react to `NA`{.r} in their input by *returning* `NA`{.r}, regardless of other values
+```{r NA}
+1 + NA
+sum(c(1, 2, NA))
+```
+:::
+::: {.column width="48%"}
+- Sometimes, missing values can simply be removed, to allow operations to be performed on the other (non-missing) values
+```{r NA.rm}
+sum(c(1, 2, NA), na.rm=TRUE)
+```
+:::
+::::::
+
+
+<!-- ## Comparing Missing Values -->
