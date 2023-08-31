@@ -225,7 +225,7 @@
 
 \title{A Short Introduction to Working With Data in R}
 \author{Jonathan Whiteley}
-\date{2023-08-28}
+\date{2023-08-30}
 
 \begin{document}
 \frame{\titlepage}
@@ -366,6 +366,10 @@ What is your favourite emoji? Why do you like to use it so much?
 \section{\texorpdfstring{Loading data into
 \(\R\)}{Loading data into \textbackslash R}}\label{loading-data-into-r}}
 
+\begin{frame}{}
+\protect\hypertarget{section}{}
+\end{frame}
+
 \hypertarget{exploring-your-data}{%
 \section{Exploring your data}\label{exploring-your-data}}
 
@@ -376,6 +380,9 @@ What is your favourite emoji? Why do you like to use it so much?
 \hypertarget{saving-data-outside-r}{%
 \section{\texorpdfstring{Saving data outside
 \(\R\)}{Saving data outside \textbackslash R}}\label{saving-data-outside-r}}
+
+\begin{frame}{Saving data outside \(\R\)}
+\end{frame}
 
 \hypertarget{re-using-your-code-scripts-and-other-files}{%
 \section{Re-using your code: scripts and other
@@ -407,18 +414,20 @@ packages}{The tidyverse collection of packages}}\label{the-tidyverse-collection-
   structures.
 \end{itemize}
 
-Today, we will focus on a few of the core packages for loading,
-cleaning, and manipulating data:
+Today, we will focus on a few of the core \texttt{tidyverse} packages
+for loading, cleaning, and manipulating data:
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://tidyr.tidyverse.org/}{tidyr}
-\item
-  \href{https://dplyr.tidyverse.org/}{dplyr}
-\item
   \href{https://readr.tidyverse.org/}{readr},
-  \href{https://readxl.tidyverse.org/}{readxl}
+  \href{https://readxl.tidyverse.org/}{readxl} for \textbf{loading} data
+\item
+  \href{https://dplyr.tidyverse.org/}{dplyr} for \textbf{manipulating}
+  data (values)
+\item
+  \href{https://tidyr.tidyverse.org/}{tidyr} for \textbf{rearranging}
+  data
 \end{itemize}
 \end{frame}
 
@@ -479,8 +488,8 @@ une pipe'' (``This~is not a pipe'') by René Magritte. }
 \tightlist
 \item
   \VERB|\SpecialCharTok{\%\textgreater{}\%}| allows you to pass results
-  from an expression on the left-hand side (LHS) as the first argument
-  to a \emph{function call} on the right-hand side (RHS).
+  from an expression on the left-hand side (LHS) as an argument (usually
+  the first) to a \emph{function call} on the right-hand side (RHS).
 \end{itemize}
 
 \begin{longtable}[]{@{}
@@ -605,6 +614,9 @@ is equivalent to:
 \hypertarget{clean-data}{%
 \section{Clean data}\label{clean-data}}
 
+\begin{frame}{Clean data}
+\end{frame}
+
 \hypertarget{tidy-data}{%
 \section{Tidy data}\label{tidy-data}}
 
@@ -657,7 +669,9 @@ messy in its own way.
 
 \begin{frame}{References}
 \protect\hypertarget{references}{}
-\note{\url{https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf}}
+\note{\url{https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf}
+\url{https://mountainmath.ca/canssi/\#1}
+\url{https://mountainmath.github.io/canadian_data/}}
 \end{frame}
 
 \end{document}

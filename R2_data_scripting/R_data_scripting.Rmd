@@ -101,6 +101,15 @@ if (params$is_virtual) {
 
 # Loading data into $\R$
 
+## 
+
+<!--
+- working directory
+- read.csv (read.table)
+  - local Example File
+- downloading data from the internet (to a temp dir)
+  - CANSIM / NDMr / other package?
+-->
 
 
 
@@ -108,24 +117,38 @@ if (params$is_virtual) {
 
 ## Data frames
 
-
+<!--
+- Data frames (review)
+- head, str, names, plot?
+- View / R Studio Environment pane
+- Know Your Data
+-->
 
 
 # Saving data outside $\R$
 
+<!--
+- write.csv
+- Extras: exporting to Excel?
+- .Rdata files?
+-->
 
 # Re-using your code: scripts and other files
 
 <!--
++ What is a script? Why use a script?
+  - Make a simple script that does what we've done so far
 + The comment character '#'
 + Flow-control
   - if () else
   - for () loop
 + defining your own functions
-  - anonymous functions (or introduce when it becomes relevant, later)
+  - anonymous functions? (*introduce when it becomes relevant*, later)
 + Style Guides
   - https://style.tidyverse.org/syntax.html
   - https://google.github.io/styleguide/Rguide.html
++ Rmd, Notebooks? (save for later?)\
+  - Brief mention, demo
 -->
 
 
@@ -143,13 +166,14 @@ help(package="tidyverse")
 - The [`tidyverse`](https://www.tidyverse.org/) is an "opinionated" [collection of packages](https://www.tidyverse.org/packages/) that are designed to work together.
 
 - All packages share an underlying design philosophy, grammar, and data structures.
+  <!-- - _unlike core $\R$ and other packages_ -->
 
-Today, we will focus on a few of the core packages for loading, cleaning, and manipulating data:
+Today, we will focus on a few of the core `tidyverse` packages for loading, cleaning, and manipulating data:
 
-* [tidyr](https://tidyr.tidyverse.org/)
-* [dplyr](https://dplyr.tidyverse.org/)
-* [readr](https://readr.tidyverse.org/), [readxl](https://readxl.tidyverse.org/)
-<!-- * [tibble](https://tibble.tidyverse.org/) -->
+* [readr](https://readr.tidyverse.org/), [readxl](https://readxl.tidyverse.org/) for **loading** data
+<!-- * [tibble](https://tibble.tidyverse.org/) for a 'modern' version of `data.frame`s that behave slightly differently (but are compatible with `data.frame`s). -->
+* [dplyr](https://dplyr.tidyverse.org/) for **manipulating** data (values)
+* [tidyr](https://tidyr.tidyverse.org/) for **rearranging** data
 
 
 ## A 'pipe' operator  {.shrink}
@@ -178,9 +202,6 @@ Today, we will focus on a few of the core packages for loading, cleaning, and ma
 
   - It is often unnecessary to load `magrittr` separately, unless you are **not** using these other packages.
 
-  
-  
-
 :::
 ::::::
 
@@ -193,7 +214,7 @@ Today, we will focus on a few of the core packages for loading, cleaning, and ma
 
 ## `magrittr`'s 'forward-pipe' operator
 
-- `%>%`{.r} allows you to pass results from an expression on the left-hand side (LHS) as the first argument to a *function call* on the right-hand side (RHS).  
+- `%>%`{.r} allows you to pass results from an expression on the left-hand side (LHS) as an argument (usually the first) to a *function call* on the right-hand side (RHS).  
 
 +--------------------------------+--------------------------------+
 | This expression ...            | is equivalent to:              |
@@ -251,6 +272,15 @@ Today, we will focus on a few of the core packages for loading, cleaning, and ma
 
 # Clean data
 
+<!--
++ filter()
++ subset()
++ mutate()
++ editing values systematically
+-->
+
+
+
 
 # Tidy data
 
@@ -294,5 +324,7 @@ Today, we will focus on a few of the core packages for loading, cleaning, and ma
 ## References
 
 ::: notes
-<https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf>
+https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf
+https://mountainmath.ca/canssi/#1
+https://mountainmath.github.io/canadian_data/
 :::
