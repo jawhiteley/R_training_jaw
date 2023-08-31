@@ -72,7 +72,12 @@ options(width = 60)  # to fit output on slides
 
 \annote{\fade{We will review these \textit{at the end}, so you can see how much you have learned.}}
 
-+ 
++ If multiple packages have functions with the same name,
+  how can you specify which one to use?
++ Does $\R$ store data in memory or temporary files?
++ What is the limit to the size of objects and datasets that can be loaded into $\R$?
++ TRUE or FALSE: $\R$ has rules and conventions for naming functions
++ TRUE or FALSE: if you use one package from the `tidyverse`, you have to use all of them.
 
 ```{r welcome, echo=FALSE, results='asis'}
 if (params$is_virtual) {
@@ -108,6 +113,7 @@ if (params$is_virtual) {
 - read.csv (read.table)
   - local Example File
 - downloading data from the internet (to a temp dir)
+  - the same local file, directly from the URL on GitHub
   - CANSIM / NDMr / other package?
 -->
 
@@ -137,13 +143,16 @@ if (params$is_virtual) {
 
 <!--
 + What is a script? Why use a script?
-  - Make a simple script that does what we've done so far
+  - Make a simple script that does what we've done so far?
 + The comment character '#'
 + Flow-control
   - if () else
   - for () loop
 + defining your own functions
   - anonymous functions? (*introduce when it becomes relevant*, later)
+  * write a custom function for comparing values in two vectors with NAs
+    - http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
+    - https://stackoverflow.com/questions/37610056/how-to-treat-nas-like-values-when-comparing-elementwise-in-r
 + Style Guides
   - https://style.tidyverse.org/syntax.html
   - https://google.github.io/styleguide/Rguide.html
@@ -274,9 +283,19 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 
 <!--
 + filter()
-+ subset()
+  - package::function notation (to distinguish from other functions named 'filter')
+  - near()?
+  - duplicates: find, drop [after merging?]
++ select()
 + mutate()
 + editing values systematically
++ combining datasets
+  - rbind / bind_rows
+  - cbind / bind_cols
+  - join() [mention merge()?]
++ sorting; arrange()
+  - group_by()
++ exercise: clean some values in Example File loaded earlier.
 -->
 
 
@@ -304,6 +323,23 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 # Review
 
 ## Exercise
+
+<!--
+in pairs, or small groups:
+write a script (or two companion scripts) that
+- load a series of files in a folder
+- cleans each one to be consistent (in a function)
+- combines them into a single dataset
+- re-arrange (pivot) the final dataset
+- compare to reference file to test success?
+  - have another team / person write a script to do this?
+- export & save the file
+
+One option is to have one person or group introduce some 'errors'
+and have another try to fix them, but it's easy to introduce
+very difficult issues to solve, so this can be risky and time-consuming.
+Might work best with a few parameters to limit the kinds of changes that can be made.
+-->
 
 
 ## [Quiz](#pop-quiz) Review
