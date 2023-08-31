@@ -289,10 +289,15 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 + select()
 + mutate()
 + editing values systematically
+  - ifelse()
+  - case_when()
++ summarize()
 + combining datasets
   - rbind / bind_rows
   - cbind / bind_cols
   - join() [mention merge()?]
+  - exercise: summarize a dataset and merge back with original for calculation?
+    - or just group_by() & mutate()
 + sorting; arrange()
   - group_by()
 + exercise: clean some values in Example File loaded earlier.
@@ -320,6 +325,9 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 
   - [`tidyr` vignette](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
 
+
+
+
 # Review
 
 ## Exercise
@@ -328,6 +336,7 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 in pairs, or small groups:
 write a script (or two companion scripts) that
 - load a series of files in a folder
+  - ue existing dataset, split up by a grouping variable (or year, etc.)
 - cleans each one to be consistent (in a function)
 - combines them into a single dataset
 - re-arrange (pivot) the final dataset
