@@ -101,6 +101,10 @@ if (T)
 
 
 ##==============================================================
+## Add extra lines (that have to be skipped) to the beginning?
+
+
+##==============================================================
 ## Test
 
 test1 <- read.csv(file.path(out_path, "data_example.csv"), fileEncoding = "UTF-8")
