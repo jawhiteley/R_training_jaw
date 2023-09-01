@@ -145,6 +145,7 @@ if (params$is_virtual) {
 + What is a script? Why use a script?
   - Make a simple script that does what we've done so far?
 + The comment character '#'
+- never use setwd() in a script!
 + Flow-control
   - if () else
   - for () loop
@@ -368,8 +369,18 @@ Might work best with a few parameters to limit the kinds of changes that can be 
 
 ## References
 
+Cheatsheets:
+
+- [readr/readxl](https://rstudio.github.io/cheatsheets/html/data-import.html)
+- [Data transformation with dplyr](https://rstudio.github.io/cheatsheets/html/data-transformation.html)
+- [Data tidying with tidyr](https://rstudio.github.io/cheatsheets/html/tidyr.html)
+
 ::: notes
 https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf
 https://mountainmath.ca/canssi/#1
 https://mountainmath.github.io/canadian_data/
+
+https://stackoverflow.com/questions/3452086/getting-path-of-an-r-script
+https://stackoverflow.com/questions/47044068/get-the-path-of-current-script
+https://cran.r-project.org/web/packages/this.path/this.path.pdf
 :::
