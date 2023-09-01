@@ -18,8 +18,8 @@ out_path <- "."    # relative path to output destination
 
 ## Check working directory
 wd_paths <- getwd() |> strsplit("/") |> unlist()
-wd_fpath <- do.call(file.path, as.list(wd_path))
-if (!("R2_data_scripting" %in% wd_path))
+wd_fpath <- do.call(file.path, as.list(wd_paths))
+if (!("R2_data_scripting" %in% wd_paths))
   warning("The current working directory is not in the workshop files:\n  ", 
           wd_fpath)
 
@@ -33,11 +33,11 @@ data(CO2)
 ### UN-CLEAN - apply changes (processing)
 
 ## transform data to a wider, less 'tidy' format
-data_mod <- CO2 %>% 
+data_wide <- CO2 %>% 
   pivot_wider(names_from = conc, values_from = uptake)
 
 ## Introduce some inconsistent spelling into a factor
-data_mod <- data_mod %>% 
+data_mod1 <- data_wide %>% 
   mutate(Type = ifelse(Type == "Quebec" & Treatment == "chilled", 
                        "Québec", 
                        as.character(Type)
@@ -46,7 +46,7 @@ data_mod <- data_mod %>%
          )
 
 ## Introduce a character value into a numeric column
-data_mod <- data_mod %>% 
+data_mod2 <- data_mod1 %>% 
   mutate(
     `500` = as.character(`500`),
     `500` = case_when(
@@ -66,16 +66,16 @@ data_mod <- data_mod %>%
   )
 
 ## Duplicate a row
-data_mod <- data_mod %>% 
+data_mod3 <- data_mod2 %>% 
   slice(c(1:n(), n() - 1)) %>% 
   arrange(Type, Treatment, as.character(Plant))
 
 ## derive duplicate row numbers
-dup_rows <- which( duplicated(data_mod$Plant) )
-plant_dup <- data_mod[dup_rows[1], "Plant"] %>% unlist() %>% as.character()
+dup_rows <- which( duplicated(data_mod3$Plant) )
+plant_dup <- data_mod3[dup_rows[1], "Plant"] %>% unlist() %>% as.character()
 
 ## Introduce some missing values (to the duplicate rows)
-data_mod <- data_mod %>% 
+data_mod <- data_mod3 %>% 
   mutate(
     `250` = case_when(
       Plant == plant_dup & row_number() != dup_rows[1]  ~ NA_real_,
