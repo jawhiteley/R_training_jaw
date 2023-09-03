@@ -1969,6 +1969,49 @@ help.start
 
 # Saving code (files)
 
+## Scripts
+
+An $\R$ *script* is a file that stores $\R$ code in *plain text*
+
+- They have a `.R` file extension
+- They are plain text files
+  - so any text editor can read & write them
+  - they also work well with **v**ersion **c**ontrol **s**ystems,  
+    like [`git`](https://git-scm.com/), [GitHub](https://github.com/), and [GitLab](https://about.gitlab.com/))
+
+- All the code in a scripts can be run in order
+  - i.e., a *program*
+- They make it easy to re-use code
+- Scripts provide a record of the steps in a program or analysis
+  - results are more *reproducible*
+  - scripts are a form of documentation
+
+::: notes
+- Most IDEs and text editors will show the text in different colours to distinguish different parts of the code
+  - known as "syntax highlighting"
+:::
+
+
+## Run $\R$ code in scripts
+
+Most IDEs have a shortcut to send portions of $\R$ code (a line or statement over multiple lines) to an $\R$ session:
+  
+  - R GUI: `CTL+Return` (mac: `CMD+Return`)
+  - R Studio: `CTL+Return` (mac: `CMD+Return`)
+
+You can run _all_ the code in a script in different ways:
+
+- The `source()`{.r} function, with a path to the script file as an argument
+  - The code will run in the current session.
+  - `?source`{.r}
+  
+- Run $\R$ in "*batch mode*"
+  - "*batch mode*" is **not** interactive (no prompt)
+  - It is usually invoked from a terminal or other command-line (outside an $\R$ GUI)
+  - The code in the script will run in a new session
+  - You can capture output in a separate file
+  - `?BATCH`{.r}
+
 
 
 

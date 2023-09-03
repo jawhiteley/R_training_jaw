@@ -228,7 +228,7 @@
 
 \title{A Gentle Introduction to R}
 \author{Jonathan Whiteley}
-\date{2023-08-28}
+\date{2023-09-03}
 
 \begin{document}
 \frame{\titlepage}
@@ -1998,7 +1998,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x148e13078>
+<bytecode: 0x160d65c78>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -3435,6 +3435,113 @@ Levels: MS QC
 
 \hypertarget{saving-code-files}{%
 \section{Saving code (files)}\label{saving-code-files}}
+
+\begin{frame}[fragile]{Scripts}
+\protect\hypertarget{scripts}{}
+An \(\R\) \emph{script} is a file that stores \(\R\) code in \emph{plain
+text}
+
+\begin{itemize}
+\tightlist
+\item
+  They have a \texttt{.R} file extension
+\item
+  They are plain text files
+
+  \begin{itemize}
+  \tightlist
+  \item
+    so any text editor can read \& write them
+  \item
+    they also work well with \textbf{v}ersion \textbf{c}ontrol
+    \textbf{s}ystems,\\
+    like \href{https://git-scm.com/}{\texttt{git}},
+    \href{https://github.com/}{GitHub}, and
+    \href{https://about.gitlab.com/}{GitLab})
+  \end{itemize}
+\item
+  All the code in a scripts can be run in order
+
+  \begin{itemize}
+  \tightlist
+  \item
+    i.e., a \emph{program}
+  \end{itemize}
+\item
+  They make it easy to re-use code
+\item
+  Scripts provide a record of the steps in a program or analysis
+
+  \begin{itemize}
+  \tightlist
+  \item
+    results are more \emph{reproducible}
+  \item
+    scripts are a form of documentation
+  \end{itemize}
+\end{itemize}
+
+\note{\begin{itemize}
+\tightlist
+\item
+  Most IDEs and text editors will show the text in different colours to
+  distinguish different parts of the code
+
+  \begin{itemize}
+  \tightlist
+  \item
+    known as ``syntax highlighting''
+  \end{itemize}
+\end{itemize}}
+\end{frame}
+
+\begin{frame}[fragile]{Run code in scripts}
+\protect\hypertarget{run-code-in-scripts}{}
+Most IDEs have a shortcut to send portions of \(\R\) code (a line or
+statement over multiple lines) to an \(\R\) session:
+
+\begin{itemize}
+\tightlist
+\item
+  R GUI: \texttt{CTL+Return} (mac: \texttt{CMD+Return})
+\item
+  R Studio: \texttt{CTL+Return} (mac: \texttt{CMD+Return})
+\end{itemize}
+
+You can run \emph{all} the code in a script in different ways:
+
+\begin{itemize}
+\tightlist
+\item
+  The \VERB|\FunctionTok{source}\NormalTok{()}| function, with a path to
+  the script file as an argument
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The code will run in the current session.
+  \item
+    \VERB|\NormalTok{?source}|
+  \end{itemize}
+\item
+  Run \(\R\) in ``\emph{batch mode}''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ``\emph{batch mode}'' is \textbf{not} interactive (no prompt)
+  \item
+    It is usually invoked from a terminal or other command-line (outside
+    an \(\R\) GUI)
+  \item
+    The code in the script will run in a new session
+  \item
+    You can capture output in a separate file
+  \item
+    \VERB|\NormalTok{?BATCH}|
+  \end{itemize}
+\end{itemize}
+\end{frame}
 
 \hypertarget{backmatter}{%
 \section{Backmatter}\label{backmatter}}
