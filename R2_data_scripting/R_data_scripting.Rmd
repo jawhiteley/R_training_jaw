@@ -184,6 +184,7 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 <!-- * [tibble](https://tibble.tidyverse.org/) for a 'modern' version of `data.frame`s that behave slightly differently (but are compatible with `data.frame`s). -->
 * [dplyr](https://dplyr.tidyverse.org/) for **manipulating** data (values)
 * [tidyr](https://tidyr.tidyverse.org/) for **rearranging** data
+* [stringr](https://stringr.tidyverse.org/) for working with **strings**
 
 
 ## A 'pipe' operator  {.shrink}
@@ -366,6 +367,45 @@ Might work best with a few parameters to limit the kinds of changes that can be 
 
 
 # Backmatter
+
+## Other packages to look at
+
+- [`data.table`](https://rdatatable.gitlab.io/data.table/): a high-performance version of `data.frame` with few dependencies.
+
+- [`purrr`](https://purrr.tidyverse.org/) (part of the `tidyverse`): functional programming (FP) tools for working with functions and vectors.  
+  - Replace `for` loops with code that is more efficient and easier to read.
+
+
+## Writing to Microsoft Excel^TM^ files  {.shrink}
+<!-- move to `extras`? -->
+
+Packages that can write to Excel files:
+
+- [`xlsx`](https://github.com/colearendt/xlsx): read, write, format Excel\ 2007 (`.xlsx`) and Excel\ 97/2000/XP/2003 (`.xls`) files.
+  - Depends on Java and the `rJava` package
+
+- [`XLConnect`](https://github.com/miraisolutions/xlconnect): comprehensive and cross-platform R package for manipulating Microsoft Excel files (`.xlsx` & `.xls`) from within R.
+  - Requires a Java Runtime Environment (JRE)
+
+- [`openxlsx`](https://ycphs.github.io/openxlsx/index.html): simplified creation of Excel `.xlsx` files (**not** `.xls`).
+  - _No dependency_ on Java
+
+- [`writexl`](https://docs.ropensci.org/writexl/): portable, light-weight data frame to **xlsx** exporter. 
+  - No Java or Excel required
+
+### !
+
+I recommend _avoiding_ exporting data to Excel files if possible.
+`csv` files are easier to read to & write from, and can be read by a wider variety of software (they are more portable).  
+Automated reports can be produced with R Markdown and output to a variety of more portable formats (pdf, HTML, etc.) instead. 
+
+::: notes
+As seen here, there are several packages for working with Excel files, with different advantages and disadvantages: you may have to do some testing to find the best fit for your situation.
+
+I personally prefer the `openxlsx` package, because in my experience, the dependency on Java can be difficult to get working and unreliable.  But I have no experience with `writexl`, which is newer and possibly faster than the others.  
+The main trade-off is the openxlsx cannot write to `.xls` files (Excel 97/2000/XP/2003 format) and has fewer formatting options than other packages --- but if you need that much formatting, why not produce a formatted report with R Markdown?
+:::
+
 
 ## References
 

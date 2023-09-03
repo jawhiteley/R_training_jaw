@@ -225,7 +225,7 @@
 
 \title{A Short Introduction to Working With Data in R}
 \author{Jonathan Whiteley}
-\date{2023-08-30}
+\date{2023-09-03}
 
 \begin{document}
 \frame{\titlepage}
@@ -440,6 +440,9 @@ for loading, cleaning, and manipulating data:
 \item
   \href{https://tidyr.tidyverse.org/}{tidyr} for \textbf{rearranging}
   data
+\item
+  \href{https://stringr.tidyverse.org/}{stringr} for working with
+  \textbf{strings}
 \end{itemize}
 \end{frame}
 
@@ -679,11 +682,121 @@ messy in its own way.
 \hypertarget{backmatter}{%
 \section{Backmatter}\label{backmatter}}
 
+\begin{frame}[fragile]{Other packages to look at}
+\protect\hypertarget{other-packages-to-look-at}{}
+\begin{itemize}
+\item
+  \href{https://rdatatable.gitlab.io/data.table/}{\texttt{data.table}}:
+  a high-performance version of \texttt{data.frame} with few
+  dependencies.
+\item
+  \href{https://purrr.tidyverse.org/}{\texttt{purrr}} (part of the
+  \texttt{tidyverse}): functional programming (FP) tools for working
+  with functions and vectors.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Replace \texttt{for} loops with code that is more efficient and
+    easier to read.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,shrink]{Writing to Microsoft
+Excel\textsuperscript{TM} files}
+\protect\hypertarget{writing-to-microsoft-exceltm-files}{}
+Packages that can write to Excel files:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://github.com/colearendt/xlsx}{\texttt{xlsx}}: read, write,
+  format Excel~2007 (\texttt{.xlsx}) and Excel~97/2000/XP/2003
+  (\texttt{.xls}) files.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Depends on Java and the \texttt{rJava} package
+  \end{itemize}
+\item
+  \href{https://github.com/miraisolutions/xlconnect}{\texttt{XLConnect}}:
+  comprehensive and cross-platform R package for manipulating Microsoft
+  Excel files (\texttt{.xlsx} \& \texttt{.xls}) from within R.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Requires a Java Runtime Environment (JRE)
+  \end{itemize}
+\item
+  \href{https://ycphs.github.io/openxlsx/index.html}{\texttt{openxlsx}}:
+  simplified creation of Excel \texttt{.xlsx} files (\textbf{not}
+  \texttt{.xls}).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{No dependency} on Java
+  \end{itemize}
+\item
+  \href{https://docs.ropensci.org/writexl/}{\texttt{writexl}}: portable,
+  light-weight data frame to \textbf{xlsx} exporter.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    No Java or Excel required
+  \end{itemize}
+\end{itemize}
+
+\begin{block}{!}
+\protect\hypertarget{section-1}{}
+I recommend \emph{avoiding} exporting data to Excel files if possible.
+\texttt{csv} files are easier to read to \& write from, and can be read
+by a wider variety of software (they are more portable).\\
+Automated reports can be produced with R Markdown and output to a
+variety of more portable formats (pdf, HTML, etc.) instead.
+
+\note{As seen here, there are several packages for working with Excel
+files, with different advantages and disadvantages: you may have to do
+some testing to find the best fit for your situation.
+
+I personally prefer the \texttt{openxlsx} package, because in my
+experience, the dependency on Java can be difficult to get working and
+unreliable. But I have no experience with \texttt{writexl}, which is
+newer and possibly faster than the others.\\
+The main trade-off is the openxlsx cannot write to \texttt{.xls} files
+(Excel 97/2000/XP/2003 format) and has fewer formatting options than
+other packages --- but if you need that much formatting, why not produce
+a formatted report with R Markdown?}
+\end{block}
+\end{frame}
+
 \begin{frame}{References}
 \protect\hypertarget{references}{}
+Cheatsheets:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://rstudio.github.io/cheatsheets/html/data-import.html}{readr/readxl}
+\item
+  \href{https://rstudio.github.io/cheatsheets/html/data-transformation.html}{Data
+  transformation with dplyr}
+\item
+  \href{https://rstudio.github.io/cheatsheets/html/tidyr.html}{Data
+  tidying with tidyr}
+\end{itemize}
+
 \note{\url{https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf}
 \url{https://mountainmath.ca/canssi/\#1}
-\url{https://mountainmath.github.io/canadian_data/}}
+\url{https://mountainmath.github.io/canadian_data/}
+
+\url{https://stackoverflow.com/questions/3452086/getting-path-of-an-r-script}
+\url{https://stackoverflow.com/questions/47044068/get-the-path-of-current-script}
+\url{https://cran.r-project.org/web/packages/this.path/this.path.pdf}}
 \end{frame}
 
 \end{document}
