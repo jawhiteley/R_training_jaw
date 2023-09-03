@@ -13,6 +13,7 @@
 ## Load packages
 library(dplyr)
 library(tidyr)
+library(stringr)
 
 out_path <- "."    # relative path to output destination
 
@@ -75,7 +76,7 @@ dup_rows <- which( duplicated(data_mod3$Plant) )
 plant_dup <- data_mod3[dup_rows[1], "Plant"] %>% unlist() %>% as.character()
 
 ## Introduce some missing values (to the duplicate rows)
-data_mod <- data_mod3 %>% 
+data_mod4 <- data_mod3 %>% 
   mutate(
     `250` = case_when(
       Plant == plant_dup & row_number() != dup_rows[1]  ~ NA_real_,
@@ -87,25 +88,42 @@ data_mod <- data_mod3 %>%
     )
   )
 
+## Replace 'Plant' column with ambiguous & incomplete number
+##  (to re-build in exercise)
+
+data_mod <- data_mod4 %>% 
+  mutate(PlantNum = stringr::str_extract(Plant, "[0-9]")) %>% 
+  relocate(PlantNum, .after = Treatment) %>% 
+  select(-Plant)
+
+
+
 
 ################################################################
 ### SAVE - export results
 library(readr)
 
-if (T)
+if (F) {
+  ## Add extra lines (that have to be skipped) to the beginning?
+  cat(
+    "Data from an experiment on the cold tolerance of the grass species Echinochloa crus-galli.\n",
+    "Modified from `data(CO2)`.  See `?CO2`.\n",
+    file = file.path(out_path, "data_example.csv"),
+    append = FALSE
+  )
+  ## Append data
   write_csv(data_mod, 
             file=file.path(out_path, "data_example.csv"), 
+            append = TRUE,
+            col_names = TRUE,
             quote = "needed", 
-            na = ""
-            )
-
-
-##==============================================================
-## Add extra lines (that have to be skipped) to the beginning?
+            na = "",
+  )
+}
 
 
 ##==============================================================
 ## Test
 
-test1 <- read.csv(file.path(out_path, "data_example.csv"), fileEncoding = "UTF-8")
-test2 <- readr::read_csv(file.path(out_path, "data_example.csv"))
+test1 <- read.csv(file.path(out_path, "data_example.csv"), fileEncoding = "UTF-8", skip = 2)
+test2 <- readr::read_csv(file.path(out_path, "data_example.csv"), skip = 2)
