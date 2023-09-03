@@ -459,10 +459,26 @@ Cheatsheets:
 
 ::: notes
 https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf
+https://r4ds.had.co.nz/transform.html
+  https://github.com/rstudio-education/r4ds-instructors
+  https://dplyr.tidyverse.org/articles/dplyr.html#single-table-verbs
+  https://dplyr.tidyverse.org/articles/two-table.html
+https://education.rstudio.com/teach/materials/
+  https://github.com/rstudio-education/remaster-the-tidyverse/blob/master/README.md
+  https://datasciencebox.org/
+  https://rladiessydney.org/courses/ryouwithme/02-cleanitup-0/
+https://posit.cloud/learn/primers
+
+CANSIM data:
 https://mountainmath.ca/canssi/#1
 https://mountainmath.github.io/canadian_data/
 
+Working directory & scripts:
 https://stackoverflow.com/questions/3452086/getting-path-of-an-r-script
 https://stackoverflow.com/questions/47044068/get-the-path-of-current-script
 https://cran.r-project.org/web/packages/this.path/this.path.pdf
+
+Other related tutorials:
+https://posit.co/resources/videos/a-gentle-introduction-to-tidy-statistics-in-r/
+
 :::

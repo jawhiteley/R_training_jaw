@@ -2105,6 +2105,11 @@ Other training materials and tutorials used as inspiration:
 - https://moderndive.netlify.app/1-getting-started.html
 - https://cengel.github.io/R-intro/
 
+- https://education.rstudio.com/teach/tools/
+  - https://education.rstudio.com/teach/tools/#packages
+  - Packages to create interactive tutorials & exercises
+  - Using R Markdown, bookdown, shiny, GitHub, and other tools
+
 [^Rlogo]: The R logo ($\Rlogo$) is [© 2016 The R Foundation](https://www.r-project.org/logo/) and used as-is under the terms of the [**CC-BY-SA 4.0** license](https://creativecommons.org/licenses/by-sa/4.0/)
 
 :::
