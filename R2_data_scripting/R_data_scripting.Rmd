@@ -187,6 +187,48 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 * [stringr](https://stringr.tidyverse.org/) for working with **strings**
 
 
+## `dplyr`: grammar of data manipulation
+
+- `dplyr` provides many functions, within a coherent framework or _grammar_  
+  
+- They are intended to help you focus on _what_ you want to do, 
+    and translate your thoughts into code.
+
+- High-level functions have active names and called "verbs" --- they describe what they do.
+
+- `dplyr` and `tidyr` provide many supporting functions that work _inside_ verbs 
+  to make many common tasks easier to translate into code.
+  - These functions may not work on their own, outside of `dplyr` verbs and `tidyr` functions.
+
+
+## `dplyr` verbs
+
+Verbs can be grouped based on the component of the dataset that they work with[^1-table-verbs]:
+
+- Rows:
+  - `filter()`{.r} chooses rows based on column values.
+  - `slice()`{.r} chooses rows based on location.
+  - `arrange()`{.r} changes the order of the rows.
+- Columns:
+  - `select()`{.r} changes whether or not a column is included.
+  - `rename()`{.r} changes the name of columns.
+  - `mutate()`{.r} changes the values of columns and creates new columns.
+  - `relocate()`{.r} changes the order of the columns.
+- Groups of rows:
+  - `group_by()`{.r} defines groups of rows.
+  - `summarise()`{.r} collapses a group into a single row.
+  
+
+[^1-table-verbs]: https://dplyr.tidyverse.org/articles/dplyr.html#single-table-verbs
+
+
+::: notes
+
+:::
+
+
+
+
 ## A 'pipe' operator  {.shrink}
 
 :::::: {.columns .onlytextwidth align=center}

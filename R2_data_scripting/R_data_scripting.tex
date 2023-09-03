@@ -446,6 +446,88 @@ for loading, cleaning, and manipulating data:
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{\texttt{dplyr}: grammar of data manipulation}
+\protect\hypertarget{dplyr-grammar-of-data-manipulation}{}
+\begin{itemize}
+\item
+  \texttt{dplyr} provides many functions, within a coherent framework or
+  \emph{grammar}
+\item
+  They are intended to help you focus on \emph{what} you want to do, and
+  translate your thoughts into code.
+\item
+  High-level functions have active names and called ``verbs'' --- they
+  describe what they do.
+\item
+  \texttt{dplyr} and \texttt{tidyr} provide many supporting functions
+  that work \emph{inside} verbs to make many common tasks easier to
+  translate into code.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    These functions may not work on their own, outside of \texttt{dplyr}
+    verbs and \texttt{tidyr} functions.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{dplyr} verbs}
+\protect\hypertarget{dplyr-verbs}{}
+Verbs can be grouped based on the component of the dataset that they
+work with\footnote<.->{\url{https://dplyr.tidyverse.org/articles/dplyr.html\#single-table-verbs}}:
+
+\begin{itemize}
+\tightlist
+\item
+  Rows:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \VERB|\FunctionTok{filter}\NormalTok{()}| chooses rows based on
+    column values.
+  \item
+    \VERB|\FunctionTok{slice}\NormalTok{()}| chooses rows based on
+    location.
+  \item
+    \VERB|\FunctionTok{arrange}\NormalTok{()}| changes the order of the
+    rows.
+  \end{itemize}
+\item
+  Columns:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \VERB|\FunctionTok{select}\NormalTok{()}| changes whether or not a
+    column is included.
+  \item
+    \VERB|\FunctionTok{rename}\NormalTok{()}| changes the name of
+    columns.
+  \item
+    \VERB|\FunctionTok{mutate}\NormalTok{()}| changes the values of
+    columns and creates new columns.
+  \item
+    \VERB|\FunctionTok{relocate}\NormalTok{()}| changes the order of the
+    columns.
+  \end{itemize}
+\item
+  Groups of rows:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \VERB|\FunctionTok{group\_by}\NormalTok{()}| defines groups of rows.
+  \item
+    \VERB|\FunctionTok{summarise}\NormalTok{()}| collapses a group into
+    a single row.
+  \end{itemize}
+\end{itemize}
+
+\note{}
+\end{frame}
+
 \begin{frame}[fragile,shrink]{A `pipe' operator}
 \protect\hypertarget{a-pipe-operator}{}
 \begin{columns}[c,onlytextwidth]
@@ -791,6 +873,8 @@ Cheatsheets:
 \end{itemize}
 
 \note{\url{https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf}
+\url{https://r4ds.had.co.nz/transform.html}
+
 \url{https://mountainmath.ca/canssi/\#1}
 \url{https://mountainmath.github.io/canadian_data/}
 
