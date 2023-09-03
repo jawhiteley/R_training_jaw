@@ -414,8 +414,14 @@ Might work best with a few parameters to limit the kinds of changes that can be 
 
 - [`data.table`](https://rdatatable.gitlab.io/data.table/): a high-performance version of `data.frame` with few dependencies.
 
-- [`purrr`](https://purrr.tidyverse.org/) (part of the `tidyverse`): functional programming (FP) tools for working with functions and vectors.  
+Other packages in the `tidyverse`:
+
+- [`lubridate`](https://lubridate.tidyverse.org/) and [`hms`](https://hms.tidyverse.org/): for dates & time values.
+
+- [`purrr`](https://purrr.tidyverse.org/): functional programming (FP) tools for working with functions and vectors.  
   - Replace `for` loops with code that is more efficient and easier to read.
+
+
 
 
 ## Writing to Microsoft Excel^TM^ files  {.shrink}
