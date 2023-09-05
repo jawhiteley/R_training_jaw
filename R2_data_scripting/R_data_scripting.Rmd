@@ -137,6 +137,7 @@ if (params$is_virtual) {
 - write.csv
 - Extras: exporting to Excel?
 - .Rdata files?
+- Projects?
 -->
 
 # Re-using your code: scripts and other files
@@ -212,7 +213,7 @@ Verbs can be grouped based on the component of the dataset that they work with[^
 - Columns:
   - `select()`{.r} changes whether or not a column is included.
   - `rename()`{.r} changes the name of columns.
-  - `mutate()`{.r} changes the values of columns and creates new columns.
+  - `mutate()`{.r} changes the *values* of columns and creates new columns.
   - `relocate()`{.r} changes the order of the columns.
 - Groups of rows:
   - `group_by()`{.r} defines groups of rows.
@@ -465,7 +466,7 @@ Cheatsheets:
 
 ::: notes
 https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf
-https://r4ds.had.co.nz/transform.html
+https://r4ds.hadley.nz/data-transform.html (https://r4ds.had.co.nz/transform.html)
   https://github.com/rstudio-education/r4ds-instructors
   https://dplyr.tidyverse.org/articles/dplyr.html#single-table-verbs
   https://dplyr.tidyverse.org/articles/two-table.html
