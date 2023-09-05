@@ -102,6 +102,27 @@ if (params$is_virtual) {
 - What are you hoping to learn most in today's workshop?
 
 
+## Disclaimer
+
+- There is often more than one way to achieve a desired result in $\R$
+
+- Some are faster in certain situations
+
+- Some require less code, or are easier to write as code
+
+- Some are more portable (work on multiple systems)
+
+- But there is rarely as single 'best way'.
+
+This workshop focuses on a coherent approach,
+that can be learned more easily and extended as needed
+to tackle bigger problems.
+
+Feel free to take what you learn here
+and experiment, or explore alternatives.
+Find what works for _you_.
+
+
 
 
 # Loading data into $\R$
@@ -177,7 +198,30 @@ help(package="tidyverse")
 - The [`tidyverse`](https://www.tidyverse.org/) is an "opinionated" [collection of packages](https://www.tidyverse.org/packages/) that are designed to work together.
 
 - All packages share an underlying design philosophy, grammar, and data structures.
-  <!-- - _unlike core $\R$ and other packages_ -->
+  - _Unlike core $\R$_ <!-- and some other packages -->
+  - Shared naming conventions (e.g., '`_`' instead of '`.`' in function names)
+  - Emphasis on functions that do one thing well
+  - Designed to be combined together to achieve complex operations
+
+- `tidyverse` is under active development.
+  - New functions and features sometimes replace or supersede old ones.
+  - No guarantee that functions will continue to work the same way in future versions.
+
+::: notes
+These characteristics means tidyverse packages may not be ideal in a production environment.
+Nevertheless, the package designers are pretty good about replacing old functions with new ones, to avoid disruptive changes, and keeping older functions around, though with only minimal support.
+I have code from 10+ years ago that will not run in current versions of R because of the number of changes to dplyr and related packages over the years.
+
+But I still like dplyr and the tidyverse, because they are coherent with each other.
+Although they can be complex, and take advantage of some arcane aspects of R,
+they do make it easier to translate ideas into code --- once you understand the grammar.
+The consistency in naming and argument syntax, however, is also hugely appealing in terms of fewer new things to learn while expanding your toolbox.
+
+Write code that works and that you understand: then take time to revise and optimize, based on your needs and capacity.
+:::
+
+
+## Core `tidyverse` packages
 
 Today, we will focus on a few of the core `tidyverse` packages for loading, cleaning, and manipulating data:
 

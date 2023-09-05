@@ -225,7 +225,7 @@
 
 \title{A Short Introduction to Working With Data in R}
 \author{Jonathan Whiteley}
-\date{2023-09-03}
+\date{2023-09-04}
 
 \begin{document}
 \frame{\titlepage}
@@ -374,6 +374,28 @@ What is your favourite emoji? Why do you like to use it so much?
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Disclaimer}
+\protect\hypertarget{disclaimer}{}
+\begin{itemize}
+\item
+  There is often more than one way to achieve a desired result in \(\R\)
+\item
+  Some are faster in certain situations
+\item
+  Some require less code, or are easier to write as code
+\item
+  Some are more portable (work on multiple systems)
+\item
+  But there is rarely as single `best way'.
+\end{itemize}
+
+This workshop focuses on a coherent approach, that can be learned more
+easily and extended as needed to tackle bigger problems.
+
+Feel free to take what you learn here and experiment, or explore
+alternatives. Find what works for \emph{you}.
+\end{frame}
+
 \hypertarget{loading-data-into-r}{%
 \section{\texorpdfstring{Loading data into
 \(\R\)}{Loading data into \textbackslash R}}\label{loading-data-into-r}}
@@ -424,8 +446,53 @@ packages}{The tidyverse collection of packages}}\label{the-tidyverse-collection-
 \item
   All packages share an underlying design philosophy, grammar, and data
   structures.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{Unlike core \(\R\)}
+  \item
+    Shared naming conventions (e.g., `\texttt{\_}' instead of
+    `\texttt{.}' in function names)
+  \item
+    Emphasis on functions that do one thing well
+  \item
+    Designed to be combined together to achieve complex operations
+  \end{itemize}
+\item
+  \texttt{tidyverse} is under active development.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    New functions and features sometimes replace or supersede old ones.
+  \item
+    No guarantee that functions will continue to work the same way in
+    future versions.
+  \end{itemize}
 \end{itemize}
 
+\note{These characteristics means tidyverse packages may not be ideal in
+a production environment. Nevertheless, the package designers are pretty
+good about replacing old functions with new ones, to avoid disruptive
+changes, and keeping older functions around, though with only minimal
+support. I have code from 10+ years ago that will not run in current
+versions of R because of the number of changes to dplyr and related
+packages over the years.
+
+But I still like dplyr and the tidyverse, because they are coherent with
+each other. Although they can be complex, and take advantage of some
+arcane aspects of R, they do make it easier to translate ideas into code
+--- once you understand the grammar. The consistency in naming and
+argument syntax, however, is also hugely appealing in terms of fewer new
+things to learn while expanding your toolbox.
+
+Write code that works and that you understand: then take time to revise
+and optimize, based on your needs and capacity.}
+\end{frame}
+
+\begin{frame}[fragile]{Core \texttt{tidyverse} packages}
+\protect\hypertarget{core-tidyverse-packages}{}
 Today, we will focus on a few of the core \texttt{tidyverse} packages
 for loading, cleaning, and manipulating data:
 
@@ -506,8 +573,8 @@ work with\footnote<.->{\url{https://dplyr.tidyverse.org/articles/dplyr.html\#sin
     \VERB|\FunctionTok{rename}\NormalTok{()}| changes the name of
     columns.
   \item
-    \VERB|\FunctionTok{mutate}\NormalTok{()}| changes the values of
-    columns and creates new columns.
+    \VERB|\FunctionTok{mutate}\NormalTok{()}| changes the \emph{values}
+    of columns and creates new columns.
   \item
     \VERB|\FunctionTok{relocate}\NormalTok{()}| changes the order of the
     columns.
@@ -882,7 +949,8 @@ Cheatsheets:
 \end{itemize}
 
 \note{\url{https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf}
-\url{https://r4ds.had.co.nz/transform.html}
+\url{https://r4ds.hadley.nz/data-transform.html}
+(\url{https://r4ds.had.co.nz/transform.html})
 \url{https://github.com/rstudio-education/r4ds-instructors}
 \url{https://dplyr.tidyverse.org/articles/dplyr.html\#single-table-verbs}
 \url{https://dplyr.tidyverse.org/articles/two-table.html}
