@@ -225,7 +225,7 @@
 
 \title{A Short Introduction to Working With Data in R}
 \author{Jonathan Whiteley}
-\date{2023-09-04}
+\date{2023-09-05}
 
 \begin{document}
 \frame{\titlepage}
@@ -450,7 +450,7 @@ packages}{The tidyverse collection of packages}}\label{the-tidyverse-collection-
   \begin{itemize}
   \tightlist
   \item
-    \emph{Unlike core \(\R\)}
+    \emph{Unlike base \(\R\)}
   \item
     Shared naming conventions (e.g., `\texttt{\_}' instead of
     `\texttt{.}' in function names)
@@ -523,12 +523,12 @@ for loading, cleaning, and manipulating data:
   They are intended to help you focus on \emph{what} you want to do, and
   translate your thoughts into code.
 \item
-  High-level functions have active names and called ``verbs'' --- they
-  describe what they do.
+  High-level functions have active names and called ``\textbf{verbs}''
+  --- they describe what they do.
 \item
-  \texttt{dplyr} and \texttt{tidyr} provide many supporting functions
-  that work \emph{inside} verbs to make many common tasks easier to
-  translate into code.
+  \texttt{dplyr} and \texttt{tidyr} provide many ``\textbf{helper
+  functions}'' that work \emph{inside} verbs and other functions to make
+  many tasks easier to translate into code.
 
   \begin{itemize}
   \tightlist
@@ -761,13 +761,13 @@ is equivalent to:
   Because it is so new, most code examples online still use
   `\VERB|\SpecialCharTok{\%\textgreater{}\%}|' from \texttt{magrittr}.
 \item
-  This document will use `\VERB|\SpecialCharTok{\%\textgreater{}\%}|' in
-  the examples, for consistency and because it was designed to work with
-  other \texttt{tidyverse} functions.
+  But `\VERB|\SpecialCharTok{\VerbBar{}\textgreater{}}|' is always
+  available \emph{in \(\R\) \textgreater= v4.1}, without having to load
+  additional packages.
 \item
-  But `\VERB|\SpecialCharTok{\VerbBar{}\textgreater{}}|' might work well
-  for you in simple cases,\\
-  without having to load any additional packages.
+  This document will use `\VERB|\SpecialCharTok{\%\textgreater{}\%}|' in
+  the examples, for consistency and because many \texttt{tidyverse}
+  functions were designed to work with it.
 \end{itemize}
 \end{frame}
 

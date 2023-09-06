@@ -198,7 +198,7 @@ help(package="tidyverse")
 - The [`tidyverse`](https://www.tidyverse.org/) is an "opinionated" [collection of packages](https://www.tidyverse.org/packages/) that are designed to work together.
 
 - All packages share an underlying design philosophy, grammar, and data structures.
-  - _Unlike core $\R$_ <!-- and some other packages -->
+  - _Unlike base $\R$_ <!-- and some other packages -->
   - Shared naming conventions (e.g., '`_`' instead of '`.`' in function names)
   - Emphasis on functions that do one thing well
   - Designed to be combined together to achieve complex operations
@@ -239,10 +239,10 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 - They are intended to help you focus on _what_ you want to do, 
     and translate your thoughts into code.
 
-- High-level functions have active names and called "verbs" --- they describe what they do.
+- High-level functions have active names and called "**verbs**" --- they describe what they do.
 
-- `dplyr` and `tidyr` provide many supporting functions that work _inside_ verbs 
-  to make many common tasks easier to translate into code.
+- `dplyr` and `tidyr` provide many "**helper functions**" that work _inside_ verbs 
+  and other functions to make many tasks easier to translate into code.
   - These functions may not work on their own, outside of `dplyr` verbs and `tidyr` functions.
 
 
@@ -351,14 +351,15 @@ Verbs can be grouped based on the component of the dataset that they work with[^
   - [Differences between the base R and magrittr pipes](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/)
   - "[Understanding the native R pipe |>](https://towardsdatascience.com/understanding-the-native-r-pipe-98dea6d8b61b)"
 
-- Because it is so new, most code examples online still use '`%>%`{.r}' from `magrittr`.
+- Because it is so new, most code examples online still use '`%>%`{.r}' from `magrittr`.  
 
+- But '`|>`{.r}' is always available *in $\R$ >= v4.1*, 
+  without having to load additional packages.
+  
 - This document will use '`%>%`{.r}' in the examples, 
-  for consistency and because it was designed 
-  to work with other `tidyverse` functions.
+  for consistency and because many `tidyverse` functions
+  were designed to work with it.
 
-- But '`|>`{.r}' might work well for you in simple cases,  
-  without having to load any additional packages.
 
 [^R4.1]: https://cran.r-project.org/bin/windows/base/old/4.1.0/NEWS.R-4.1.0.html
 
