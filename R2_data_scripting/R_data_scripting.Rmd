@@ -272,6 +272,31 @@ Verbs can be grouped based on the component of the dataset that they work with[^
 :::
 
 
+## `dplyr` *semantics*
+
+`dplyr` verbs and helper functions let you refer to column names
+of the data frame directly in their arguments 
+as regular variables --- without having to quote them.
+But these names have different meanings (semantics) in different verbs.
+
+* **"select semantics"**: in `select()`{.r} and similar functions, 
+  a column name refers to its _position_ in the data frame.
+  - you can refer to a column as a quoted string in `select()`{.r},
+    and it is interpreted as a reference to the column.
+
+* **"mutate semantics"**: in `mutate()`{.r},
+  a column name refers to a _vector of values_.
+  - you cannot supply a column name as a string in `mutate()`{.r},
+    because it is treated as a vector of length 1, 
+    rather than a reference to a column of values.
+
+::: notes
+https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
+`vignette("dplyr")`{.r}
+:::
+
+
+
 
 
 ## A 'pipe' operator  {.shrink}
@@ -462,7 +487,7 @@ Might work best with a few parameters to limit the kinds of changes that can be 
 
 Other packages in the `tidyverse`:
 
-- [`lubridate`](https://lubridate.tidyverse.org/) and [`hms`](https://hms.tidyverse.org/): for dates & time values.
+- [`lubridate`](https://lubridate.tidyverse.org/) and [`hms`](https://hms.tidyverse.org/): for date & time values.
 
 - [`purrr`](https://purrr.tidyverse.org/): functional programming (FP) tools for working with functions and vectors.  
   - Replace `for` loops with code that is more efficient and easier to read.

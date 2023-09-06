@@ -595,6 +595,45 @@ work with\footnote<.->{\url{https://dplyr.tidyverse.org/articles/dplyr.html\#sin
 \note{}
 \end{frame}
 
+\begin{frame}[fragile]{\texttt{dplyr} \emph{semantics}}
+\protect\hypertarget{dplyr-semantics}{}
+\texttt{dplyr} verbs and helper functions let you refer to column names
+of the data frame directly in their arguments as regular variables ---
+without having to quote them. But these names have different meanings
+(semantics) in different verbs.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{``select semantics''}: in
+  \VERB|\FunctionTok{select}\NormalTok{()}| and similar functions, a
+  column name refers to its \emph{position} in the data frame.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    you can refer to a column as a quoted string in
+    \VERB|\FunctionTok{select}\NormalTok{()}|, and it is interpreted as
+    a reference to the column.
+  \end{itemize}
+\item
+  \textbf{``mutate semantics''}: in
+  \VERB|\FunctionTok{mutate}\NormalTok{()}|, a column name refers to a
+  \emph{vector of values}.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    you cannot supply a column name as a string in
+    \VERB|\FunctionTok{mutate}\NormalTok{()}|, because it is treated as
+    a vector of length 1, rather than a reference to a column of values.
+  \end{itemize}
+\end{itemize}
+
+\note{\url{https://dplyr.tidyverse.org/articles/dplyr.html\#patterns-of-operations}
+\VERB|\FunctionTok{vignette}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}|}
+\end{frame}
+
 \begin{frame}[fragile,shrink]{A `pipe' operator}
 \protect\hypertarget{a-pipe-operator}{}
 \begin{columns}[c,onlytextwidth]
@@ -846,7 +885,7 @@ Other packages in the \texttt{tidyverse}:
 \begin{itemize}
 \item
   \href{https://lubridate.tidyverse.org/}{\texttt{lubridate}} and
-  \href{https://hms.tidyverse.org/}{\texttt{hms}}: for dates \& time
+  \href{https://hms.tidyverse.org/}{\texttt{hms}}: for date \& time
   values.
 \item
   \href{https://purrr.tidyverse.org/}{\texttt{purrr}}: functional
