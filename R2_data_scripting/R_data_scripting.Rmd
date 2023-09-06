@@ -425,14 +425,11 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 
 ## Tidy datasets
 
-> 
-> > Happy families are all alike; every unhappy family is unhappy in its own way 
-> 
-> — Leo Tolstoy 
+> > "Happy families are all alike; every unhappy family is unhappy in its own way."  
+> > — Leo Tolstoy 
   \
   \
-> Like families, tidy datasets are all alike but every messy dataset is messy in its own way.  
-> 
+> "Tidy datasets are all alike but every messy dataset is messy in its own way."  
 > --- Hadley Wickham (doi: [10.18637/jss.v059.i10](https://doi.org/10.18637/jss.v059.i10))
 
 
