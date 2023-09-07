@@ -7,21 +7,35 @@ output:
     latex_engine: xelatex # ensures certain characters (like '^') are rendered correctly
     theme: Boadilla
     colortheme: default
-    highlight: ../shared/my_tango.theme
+    highlight: ../../shared/my_tango.theme
     slide_level: 2
     toc: false
-    keep_tex: yes
+    keep_tex: no
     includes:
-      in_header: "../shared/preamble-include.tex"
+      in_header: "../../shared/preamble-include.tex"
 fontsize: 11pt
 urlcolor: darkblue   # defined in LaTeX preamble (in_header includes, above)
 linkcolor: darkblue  # defined in LaTeX preamble (in_header includes, above)
 params:
   is_virtual: TRUE    # is this presentation for a virtual (T) or in-person (F) environment?
+knit: 
+  (function(inputFile, ...) {
+    render_out <- rmarkdown::render(inputFile, ...);
+    out_path <- unlist( strsplit(render_out, split = "/") );
+    out_path <- file.path("..", out_path[length(out_path)]);
+    message("Copying output \nfrom '", render_out, "'\n  to '", normalizePath(out_path), "'" );
+    success <- file.copy( render_out, out_path, overwrite = TRUE );
+    if (!isFALSE(success)) {
+      message("> Output file copied to '", normalizePath(out_path), "'" );
+      success <- file.remove( render_out );
+      if (!isFALSE(success)) message("> Original file deleted '", render_out, "'");
+    };
+  })
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment='#')
+knitr::opts_knit$set(root.dir = "..")  # run all code as if in the parent directory
 options(width = 60)  # to fit output on slides
 ```
 
@@ -146,8 +160,8 @@ setwd('path/to/a/directory')
 
 - For this workshop, set the working directory to location where you downloaded
   this presentation and accompanying files.
-  - the directory that _contains_ the folder named '`files`'
-    that was downloaded along with the files for this workshop.
+  - the directory that _contains_ the folder named '`data`'
+    that you downloaded along with the files for this workshop.
 
 :::::: {.columns .onlytextwidth}
 ::: {.column width="58%"}
@@ -194,10 +208,12 @@ setwd( choose.dir() )
 
 ## Check your working directory
 
-- Check to see that the working directory is in the right place:
+- Check to see that the working directory is in the right place,
+  by checking to see if a known file exists (from $\R$'s perspective):
 
   ```{r check_wd}
-  file.exists("data_example.csv")
+  DF_path <- file.path("data", "data_example.csv")
+  file.exists(DF_path)
   ```
 
 - If the result of the statement above is not "`TRUE`{.r}" in your session,
@@ -226,10 +242,10 @@ setwd( choose.dir() )
 ## Load a csv file into $\R$ (basic)
 
 ```r
-read.csv("data_example.csv")
+read.csv(DF_path)
 ```
 ```{r load1, echo=FALSE}
-try( read.csv("data_example.csv") )
+try( read.csv(DF_path) )
 ```
 
 . . .
@@ -241,7 +257,7 @@ try( read.csv("data_example.csv") )
 
 - Let's take a peek at the first few lines and see if we can identify the problem:
 ```{r readlines}
-readLines("data_example.csv", n = 4)
+readLines(DF_path, n = 4)
 ```
 . . .
 
@@ -257,7 +273,7 @@ readLines("data_example.csv", n = 4)
     so we can work on it
   
 ```{r load}
-DF <- read.csv("data_example.csv", skip = 2)
+DF <- read.csv(DF_path, skip = 2)
 ```
 
 - Just because there were no `Error`{.r}s from $\R$, 
