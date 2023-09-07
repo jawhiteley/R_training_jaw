@@ -223,15 +223,46 @@ setwd( choose.dir() )
     to see what's in the file.*
 
 
+## Load a csv file into $\R$ (basic)
+
+```r
+read.csv("data_example.csv")
+```
+```{r load1, echo=FALSE}
+try( read.csv("data_example.csv") )
+```
+
+. . .
+
+- Uh oh!  Something's not right.
+
+
+## Check the file contents
+
+- Let's take a peek at the first few lines and see if we can identify the problem:
+```{r readlines}
+readLines("data_example.csv", n = 4)
+```
+. . .
+
+- The first **2** lines don't look like comma-separated values!
+
+- They look like extra information that is not part of the data table *structure*.
+
+
 ## Load a csv file into $\R$
 
-<!--
-- read.csv (read.table)
-  - local Example File
-- downloading data from the internet (to a temp dir)
-  - the same local file, directly from the URL on GitHub
-  - CANSIM / NDMr / other package?
--->
+- We can tell $\R$ to skip the lines with no data:
+  - and we'll *assign* the result to a variable
+    so we can work on it
+  
+```{r load}
+DF <- read.csv("data_example.csv", skip = 2)
+```
+
+- Just because there were no `Error`{.r}s from $\R$, 
+  doesn't mean there's nothing wrong with the data!
+
 
 
 
@@ -244,6 +275,15 @@ setwd( choose.dir() )
 - head, str, names, plot?
 - View / R Studio Environment pane
 - Know Your Data
+-->
+
+
+# Downloading data from the internet
+
+<!--
+- downloading data from the internet (to a temp dir)
+  - the same local file, directly from the URL on GitHub
+  - CANSIM / NDMr / other package?
 -->
 
 

@@ -225,7 +225,7 @@
 
 \title{A Short Introduction to Working With Data in R}
 \author{Jonathan Whiteley}
-\date{2023-09-06}
+\date{2023-09-07}
 
 \begin{document}
 \frame{\titlepage}
@@ -579,8 +579,88 @@ alternatives. Find what works for \emph{you}.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Load a csv file into \(\R\)}
+\begin{frame}[fragile]{Load a csv file into \(\R\) (basic)}
+\protect\hypertarget{load-a-csv-file-into-r-basic}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{read.csv}\NormalTok{(}\StringTok{"data\_example.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in read.table(file = file, header = header, sep = sep, quote = quote,  : 
+##   more columns than column names
+\end{verbatim}
+
+\pause
+
+\begin{itemize}
+\tightlist
+\item
+  Uh oh! Something's not right.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Check the file contents}
+\protect\hypertarget{check-the-file-contents}{}
+\begin{itemize}
+\tightlist
+\item
+  Let's take a peek at the first few lines and see if we can identify
+  the problem:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{readLines}\NormalTok{(}\StringTok{"data\_example.csv"}\NormalTok{, }\AttributeTok{n =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Data from an experiment on the cold tolerance of the grass species Echinochloa crus-galli."
+## [2] " Modified from `data(CO2)`.  See `?CO2`."                                                  
+## [3] "Type,Treatment,PlantNum,95,175,250,350,500,675,1000"                                       
+## [4] "Quebec,nonchilled,1,16,30.4,34.8,37.2,35.3,39.2,39.7"
+\end{verbatim}
+
+\pause
+
+\begin{itemize}
+\item
+  The first \textbf{2} lines don't look like comma-separated values!
+\item
+  They look like extra information that is not part of the data table
+  \emph{structure}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Load a csv file into \(\R\)}
 \protect\hypertarget{load-a-csv-file-into-r}{}
+\begin{itemize}
+\tightlist
+\item
+  We can tell \(\R\) to skip the lines with no data:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    and we'll \emph{assign} the result to a variable so we can work on
+    it
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DF }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"data\_example.csv"}\NormalTok{, }\AttributeTok{skip =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Just because there were no \VERB|\NormalTok{Error}|s from \(\R\),
+  doesn't mean there's nothing wrong with the data!
+\end{itemize}
 \end{frame}
 
 \hypertarget{exploring-your-data}{%
@@ -588,6 +668,13 @@ alternatives. Find what works for \emph{you}.
 
 \begin{frame}{Data frames}
 \protect\hypertarget{data-frames}{}
+\end{frame}
+
+\hypertarget{downloading-data-from-the-internet}{%
+\section{Downloading data from the
+internet}\label{downloading-data-from-the-internet}}
+
+\begin{frame}{Downloading data from the internet}
 \end{frame}
 
 \hypertarget{saving-data-outside-r}{%
