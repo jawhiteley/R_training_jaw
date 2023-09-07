@@ -64,21 +64,7 @@ options(width = 60)  # to fit output on slides
 <!-- R logo: ![](`r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em} -->
 
 
-## Learning Objectives
 
-- Load tabular data into R
-- Explore data to check that it was loaded correctly
-- Export data from R to external files
-- Data frames
-- Clean data
-  - Add & change columns
-  - Edit values systematically
-  - Change data types
-- Tidy data
-  - Change the _shape_ of a data frame
-- Re-use code, reproducible results, automated reports
-  - Scripts
-  - R Markdown, R Notebooks
 
 # Welcome
 
@@ -114,6 +100,24 @@ if (params$is_virtual) {
 <!-- -->
 
 - What are you hoping to learn most in today's workshop?
+
+
+## Learning Objectives
+
+- Load tabular data into R
+- Explore data to check that it was loaded correctly
+- Export data from R to external files
+- Data frames
+- Clean data
+  - re-arrange & modify rows
+  - Add & change columns
+  - Edit values systematically
+  - Change data types
+- Tidy data
+  - Change the _shape_ of a data frame
+- Re-use code, reproducible results, automated reports
+  - Scripts
+  - R Markdown, R Notebooks
 
 
 ## Disclaimer
@@ -284,6 +288,7 @@ setwd( choose.dir() )
 ## Load a csv file into $\R$ (basic)
 
 ```r
+?read.csv
 read.csv(DF_path)
 ```
 ```{r load1, echo=FALSE}
@@ -479,7 +484,7 @@ with the data set you loaded?
 _**Spoiler alert:** suggested answers on the next slide._
 
 
-## Exercise: what's wrong with this data {.shrink}
+## Exercise 1: what's wrong with this data {.shrink}
 
 - The data we loaded has different dimensions!
   - Values from the `conc` column are shown as *column names*
@@ -507,7 +512,7 @@ _There are other differences you may have noticed:
 
 
 
-# Downloading data from the internet
+# Downloading Data From the Internet
 
 <!--
 - downloading data from the internet (to a temp dir)
@@ -516,7 +521,7 @@ _There are other differences you may have noticed:
 -->
 
 
-# Saving data outside $\R$
+# Saving Data Outside $\R$
 
 <!--
 - write.csv
