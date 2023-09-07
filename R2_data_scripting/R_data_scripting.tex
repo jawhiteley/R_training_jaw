@@ -529,7 +529,7 @@ alternatives. Find what works for \emph{you}.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] TRUE
+# [1] TRUE
 \end{verbatim}
 \item
   If the result of the statement above is not
@@ -588,8 +588,8 @@ alternatives. Find what works for \emph{you}.
 \end{Shaded}
 
 \begin{verbatim}
-## Error in read.table(file = file, header = header, sep = sep, quote = quote,  : 
-##   more columns than column names
+# Error in read.table(file = file, header = header, sep = sep, quote = quote,  : 
+#   more columns than column names
 \end{verbatim}
 
 \pause
@@ -617,10 +617,10 @@ alternatives. Find what works for \emph{you}.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Data from an experiment on the cold tolerance of the grass species Echinochloa crus-galli."
-## [2] " Modified from `data(CO2)`.  See `?CO2`."                                                  
-## [3] "Type,Treatment,PlantNum,95,175,250,350,500,675,1000"                                       
-## [4] "Quebec,nonchilled,1,16,30.4,34.8,37.2,35.3,39.2,39.7"
+# [1] "Data from an experiment on the cold tolerance of the grass species Echinochloa crus-galli."
+# [2] " Modified from `data(CO2)`.  See `?CO2`."                                                  
+# [3] "Type,Treatment,PlantNum,95,175,250,350,500,675,1000"                                       
+# [4] "Quebec,nonchilled,1,16,30.4,34.8,37.2,35.3,39.2,39.7"
 \end{verbatim}
 
 \pause
@@ -666,8 +666,258 @@ alternatives. Find what works for \emph{you}.
 \hypertarget{exploring-your-data}{%
 \section{Exploring your data}\label{exploring-your-data}}
 
+\begin{frame}[fragile]{Object class: data frame}
+\protect\hypertarget{object-class-data-frame}{}
+Before we explore our new data set, first a short review of the kind of
+\emph{object} we're dealing with:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(DF)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# [1] "data.frame"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{typeof}\NormalTok{(DF)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# [1] "list"
+\end{verbatim}
+\end{frame}
+
 \begin{frame}{Data frames}
 \protect\hypertarget{data-frames}{}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{head()}: peek at the first few rows}
+\protect\hypertarget{head-peek-at-the-first-few-rows}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(DF)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#     Type  Treatment PlantNum  X95 X175 X250 X350
+# 1 Quebec nonchilled        1 16.0 30.4 34.8 37.2
+# 2 Quebec nonchilled        2 13.6 27.3 37.1 41.8
+# 3 Quebec nonchilled        3 16.2 32.4 40.3 42.1
+# 4 Québec    chilled        1 14.2 24.1 30.3 34.6
+# 5 Québec    chilled        2  9.3 27.3 35.0 38.8
+# 6 Québec    chilled        3 15.1 21.0 38.1 34.0
+#                  X500  X675 X1000
+# 1                35.3  39.2  39.7
+# 2                40.6 41.4   44.3
+# 3                42.9  43.9  45.5
+# 4 32.5 (umol/m^2 sec)  35,4  38.7
+# 5                38.6  37,5  42.4
+# 6               +38.9  39,6  41.4
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Dimensions (rows \& columns)}
+\protect\hypertarget{dimensions-rows-columns}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(DF)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# [1] 13 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(DF)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# [1] 13
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ncol}\NormalTok{(DF)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# [1] 10
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{\emph{Names} of elements (columns)}
+\protect\hypertarget{names-of-elements-columns}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(DF)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#  [1] "Type"      "Treatment" "PlantNum"  "X95"      
+#  [5] "X175"      "X250"      "X350"      "X500"     
+#  [9] "X675"      "X1000"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(DF)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#  [1] "Type"      "Treatment" "PlantNum"  "X95"      
+#  [5] "X175"      "X250"      "X350"      "X500"     
+#  [9] "X675"      "X1000"
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile,shrink]{Look at a column}
+\protect\hypertarget{look-at-a-column}{}
+\textbf{Remember:} you can refer to elements within a data frame by
+\emph{name}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DF}\SpecialCharTok{$}\NormalTok{Treatment}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#  [1] "nonchilled" "nonchilled" "nonchilled" "chilled"   
+#  [5] "chilled"    "chilled"    "nonchilled" "nonchilled"
+#  [9] "nonchilled" "chilled"    "chilled"    "chilled"   
+# [13] "chilled"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DF[, }\StringTok{"Type"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#  [1] "Quebec"      "Quebec"      "Quebec"      "Québec"     
+#  [5] "Québec"      "Québec"      "Mississippi" "Mississippi"
+#  [9] "Mississippi" "Mississippi" "Mississippi" "Mississippi"
+# [13] "Mississippi"
+\end{verbatim}
+
+\begin{block}{!}
+\protect\hypertarget{section}{}
+Looks like there might be some inconsistencies in the \texttt{Type}
+column. We'll learn how to fix those soon, but these simple functions
+are already helping us understand our data.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{str()}: structure of the object}
+\protect\hypertarget{str-structure-of-the-object}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(DF)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# 'data.frame': 13 obs. of  10 variables:
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Québec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "chilled" ...
+#  $ PlantNum : int  1 2 3 1 2 3 1 2 3 1 ...
+#  $ X95      : num  16 13.6 16.2 14.2 9.3 15.1 10.6 12 11.3 10.5 ...
+#  $ X175     : num  30.4 27.3 32.4 24.1 27.3 21 19.2 22 19.4 14.9 ...
+#  $ X250     : num  34.8 37.1 40.3 30.3 35 38.1 26.2 30.6 25.8 18.1 ...
+#  $ X350     : num  37.2 41.8 42.1 34.6 38.8 34 30 31.8 27.9 18.9 ...
+#  $ X500     : chr  "35.3" "40.6" "42.9" "32.5 (umol/m^2 sec)" ...
+#  $ X675     : chr  "39.2" "41.4 " "43.9" "35,4" ...
+#  $ X1000    : num  39.7 44.3 45.5 38.7 42.4 41.4 35.5 31.5 27.8 21.9 ...
+\end{verbatim}
+
+\begin{block}{Tip}
+\protect\hypertarget{tip}{}
+\emph{the \VERB|\FunctionTok{str}\NormalTok{()}| and
+\VERB|\FunctionTok{names}\NormalTok{()}| functions can be used with
+\textbf{any} object}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,shrink]{Simple plots}
+\protect\hypertarget{simple-plots}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(DF)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{R_data_scripting_files/figure-beamer/plot_basic-1.pdf}
+\end{frame}
+
+\begin{frame}[fragile]{Spreadsheet-like \texttt{View()}}
+\protect\hypertarget{spreadsheet-like-view}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{View}\NormalTok{(DF)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  This command opens a data frame in a spreadsheet-like view, which can
+  be easier to navigate.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  In R Studio, you can achieve the same thing by double-clicking on an
+  object name in the `\emph{Environment}' pane (default upper-right)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The \VERB|\FunctionTok{View}\NormalTok{()}| pane in R Studio
+    (default upper-left; `\emph{Source}') also allows for sorting and
+    filtering, but these do not change the viewed object, only the view.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Know Your Data}
+\protect\hypertarget{know-your-data}{}
+\begin{itemize}
+\item
+  These functions are useful for exploring different aspects of a loaded
+  data set
+\item
+  But they won't tell you if these are \emph{correct}.
+\item
+  Ideally, you should always ``Know Your Data'', and use these functions
+  to verify that the data was loaded correctly.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Are the number of rows and columns correct?
+  \item
+    Are the different columns of the expected type (numeric, character,
+    etc.)?
+  \item
+    Are the values correct?
+  \item
+    Is anything missing, or different than expected?
+  \end{itemize}
+\end{itemize}
 \end{frame}
 
 \hypertarget{downloading-data-from-the-internet}{%
@@ -1213,7 +1463,7 @@ Packages that can write to Excel files:
 \end{itemize}
 
 \begin{block}{!}
-\protect\hypertarget{section}{}
+\protect\hypertarget{section-1}{}
 I recommend \emph{avoiding} exporting data to Excel files if possible.
 \texttt{csv} files are easier to read to \& write from, and can be read
 by a wider variety of software (they are more portable).\\

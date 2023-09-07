@@ -21,7 +21,7 @@ params:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, comment='#')
 options(width = 60)  # to fit output on slides
 ```
 
@@ -268,6 +268,15 @@ DF <- read.csv("data_example.csv", skip = 2)
 
 # Exploring your data
 
+## Object class: data frame
+
+Before we explore our new data set, first a short review of the kind of *object* we're dealing with:
+
+```{r data.frame}
+class(DF)
+typeof(DF)
+```
+
 ## Data frames
 
 <!--
@@ -276,6 +285,94 @@ DF <- read.csv("data_example.csv", skip = 2)
 - View / R Studio Environment pane
 - Know Your Data
 -->
+
+## `head()`: peek at the first few rows
+
+```{r head}
+head(DF)
+```
+
+
+## Dimensions (rows & columns)
+
+```{r dims}
+dim(DF)
+nrow(DF)
+ncol(DF)
+```
+
+## *Names* of elements (columns)
+
+```{r colnames}
+names(DF)
+colnames(DF)
+```
+
+## Look at a column {.shrink}
+
+**Remember:** you can refer to elements within a data frame by *name*.
+
+```{r}
+DF$Treatment
+DF[, "Type"]
+```
+
+### !
+
+Looks like there might be some inconsistencies in the `Type` column.
+We'll learn how to fix those soon, 
+but these simple functions are already helping us understand our data.
+
+## `str()`: structure of the object
+
+```{r str}
+str(DF)
+```
+
+### Tip
+_the `str()`{.r} and `names()`{.r} functions can be used with **any** object_
+
+
+## Simple plots {.shrink}
+
+```{r plot_basic}
+plot(DF)
+```
+
+
+## Spreadsheet-like `View()`
+
+``` r
+View(DF)
+```
+- This command opens a data frame in a spreadsheet-like view,
+  which can be easier to navigate.
+
+<!-- base R View() screenshot -->
+
+- In R Studio, you can achieve the same thing by double-clicking
+  on an object name in the '*Environment*' pane (default upper-right)
+  - The `View()`{.r} pane in R Studio (default upper-left; '*Source*') 
+    also allows for sorting and filtering,
+    but these do not change the viewed object, only the view.
+
+<!-- R Studio Environment Pane screenshot -->
+<!-- R Studio View screenshot -->
+
+## Know Your Data
+
+- These functions are useful for exploring different aspects of a loaded data set
+
+- But they won't tell you if these are _correct_.
+
+- Ideally, you should always "Know Your Data",
+  and use these functions to verify that the data was loaded correctly.
+  - Are the number of rows and columns correct?
+  - Are the different columns of the expected type (numeric, character, etc.)?
+  - Are the values correct?
+  - Is anything missing, or different than expected?
+
+
 
 
 # Downloading data from the internet
