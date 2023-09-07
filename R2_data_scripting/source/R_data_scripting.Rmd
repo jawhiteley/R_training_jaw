@@ -156,6 +156,48 @@ getwd()
 setwd('path/to/a/directory')
 ```
 
+## File paths
+
+- A *file path* is a *character string* that represents the location of a file
+  in your system (computer and OS)
+  
+- The format of paths can depend on the operating system (OS)
+
+  - Some use `"/"` to separate directories
+    - e.g., "`/dir/subdir`"
+    
+  - Windows uses `"\"`
+    - e.g., `"C:\\dir\subdir"`
+    - $\R$ uses this as an escape character in strings, and must be escaped itself in paths (`"\\"`)
+    - e.g., `"C:\\\\dir\\subdir"`
+
+
+## Paths in $\R$
+
+- $\R$ generally uses and understands `"/"` in paths, even on Windows.[^file-paths]
+
+  - e.g.,\ `"C:/dir/subdir"`
+  - on Windows, it also understands Windows-style paths: 
+    e.g,\ `"C:\\\\dir\\subdir"`
+
+- $\R$ also has platform-independent functions for manipulating paths, 
+  such as `file.path()`{.r},
+  which I will use in examples to make them as reproducible as possible.
+
+[^file-paths]: For the gory details, see section 14.2 "Filepaths" in "An Introduction to R" (`help.start()`{.r}), `?file.path`{.r}, and documentation for related functions.
+
+
+## My paths are not like yours
+
+- Directory (folder) names can also vary from one computer to another
+  --- it's difficult to show a path in this document that will also work on your computer!
+
+- Once you set a working directory _on your computer_ 
+  based on the structure of the files in this project,
+  we can use _relative paths_ that should also work on your computer 
+  (assuming your downloaded the workshop files in the same structure as provided).
+
+
 ## Set the working directory
 
 - For this workshop, set the working directory to location where you downloaded
