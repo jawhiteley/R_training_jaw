@@ -139,7 +139,7 @@ Find what works for _you_.
 
 
 
-# Loading data into $\R$
+# Loading Data into $\R$
 
 ## The Working Directory
 
@@ -324,7 +324,7 @@ DF <- read.csv(DF_path, skip = 2)
 
 
 
-# Exploring your data
+# Exploring Your Data
 
 ## Object class: data frame
 
@@ -371,8 +371,8 @@ colnames(DF)
 **Remember:** you can refer to elements within a data frame by *name*.
 
 ```{r}
-DF$Treatment
-DF[, "Type"]
+DF[, "Treatment"]
+unique(DF$Type)
 ```
 
 ### !
@@ -381,14 +381,14 @@ Looks like there might be some inconsistencies in the `Type` column.
 We'll learn how to fix those soon, 
 but these simple functions are already helping us understand our data.
 
-## `str()`: structure of the object
+## `str()`: structure of an object
 
 ```{r str}
 str(DF)
 ```
 
 ### Tip
-_the `str()`{.r} and `names()`{.r} functions can be used with **any** object_
+_The `str()`{.r} and `names()`{.r} functions can be used with **any** object._
 
 
 ## Simple plots {.shrink}
@@ -417,6 +417,7 @@ View(DF)
 <!-- R Studio Environment Pane screenshot -->
 <!-- R Studio View screenshot -->
 
+
 ## Know Your Data
 
 - These functions are useful for exploring different aspects of a loaded data set
@@ -425,10 +426,83 @@ View(DF)
 
 - Ideally, you should always "Know Your Data",
   and use these functions to verify that the data was loaded correctly.
-  - Are the number of rows and columns correct?
+  - Are the number of rows and columns what you expected?
   - Are the different columns of the expected type (numeric, character, etc.)?
-  - Are the values correct?
+  - Are the values in the expected range and format?
   - Is anything missing, or different than expected?
+
+
+## The `CO2` dataset: background
+
+The example data file is based on the `'CO2'` dataset 
+available in $\R$ (`?CO2`),
+with a few changes added to make things interesting.
+
+From the documentation:
+
+> The CO2 uptake of six plants from Quebec and six plants from Mississippi 
+> was measured at several levels of ambient CO2 concentration. 
+> Half the plants of each type were chilled overnight before the experiment was conducted.
+
+
+## Exercise: what's wrong with this data?
+
+The original dataset has the following properties (`str(CO2)`{.r}):
+
+- 84 rows and 5 columns
+
+  --------------  ------------------------------------------------
+  Column Name     Description
+  --------------  ------------------------------------------------
+  `Plant`          factor with 12 levels:
+                   Qn1, Qn2, ... Mc3, Mc1
+
+  `Type`           factor with 2 levels:
+                   "Quebec" and "Mississippi"
+  
+  `Treatment`      factor with 2 levels:
+                   "nonchilled" and "chilled"
+  
+  `conc`           numeric: ambient carbon dioxide 
+                            concentrations (mL/L)
+
+  `uptake`         numeric: carbon dioxide uptake rates 
+                            (μmol/m^2^ sec)
+  --------------  ------------------------------------------------
+
+### Your turn
+
+Using the functions described in this section, 
+can you identify some possible issues and differences
+with the data set you loaded?
+
+_**Spoiler alert:** suggested answers on the next slide._
+
+
+## Exercise: what's wrong with this data {.shrink}
+
+- The data we loaded has different dimensions!
+  - Values from the `conc` column are shown as *column names*
+  - `uptake` values are the values of these columns
+  - This isn't necessarily _bad_:
+    such a structure can be useful for presentation
+    and interpretation by people,
+    but it is not _tidy_ and less convenient 
+    for analysis & visualization (more on this later).
+
+- Some of the `uptake` values are *character*,
+  but should be *numeric*
+
+- One of the `Type` values is spelled inconsistently:
+  "Quebec"/"Québec"
+  
+- The `PlantNum` column does not contain the original
+  unique identifier in `Plant`
+  - The values are no longer _unique_,
+    without also considering the `Type` and `Treatment` columns.
+  
+_There are other differences you may have noticed:
+ we'll look at other ways to identify these automatically later._
 
 
 
