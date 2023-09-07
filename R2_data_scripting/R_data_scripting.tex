@@ -400,8 +400,187 @@ alternatives. Find what works for \emph{you}.
 \section{\texorpdfstring{Loading data into
 \(\R\)}{Loading data into \textbackslash R}}\label{loading-data-into-r}}
 
-\begin{frame}{}
-\protect\hypertarget{section}{}
+\begin{frame}[fragile]{The Working Directory}
+\protect\hypertarget{the-working-directory}{}
+\begin{itemize}
+\tightlist
+\item
+  When working with external files, it helps to know the current
+  \emph{working~directory}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Any paths supplied to \(\R\) functions will be relative to this
+    path.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  You can change the working directory with this command:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{setwd}\NormalTok{(}\StringTok{\textquotesingle{}path/to/a/directory\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Set the working directory}
+\protect\hypertarget{set-the-working-directory}{}
+\begin{itemize}
+\tightlist
+\item
+  For this workshop, set the working directory to location where you
+  downloaded this presentation and accompanying files.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the directory that \emph{contains} the folder named `\texttt{files}'
+    that was downloaded along with the files for this workshop.
+  \end{itemize}
+\end{itemize}
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.58\textwidth}
+\begin{itemize}
+\item
+  Base \(\R\) on Mac / Linux:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Menu item: ``Misc \textgreater{} Change Working Directory\ldots{}''
+  \item
+    \texttt{CMD+D} on Mac; \texttt{CTL+D} on Linux (or Windows)
+  \end{itemize}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.38\textwidth}
+\begin{itemize}
+\tightlist
+\item
+  Base \(\R\) on Windows:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{setwd}\NormalTok{( }\FunctionTok{choose.dir}\NormalTok{() )}
+\end{Highlighting}
+\end{Shaded}
+\end{column}
+\end{columns}
+
+\medskip
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.58\textwidth}
+\begin{itemize}
+\tightlist
+\item
+  In R~Studio, you can use the \emph{Files} pane (default bottom-right)
+  to navigate to a directory in your system, and click on ``\emph{More
+  \textgreater{} Set As Working Directory}''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    or ``\emph{Session \textgreater{} Set Working Directory
+    \textgreater{} To Files Pane Location}'' in the R~Studio menu.
+  \end{itemize}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.38\textwidth}
+\includegraphics[width=0.8\textwidth,height=\textheight]{images/rstudio-set-wd-files.png}
+\end{column}
+\end{columns}
+
+\note{\begin{itemize}
+\tightlist
+\item
+  R Studio also has a menu item to conveniently set the working
+  directory to the same location as a file in the `Source' pane.\\
+  We'll use that later with source files.
+\end{itemize}}
+\end{frame}
+
+\begin{frame}[fragile]{Check your working directory}
+\protect\hypertarget{check-your-working-directory}{}
+\begin{itemize}
+\item
+  Check to see that the working directory is in the right place:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{file.exists}\NormalTok{(}\StringTok{"data\_example.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+\item
+  If the result of the statement above is not
+  ``\VERB|\ConstantTok{TRUE}|'' in your session, try one of the
+  \protect\hyperlink{set-the-working-directory}{other approaches} to
+  change your working directory, and try again.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{csv files}
+\protect\hypertarget{csv-files}{}
+\begin{itemize}
+\tightlist
+\item
+  `csv' = \textbf{C}omma \textbf{S}eparated \textbf{V}alues
+
+  \begin{itemize}
+  \tightlist
+  \item
+    files in this format have a `\texttt{.csv}' file extension.
+  \end{itemize}
+\item
+  They are:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    plain text files
+  \item
+    used to represent tabular data, with each \emph{row} on a line, and
+    values in each \emph{column} separated by commas (\texttt{,})
+  \item
+    readable by a wide variety of analysis software (highly portable)
+  \item
+    simple---no embedded metadata
+  \end{itemize}
+\item
+  We'll try to load this file into \(\R\):\\
+  \texttt{example\_data.csv}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{optional: you can try opening it in a text editor, or
+    spreadsheet software, to see what's in the file.}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Load a csv file into \(\R\)}
+\protect\hypertarget{load-a-csv-file-into-r}{}
 \end{frame}
 
 \hypertarget{exploring-your-data}{%
@@ -947,7 +1126,7 @@ Packages that can write to Excel files:
 \end{itemize}
 
 \begin{block}{!}
-\protect\hypertarget{section-1}{}
+\protect\hypertarget{section}{}
 I recommend \emph{avoiding} exporting data to Excel files if possible.
 \texttt{csv} files are easier to read to \& write from, and can be read
 by a wider variety of software (they are more portable).\\

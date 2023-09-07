@@ -127,10 +127,105 @@ Find what works for _you_.
 
 # Loading data into $\R$
 
-## 
+## The Working Directory
+
+- When working with external files, it helps to know the current _working\ directory_
+  - Any paths supplied to $\R$ functions will be relative to this path.
+
+```r
+getwd()
+```
+
+- You can change the working directory with this command:
+
+```r
+setwd('path/to/a/directory')
+```
+
+## Set the working directory
+
+- For this workshop, set the working directory to location where you downloaded
+  this presentation and accompanying files.
+  - the directory that _contains_ the folder named '`files`'
+    that was downloaded along with the files for this workshop.
+
+:::::: {.columns .onlytextwidth}
+::: {.column width="58%"}
+* Base $\R$ on Mac / Linux:
+
+  - Menu item: "Misc > Change Working Directory..."
+  - `CMD+D` on Mac; `CTL+D` on Linux (or Windows)
+
+:::
+::: {.column width="38%"}
+* Base $\R$ on Windows:
+
+```r
+setwd( choose.dir() )
+```
+
+:::
+::::::
+```{=latex}
+\medskip
+```
+:::::: {.columns .onlytextwidth}
+::: {.column width="58%"}
+
+* In R\ Studio,
+  you can use the _Files_ pane (default bottom-right)
+  to navigate to a directory in your system,
+  and click on "*More > Set As Working Directory*"
+  - or "*Session > Set Working Directory > To Files Pane Location*" 
+    in the R\ Studio menu.
+
+:::
+::: {.column width="38%"}
+
+![](images/rstudio-set-wd-files.png){width=80%}
+:::
+::::::
+
+::: notes
+  - R Studio also has a menu item to conveniently set the working directory to the same location as a file in the 'Source' pane.  
+    We'll use that later with source files.
+:::
+
+
+## Check your working directory
+
+- Check to see that the working directory is in the right place:
+
+  ```{r check_wd}
+  file.exists("data_example.csv")
+  ```
+
+- If the result of the statement above is not "`TRUE`{.r}" in your session,
+  try one of the [other approaches](#set-the-working-directory)
+  to change your working directory, and try again.
+
+
+## csv files
+
+- 'csv' = **C**omma **S**eparated **V**alues
+  - files in this format have a '`.csv`' file extension.
+  
+- They are:
+  - plain text files
+  - used to represent tabular data, 
+    with each *row* on a line, and values in each *column* separated by commas (`,`)
+  - readable by a wide variety of analysis software (highly portable)
+  - simple---no embedded metadata
+
+- We'll try to load this file into $\R$:  
+  `example_data.csv`
+  - *optional: you can try opening it in a text editor, or spreadsheet software,
+    to see what's in the file.*
+
+
+## Load a csv file into $\R$
 
 <!--
-- working directory
 - read.csv (read.table)
   - local Example File
 - downloading data from the internet (to a temp dir)
