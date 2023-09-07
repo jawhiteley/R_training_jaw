@@ -333,7 +333,7 @@ DF <- read.csv(DF_path, skip = 2)
 
 ## Object class: data frame
 
-Before we explore our new data set, first a short review of the kind of *object* we're dealing with:
+Before we explore our new data set, let's quickly review the kind of *object* we're dealing with:
 
 ```{r data.frame}
 class(DF)
@@ -369,6 +369,7 @@ ncol(DF)
 ```{r colnames}
 names(DF)
 colnames(DF)
+rownames(DF)
 ```
 
 ## Look at a column {.shrink}
@@ -472,7 +473,7 @@ The original dataset has the following properties (`str(CO2)`{.r}):
                             concentrations (mL/L)
 
   `uptake`         numeric: carbon dioxide uptake rates 
-                            (μmol/m^2^ sec)
+                            ($\mu$mol/m^2^$\cdot$sec)
   --------------  ------------------------------------------------
 
 ### Your turn
