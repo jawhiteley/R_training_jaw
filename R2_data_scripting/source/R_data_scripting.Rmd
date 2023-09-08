@@ -518,7 +518,8 @@ _There are other differences you may have noticed:
 <!--
 - downloading data from the internet (to a temp dir)
   - the same local file, directly from the URL on GitHub
-  - CANSIM / NDMr / other package?
+  - download.file()
+- CANSIM / NDMr / other package?
 -->
 
 
@@ -526,9 +527,8 @@ _There are other differences you may have noticed:
 
 <!--
 - write.csv
-- Extras: exporting to Excel?
+- Extras: exporting to Excel
 - .Rdata files?
-- Projects?
 -->
 
 # Re-using your code: scripts and other files
@@ -549,8 +549,9 @@ _There are other differences you may have noticed:
 + Style Guides
   - https://style.tidyverse.org/syntax.html
   - https://google.github.io/styleguide/Rguide.html
-+ Rmd, Notebooks? (save for later?)\
++ Rmd, Notebooks? (save for later?)
   - Brief mention, demo
+- Projects?
 -->
 
 
@@ -863,7 +864,7 @@ Other packages in the `tidyverse`:
 
 
 ## Writing to Microsoft Excel^TM^ files  {.shrink}
-<!-- move to `extras`? -->
+<!-- move to `Extras` -->
 
 Packages that can write to Excel files:
 
