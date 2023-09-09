@@ -22,11 +22,11 @@ params:
 ## https://bookdown.org/yihui/rmarkdown-cookbook/custom-knit.html
 ## https://stackoverflow.com/questions/76964346/can-you-specify-different-folders-for-tex-and-pdf-output-files-in-r-markdown
 knit: 
-  (function(inputFile, ...) {
-    render_out <- rmarkdown::render(inputFile, ...);
-    out_path <- unlist( strsplit(render_out, split = "/") );
-    out_path <- file.path("..", out_path[length(out_path)]);
-    message("Copying output \nfrom '", render_out, "'\n  to '", normalizePath(out_path), "'" );
+  (function(input_file, ...) {
+    knitr::purl(input_file, documentation = 1);
+    render_out <- rmarkdown::render(input_file, ...);
+    out_path <- file.path("..", basename(render_out));
+    message("Copying output \nfrom '", render_out, "'\n  to '", normalizePath(out_path, mustWork = FALSE), "'" );
     success <- file.copy( render_out, out_path, overwrite = TRUE );
     if (!isFALSE(success)) {
       message("> Output file copied to '", normalizePath(out_path), "'" );
@@ -39,7 +39,7 @@ header-includes: |
   \newcommand{\Rlogo}{\includegraphics[height=1em]{`r file.path(R.home("doc"), "html", "logo.jpg")`}}  
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, purl=FALSE}
 ## https://yihui.org/knitr/options/
 knitr::opts_chunk$set(echo = TRUE, comment='')
 options(width = 60)  # to fit output on slides: either smaller font or shorter width (or both)
@@ -47,7 +47,7 @@ try( remove.packages('car') )  # to trigger appropriate error messages in the de
 ```
 
 
-```{r debugging_page, eval=FALSE, include=FALSE}
+```{r debugging_page, eval=FALSE, include=FALSE, purl=FALSE}
 ## Debugging
 \small
 
@@ -87,7 +87,7 @@ OuterFrameSep: \the\OuterFrameSep \\
 :::
 ::::::
 
-```{r debugging, echo=FALSE, eval=FALSE}
+```{r debugging, echo=FALSE, eval=FALSE, purl=FALSE}
 message("pandoc version: ", rmarkdown::pandoc_version())
 message("knitr version: ", packageVersion("knitr"),
         "\nrmarkdown version: ", packageVersion("rmarkdown")
@@ -125,7 +125,7 @@ message("knitr version: ", packageVersion("knitr"),
 + True or False: Warnings can be ignored, but an Error means I made a mistake.
 + True or False: Error messages will tell me how to fix the problem.
 
-```{r welcome, echo=FALSE, results='asis'}
+```{r welcome, echo=FALSE, results='asis', purl=FALSE}
 if (params$is_virtual) {
   cat("\\ 
   \n### Answer in the chat:
@@ -424,7 +424,7 @@ In this presentation,
 
 + Expected output (results) look like this:
 
-  ```{r format_output, include=TRUE, eval=TRUE, echo=FALSE}
+  ```{r format_output, include=TRUE, eval=TRUE, echo=FALSE, purl=FALSE}
   cat("Output (results)")
   ```
 
@@ -1881,7 +1881,7 @@ recode(CO2$Type, "'Quebec'='QC'; else='MS'")
 
 **Sample commands**
 
-```{r, results='hide'}
+```{r command-r-examples, results='hide'}
 x <- x + 1
 x <- x * (x+10)
 x <- log(x)
@@ -2066,7 +2066,7 @@ You can run _all_ the code in a script in different ways:
 
 ## References & More Information {.squeeze}
 
-```{r, eval=FALSE}
+```{r help.start, eval=FALSE}
 help.start()
 ```
 
@@ -2127,7 +2127,7 @@ Other training materials and tutorials used as inspiration:
 -->
 
 
-```{r NOTES, include=FALSE, eval=FALSE}
+```{r NOTES, include=FALSE, eval=FALSE, purl=FALSE}
 ## Notes on formatting output
 
 https://pandoc.org/MANUAL.html#pandocs-markdown
