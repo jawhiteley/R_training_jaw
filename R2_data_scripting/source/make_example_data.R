@@ -15,7 +15,7 @@ library(dplyr)
 library(tidyr)
 library(stringr)
 
-out_path <- "."    # relative path to output destination
+out_path <- "../data"    # relative path to output destination
 
 ## Check working directory
 wd_paths <- getwd() |> strsplit("/") |> unlist()
@@ -88,14 +88,20 @@ data_mod4 <- data_mod3 %>%
     )
   )
 
+
 ## Replace 'Plant' column with ambiguous & incomplete number
 ##  (to re-build in exercise)
 
-data_mod <- data_mod4 %>% 
+data_mod5 <- data_mod4 %>% 
   mutate(PlantNum = stringr::str_extract(Plant, "[0-9]")) %>% 
   relocate(PlantNum, .after = Treatment) %>% 
   select(-Plant)
 
+## Replace Treatment entries with missing values, except for first appearance (Plant == 1)
+##  to illustrate ?fill
+
+data_mod <- data_mod5 %>% 
+  mutate(Treatment = if_else(PlantNum == 1, Treatment, NA))
 
 
 
@@ -103,7 +109,7 @@ data_mod <- data_mod4 %>%
 ### SAVE - export results
 library(readr)
 
-if (F) {
+if (T) {
   ## Add extra lines (that have to be skipped) to the beginning?
   cat(
     "Data from an experiment on the cold tolerance of the grass species Echinochloa crus-galli.\n",
@@ -125,5 +131,10 @@ if (F) {
 ##==============================================================
 ## Test
 
-test1 <- read.csv(file.path(out_path, "data_example.csv"), fileEncoding = "UTF-8", skip = 2)
+test1 <- read.csv(file.path(out_path, "data_example.csv"), 
+                  fileEncoding = "UTF-8", 
+                  skip = 2#,
+                  #na.strings = ""
+                  )
+
 test2 <- readr::read_csv(file.path(out_path, "data_example.csv"), skip = 2)
