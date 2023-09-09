@@ -19,11 +19,11 @@ linkcolor: darkblue  # defined in LaTeX preamble (in_header includes, above)
 params:
   is_virtual: TRUE    # is this presentation for a virtual (T) or in-person (F) environment?
 knit: 
-  (function(inputFile, ...) {
-    render_out <- rmarkdown::render(inputFile, ...);
-    out_path <- unlist( strsplit(render_out, split = "/") );
-    out_path <- file.path("..", out_path[length(out_path)]);
-    message("Copying output \nfrom '", render_out, "'\n  to '", normalizePath(out_path), "'" );
+  (function(input_file, ...) {
+    knitr::purl(input_file, documentation = 1);
+    render_out <- rmarkdown::render(input_file, ...);
+    out_path <- file.path("..", basename(render_out));
+    message("Copying output \nfrom '", render_out, "'\n  to '", normalizePath(out_path, mustWork = FALSE), "'" );
     success <- file.copy( render_out, out_path, overwrite = TRUE );
     if (!isFALSE(success)) {
       message("> Output file copied to '", normalizePath(out_path), "'" );
@@ -35,7 +35,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, purl=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment='#')
 knitr::opts_knit$set(root.dir = "..")  # run all code as if in the parent directory
 options(width = 60)  # to fit output on slides
@@ -81,7 +81,7 @@ options(width = 60)  # to fit output on slides
 + TRUE or FALSE: $\R$ has rules and conventions for naming functions
 + TRUE or FALSE: if you use one package from the `tidyverse`, you have to use all of them.
 
-```{r welcome, echo=FALSE, results='asis'}
+```{r welcome, echo=FALSE, results='asis', purl=FALSE}
 if (params$is_virtual) {
   cat("\\ 
   \n### Answer in the chat:
@@ -210,6 +210,18 @@ setwd('path/to/a/directory')
   this presentation and accompanying files.
   - the directory that _contains_ the folder named '`data`'
     that you downloaded along with the files for this workshop.
+
+```{r setwd, eval=FALSE, echo=FALSE, results='hide', include=FALSE}
+Before running the commands in this file,
+set your working directory (*in the console*)
+to the folder that *contains* the 'data' folder
+(i.e., the workshop folder, as it appears on the web site.)
+
+setwd("path/to/the/folder")
+if (.Platform$OS.type == "windows") {
+  setwd( choose.dir() )
+}
+```
 
 :::::: {.columns .onlytextwidth}
 ::: {.column width="58%"}
