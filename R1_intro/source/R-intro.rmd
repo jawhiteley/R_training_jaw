@@ -1985,6 +1985,13 @@ An $\R$ *script* is a file that stores $\R$ code in *plain text*
 - Scripts provide a record of the steps in a program or analysis
   - results are more *reproducible*
   - scripts are a form of documentation
+  
+### Note
+
+There is a script file containing all the code 
+shown in the slides for this workshop:
+'`R-intro.R`' in the ['`source'` folder](https://github.com/jawhiteley/R_training_jaw/tree/main/R1_intro/source)
+of the workshop files.
 
 ::: notes
 - Most IDEs and text editors will show the text in different colours to distinguish different parts of the code
@@ -1997,7 +2004,7 @@ An $\R$ *script* is a file that stores $\R$ code in *plain text*
 Most IDEs have a shortcut to send portions of $\R$ code (a line or statement over multiple lines) to an $\R$ session:
   
   - R GUI: `CTL+Return` (mac: `CMD+Return`)
-  - R Studio: `CTL+Return` (mac: `CMD+Return`)
+  - RStudio: `CTL+Return` (mac: `CMD+Return`)
 
 You can run _all_ the code in a script in different ways:
 
@@ -2012,6 +2019,67 @@ You can run _all_ the code in a script in different ways:
   - You can capture output in a separate file
   - `?BATCH`{.r}
 
+
+## R Markdown
+
+- [**R\ Markdown**](https://rmarkdown.rstudio.com/) is another file type that can store reusable $\R$ code.
+
+- R Markdown combines $\R$ code with text and other content,
+  written in *Markdown*.
+
+- Markdown is a simple plain text format
+  that is both human-readable and machine-readable.
+  
+  - Markdown can be easily converted to
+    formatted document types (especially ones based on a mark-up language),
+    including HTML (web pages), pdf, or even Word and PowerPoint files.
+
+- Combining $\R$ code and other content 
+  supports reproducible research,
+  and can allow for automated reports.
+  
+- ["R Markdown: The Definitive Guide"](https://bookdown.org/yihui/rmarkdown/) 
+  contains much more information about R Markdown, itself written in R Markdown.
+
+
+## R Markdown & RStudio
+
+* R Markdown files have a '`.rmd`' file extenstion,
+  but they are also a plain text format.
+  - They can be edited in any text editor, and compiled using
+    the `rmarkdown` package in any flavour of $\R$ or IDE.
+
+* RStudio makes working with R Markdown files easy, with features like
+a 'visual' editing mode, 
+and built-in tools to compile (*render*) documents.
+
+### Notes
+
+The slides for this workshop were also made using R Markdown!  
+You can find the `.rmd` file in the ['`source'` folder](https://github.com/jawhiteley/R_training_jaw/tree/main/R1_intro/source).
+
+
+## R Notebooks
+
+- RStudio lets you use any R Markdown file like a *notebooks*,
+  where you can run code chunks and see the output,
+  either in the document or in your console.
+  - But the results will not be saved if you close the file.
+
+- Results and output can be saved by producing an "html_notebook" output,
+  which can be shared along with the rmd file
+  for reproducible research and analysis.
+
+- More information on R Notebooks is available in the [Notebook chapter](https://bookdown.org/yihui/rmarkdown/notebook.html) of the [R Markdown book](https://bookdown.org/yihui/rmarkdown/).
+
+
+### Notes
+
+1. You can open the "`.rmd`" file used to produce this document in RStudio,
+   and use it as an 'R Notebook' to run each 'code chunk'
+   and see the results, without having to copy & paste code into the console.
+  
+2. We'll explore script files and notebooks more in the next workshop.
 
 
 

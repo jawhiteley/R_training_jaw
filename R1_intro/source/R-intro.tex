@@ -1998,7 +1998,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x105a9e478>
+<bytecode: 0x13d7b9278>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
@@ -3481,6 +3481,13 @@ text}
   \end{itemize}
 \end{itemize}
 
+\begin{block}{Note}
+\protect\hypertarget{note-1}{}
+There is a script file containing all the code shown in the slides for
+this workshop: `\texttt{R-intro.R}' in the
+\href{https://github.com/jawhiteley/R_training_jaw/tree/main/R1_intro/source}{'\texttt{source\textquotesingle{}}
+folder} of the workshop files.
+
 \note{\begin{itemize}
 \tightlist
 \item
@@ -3493,6 +3500,7 @@ text}
     known as ``syntax highlighting''
   \end{itemize}
 \end{itemize}}
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]{Run \(\R\) code in scripts}
@@ -3505,7 +3513,7 @@ statement over multiple lines) to an \(\R\) session:
 \item
   R GUI: \texttt{CTL+Return} (mac: \texttt{CMD+Return})
 \item
-  R Studio: \texttt{CTL+Return} (mac: \texttt{CMD+Return})
+  RStudio: \texttt{CTL+Return} (mac: \texttt{CMD+Return})
 \end{itemize}
 
 You can run \emph{all} the code in a script in different ways:
@@ -3541,6 +3549,103 @@ You can run \emph{all} the code in a script in different ways:
     \VERB|\NormalTok{?BATCH}|
   \end{itemize}
 \end{itemize}
+\end{frame}
+
+\begin{frame}{R Markdown}
+\protect\hypertarget{r-markdown}{}
+\begin{itemize}
+\item
+  \href{https://rmarkdown.rstudio.com/}{\textbf{R~Markdown}} is another
+  file type that can store reusable \(\R\) code.
+\item
+  R Markdown combines \(\R\) code with text and other content, written
+  in \emph{Markdown}.
+\item
+  Markdown is a simple plain text format that is both human-readable and
+  machine-readable.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Markdown can be easily converted to formatted document types
+    (especially ones based on a mark-up language), including HTML (web
+    pages), pdf, or even Word and PowerPoint files.
+  \end{itemize}
+\item
+  Combining \(\R\) code and other content supports reproducible
+  research, and can allow for automated reports.
+\item
+  \href{https://bookdown.org/yihui/rmarkdown/}{``R Markdown: The
+  Definitive Guide''} contains much more information about R Markdown,
+  itself written in R Markdown.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{R Markdown \& RStudio}
+\protect\hypertarget{r-markdown-rstudio}{}
+\begin{itemize}
+\tightlist
+\item
+  R Markdown files have a `\texttt{.rmd}' file extenstion, but they are
+  also a plain text format.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    They can be edited in any text editor, and compiled using the
+    \texttt{rmarkdown} package in any flavour of \(\R\) or IDE.
+  \end{itemize}
+\item
+  RStudio makes working with R Markdown files easy, with features like a
+  `visual' editing mode, and built-in tools to compile (\emph{render})
+  documents.
+\end{itemize}
+
+\begin{block}{Notes}
+\protect\hypertarget{notes}{}
+The slides for this workshop were also made using R Markdown!\\
+You can find the \texttt{.rmd} file in the
+\href{https://github.com/jawhiteley/R_training_jaw/tree/main/R1_intro/source}{'\texttt{source\textquotesingle{}}
+folder}.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{R Notebooks}
+\protect\hypertarget{r-notebooks}{}
+\begin{itemize}
+\item
+  RStudio lets you use any R Markdown file like a \emph{notebooks},
+  where you can run code chunks and see the output, either in the
+  document or in your console.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    But the results will not be saved if you close the file.
+  \end{itemize}
+\item
+  Results and output can be saved by producing an ``html\_notebook''
+  output, which can be shared along with the rmd file for reproducible
+  research and analysis.
+\item
+  More information on R Notebooks is available in the
+  \href{https://bookdown.org/yihui/rmarkdown/notebook.html}{Notebook
+  chapter} of the \href{https://bookdown.org/yihui/rmarkdown/}{R
+  Markdown book}.
+\end{itemize}
+
+\begin{block}{Notes}
+\protect\hypertarget{notes-1}{}
+\begin{enumerate}
+\item
+  You can open the ``\texttt{.rmd}'' file used to produce this document
+  in RStudio, and use it as an `R Notebook' to run each `code chunk' and
+  see the results, without having to copy \& paste code into the
+  console.
+\item
+  We'll explore script files and notebooks more in the next workshop.
+\end{enumerate}
+\end{block}
 \end{frame}
 
 \hypertarget{backmatter}{%
