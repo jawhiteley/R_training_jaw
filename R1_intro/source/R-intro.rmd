@@ -1979,7 +1979,7 @@ An $\R$ *script* is a file that stores $\R$ code in *plain text*
   - they also work well with **v**ersion **c**ontrol **s**ystems,  
     like [`git`](https://git-scm.com/), [GitHub](https://github.com/), and [GitLab](https://about.gitlab.com/))
 
-- All the code in a scripts can be run in order
+- All the code in a script can be run in order
   - i.e., a *program*
 - They make it easy to re-use code
 - Scripts provide a record of the steps in a program or analysis
