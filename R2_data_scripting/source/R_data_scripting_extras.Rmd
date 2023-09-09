@@ -1,0 +1,70 @@
+---
+title: "A Short Introduction to Working With Data in R"
+subtitle: 'EXTRAS'
+author: "Jonathan Whiteley"
+date: "`r Sys.Date()`"
+output: 
+  beamer_presentation: 
+    latex_engine: xelatex # ensures certain characters (like '^') are rendered correctly
+    theme: Boadilla
+    colortheme: default
+    highlight: ../../shared/my_tango.theme
+    slide_level: 2
+    toc: true
+    includes:
+      in_header: "../../shared/preamble-include.tex"
+fontsize: 11pt
+urlcolor: darkblue   # defined in LaTeX preamble (in_header includes, above)
+linkcolor: darkblue  # defined in LaTeX preamble (in_header includes, above)
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "..") })
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment='#')
+options(width = 60)  # to fit output on slides
+```
+
+# Downloading Data From the Internet
+
+```{=html}
+<!--
+- downloading data from the internet (to a temp dir)
+  - the same local file, directly from the URL on GitHub
+  - download.file()
+- CANSIM / NDMr / other package?
+-->
+```
+# Exporting to other formats
+
+## Writing to Microsoft Excel^TM^ files {.shrink}
+
+Packages that can write to Excel files:
+
+-   [`xlsx`](https://github.com/colearendt/xlsx): read, write, format Excel 2007 (`.xlsx`) and Excel 97/2000/XP/2003 (`.xls`) files.
+    -   Depends on Java and the `rJava` package
+-   [`XLConnect`](https://github.com/miraisolutions/xlconnect): comprehensive and cross-platform R package for manipulating Microsoft Excel files (`.xlsx` & `.xls`) from within R.
+    -   Requires a Java Runtime Environment (JRE)
+-   [`openxlsx`](https://ycphs.github.io/openxlsx/index.html): simplified creation of Excel `.xlsx` files (**not** `.xls`).
+    -   *No dependency* on Java
+-   [`writexl`](https://docs.ropensci.org/writexl/): portable, light-weight data frame to **xlsx** exporter.
+    -   No Java or Excel required
+
+### !
+
+I recommend *avoiding* exporting data to Excel files if possible. `csv` files are easier to read to & write from, and can be read by a wider variety of software (they are more portable).\
+Automated reports can be produced with R Markdown and output to a variety of more portable formats (pdf, HTML, etc.) instead.
+
+::: notes
+As seen here, there are several packages for working with Excel files, with different advantages and disadvantages: you may have to do some testing to find the best fit for your situation.
+
+I personally prefer the `openxlsx` package, because in my experience, the dependency on Java can be difficult to get working and unreliable. But I have no experience with `writexl`, which is newer and possibly faster than the others.\
+The main trade-off is the openxlsx cannot write to `.xls` files (Excel 97/2000/XP/2003 format) and has fewer formatting options than other packages --- but if you need that much formatting, why not produce a formatted report with R Markdown?
+:::
+
+## References (Extras)
+
+CANSIM / CODR data:
+
+- [An ecosystem of R packages to access and process Canadian data](https://mountainmath.ca/canssi/#1)
+- [Analyzing Canadian Demographic and Housing Data](https://mountainmath.github.io/canadian_data/)

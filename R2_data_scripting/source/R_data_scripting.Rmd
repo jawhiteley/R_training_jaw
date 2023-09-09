@@ -863,37 +863,6 @@ Other packages in the `tidyverse`:
 
 
 
-## Writing to Microsoft Excel^TM^ files  {.shrink}
-<!-- move to `Extras` -->
-
-Packages that can write to Excel files:
-
-- [`xlsx`](https://github.com/colearendt/xlsx): read, write, format Excel\ 2007 (`.xlsx`) and Excel\ 97/2000/XP/2003 (`.xls`) files.
-  - Depends on Java and the `rJava` package
-
-- [`XLConnect`](https://github.com/miraisolutions/xlconnect): comprehensive and cross-platform R package for manipulating Microsoft Excel files (`.xlsx` & `.xls`) from within R.
-  - Requires a Java Runtime Environment (JRE)
-
-- [`openxlsx`](https://ycphs.github.io/openxlsx/index.html): simplified creation of Excel `.xlsx` files (**not** `.xls`).
-  - _No dependency_ on Java
-
-- [`writexl`](https://docs.ropensci.org/writexl/): portable, light-weight data frame to **xlsx** exporter. 
-  - No Java or Excel required
-
-### !
-
-I recommend _avoiding_ exporting data to Excel files if possible.
-`csv` files are easier to read to & write from, and can be read by a wider variety of software (they are more portable).  
-Automated reports can be produced with R Markdown and output to a variety of more portable formats (pdf, HTML, etc.) instead. 
-
-::: notes
-As seen here, there are several packages for working with Excel files, with different advantages and disadvantages: you may have to do some testing to find the best fit for your situation.
-
-I personally prefer the `openxlsx` package, because in my experience, the dependency on Java can be difficult to get working and unreliable.  But I have no experience with `writexl`, which is newer and possibly faster than the others.  
-The main trade-off is the openxlsx cannot write to `.xls` files (Excel 97/2000/XP/2003 format) and has fewer formatting options than other packages --- but if you need that much formatting, why not produce a formatted report with R Markdown?
-:::
-
-
 ## References
 
 Cheatsheets:
@@ -902,8 +871,14 @@ Cheatsheets:
 - [Data transformation with dplyr](https://rstudio.github.io/cheatsheets/html/data-transformation.html)
 - [Data tidying with tidyr](https://rstudio.github.io/cheatsheets/html/tidyr.html)
 
+On the web:
+
+- [Tidyverse documentation](https://tidyverse.tidyverse.org/)
+- [R for Data Science](https://r4ds.hadley.nz/data-transform.html) (2e)
+- [An introduction to data cleaning with R](https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf)
+
 ::: notes
-https://cran.rapporter.net/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf
+https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf
 https://r4ds.hadley.nz/data-transform.html (https://r4ds.had.co.nz/transform.html)
   https://github.com/rstudio-education/r4ds-instructors
   https://dplyr.tidyverse.org/articles/dplyr.html#single-table-verbs
