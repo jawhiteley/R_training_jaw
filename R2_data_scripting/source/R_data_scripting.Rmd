@@ -31,6 +31,8 @@ knit:
       if (!isFALSE(success)) message("> Original file deleted '", render_out, "'");
     };
   })
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -383,7 +385,7 @@ unique(DF$Type)
 
 ### !
 
-Looks like there might be some inconsistencies in the `Type` column.
+Looks like there might be some missing values in the `Treatment` column, and inconsistencies in the `Type` column.
 We'll learn how to fix those soon, 
 but these simple functions are already helping us understand our data.
 
@@ -451,7 +453,7 @@ From the documentation:
 > Half the plants of each type were chilled overnight before the experiment was conducted.
 
 
-## Exercise: what's wrong with this data?
+## Exercise 1: what's wrong with this data?
 
 The original dataset has the following properties (`str(CO2)`{.r}):
 
@@ -485,7 +487,7 @@ with the data set you loaded?
 _**Spoiler alert:** suggested answers on the next slide._
 
 
-## Exercise 1: what's wrong with this data {.shrink}
+## Exercise 1: what _is_ wrong with this data {.shrink}
 
 - The data we loaded has different dimensions!
   - Values from the `conc` column are shown as *column names*
@@ -502,32 +504,26 @@ _**Spoiler alert:** suggested answers on the next slide._
 - One of the `Type` values is spelled inconsistently:
   "Quebec"/"Québec"
   
-- The `PlantNum` column does not contain the original
-  unique identifier in `Plant`
+- Some values in the `Treatment` column are empty
+  - The value is only included when it changes
+  
+- The `PlantNum` column does not contain a unique identifier,
+  as in the original `Plant` column
   - The values are no longer _unique_,
     without also considering the `Type` and `Treatment` columns.
   
 _There are other differences you may have noticed:
- we'll look at other ways to identify these automatically later._
+ we'll look at ways to identify these automatically later._
 
 
-
-
-# Downloading Data From the Internet
-
-<!--
-- downloading data from the internet (to a temp dir)
-  - the same local file, directly from the URL on GitHub
-  - download.file()
-- CANSIM / NDMr / other package?
--->
 
 
 # Saving Data Outside $\R$
 
 <!--
 - write.csv
-- Extras: exporting to Excel
+- file enoding: accents (french)
+  - writing & reading
 - .Rdata files?
 -->
 
@@ -821,7 +817,7 @@ write a script (or two companion scripts) that
 - load a series of files in a folder
   - ue existing dataset, split up by a grouping variable (or year, etc.)
 - cleans each one to be consistent (in a function)
-- combines them into a single dataset
+- combine them into a single dataset
 - re-arrange (pivot) the final dataset
 - compare to reference file to test success?
   - have another team / person write a script to do this?
@@ -901,4 +897,8 @@ https://cran.r-project.org/web/packages/this.path/this.path.pdf
 Other related tutorials:
 https://posit.co/resources/videos/a-gentle-introduction-to-tidy-statistics-in-r/
 
+CSV files & encoding:
+https://stackoverflow.com/questions/16838613/cannot-read-unicode-csv-into-r
+https://donnees-data.tpsgc-pwgsc.gc.ca/dd/csv_df-eng.html#multiline
+  - Found this in a Google search, but not sure how current or 'official' it is.
 :::
