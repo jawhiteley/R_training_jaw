@@ -936,7 +936,14 @@ is.null(DF_readr$Treat)
 ```
 
 
-## Column types
+## `read_csv()`: column names
+
+<!--
+name_repair argument
+-->
+
+
+## `read_csv()`: guessing column types
 
 - By default, `read_csv()`{.r} prints a message summarizing what it did,
   including _guessing the data type_ of each column.
@@ -954,7 +961,7 @@ is.null(DF_readr$Treat)
 ```
 
 
-## Column types: avoid guessing
+## `read_csv()`: specify column types
 
 - If you know what the column types are (or should be),
   you can tell `read_csv()`{.r} what they are
@@ -976,12 +983,12 @@ read_csv(DF_path, skip = 2, col_types = col_spec)
 # ?read_csv for more options
 ```
 
-## Column types: all strings
+## `read_csv()`: all columns as strings
 
 - In extreme cases, you can read everything as '`character`',  
   then clean and coerce to other data types within $\R$
 
-```{r read_csv() all character}
+```{r read_csv() all columns as character}
 # read all columns as character
 read_csv(DF_path, skip = 2, 
          col_types = cols(.default = col_character())
@@ -989,12 +996,26 @@ read_csv(DF_path, skip = 2,
 ```
 
 
-## `read_csv()` options: missing data
+## `read_csv()`: missing values
 
-<!-- read_csv
-- col classes
-- na values
--->
+- Use the `na` argument to supply a list of values
+  to replace with `NA`{.r}.
+  - This is applied to **all** columns.
+
+```{r read_csv() na argument, message=FALSE, warning=FALSE}
+read_csv(DF_path, skip = 2, 
+         na = c(".", "NA")  # will not replace empty strings ("") with NA
+         )
+```
+
+::: notes
+The example actually produces a warning:
+The missing values in lines 12 & 13 (including header row)
+are read as an empty character string (""),
+then dropped when coerced to numeric,
+triggering the usual warning.
+:::
+
 
 ## The `readxl` package
 
@@ -1009,6 +1030,32 @@ excel_sheets(xl_path)  # get the names of the sheets
 ## read a specified sheet from the Excel file
 iris_xl <- read_excel(xl_path, "iris")
 ```
+
+
+## Example 3: read a messy Excel file
+
+- `read_excel()`{.r} has many of the same arguments as 
+  `read_csv()`{.r} to control how data is imported.
+
+- Use the script file in the "`examples`" folder as a starting point:
+  - "`R2_exercise_3.R`"
+
+```r
+XL_path <- readxl_example("deaths.xlsx")
+XL <- read_excel(XL_path, ...)
+```
+
+. . .
+
+### Tip
+
+Use the '`range`' argument to read data from a specific range in a sheet, 
+ignoring contents outside this range 
+(rows above & below, columns before & after)
+
+::: notes
+Skip this exercise if running late.
+:::
 
 
 # Clean Data: The `dplyr` Package

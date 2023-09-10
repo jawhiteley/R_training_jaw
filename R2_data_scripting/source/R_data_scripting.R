@@ -111,10 +111,16 @@ read_csv(DF_path, skip = 2, col_types = col_spec)
 # ?read_csv for more options
 
 
-## ----read_csv() all character-------------------------------------------------
+## ----read_csv() all columns as character--------------------------------------
 # read all columns as character
 read_csv(DF_path, skip = 2, 
          col_types = cols(.default = col_character())
+         )
+
+
+## ----read_csv() na argument, message=FALSE, warning=FALSE---------------------
+read_csv(DF_path, skip = 2, 
+         na = c(".", "NA")  # will not replace empty strings ("") with NA
          )
 
 
