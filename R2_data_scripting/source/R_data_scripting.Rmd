@@ -415,6 +415,12 @@ str(DF)
 _The `str()`{.r} and `names()`{.r} functions can be used with **any** object._
 
 
+## `summary()`: statistical summaries by column
+
+```{r summary}
+summary(DF)
+```
+
 ## Simple plots {.shrink}
 
 ```{r plot_basic}
@@ -432,11 +438,11 @@ View(DF)
 
 <!-- base R View() screenshot -->
 
-- In RStudio, you can achieve the same thing by double-clicking
+- In RStudio, you can achieve the same thing by clicking
   on an object name in the '*Environment*' pane (default upper-right)
   - The `View()`{.r} pane in RStudio (default upper-left; '*Source*') 
     also allows for sorting and filtering,
-    but these do not change the viewed object, only the view.
+    but these do not change the object in your session, only the view.
 
 <!-- RStudio Environment Pane screenshot -->
 <!-- RStudio View screenshot -->
@@ -841,6 +847,8 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
     - or just group_by() & mutate()
 + sorting; arrange()
   - group_by()
+* tidy-select? ?dplyr_tidy_select
+* data masking? (advanced) ?args_data_masking
 + exercise: clean some values in Example File loaded earlier?
   - I want to use that file for demos, to ensure everyone's objects are the same.
 -->
