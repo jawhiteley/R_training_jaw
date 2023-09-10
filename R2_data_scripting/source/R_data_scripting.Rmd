@@ -1118,16 +1118,18 @@ Use loaded data set for demos; `who` or `iris` data for exercises?
 
 ## `dplyr`: a grammar of data manipulation
 
-- `dplyr` provides many functions, within a coherent framework or _grammar_  
+- `dplyr` provides many functions that follow a coherent framework or "_grammar_"
   
 - They are intended to help you focus on _what_ you want to do, 
     and translate your thoughts into code.
 
 - High-level functions have active names and called "**verbs**" --- they describe what they do.
 
-- `dplyr` and `tidyr` provide many "**helper functions**" that work _inside_ verbs 
-  and other functions to make many tasks easier to translate into code.
-  - These functions may not work on their own, outside of `dplyr` verbs and `tidyr` functions.
+- `dplyr` and `tidyselect` provide many "**helper functions**" that work _inside_ verbs 
+  and other `tidyverse` functions to make common tasks easier to translate into code.
+  - These functions may not work on their own, 
+    outside of `dplyr` verbs and `tidyr` functions
+    (see `?"faq-selection-context"`{.r}).
 
 
 ## `dplyr` verbs
@@ -1156,11 +1158,33 @@ Verbs can be grouped based on the component of the dataset that they work with[^
 :::
 
 
+## `dplyr` conventions
+
+All `dplyr` verbs (and other related `tidyverse` functions) share a few things in common:
+
+- The first argument is a data frame (or tibble).
+
+- Other arguments describe what to do with the data frame. 
+
+- You can refer to columns in the data frame directly without using `$`{.r}.
+
+- The result is a new data frame.
+
+We'll see how these can help build clear and efficient workflows.
+
+Because all the functions have these in common, 
+it makes it easier to extend your understanding to new functions.
+
+<!-- https://dplyr.tidyverse.org/articles/dplyr.html#commonalities -->
+
+
+
+
 ## `dplyr` *semantics*
 
 `dplyr` verbs and helper functions let you refer to column names
 of the data frame directly in their arguments 
-as regular variables --- without having to quote them.
+as regular variables --- without having to quote them as strings.
 But these names have different meanings (semantics) in different verbs.
 
 * **"select semantics"**: in `select()`{.r} and similar functions, 
