@@ -859,6 +859,81 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 +--------------------+-----------------------------+--------------------+-----------------------+
 
 
+## Read a csv file using `read_csv()`
+
+- In keeping with Tidyverse conventions, functions are names with words separated by "`_`" 
+  (instead of "`.`" or `camelCase`, as in many base $\R$ functions)
+
+```{r read_csv}
+library(readr)
+DF_readr <- read_csv(DF_path, skip = 2)
+```
+
+## `read_csv()`
+
+- `read_csv()`{.r} printed a helpful message summarizing what it did,
+  including _guessing the data type_ of each column.
+
+
+## Tibbles: streamlined `data.frame`s
+
+* A ['tibble'](https://tibble.tidyverse.org/) (`class()`{.r} = `tbl_df`) is 
+  "a modern reimagining of the data.frame".
+  - See the [package documentation](https://tibble.tidyverse.org/) for details.
+
++ Many tidyverse functions produce tibbles by default.
+
++ **Tibbles are _also_ `data.frame`s**, and *inherit* from that class.
+  - functions that work with `data.frame`s should also work with tibbles.
+  - but some may behave differently (by design).
+  - for example, `print()`ing a tibble includes slightly more information,
+    and only prints a few rows and columns by default,
+    preventing large datasets from overwhelming your console.
+
++ For most purposes, tibbles are interchangeable with `data.frame`s.
+  - A tibble can be converted to a 'plain' `data.frame` 
+    with `as.data.frame()`{.r} if necessary.
+
+
+
+## Exercise 2: compare results from `read.csv()` and `read_csv()`
+
+- There's a script file in the `exercises` folder to get you started.
+
+  - "`R2_exercise_2.R`"
+
+- Use the functions we [learned earlier](#head-peek-at-the-first-few-rows) 
+  to inspect the results of the two functions.
+
+### **Spoiler alert:**
+
+_suggested answers on the next slide._
+
+
+## Exercise 2: comparison of `read.csv()` and `read_csv()`
+
+- The column names are different
+  - `read.csv()`{.r} automatically applies `make.names()`{.r} to the column names 
+    to make 'syntactically valid' names to use in $\R$.
+  - convenient, but not always what we want.
+  - there are other 'cleaning' functions available 
+    (e.g.,\ `clean_names()`{.r} in the [`janitor` package](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html))
+
+- `read_csv()`{.r} automatically replaced empty strings 
+  in the `Treatment` column with `NA`{.r}s.
+
+- `read_csv()`{.r} left the '`675`' column as numeric,
+  but ignored the commas, resulting in larger numbers.
+
+- `read_csv()`{.r} produces a `tibble` object,
+  not a simple `data.frame`
+
+## Options to control reading files
+
+<!-- read_csv
+- col classes
+- na values
+-->
 
 ## The `readxl` package
 

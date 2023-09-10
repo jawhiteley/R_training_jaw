@@ -78,6 +78,11 @@ summary(DF)
 plot(DF)
 
 
+## ----read_csv-----------------------------------------------------------------
+library(readr)
+DF_readr <- read_csv(DF_path, skip = 2)
+
+
 ## ----readxl demo--------------------------------------------------------------
 library(readxl)    # load the package
 ## Documentation: ?read_excel  help(package="readxl")
