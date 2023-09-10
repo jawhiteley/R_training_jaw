@@ -1019,7 +1019,9 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
   but not others, like white space and indentation.
 
 - As mentioned at the beginning, there is often more than one way
-  to do things in $\R$.
+  to do things in $\R$
+  - different styles of _naming things_
+  - different name formats: `camelCase`, `snake_case`, etc.
 
 - Reading someone else's code that is written in a different style,
   or with inconsistent formatting,
