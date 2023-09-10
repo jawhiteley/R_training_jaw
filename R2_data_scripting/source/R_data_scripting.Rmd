@@ -145,7 +145,7 @@ Find what works for _you_.
 
 
 
-# Loading Data into $\R$
+# File Paths and The Working Directory
 
 ## The Working Directory
 
@@ -280,6 +280,10 @@ setwd( choose.dir() )
   try one of the [other approaches](#set-the-working-directory)
   to change your working directory, and try again.
 
+
+
+
+# Loading Data into $\R$
 
 ## csv files
 
@@ -785,6 +789,39 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 * [stringr](https://stringr.tidyverse.org/) for working with **strings**
 
 
+
+
+# Load Data: The `readr` & `readxl` Packages
+
+
+
+
+# Clean Data: The `dplyr` Package
+
+<!--
++ filter()
+  - package::function notation (to distinguish from other functions named 'filter')
+  - near()?
+  - duplicates: find, drop [after merging?]
++ select()
++ mutate()
++ editing values systematically
+  - ifelse(), if_else() (mutate semantics and variable name scope?)
+  - case_when()
+  - factors?
++ summarize()
++ combining datasets
+  - rbind / bind_rows
+  - cbind / bind_cols
+  - join() [mention merge()?]
+  - exercise: summarize a dataset and merge back with original for calculation?
+    - or just group_by() & mutate()
++ sorting; arrange()
+  - group_by()
++ exercise: clean some values in Example File loaded earlier?
+  - I want to use that file for demos, to ensure everyone's objects are the same.
+-->
+
 ## `dplyr`: a grammar of data manipulation
 
 - `dplyr` provides many functions, within a coherent framework or _grammar_  
@@ -947,33 +984,6 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 
 
 
-# Clean data
-
-<!--
-+ filter()
-  - package::function notation (to distinguish from other functions named 'filter')
-  - near()?
-  - duplicates: find, drop [after merging?]
-+ select()
-+ mutate()
-+ editing values systematically
-  - ifelse(), if_else() (mutate semantics and variable name scope?)
-  - case_when()
-  - factors?
-+ summarize()
-+ combining datasets
-  - rbind / bind_rows
-  - cbind / bind_cols
-  - join() [mention merge()?]
-  - exercise: summarize a dataset and merge back with original for calculation?
-    - or just group_by() & mutate()
-+ sorting; arrange()
-  - group_by()
-+ exercise: clean some values in Example File loaded earlier.
--->
-
-
-
 
 # Tidy data
 
@@ -991,6 +1001,10 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 
   - [`tidyr` vignette](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
 
+
+
+
+# Reshape Data: The `tidyr` Package
 
 
 
