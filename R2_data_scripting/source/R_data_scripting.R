@@ -7,6 +7,10 @@ list(is_virtual = TRUE)
 
 
 
+## ----2.get_working_dir, results='hide'----------------------------------------
+getwd()
+
+
 ## ----setwd, eval=FALSE, echo=FALSE, results='hide', include=FALSE-------------
 ## Before running the commands in this file,
 ## set your working directory (*in the console*)
@@ -36,7 +40,7 @@ readLines(DF_path, n = 4)
 DF <- read.csv(DF_path, skip = 2)
 
 
-## ----data.frame---------------------------------------------------------------
+## ----3.data.frame-------------------------------------------------------------
 class(DF)
 typeof(DF)
 

@@ -152,7 +152,7 @@ Find what works for _you_.
 - When working with external files, it helps to know the current _working\ directory_
   - Any paths supplied to $\R$ functions will be relative to this path.
 
-```r
+```{r 2.get_working_dir, results='hide'}
 getwd()
 ```
 
@@ -246,12 +246,12 @@ setwd( choose.dir() )
 :::::: {.columns .onlytextwidth}
 ::: {.column width="58%"}
 
-* In R\ Studio,
+* In RStudio,
   you can use the _Files_ pane (default bottom-right)
   to navigate to a directory in your system,
   and click on "*More > Set As Working Directory*"
   - or "*Session > Set Working Directory > To Files Pane Location*" 
-    in the R\ Studio menu.
+    in the RStudio menu.
 
 :::
 ::: {.column width="38%"}
@@ -261,7 +261,7 @@ setwd( choose.dir() )
 ::::::
 
 ::: notes
-  - R Studio also has a menu item to conveniently set the working directory to the same location as a file in the 'Source' pane.  
+  - RStudio also has a menu item to conveniently set the working directory to the same location as a file in the 'Source' pane.  
     We'll use that later with source files.
 :::
 
@@ -349,7 +349,7 @@ DF <- read.csv(DF_path, skip = 2)
 
 Before we explore our new data set, let's quickly review the kind of *object* we're dealing with:
 
-```{r data.frame}
+```{r 3.data.frame}
 class(DF)
 typeof(DF)
 ```
@@ -359,7 +359,7 @@ typeof(DF)
 <!--
 - Data frames (review)
 - head, str, names, plot?
-- View / R Studio Environment pane
+- View / RStudio Environment pane
 - Know Your Data
 -->
 
@@ -428,14 +428,14 @@ View(DF)
 
 <!-- base R View() screenshot -->
 
-- In R Studio, you can achieve the same thing by double-clicking
+- In RStudio, you can achieve the same thing by double-clicking
   on an object name in the '*Environment*' pane (default upper-right)
-  - The `View()`{.r} pane in R Studio (default upper-left; '*Source*') 
+  - The `View()`{.r} pane in RStudio (default upper-left; '*Source*') 
     also allows for sorting and filtering,
     but these do not change the viewed object, only the view.
 
-<!-- R Studio Environment Pane screenshot -->
-<!-- R Studio View screenshot -->
+<!-- RStudio Environment Pane screenshot -->
+<!-- RStudio View screenshot -->
 
 
 ## Know Your Data
@@ -533,13 +533,16 @@ _There are other differences you may have noticed:
 # Re-using your code: scripts and other files
 
 <!--
-+ What is a script? Why use a script?
-  - Make a simple script that does what we've done so far?
+√ What is a script? Why use a script?
+  √ Make a simple script that does what we've done so far?
 + The comment character '#'
 - never use setwd() in a script!
+√ > Point to script file of all the code in this workshop to follow along from here onward.
++ Housekeeping: `rm(list=ls())`
 + Flow-control
   - if () else
   - for () loop
+    - apply() functions
 + defining your own functions
   - anonymous functions? (*introduce when it becomes relevant*, later)
   * write a custom function for comparing values in two vectors with NAs
@@ -596,18 +599,56 @@ An $\R$ *script* is a file that stores $\R$ code in *plain text*
 :::
 
 
+## Make a new script
+
+- In your $\R$ interface (R GUI, RStudio, IDE, etc.),
+  open a new R script
+    
+  ----------------------------------------------------------------------
+  Application   Menu item                           Keyboard shortcut 
+                                                    (mac shortcut)
+  ------------  ----------------------------        --------------------
+  **R GUI**     `File > New Document`               `CTL+N` (`CMD+N`)
+  
+  **RStudio**   `File > New File > R Script`        `Shift+CTL+N` 
+                ![](images/RStudio-toolbar-new.png) (`Shift+CMD+N`)
+  ----------------------------------------------------------------------
+
+- Save it with a name like "`my_first_script`[**`.R`**]{.underline}"
+  - You can save it in the same location as the slides for this workshop
+    (i.e., the folder _containing_ the '`data`' folder.)
+
+
+## Add some code to your script
+
+- Paste in the following code to your script file:
+
+```r
+DF_path <- file.path("data", "data_example.csv")
+file.exists(DF_path)
+
+DF <- read.csv(DF_path, skip = 2)
+
+colnames(DF)
+plot(DF)
+```
+
+- and save it.
+
+
 ## Run $\R$ code in scripts
 
-Most IDEs have a shortcut to send portions of $\R$ code (a line or statement over multiple lines) to an $\R$ session:
+Most IDEs have a shortcut to send portions of $\R$ code (a line or *statement* spanning multiple lines) to an $\R$ session:
   
   - R GUI: `CTL+Return` (mac: `CMD+Return`)
-  - R Studio: `CTL+Return` (mac: `CMD+Return`)
+  - RStudio: `CTL+Return` (mac: `CMD+Return`)
 
 You can run _all_ the code in a script in different ways:
 
 - The `source()`{.r} function, with a path to the script file as an argument
   - The code will run in the current session.
   - `?source`{.r}
+  - `source("my_script.R")`{.r}
   
 - Run $\R$ in "*batch mode*"
   - "*batch mode*" is **not** interactive (no prompt)
@@ -615,6 +656,33 @@ You can run _all_ the code in a script in different ways:
   - The code in the script will run in a new session
   - You can capture output in a separate file
   - `?BATCH`{.r}
+
+::: notes
+Pause to let people try it out.
+We will not be trying Batch Mode---it is mentioned for information only.
+:::
+
+
+## Comments
+
+
+## Open a script
+
+* All the code shown in the slides for this workshop 
+  has been collected in a script file:
+  "`R_data_scripting.R`" (in the '`source`' folder)
+
+* Open it to follow along for the rest of the workshop.
+
+  ------------------------------------------------------------------------
+  Application   Menu item                             Keyboard shortcut 
+                                                      (mac shortcut)
+  ------------  ----------------------------          --------------------
+  **R GUI**     `File > Open Document...`             `CTL+O` (`CMD+O`)
+  
+  **RStudio**   `File > Open File...`                 `CTL+O` (`CMD+O`)
+                ![](images/RStudio-toolbar-open.png)
+  ------------------------------------------------------------------------
 
 
 
@@ -972,6 +1040,8 @@ Working directory & scripts:
 https://stackoverflow.com/questions/3452086/getting-path-of-an-r-script
 https://stackoverflow.com/questions/47044068/get-the-path-of-current-script
 https://cran.r-project.org/web/packages/this.path/this.path.pdf
+https://github.com/yihui/knitr/issues/332#issuecomment-74100107
+  - causes 'duplicate label' errors :(
 
 Other related tutorials:
 https://posit.co/resources/videos/a-gentle-introduction-to-tidy-statistics-in-r/
