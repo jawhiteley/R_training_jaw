@@ -722,6 +722,7 @@ DF <-         # short for "data frame"
   <!-- - We'll learn how to stop code from running  -->
   <!--   based on conditions later. -->
 
+
 ## Open a script
 
 * All the code shown in the slides for this workshop 
@@ -740,6 +741,28 @@ DF <-         # short for "data frame"
                 ![](images/RStudio-toolbar-open.png)
   ------------------------------------------------------------------------
 
+
+## Set the Working Directory to source file location in **RStudio**
+
+- Menu item: 
+  "`Session > Set Working Directory > To Source File Location`"
+
+- This makes it easy to use _relative paths_ in your script,
+  relative to the location of the script file itself.
+  
+### For this workshop
+  - All the code in this document
+  assumes that the working directory
+  is the _parent directory_ of where this file is.
+
+  - After running the menu item above to set the working directory, 
+    run this code in your console:
+  ``` r
+  setwd("..")  # move to the parent directory
+  getwd()      # check the current working directory
+  ```
+  
+  - The code in the script should now run without errors.
 
 
 
