@@ -832,11 +832,11 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 # Load Data: The `readr` & `readxl` Packages
 
 <!--
-- read_csv()
-  - compare results with read.csv()
-  - Exercise: use known functions to identify differences in a separate script file?
-- read_excel() example?
-  - of dataset for exercises?
+√ read_csv()
+  √ compare results with read.csv()
+  √ Exercise: use known functions to identify differences in a separate script file?
+  - options for controlling behaviour (column classes, NAs)
+√ read_excel() example (short, built-in)
 -->
 
 ## The `readr` package
@@ -875,7 +875,7 @@ DF_readr <- read_csv(DF_path, skip = 2)
   including _guessing the data type_ of each column.
 
 
-## Tibbles: streamlined `data.frame`s
+## Tibbles: `data.frame`s reimagined
 
 * A ['tibble'](https://tibble.tidyverse.org/) (`class()`{.r} = `tbl_df`) is 
   "a modern reimagining of the data.frame".
@@ -889,12 +889,20 @@ DF_readr <- read_csv(DF_path, skip = 2)
   - for example, `print()`ing a tibble includes slightly more information,
     and only prints a few rows and columns by default,
     preventing large datasets from overwhelming your console.
+  - when indexing a tibble, it will _not_ do partial matching on column names,
+    making it clear if a column exists or not
 
 + For most purposes, tibbles are interchangeable with `data.frame`s.
   - A tibble can be converted to a 'plain' `data.frame` 
     with `as.data.frame()`{.r} if necessary.
 
+## Tibble examples
 
+```{r tibble examples}
+print(DF_readr, n=2)
+is.null(DF$Treat)
+is.null(DF_readr$Treat)
+```
 
 ## Exercise 2: compare results from `read.csv()` and `read_csv()`
 

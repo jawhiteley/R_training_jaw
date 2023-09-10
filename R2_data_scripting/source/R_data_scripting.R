@@ -83,6 +83,12 @@ library(readr)
 DF_readr <- read_csv(DF_path, skip = 2)
 
 
+## ----tibble examples----------------------------------------------------------
+print(DF_readr, n=2)
+is.null(DF$Treat)
+is.null(DF_readr$Treat)
+
+
 ## ----readxl demo--------------------------------------------------------------
 library(readxl)    # load the package
 ## Documentation: ?read_excel  help(package="readxl")
