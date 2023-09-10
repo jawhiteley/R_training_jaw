@@ -952,6 +952,53 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 -->
 
 
+# Sharing Code & Results
+
+## Style
+
+> "L'enfer, c'est les autres" ("Hell is other people")  
+> --- Jean-Paul Sartre ("Huis clos" / "No Exit")
+\
+\
+> "Hell is other people's code."
+> --- programming aphorism
+
+- The syntax of the $\R$ language is strict about some things,
+  but not others, like white space and indentation.
+
+- As mentioned at the beginning, there is often more than one way
+  to do things in $\R$.
+
+- Reading someone else's code that is written in a different style,
+  or with inconsistent formatting,
+  can be confusing.
+
+## Style Guides
+
+- A "Style Guide" can be a useful tool to help
+  you and your collaborators write code
+  in a consistent style.
+
+- It also simplifies writing code,
+  by reducing the number of (style) decisions
+  you have to make.
+
+- A Style Guide is ***strongly** recommended*
+  for teams collaborating on shared code.
+  
+  - Even if you are working alone,
+    it can help you write cleaner code
+    that's easy for your _future-self_ to read and understand,
+    and for others to help you when you get stuck.
+
+### Some popular R style guides you can use (or adapt):
+
+  - [The tidyverse style guide](https://style.tidyverse.org/syntax.html)
+    - based on an earlier version of Google's style guide.
+  - [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html)
+    - based on the current tidyverse style guide, above.
+
+
 
 
 # Review
