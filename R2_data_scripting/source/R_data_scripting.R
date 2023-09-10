@@ -89,6 +89,35 @@ is.null(DF$Treat)
 is.null(DF_readr$Treat)
 
 
+## ----read_csv() guess examples, results = 'hide', message=FALSE---------------
+# use the first 2 rows to guess column types (less successful)
+  read_csv(DF_path, skip = 2, guess_max = 2)
+# use *all* rows to guess column types
+# - slow: has to read *every row* twice.
+  read_csv(DF_path, skip = 2, guess_max = Inf)
+
+
+## ----read_csv() column spec, results = 'hide', message=FALSE, warning=FALSE----
+## Specify column types with a compact string
+read_csv(DF_path, skip = 2, col_types = "cccddddddd")
+
+## Or use a `column specification`
+# extract specification from tibble
+col_spec <- spec(DF_readr)
+# change a column to numeric (double)
+col_spec$cols[["500"]] <- col_double()
+read_csv(DF_path, skip = 2, col_types = col_spec)
+
+# ?read_csv for more options
+
+
+## ----read_csv() all character-------------------------------------------------
+# read all columns as character
+read_csv(DF_path, skip = 2, 
+         col_types = cols(.default = col_character())
+         )
+
+
 ## ----readxl demo--------------------------------------------------------------
 library(readxl)    # load the package
 ## Documentation: ?read_excel  help(package="readxl")
