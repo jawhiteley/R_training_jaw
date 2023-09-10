@@ -41,21 +41,20 @@ knitr::opts_knit$set(root.dir = "..")  # run all code as if in the parent direct
 options(width = 60)  # to fit output on slides
 ```
 
-## Prerequisites
+## Prerequisites {.shrink}
 
 -   Access to a copy of the [![](`r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em}](https://www.r-project.org) software
-
-    -   i.e., a "binary executable"
-
-    -   Go to [*www.r-project.org*](https://www.r-project.org) to get a copy, \
+    -   Get it from [*www.r-project.org*](https://www.r-project.org), 
         or ask your system administrator.
 
 - Tidyverse packages installed on the same system as $\R$
-
   - Please run this command in $\R$ *before* the workshop:
     ```{r install_tidyverse, eval=FALSE}
     install.packages("tidyverse")
     ```
+
+- Download the [workshop files](https://github.com/jawhiteley/R_training_jaw/tree/main/R2_data_scripting), including these slides, data, and scripts.
+  - The workshop assumes the same file structure as in the link above.
 
 -   Knowledge of common mathematical operations: arithmetic, logarithms, etc.
 
@@ -63,7 +62,15 @@ options(width = 60)  # to fit output on slides
 
     -   This is covered in the first workshop: "A Gentle Introduction to R"
 
+::: notes
 <!-- R logo: ![](`r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em} -->
+
+- I will use an example data file to demo various cleaning & manipulation steps
+- Exercises, however, should generally **stand-alone**
+  - Exercises are an opportunity to try to apply knowledge, experiment, sometimes fail, and discuss 
+    --- _success_ is not the primary objective.
+  - Messing up an exercise should not derail your progress on future exercises.
+:::
 
 
 
@@ -551,9 +558,11 @@ _There are other differences you may have noticed:
 + Housekeeping: `rm(list=ls())`
 + Flow-control
   - if () else
+    - message(), warning(), stop()
   - for () loop
     - apply() functions
 + defining your own functions
+  - variable scope, environments?
   - anonymous functions? (*introduce when it becomes relevant*, later)
   * write a custom function for comparing values in two vectors with NAs
     - http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
@@ -561,7 +570,7 @@ _There are other differences you may have noticed:
 √ Style Guides
   - https://style.tidyverse.org/syntax.html
   - https://google.github.io/styleguide/Rguide.html
-+ Rmd, Notebooks? (save for later?)
++ Rmd, Notebooks? (save for later)
   - Brief mention, demo
 - Projects?
 -->
@@ -822,12 +831,20 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 
 # Load Data: The `readr` & `readxl` Packages
 
-
+<!--
+- read_csv()
+  - compare results with read.csv()
+  - Exercise: use known functions to identify differences in a separate script file?
+- read_excel() example?
+  - of dataset for exercises?
+-->
 
 
 # Clean Data: The `dplyr` Package
 
 <!--
+Use loaded data set for demos; `who` or `iris` data for exercises?
+  - I would like participants to practice using internal datasets for exploration & testing code.
 + filter()
   - package::function notation (to distinguish from other functions named 'filter')
   - near()?
@@ -1107,7 +1124,7 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 <!--
 in pairs, or small groups:
 write a script (or two companion scripts) that
-- load a series of files in a folder
+- load a series of files in a folder (portions of `who`?)
   - ue existing dataset, split up by a grouping variable (or year, etc.)
 - cleans each one to be consistent (in a function)
 - combine them into a single dataset
