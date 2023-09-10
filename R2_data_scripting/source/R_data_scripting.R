@@ -89,6 +89,24 @@ is.null(DF$Treat)
 is.null(DF_readr$Treat)
 
 
+## ----names with backticks, results='hide'-------------------------------------
+DF_readr[, "95"]  # still a `data.frame` (with 1 column)
+DF_readr[["95"]]  # vector
+DF_readr$`95`     # quoted name
+
+
+## ----read_csv() name_repair, results='hide', message=FALSE--------------------
+read_csv(
+  DF_path, skip = 2, 
+  name_repair = "universal" # make names unique and syntactic
+)
+
+read_csv(
+  DF_path, skip = 2, 
+  name_repair = make.names  # a function: same as read.csv()
+)  
+
+
 ## ----read_csv() guess examples, results = 'hide', message=FALSE---------------
 # use the first 2 rows to guess column types (less successful)
   read_csv(DF_path, skip = 2, guess_max = 2)

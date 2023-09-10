@@ -938,9 +938,37 @@ is.null(DF_readr$Treat)
 
 ## `read_csv()`: column names
 
-<!--
-name_repair argument
--->
+- The default for `read_csv()`{.r} is to 
+  ensure all column names are _unique_,
+  but not necessarily *syntactically valid*
+
+- You can still refer to columns with syntactically 'invalid' names:
+  - use functions that allow names as characters,
+  - quote names with backticks (``` ` ```{.r})
+
+```{r names with backticks, results='hide'}
+DF_readr[, "95"]  # still a `data.frame` (with 1 column)
+DF_readr[["95"]]  # vector
+DF_readr$`95`     # quoted name
+```
+
+  
+## `read_csv()`: treat column names
+
+- Change how `read_csv()`{.r} treats column names
+  with the '`name_repair`' argument
+
+```{r read_csv() name_repair, results='hide', message=FALSE}
+read_csv(
+  DF_path, skip = 2, 
+  name_repair = "universal" # make names unique and syntactic
+)
+
+read_csv(
+  DF_path, skip = 2, 
+  name_repair = make.names  # a function: same as read.csv()
+)  
+```
 
 
 ## `read_csv()`: guessing column types
