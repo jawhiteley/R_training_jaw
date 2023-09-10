@@ -29,8 +29,10 @@ options(width = 60)  # to fit output on slides
 
 ```{=html}
 <!--
+- You can use read.csv & read_csv on urls directly!
+  - the same example file, directly from the URL on GitHub
 - downloading data from the internet (to a temp dir)
-  - the same local file, directly from the URL on GitHub
+  - the same example file, directly from the URL on GitHub
   - download.file()
 - CANSIM / NDMr / other package?
 -->

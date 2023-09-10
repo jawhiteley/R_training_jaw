@@ -839,6 +839,41 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
   - of dataset for exercises?
 -->
 
+## The `readr` package
+
++--------------------+-----------------------------+--------------------+-----------------------+
+| **`readr`**                                      | **`base R`**                               |
++====================+=============================+====================+=======================+
+| `read_csv()`{.r}   | comma separated values      | `read.csv()`{.r}   |                       |
++--------------------+-----------------------------+--------------------+-----------------------+
+| `read_csv2()`{.r}  | '`;`' as delimiter\         | `read_csv2()`{.r}  | '`,`' for decimals,\  |
+|                    | (allows '`,`' for decimals) |                    | '`;`' as separator    |
++--------------------+-----------------------------+--------------------+-----------------------+
+| `read_tsv()`{.r}   | tab separated values        | `read.delim()`{.r} | delimited files       |
+|                    |                             |                    | (tab is default)      |
++--------------------+-----------------------------+--------------------+-----------------------+
+| `read_delim()`{.r} | (generic) files             | `read.table()`{.r} |                       |
+|                    | with any delimiter          |                    |                       |
++--------------------+-----------------------------+--------------------+-----------------------+
+| `read_fwf()`{.r}   | fixed width files           | `read.fwf()`{.r}   |                       |
++--------------------+-----------------------------+--------------------+-----------------------+
+
+
+
+## The `readxl` package
+
+Provides functions for reading from (but not writing to) Microsoft\ Excel files (`.xls` and `.xlsx`)
+
+```{r readxl demo}
+library(readxl)    # load the package
+## Documentation: ?read_excel  help(package="readxl")
+## use an example included in the package
+xl_path <- readxl_example("datasets.xlsx")
+excel_sheets(xl_path)  # get the names of the sheets
+## read a specified sheet from the Excel file
+iris_xl <- read_excel(xl_path, "iris")
+```
+
 
 # Clean Data: The `dplyr` Package
 
@@ -1181,6 +1216,7 @@ On the web:
 
 - [Tidyverse documentation](https://tidyverse.tidyverse.org/)
 - [R for Data Science](https://r4ds.hadley.nz/data-transform.html) (2e)
+- [Data Science in a Box](https://datasciencebox.org/) (#dsbox)
 - [An introduction to data cleaning with R](https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf)
 
 ::: notes

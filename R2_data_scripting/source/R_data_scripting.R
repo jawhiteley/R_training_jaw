@@ -77,3 +77,13 @@ summary(DF)
 ## ----plot_basic---------------------------------------------------------------
 plot(DF)
 
+
+## ----readxl demo--------------------------------------------------------------
+library(readxl)    # load the package
+## Documentation: ?read_excel  help(package="readxl")
+## use an example included in the package
+xl_path <- readxl_example("datasets.xlsx")
+excel_sheets(xl_path)  # get the names of the sheets
+## read a specified sheet from the Excel file
+iris_xl <- read_excel(xl_path, "iris")
+
