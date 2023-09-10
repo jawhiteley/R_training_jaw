@@ -535,7 +535,7 @@ _There are other differences you may have noticed:
 <!--
 √ What is a script? Why use a script?
   √ Make a simple script that does what we've done so far?
-+ The comment character '#'
+√ The comment character '#'
 - never use setwd() in a script!
 √ > Point to script file of all the code in this workshop to follow along from here onward.
 + Housekeeping: `rm(list=ls())`
@@ -548,7 +548,7 @@ _There are other differences you may have noticed:
   * write a custom function for comparing values in two vectors with NAs
     - http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
     - https://stackoverflow.com/questions/37610056/how-to-treat-nas-like-values-when-comparing-elementwise-in-r
-+ Style Guides
+√ Style Guides
   - https://style.tidyverse.org/syntax.html
   - https://google.github.io/styleguide/Rguide.html
 + Rmd, Notebooks? (save for later?)
@@ -663,8 +663,60 @@ We will not be trying Batch Mode---it is mentioned for information only.
 :::
 
 
-## Comments
+## Comments {.shrink}
 
+* The '**`#`{.r}**' character denotes a *comment* in $\R$
+  - _Everything on a line_ after a comment character is ignored by $\R$
+  - There are no 'multi-line' comments in $\R$
+
+  ``` r
+  print("this is R code")  # this is a comment
+  ```
+
++ You can make an entire line a comment by putting a comment character at the beginning.
+  - Divide your code into *sections*
+    - `Shift+CTL+R` (`Shift+CMD+R`) in RStudio
+
+  ``` r
+  # SECTION -----------------------------------------------------------------
+  ```
+    
+  - Create 'comment headers' for your scripts:
+
+``` r
+################################################################
+### Title
+### Project or description
+### Author Name           R vX.X.X              YYYY-MM-DD
+################################################################
+```
+
+
+## Comments in code
+
++ You can put a comment beside a line of code  
+  (even in the middle of a mult-line statement)
+
+  + $\R$ will ignore the rest of the line,
+  and continue reading code on the next line
+
+``` r
+DF <-         # short for "data frame"
+  read.csv(   # read a csv file
+    DF_path,  # path to file
+    skip = 2  # skip lines at top of file (not data)
+  )
+```
+
++ Use comments to
+  - organize your code (divide it into sections)
+  - explain the code, where relevant
+  - "comment-out" code temporarily,
+    to stop it from running without deleting it
+    (useful for debugging).
+    - `Shift+CTL+C` (`Shift+CMD+C`) comment a line in RStudio
+  <!-- - We'll learn how to stop code from running  -->
+  <!--   based on conditions later. -->
 
 ## Open a script
 
