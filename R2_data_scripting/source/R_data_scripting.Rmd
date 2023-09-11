@@ -1413,6 +1413,15 @@ write a script (or two companion scripts) that
   - have another team / person write a script to do this?
 - export & save the file
 
+e.g.:
+who2_mod <- 
+  who2 %>% 
+  filter(country %in% c("Canada", "United States of America")) %>% 
+  rowwise() %>% 
+  mutate(cases = sum(c_across(sp_m_014:rel_f_65), na.rm = TRUE)) %>% 
+  select(country, year, cases)
+
+
 One option is to have one person or group introduce some 'errors'
 and have another try to fix them, but it's easy to introduce
 very difficult issues to solve, so this can be risky and time-consuming.
