@@ -57,23 +57,23 @@ test_readr <- readr::read_csv(file.path(out_path, "data_example.csv"), skip = 2)
 messy <- test_base
 
 ## Clean `Type` column
-test_clean <- messy %>% 
+test_clean1_type <- messy %>% 
   mutate(Type = ifelse(Type == "Mississippi", Type, "Quebec"),  # In workshop, keep accent to make point about file encoding?
          Type = factor(Type, levels = unique(Type))
   )
-str(test_clean)
+str(test_clean1_type)
 
 ## Clean `Treatment` column
-test_clean <- test_clean %>% 
+test_clean2_trt <- test_clean1_type %>% 
   mutate(Treatment = na_if(Treatment, "")) %>%      # replace empty strings with NA
   tidyr::fill(Treatment, .direction = "down") %>%   # Fill Down to replace NAs (tidyr)
   mutate(Treatment = factor(Treatment, levels = unique(Treatment)))  # make it a factor
-str(test_clean)
+str(test_clean2_trt)
 
 ## The dataset is at least now able to be sorted and grouped without problems. :)
 
-## Recover Plant ID
-test_clean <- test_clean %>% 
+## Recover Plant ID - needs `Treatment` to be fixed first
+test_clean3_plant <- test_clean2_trt %>% 
   mutate(
     Type.tmp = str_sub(Type, 1, 1),
     Treatment.tmp = str_sub(Treatment, 1, 1)
@@ -81,26 +81,26 @@ test_clean <- test_clean %>%
   unite(Plant, Type.tmp, Treatment.tmp, PlantNum, sep = "") %>% 
   mutate(Plant = factor(Plant, levels = unique(Plant))) %>% 
   relocate(Plant, Type, Treatment)
-str(test_clean)
+str(test_clean3_plant)
 
-## Fix `500` column & convert to numeric
-test_clean <- test_clean %>% 
+## Fix `500` column & convert to numeric - could be done earlier
+test_clean4_uptake <- test_clean3_plant %>% 
   mutate(
     X500 = str_split_i(X500, " ", i=1),  # drop everything after the first space
     # X500 = str_replace(X500, fixed("+"), ""),    # strip extra character (not strictly necessary)
     X500 = as.numeric(X500)
   )
-str(test_clean)
+str(test_clean3_plant)
 
-## Fix `675` column & convert to numeric
-test_clean <- test_clean %>% 
+## Fix `675` column & convert to numeric - could be done earlier
+test_clean5_uptake <- test_clean4_uptake %>% 
   mutate(X675 = str_replace(X675, ",", ".") %>% as.numeric())
-str(test_clean)
+str(test_clean5_uptake)
 
 
-## Combine duplicate rows with summarize()
+## Combine duplicate rows with summarize() - needs `Treatment` to be fixed first
 ## - in the workshop, explore functions like distinct() and duplicated() before doing this.
-test_clean <- test_clean %>% 
+test_clean <- test_clean5_uptake %>% 
   group_by(Plant, Type, Treatment) %>% 
   summarize( across(where(is.numeric), ~ max(., na.rm = TRUE)), 
              .groups = "drop"      # drop groups to avoid having to use ungroup()
