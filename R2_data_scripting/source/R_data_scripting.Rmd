@@ -1086,34 +1086,42 @@ Skip this exercise if running late.
 :::
 
 
+
+
 # Clean Data: The `dplyr` Package
 
 <!--
 Use loaded data set for demos; `who` or `iris` data for exercises?
   - I would like participants to practice using internal datasets for exploration & testing code.
-+ filter()
-  - package::function notation (to distinguish from other functions named 'filter')
-  - near()?
-  - duplicates: find, drop [after merging?]
-+ select()
-+ mutate()
-+ editing values systematically
+  - I don't want participants to get lost or derailed if they miss an exercise
+* ROWS
+  + filter() ***
+    - package::function notation (to distinguish from other functions named 'filter')
+    - near()?
+    - duplicates: find, drop [after merging?]
+  + sorting: arrange() **
+    - pipes
+    - group_by()
+* COLUMNS
+  + select() **
+    * tidy-select? ?dplyr_tidy_select
+  + rename(), relocate()
+  + mutate() ***
+  * dplyr semantics (select vs mutate)?
++ summarize() ***
++ Cleaning: editing values systematically
   - ifelse(), if_else() (mutate semantics and variable name scope?)
   - case_when()
   - factors?
-+ summarize()
-+ combining datasets
-  - rbind / bind_rows
-  - cbind / bind_cols
-  - join() [mention merge()?]
-  - exercise: summarize a dataset and merge back with original for calculation?
-    - or just group_by() & mutate()
-+ sorting; arrange()
-  - group_by()
-* tidy-select? ?dplyr_tidy_select
+* MULTIPLE TABLES
+  + combining datasets
+    - rbind / bind_rows
+    - cbind / bind_cols
+    - join() [mention merge()?]
+    - Exercise: summarize() a dataset and merge back with original for calculation?
+      - or just group_by() & mutate()
 * data masking? (advanced) ?args_data_masking
-+ exercise: clean some values in Example File loaded earlier?
-  - I want to use that file for demos, to ensure everyone's objects are the same.
++ Exercise: ?
 -->
 
 ## `dplyr`: a grammar of data manipulation
@@ -1229,7 +1237,9 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
   %>%    # ?magrittr::`%>%`
   ```
 
-- The `magrittr` package is automatically loaded when loading most `tidyverse` packages (e.g., `tidyr`, `dplyr`, `ggplot2`), as these packages all use this operator extensively.
+- The `magrittr` package is automatically loaded when loading most `tidyverse` packages (e.g., `tidyr`, `dplyr`, `ggplot2`).
+  
+  - These packages were designed to work with this operator, and use it themselves.
 
   - It is often unnecessary to load `magrittr` separately, unless you are **not** using these other packages.
 
