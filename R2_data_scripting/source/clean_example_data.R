@@ -26,13 +26,15 @@ if (!("R2_data_scripting" %in% wd_paths))
   warning("The current working directory is not in the workshop files:\n  ", 
           wd_fpath)
 
-## LOAD original data
-data(CO2)
-
-## Generate example data set, if necessary
+## Generate example data set, if necessary 
+## - will reset environment, but most objects above are created there, too
 if (!file.exists(file.path(out_path, "data_example.csv"))) {
   source("make_example_data.R")
 }
+
+## LOAD original data
+data(CO2)
+
 
 
 ################################################################
@@ -41,13 +43,18 @@ if (!file.exists(file.path(out_path, "data_example.csv"))) {
 ##==============================================================
 ## Load
 
-test_base <- read.csv(file.path(out_path, "data_example.csv"), 
-                  fileEncoding = "UTF-8", 
-                  skip = 2#,
-                  #na.strings = ""
-                  )
+test_base <- read.csv(
+  file.path(out_path, "data_example.csv"), 
+  encoding = "UTF-8", # fileEncoding = "UTF-8" also works, but this is more reliable; see ?read.csv
+  skip = 2#,
+  #na.strings = ""
+)
 
-test_readr <- readr::read_csv(file.path(out_path, "data_example.csv"), skip = 2)
+## readr uses UTF-8 (& skips BOM if present) by default :)
+test_readr <- readr::read_csv(
+  file.path(out_path, "data_example.csv"), 
+  skip = 2
+)
 
 
 ##==============================================================
@@ -122,10 +129,20 @@ str(test_tidy)
 
 ##==============================================================
 ## Compare
-all.equal(test_tidy, CO2, check.attributes = FALSE)
 
-str(CO2)
-str(test_tidy)
+comp <- all.equal(test_tidy, CO2, check.attributes = FALSE)
 
-levels(CO2$Plant)
-levels(test_tidy$Plant)
+if ( isTRUE(comp) ) {
+  message("SUCCESS!  Cleaned data values match original (CO2).")
+} else {
+  warning("FAIL!  Cleaned data values *do not* match original (CO2).")
+  print(comp)
+}
+
+if (F) {  # do not run when source()d
+  str(CO2)
+  str(test_tidy)
+  
+  levels(CO2$Plant)
+  levels(test_tidy$Plant)
+}

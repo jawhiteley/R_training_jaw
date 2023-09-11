@@ -7,8 +7,16 @@
 ## with a few modifications to illustrate 
 ## dplyr, tidyr, and other tidyverse functions.
 
+## This script file should be encoded in UTF-8.
+## Ensure your editor (e.g., RStudio) 
+## is configured to read it correctly
+## https://stackoverflow.com/questions/67591683/configure-r-to-use-utf-8-by-default
+
 ################################################################
 ### SETUP & LOAD
+
+## Housekeeping
+rm(list=ls())
 
 ## Load packages
 library(dplyr)
@@ -101,7 +109,7 @@ data_mod5 <- data_mod4 %>%
 ##  to illustrate ?fill
 
 data_mod <- data_mod5 %>% 
-  mutate(Treatment = if_else(PlantNum == 1, Treatment, NA))
+  mutate(Treatment = if_else(PlantNum == 1, Treatment, as.factor(NA_character_)))
 
 
 
@@ -110,16 +118,37 @@ data_mod <- data_mod5 %>%
 library(readr)
 
 if (T) {
-  ## Add extra lines (that have to be skipped) to the beginning?
+  ## Add extra lines (that have to be skipped) to the beginning
+  ## see ?writeLines and ?cat
+  extra_lines <- c(
+    "Data from an experiment on the cold tolerance of the grass species Echinochloa crus-galli.",
+    "Modified from `data(CO2)`.  See `?CO2`."
+  )
+  Encoding(extra_lines) <- "UTF-8"    # ensure encoding?
   cat(
-    "Data from an experiment on the cold tolerance of the grass species Echinochloa crus-galli.\n",
-    "Modified from `data(CO2)`.  See `?CO2`.\n",
+    extra_lines,
+    sep = "\n",
     file = file.path(out_path, "data_example.csv"),
     append = FALSE
   )
-  ## Append data
+  ## Append data - readr uses UTF-8 encoding by default
   write_csv(data_mod, 
             file=file.path(out_path, "data_example.csv"), 
+            append = TRUE,
+            col_names = TRUE,
+            quote = "needed", 
+            na = "",
+  )
+  
+  ## Version with BOM (Byte-Order Mark) and no leading lines
+  ## ?file
+  ## https://stackoverflow.com/a/41408091
+  writeChar(iconv("\ufeff", to = "UTF-8"), 
+            file.path(out_path, "data_example_bom.csv"), 
+            eos = NULL
+  )
+  write_csv(data_mod, 
+            file=file.path(out_path, "data_example_bom.csv"), 
             append = TRUE,
             col_names = TRUE,
             quote = "needed", 
@@ -132,17 +161,41 @@ if (T) {
 
 ################################################################
 ### TEST - load & clean
+## See 'clean_example_data.R' to see the solution
 
 ##==============================================================
 ## Load
 
-test_base <- read.csv(file.path(out_path, "data_example.csv"), 
-                  fileEncoding = "UTF-8", 
-                  skip = 2#,
-                  #na.strings = ""
-                  )
+test_base <- read.csv(
+  file.path(out_path, "data_example.csv"), 
+  encoding = "UTF-8", 
+  skip = 2#,
+  #na.strings = ""
+)
 
-test_readr <- readr::read_csv(file.path(out_path, "data_example.csv"), skip = 2)
+test_readr <- readr::read_csv(
+  file.path(out_path, "data_example.csv"), 
+  skip = 2
+  )
 
+##==============================================================
+## Load BOM version
+## https://stackoverflow.com/questions/39593637/dealing-with-byte-order-mark-bom-in-r
+## https://github.com/ropensci-archive/gtfsr/issues/19#issuecomment-247766324
+## https://github.com/tidyverse/readr/issues/263
+## https://github.com/tidyverse/readr/issues/500
+## https://stackoverflow.com/questions/18789330/r-on-windows-character-encoding-hell
 
-## See 'clean_example_data.R' to see the solution
+bom_base_fail <- read.csv(
+  file.path(out_path, "data_example_bom.csv"), 
+  encoding = "UTF-8"  # BOM is included in name of first column
+  # fileEncoding = "UTF-8-BOM"    # triggers an Error :(
+)
+
+bom_base <- read.csv(
+  file.path(out_path, "data_example_bom.csv"), 
+  fileEncoding = "UTF-8-BOM"
+)
+
+## recent (> 2016, v0.2.2.9000) versions of readr automatically skip the BOM
+bom_readr <- readr::read_csv( file.path(out_path, "data_example_bom.csv") )
