@@ -83,6 +83,16 @@ bom <- read.csv("../data/data_example_bom.csv",
 bom[4, 1:4]
 ```
 
+::: notes
+?read.csv
+* encoding = specifies how the text in the input file is encoded
+  - it is *not* used to re-encode the input, but to handle it in its native encoding
+* fileEncoding = tells R the encoding used in the file; 
+  - R will re-encode it into the native encoding.
+- i.e., `fileEncoding = "UTF-8-BOM" tells R to re-encode the input from UTF-8 (and drop the BOM)
+  - `encoding` alone might not drop the BOM, because there is no re-encoding.
+:::
+
 
 ## Read a file with a BOM using `read_csv()` {.shrink}
 
