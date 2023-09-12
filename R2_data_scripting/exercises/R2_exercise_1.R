@@ -10,7 +10,7 @@
 DF_path <- file.path("data", "data_example.csv")
 file.exists(DF_path)
 
-DF <- read.csv(DF_path, skip = 2)
+DF <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
 
 colnames(DF)
 plot(DF)

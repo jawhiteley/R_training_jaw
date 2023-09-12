@@ -37,6 +37,16 @@ options(width = 60)  # to fit output on slides
 - CANSIM / NDMr / other package?
 -->
 ```
+
+# File Encoding & Windows
+
+<!--
+- BOM & Microsoft Excel^TM^
+- How to add a BOM character to the beginning of a csv file (if you really have to)
+- How a BOM character affects functions like read.csv() & read_csv()
+- Bottom line: using `readr` keeps everything in UTF-8 by default, and ignores BOM if present (easiest)
+-->
+
 # Exporting to other formats
 
 ## Writing to Microsoft Excel^TM^ files {.shrink}
@@ -54,7 +64,7 @@ Packages that can write to Excel files:
 
 ### !
 
-I recommend *avoiding* exporting data to Excel files if possible. `csv` files are easier to read to & write from, and can be read by a wider variety of software (they are more portable).\
+I recommend *avoiding* exporting data to Excel files if possible. `csv` files are easier to read to & write from, and can be read by a wider variety of software (they are more portable).  
 Automated reports can be produced with R Markdown and output to a variety of more portable formats (pdf, HTML, etc.) instead.
 
 ::: notes

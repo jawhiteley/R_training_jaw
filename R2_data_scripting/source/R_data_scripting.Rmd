@@ -455,6 +455,69 @@ View(DF)
 <!-- RStudio View screenshot -->
 
 
+## Encoding non-English characters
+
+```{r reproduce windows latin1, include=FALSE, results='hide', purl = FALSE}
+## Reproduce Windows encoding (bad)
+DF_win <- read.csv(DF_path, skip = 2, encoding = "latin1")
+## Extract example of messed up encoding
+latin1_ex <- DF_win |>
+  dplyr::select(Type) |>
+  dplyr::filter( ! Type %in% c("Quebec", "Mississippi") ) |> 
+  unlist() |> unique()
+```
+
+- If you are running R in Windows, you may notice that 
+  some values of the `Type` column look strange:
+  
+  "**`r latin1_ex`**" instead of "Québec"
+
+- There is nothing wrong with the file, 
+  but this indicates a _mismatch_ between 
+  the *encoding* used to write the file,
+  and what R used to read it.
+
+- Even though '`.csv`' files are plain text,
+  letters (especially non-english characters)
+  can be *encoded* in different ways
+  to represent them in the computer.
+  
+- "[`UTF-8`](https://en.wikipedia.org/wiki/UTF-8)" 
+  is a character encoding standard designed to handle many non-english characters.
+
+  - The example data file was written in "`UTF-8`"
+  - Most OSes and many programs use "`UTF-8`" encoding by default.
+  - But *Windows* uses "`latin1`" by default,
+    and so does $\R$ when running in Windows.
+
+
+## Read a csv file with a different encoding
+
+- You can specify the encoding used in the file 
+  with the '`encoding`' argument of `read.csv()`{.r}
+  
+```{r read.csv() with encoding}
+DF <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
+```
+
+- Conversely, if reading a file that was 
+  created on a Windows computer and encoded in "`latin1`",
+  on a different system (mac, Unix, linux, etc.),
+  you can specify that, too:
+  
+``` r
+read.csv(DF_path, skip = 2, encoding = "latin1")
+```
+
+### Microsoft Excel on Windows
+
+Excel in Windows is capable of saving files in `.csv` format with "`UTF-8`" encoding,
+but it adds extra contents to the file (a "Byte-Order Mark" or "BOM") 
+that makes it difficult to read with `read.csv()`{.r}.
+See the "Extras" file of this workshop for details on how to deal with that.  
+_Or use the `readr` package (coming up) and don't worry about it._ :)
+
+
 ## Know Your Data
 
 - These functions are useful for exploring different aspects of a loaded data set
@@ -642,11 +705,11 @@ An $\R$ *script* is a file that stores $\R$ code in *plain text*
 
 - Paste in the following code to your script file:
 
-```r
+``` r
 DF_path <- file.path("data", "data_example.csv")
 file.exists(DF_path)
 
-DF <- read.csv(DF_path, skip = 2)
+DF <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
 
 colnames(DF)
 plot(DF)
@@ -1121,7 +1184,10 @@ Use loaded data set for demos; `who` or `iris` data for exercises?
     - Exercise: summarize() a dataset and merge back with original for calculation?
       - or just group_by() & mutate()
 * data masking? (advanced) ?args_data_masking
-+ Exercise: ?
+  * {{ var }} and when to use it?
+  - https://dplyr.tidyverse.org/articles/programming.html
+  - vignette("programming", package = "dplyr")
++ Exercise: stick with multiple tables exercise, above?
 -->
 
 ## `dplyr`: a grammar of data manipulation
@@ -1472,6 +1538,11 @@ On the web:
 - [R for Data Science](https://r4ds.hadley.nz/data-transform.html) (2e)
 - [Data Science in a Box](https://datasciencebox.org/) (#dsbox)
 - [An introduction to data cleaning with R](https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf)
+
+$\R$ Documentation:
+
+- "[R Data Import/Export](https://cran.r-project.org/doc/manuals/r-release/R-data.html)" 
+  (`help.start()`{.r}, under "Manuals")
 
 ::: notes
 https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf

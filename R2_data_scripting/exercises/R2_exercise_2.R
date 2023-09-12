@@ -14,7 +14,7 @@ library(readr)
 
 DF_path <- file.path("data", "data_example.csv")
 
-DF_base  <- read.csv(DF_path, skip = 2)
+DF_base  <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
 DF_readr <- read_csv(DF_path, skip = 2)
 
 class(DF_base)

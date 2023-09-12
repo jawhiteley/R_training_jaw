@@ -78,6 +78,12 @@ summary(DF)
 plot(DF)
 
 
+
+
+## ----read.csv() with encoding-------------------------------------------------
+DF <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
+
+
 ## ----read_csv-----------------------------------------------------------------
 library(readr)
 DF_readr <- read_csv(DF_path, skip = 2)
