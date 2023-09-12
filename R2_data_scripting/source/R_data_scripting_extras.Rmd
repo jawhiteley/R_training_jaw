@@ -136,11 +136,12 @@ write_csv(Data, "output.csv", append = TRUE, ... )
 **$\R$ does not recommend doing this** (see `?file`),
   so use with caution.
 
-<!--
+::: notes
 Add a BOM to a file
 - ?file
 - https://stackoverflow.com/a/41408091
--->
+:::
+
 
 # Exporting to other formats
 
