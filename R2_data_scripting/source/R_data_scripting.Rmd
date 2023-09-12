@@ -512,10 +512,14 @@ read.csv(DF_path, skip = 2, encoding = "latin1")
 ### Microsoft Excel on Windows
 
 Excel in Windows is capable of saving files in `.csv` format with "`UTF-8`" encoding,
-but it adds extra contents to the file (a "Byte-Order Mark" or "BOM") 
-that makes it difficult to read with `read.csv()`{.r}.
-See the "Extras" file of this workshop for details on how to deal with that.  
+but it adds extra contents to the file (a "BOM") 
+that makes it difficult to read with `read.csv()`{.r}.  
+See the "Extras" document from this workshop for details on how to deal with that.  
 _Or use the `readr` package (coming up) and don't worry about it._ :)
+
+::: notes
+See ?read.csv, ?Encoding, ?file, and other documentation for details.
+:::
 
 
 ## Know Your Data

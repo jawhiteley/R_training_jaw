@@ -38,13 +38,108 @@ options(width = 60)  # to fit output on slides
 -->
 ```
 
-# File Encoding & Windows
+# File Encoding & Microsoft Excel^TM^
+
+- Many OSes and applications encode text using "`UTF-8`" by default.
+- Windows uses "`latin1`" encoding by default.
+- Excel can save a `.csv` file using `UTF-8` encoding,
+  but in doing so, it adds "[**b**yte **o**rder **m**ark](https://en.wikipedia.org/wiki/Byte_order_mark)" ("BOM")
+  to the file.
+  - This is a special character that Excel also uses to recognize
+    that the file is encoded using `UTF-8`.
+  - Thus a BOM can make the file "easier" to use with Excel,
+    by allowing it to automatically recognize the `UTF-8` encoding,
+    but it can also **cause problems for other programs** (like $\R$) 
+    that do not expect such a non-Unicode character.
+  
+- Without the BOM, Excel will assume the file is encoded in "`latin1`"
+  if you double-click on the csv file to open it in Excel,
+  even if it was actually encoded with `UTF-8`.
+  - This can cause special characters to appear incorrectly.
+  - You can still import a `.csv` file encoded in `UTF-8`
+    into Excel correctly, but it requires opening the file within Excel,
+    or [importing it using commands in the "Data" ribbon / menu](https://stackoverflow.com/questions/6002256/is-it-possible-to-force-excel-recognize-utf-8-csv-files-automatically)
+
+
+## Read a file with a BOM using `read.csv()`
+
+- Reading a `.csv` file with a BOM using the usual method 
+  may cause [the BOM to be included in the name of the first column](https://stackoverflow.com/questions/39593637/dealing-with-byte-order-mark-bom-in-r)
+  (on Windows).
+  
+```{r read.csv() BOM, results='hide'}
+bom_bad <- read.csv("../data/data_example_bom.csv", 
+                    encoding = "UTF-8")
+names(bom_bad)
+```
+
+- The solution with `read.csv()`{.r} is to use the argument  
+  '`fileEncoding = "UTF-8-BOM"`' 
+  (instead of the '`encoding`' argument)
+  
+```{r read.csv() BOM fileEncoding}
+bom <- read.csv("../data/data_example_bom.csv", 
+                fileEncoding = "UTF-8-BOM")
+bom[4, 1:4]
+```
+
+
+## Read a file with a BOM using `read_csv()` {.shrink}
+
+- The `readr` package uses "`UTF-8`" encoding by default,
+  and **automatically ignores a BOM**, if present.
+
+```{r read_csv() BOM, message=FALSE}
+bom_readr <- readr::read_csv("../data/data_example_bom.csv")
+bom_readr[4, 1:4] |> as.data.frame()
+```
+
+- `write_csv()` (in the `readr` package) automatically encodes output files using "UTF-8",
+  for greater portability across systems.
+  - _except_ for base $\R$ (`read.csv()`) using default options. :(
+- You can control the encoding used by `readr` functions with the `locale` argument.
+  - see `?readr::read_csv` and `?readr::locale` for details.
+
+### !
+
+Hopefully, these examples have demonstrated that 
+using `read_csv()`{.r} avoids many of the pitfalls and frustrations of `read.csv()`
+
+::: notes
+Load a file with a BOM 
+- https://stackoverflow.com/questions/39593637/dealing-with-byte-order-mark-bom-in-r
+- https://github.com/ropensci-archive/gtfsr/issues/19#issuecomment-247766324
+- https://github.com/tidyverse/readr/issues/263
+- https://github.com/tidyverse/readr/issues/500
+- https://stackoverflow.com/questions/18789330/r-on-windows-character-encoding-hell
+:::
+
+
+## Add a BOM to an output file
+
+- Some programs (e.g., Excel) expect a BOM
+  in "`UTF-8`" encoded files.
+
+- It is possible to add a BOM to a csv file,
+  but it must be done _manually_:
+  - code adapted from [this StackOverflow answer](https://stackoverflow.com/a/41408091)
+  
+```r
+writeChar(
+  iconv("\ufeff", to = "UTF-8"), 
+  "output.csv", 
+  eos = NULL
+)
+write_csv(Data, "output.csv", append = TRUE, ... )
+```
+
+**$\R$ does not recommend doing this** (see `?file`),
+  so use with caution.
 
 <!--
-- BOM & Microsoft Excel^TM^
-- How to add a BOM character to the beginning of a csv file (if you really have to)
-- How a BOM character affects functions like read.csv() & read_csv()
-- Bottom line: using `readr` keeps everything in UTF-8 by default, and ignores BOM if present (easiest)
+Add a BOM to a file
+- ?file
+- https://stackoverflow.com/a/41408091
 -->
 
 # Exporting to other formats
