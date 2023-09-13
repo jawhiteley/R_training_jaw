@@ -784,7 +784,7 @@ LETTERS
 
 ## Reserved words
 
-Some words and letters already have special meaning in the R language (*keywords*) 
+Some words and letters already have special meaning in the R language (*keywords*)[^reserved-words] 
 and should **never be used as variable names**.
 
 \small
@@ -818,6 +818,9 @@ and should **never be used as variable names**.
 -----------------------------------------------------------------------------------------------------
 
 \normalfont
+
+[^reserved-words]: See section 10.3.3 of "[The R Language Definition](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Reserved-words)"
+for a list of *reserved words*.
 
 
 ## $\Rlogo$ is case-sensitive

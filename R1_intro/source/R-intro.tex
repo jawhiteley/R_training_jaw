@@ -228,7 +228,7 @@
 
 \title{A Gentle Introduction to R}
 \author{Jonathan Whiteley}
-\date{2023-09-09}
+\date{2023-09-13}
 
 \begin{document}
 \frame{\titlepage}
@@ -1355,7 +1355,10 @@ this version of R ...
 \begin{frame}[fragile]{Reserved words}
 \protect\hypertarget{reserved-words}{}
 Some words and letters already have special meaning in the R language
-(\emph{keywords}) and should \textbf{never be used as variable names}.
+(\emph{keywords})\footnote<.->{See section 10.3.3 of
+  ``\href{https://cran.r-project.org/doc/manuals/r-release/R-lang.html\#Reserved-words}{The
+  R Language Definition}'' for a list of \emph{reserved words}.} and
+should \textbf{never be used as variable names}.
 
 \small
 \begin{tikzpicture}[remember picture, overlay]
@@ -1998,7 +2001,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x13d7b9278>
+<bytecode: 0x129d71a78>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
