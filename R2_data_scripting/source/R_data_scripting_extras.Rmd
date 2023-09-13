@@ -122,6 +122,9 @@ Load a file with a BOM
 - https://github.com/tidyverse/readr/issues/263
 - https://github.com/tidyverse/readr/issues/500
 - https://stackoverflow.com/questions/18789330/r-on-windows-character-encoding-hell
+
+Change default encoding for R:
+- https://stackoverflow.com/questions/31308541/r-default-encoding-to-utf-8
 :::
 
 

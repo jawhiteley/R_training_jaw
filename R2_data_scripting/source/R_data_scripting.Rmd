@@ -455,7 +455,7 @@ View(DF)
 <!-- RStudio View screenshot -->
 
 
-## Encoding non-English characters
+## Encoding non-English characters {.shrink}
 
 ```{r reproduce windows latin1, include=FALSE, results='hide', purl = FALSE}
 ## Reproduce Windows encoding (bad)
@@ -472,10 +472,10 @@ latin1_ex <- DF_win |>
   
   "**`r latin1_ex`**" instead of "Québec"
 
-- There is nothing wrong with the file, 
-  but this indicates a _mismatch_ between 
+- There is nothing wrong with the file 
+  --- this indicates a _mismatch_ between 
   the *encoding* used to write the file,
-  and what R used to read it.
+  and what $\R$ used to read it.
 
 - Even though '`.csv`' files are plain text,
   letters (especially non-english characters)
@@ -488,10 +488,11 @@ latin1_ex <- DF_win |>
   - The example data file was written in "`UTF-8`"
   - Most OSes and many programs use "`UTF-8`" encoding by default.
   - But *Windows* uses "`latin1`" by default,
-    and so does $\R$ when running in Windows.
+    and so does $\R$ (< [4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html)) when running in Windows.
+  - Starting with [v4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html), $\R$ uses "`UTF-8`" as the default encoding on Windows.
 
 
-## Read a csv file with a different encoding
+## Read a csv file with a different encoding {.shrink}
 
 - You can specify the encoding used in the file 
   with the '`encoding`' argument of `read.csv()`{.r}
