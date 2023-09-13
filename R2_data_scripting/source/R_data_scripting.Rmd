@@ -1377,7 +1377,21 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 [^R4.1]: https://cran.r-project.org/bin/windows/base/old/4.1.0/NEWS.R-4.1.0.html
 
 
-## Pipes: exercise
+## Define your own function
+
+```{r user-defined function, echo=-(1:2)}
+# http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
+# https://github.com/jawhiteley/R-lib/blob/master/functions/compare-na.R
+`%==%` <- function (v1, v2) {
+  same <- (v1 == v2) | (is.na(v1) & is.na(v2))
+  same[is.na(same)] <- FALSE
+  return(same)
+}
+
+# test it:
+c(1, NA, 3, 4 , NaN) %==%
+c(1, NA, 1, NA, NaN)
+```
 
 
 

@@ -157,3 +157,17 @@ excel_sheets(xl_path)  # get the names of the sheets
 ## read a specified sheet from the Excel file
 iris_xl <- read_excel(xl_path, "iris")
 
+
+## ----user-defined function, echo=-(1:2)---------------------------------------
+# http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
+# https://github.com/jawhiteley/R-lib/blob/master/functions/compare-na.R
+`%==%` <- function (v1, v2) {
+  same <- (v1 == v2) | (is.na(v1) & is.na(v2))
+  same[is.na(same)] <- FALSE
+  return(same)
+}
+
+# test it:
+c(1, NA, 3, 4 , NaN) %==%
+c(1, NA, 1, NA, NaN)
+
