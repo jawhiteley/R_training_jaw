@@ -139,9 +139,12 @@ if (params$is_virtual) {
 ## Introductions
 
 - Name
-- Pronouns
 - Job title, role
-- _optional_: a hobby or activity you enjoy?
+
+_If you are comfortable sharing_:
+
+- Pronouns
+- A hobby or activity you enjoy
 
 <!-- -->
 
