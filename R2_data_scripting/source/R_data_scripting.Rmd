@@ -1295,13 +1295,24 @@ library(dplyr)
 
 ## Rows: `filter()`{.r}
 
-```{r filter() examples}
+- `filter()` retains rows that satisfy _all_ the conditions specified
+  - expressions must return a vector of _logical_ values 
+    (`TRUE`{.r} or `FALSE`{.r})
+
+```{r filter() examples, results='hide'}
 filter(DF, X95 < 10)
-filter(CO2, conc == 95 & uptake < 10)
+filter(CO2, conc == 95, uptake < 10)
+filter(CO2, conc == 95 | uptake < 10) # | == "OR" operator
+
 filter(DF, Treatment != "")
 filter(DF, !Type %in% c("Quebec", "Mississippi"))
 filter(DF, !Type %in% levels(CO2$Type))
 ```
+
+::: notes
+Pause to let people try these out
+:::
+
 
 ## Rows: `arrange()`{.r}
 
@@ -1397,9 +1408,11 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 :::
 
 
-## `magrittr`'s 'forward-pipe' operator
+## `magrittr`'s 'forward-pipe' operator {.shrink}
 
 - `%>%`{.r} allows you to pass results from an expression on the left-hand side (LHS) as an argument (usually the first) to a *function call* on the right-hand side (RHS).  
+  - you can read a pipe operator as "then" 
+    (`a %>% b()`{.r} = "_a then b_")
 
 +--------------------------------+--------------------------------+
 | This expression ...            | is equivalent to:              |
@@ -1449,6 +1462,11 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 
 
 [^R4.1]: https://cran.r-project.org/bin/windows/base/old/4.1.0/NEWS.R-4.1.0.html
+
+## Pipe: Exercise
+
+Re-write the expressions using pipes:
+
 
 
 ## Define your own function

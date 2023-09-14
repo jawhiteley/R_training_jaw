@@ -172,9 +172,11 @@ library(dplyr)
 ## ?stats::filter
 
 
-## ----filter() examples--------------------------------------------------------
+## ----filter() examples, results='hide'----------------------------------------
 filter(DF, X95 < 10)
-filter(CO2, conc == 95 & uptake < 10)
+filter(CO2, conc == 95, uptake < 10)
+filter(CO2, conc == 95 | uptake < 10) # | == "OR" operator
+
 filter(DF, Treatment != "")
 filter(DF, !Type %in% c("Quebec", "Mississippi"))
 filter(DF, !Type %in% levels(CO2$Type))
