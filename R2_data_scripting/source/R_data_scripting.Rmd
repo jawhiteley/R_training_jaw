@@ -281,10 +281,10 @@ setwd( choose.dir() )
 - Check to see that the working directory is in the right place,
   by checking to see if a known file exists (from $\R$'s perspective):
 
-  ```{r check_wd}
-  DF_path <- file.path("data", "data_example.csv")
-  file.exists(DF_path)
-  ```
+```{r check_wd}
+DF_path <- file.path("data", "data_example.csv")
+file.exists(DF_path)
+```
 
 - If the result of the statement above is not "`TRUE`{.r}" in your session,
   try one of the [other approaches](#set-the-working-directory)
@@ -636,6 +636,8 @@ _There are other differences you may have noticed:
 + defining your own functions
   - variable scope, environments?
   - anonymous functions? (*introduce when it becomes relevant*, later)
+  - write a custom function for comparing a dataset to CO2, to check our work?
+    - incorporate conditional execution, messages, warnings?
   * write a custom function for comparing values in two vectors with NAs
     - http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
     - https://stackoverflow.com/questions/37610056/how-to-treat-nas-like-values-when-comparing-elementwise-in-r
@@ -903,14 +905,6 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 
 # Load Data: The `readr` & `readxl` Packages
 
-<!--
-√ read_csv()
-  √ compare results with read.csv()
-  √ Exercise: use known functions to identify differences in a separate script file?
-  - options for controlling behaviour (column classes, NAs)
-√ read_excel() example (short, built-in)
--->
-
 ## The `readr` package: reading data
 
 +--------------------+-----------------------------+--------------------+-----------------------+
@@ -1160,6 +1154,15 @@ Skip this exercise if running late.
 :::
 
 
+<!--
+√ read_csv()
+  √ compare results with read.csv()
+  √ Exercise: use known functions to identify differences in a separate script file?
+  √ options for controlling behaviour: clumn names, column classes, NAs
+√ read_excel() example (short, built-in)
+-->
+
+
 
 
 # Clean Data: The `dplyr` Package
@@ -1168,6 +1171,10 @@ Skip this exercise if running late.
 Use loaded data set for demos; `who` or `iris` data for exercises?
   - I would like participants to practice using internal datasets for exploration & testing code.
   - I don't want participants to get lost or derailed if they miss an exercise
+  - Explore data with tidyverse functions:
+    - identify non-numeric values in columns that should be numeric
+      - NA comparisons
+    
 * ROWS
   + filter() ***
     - package::function notation (to distinguish from other functions named 'filter')
@@ -1241,6 +1248,12 @@ Verbs can be grouped based on the component of the dataset that they work with[^
 ::: notes
 
 :::
+
+
+## Rows: `filter()`{.r}
+
+
+## Rows: `arrange()`{.r}
 
 
 ## `dplyr` conventions
@@ -1458,13 +1471,6 @@ The `tidyr` package provides tools for making data *tidy*:
 
 # Saving Data Outside $\R$
 
-<!--
-- write_csv
-- file encoding: accents (french)
-  - writing & reading
-- .Rdata files?  ?save  ?load
--->
-
 ## The `readr` package: writing data
 
 +--------------------------+----------------------------------+------------------------+
@@ -1509,9 +1515,18 @@ file.remove("data/data_clean.csv")
 ```
 
 
+<!--
+-√ write_csv
+√ file encoding: accents (french)
+  √ writing & reading
+- Export to Excel, other formats: see "Extras" document
+- .Rdata files?  ?save  ?load
+-->
 
 
-# Sharing Code & Results
+
+
+# Sharing Code <!-- & Results -->
 
 ## Style
 
@@ -1559,7 +1574,10 @@ file.remove("data/data_clean.csv")
   - [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html)
     - based on the current tidyverse style guide, above.
 
-
+<!--
+* R Markdown
+* R Notebooks
+-->
 
 
 # Review
