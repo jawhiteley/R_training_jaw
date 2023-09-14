@@ -1456,6 +1456,26 @@ c(1, NA, 1, NA, NaN)
 |                          | is UTF-8 encoded                 |                        |
 +--------------------------+----------------------------------+------------------------+
 
+## Save our work
+
+- Save a data frame to a `.csv` file:
+  - it will be encoded with `UTF-8` by default (on all platforms)
+  
+```{r write_csv, eval=FALSE}
+write_csv(DF_tidy, "data/data_clean.csv")
+write_excel_csv(DF_tidy, "data/data_excel.csv")
+```
+
+- Read it back in to check
+```{r test write, eval=FALSE}
+save_test <- read_csv("data/data_clean.csv")
+save_test
+```
+
+```{r cleanup, include=FALSE, purl=FALSE, eval=FALSE}
+file.remove("data/data_clean.csv")
+```
+
 
 
 

@@ -171,3 +171,13 @@ iris_xl <- read_excel(xl_path, "iris")
 c(1, NA, 3, 4 , NaN) %==%
 c(1, NA, 1, NA, NaN)
 
+
+## ----write_csv, eval=FALSE----------------------------------------------------
+## write_csv(DF_tidy, "data/data_clean.csv")
+## write_excel_csv(DF_tidy, "data/data_excel.csv")
+
+
+## ----test write, eval=FALSE---------------------------------------------------
+## save_test <- read_csv("data/data_clean.csv")
+## save_test
+
