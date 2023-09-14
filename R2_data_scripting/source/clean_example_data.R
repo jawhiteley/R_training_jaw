@@ -58,6 +58,29 @@ test_readr <- readr::read_csv(
 
 
 ##==============================================================
+## Explore
+##  these might form examples in the workshop materials
+
+## numeric values above a threshold
+test_readr %>% 
+  filter(if_any(is.numeric, ~ . > 100)) %>% 
+  select( Type, Treatment, PlantNum, where(function (x) is.numeric(x) && any(x > 100)) )
+
+## non-numeric values in a character columns
+## so many warnings!
+test_base %>% 
+  group_by(across(1:3)) %>% 
+  select(where( ~ is.character(.) && any(!is.na(.) & is.na(as.numeric(.)) ))) %>% 
+  filter(if_any(everything(), ~ !is.na(.) & is.na(as.numeric(.) )))
+
+## coalesce() the character vector with as.numeric() version to hide all the values that are fine with NAs?
+
+
+## duplicate rows / combination of treatments?
+
+
+
+##==============================================================
 ## Clean
 
 ## Use this for testing
