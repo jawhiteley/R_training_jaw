@@ -10,6 +10,7 @@
 
 library(readxl)
 
+
 # LOAD data ---------------------------------------------------------------
 
 XL_path <- readxl_example("deaths.xlsx")
