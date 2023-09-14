@@ -130,15 +130,17 @@ Change default encoding for R:
 :::
 
 
-## Add a BOM to an output file
+## Add a BOM to an output file {.shrink}
 
+<!--
 - Some programs (e.g., Excel) expect a BOM
   in "`UTF-8`" encoded files.
   
   - Excel will automatically use `UTF-8` when opening a file with a BOM.
+-->
 
 - It is possible to add a BOM to a csv file,
-  but it must be done _manually_:
+  but it must be done _manually_ with base $\R$:
   - code adapted from [this StackOverflow answer](https://stackoverflow.com/a/41408091)
   
 ```r
@@ -147,8 +149,17 @@ writeChar(
   "output.csv", 
   eos = NULL
 )
-write_csv(Data, "output.csv", append = TRUE, ... )
+write.csv(Data, "output.csv", append = TRUE, ... )
 ```
+
+- The `readr` package can do this directly 
+  with a special `write_excel_csv`{.r} function:
+
+```r
+write_excel_csv(Data, "output.csv", ... )
+```
+
+### !
 
 **$\R$ does not recommend doing this** (see `?file`),
   so use with caution.
