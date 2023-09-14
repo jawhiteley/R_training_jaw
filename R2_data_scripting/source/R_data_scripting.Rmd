@@ -908,14 +908,14 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 √ read_excel() example (short, built-in)
 -->
 
-## The `readr` package
+## The `readr` package: reading data
 
 +--------------------+-----------------------------+--------------------+-----------------------+
 | **`readr`**                                      | **`base R`**                               |
 +====================+=============================+====================+=======================+
 | `read_csv()`{.r}   | comma separated values      | `read.csv()`{.r}   |                       |
 +--------------------+-----------------------------+--------------------+-----------------------+
-| `read_csv2()`{.r}  | '`;`' as delimiter\         | `read_csv2()`{.r}  | '`,`' for decimals,\  |
+| `read_csv2()`{.r}  | '`;`' as delimiter\         | `read.csv2()`{.r}  | '`,`' for decimals,\  |
 |                    | (allows '`,`' for decimals) |                    | '`;`' as separator    |
 +--------------------+-----------------------------+--------------------+-----------------------+
 | `read_tsv()`{.r}   | tab separated values        | `read.delim()`{.r} | delimited files       |
@@ -926,6 +926,8 @@ Today, we will focus on a few of the core `tidyverse` packages for loading, clea
 +--------------------+-----------------------------+--------------------+-----------------------+
 | `read_fwf()`{.r}   | fixed width files           | `read.fwf()`{.r}   |                       |
 +--------------------+-----------------------------+--------------------+-----------------------+
+
+`readr` descriptions based on [#dsbox](https://datasciencebox.org/course-materials/_slides/u2-d12-data-import/u2-d12-data-import#5)
 
 
 ## Read a csv file using `read_csv()`
@@ -1425,11 +1427,36 @@ c(1, NA, 1, NA, NaN)
 # Saving Data Outside $\R$
 
 <!--
-- write.csv
-- file enoding: accents (french)
+- write_csv
+- file encoding: accents (french)
   - writing & reading
-- .Rdata files?
+- .Rdata files?  ?save  ?load
 -->
+
+## The `readr` package: writing data
+
++--------------------------+----------------------------------+------------------------+
+| **`readr`**                                                 | **`base R`**           |
++==========================+==================================+========================+
+| `write_csv()`{.r}        | &larr; comma separated values    | `write.csv()`{.r}      |
++--------------------------+----------------------------------+------------------------+
+| `write_csv2()`{.r}       | &larr; allows '`;`' as delimiter | `write.csv2()`{.r}\    |
+|                          | and '`,`' for decimals           | '`,`' for decimals,\   |
+|                          | (depending on locale)            | '`;`' as separator     |
++--------------------------+----------------------------------+------------------------+
+| `write_tsv()`{.r}        | &larr; tab separated values      |                        |
+|                          |                                  |                        |
++--------------------------+----------------------------------+------------------------+
+| `write_delim()`{.r}      | &larr; (generic) files           | `write.table()`{.r}    |
+|                          | with an arbitrary delimiter      |                        |
++--------------------------+----------------------------------+------------------------+
+| `write_excel_csv()`{.r}, | &larr; include a UTF-8           |                        |
+| `write_excel_cs2v()`{.r} | Byte order mark, which           |                        |
+|                          | indicates to Excel the csv       |                        |
+|                          | is UTF-8 encoded                 |                        |
++--------------------------+----------------------------------+------------------------+
+
+
 
 
 # Sharing Code & Results
