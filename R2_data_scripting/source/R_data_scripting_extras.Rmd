@@ -179,6 +179,30 @@ read_csv(Data, "data.csv",
 
 
 
+# Reading Data in Other Formats
+
+- Parquet files: an efficient columnar format,
+  popular with Big Data and cloud computing
+  
+  - [Apache Arrow](https://github.com/apache/arrow/tree/main/r) 
+    (i.e., the '`arrow`' package)
+  
+- The [Data Import Chapter of R for Data Science](https://r4ds.had.co.nz/data-import.html#other-types-of-data) ([2e](https://r4ds.hadley.nz/data-import)) 
+  describes these tidyverse packages for other types of data:
+
+  - **`haven`** reads SPSS, Stata, and SAS files.
+  
+  - **`DBI`**, along with a database specific backend (e.g. `RMySQL`, `RSQLite`, `RPostgreSQL`, etc.) 
+    allows you to run SQL queries on a **database** and return a data frame.
+  
+- See the [Import Section](https://r4ds.hadley.nz/import) of [R for Data Science (2nd edition)](https://r4ds.hadley.nz/) 
+  For more details on getting data into R from these and other sources.
+    
+- Other options are also described in the [R Data Import/Export](https://cran.r-project.org/doc/manuals/r-release/R-data.html) manual.
+
+
+
+
 # Exporting to other formats
 
 ## Writing to Microsoft Excel^TM^ files {.shrink}
