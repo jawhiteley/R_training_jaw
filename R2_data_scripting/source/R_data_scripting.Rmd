@@ -1401,9 +1401,9 @@ c(1, NA, 1, NA, NaN)
 
 
 
-# Tidy data
+# Reshape Data: The `tidyr` Package
 
-## Tidy datasets
+## Tidy data
 
 > > "Happy families are all alike; every unhappy family is unhappy in its own way."  
 > > — Leo Tolstoy 
@@ -1413,14 +1413,43 @@ c(1, NA, 1, NA, NaN)
 > --- Hadley Wickham (doi: [10.18637/jss.v059.i10](https://doi.org/10.18637/jss.v059.i10))
 
 
-- Tidy datasets provide a standardized way to link the *structure* of a dataset (its physical layout) with its *semantics* (its meaning).
+- Tidy datasets provide a standardized way 
+  to link the *structure* of a dataset (its physical layout) with its *semantics* (its meaning).
 
-  - [`tidyr` vignette](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
+* A [tidy dataset](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) 
+  follows three interrelated rules:
+
+  * Each variable must have its own column.
+  * Each observation must have its own row.
+  * Each value must have its own cell.
 
 
+## The `tidyr` package
 
+The `tidyr` package provides tools for making data *tidy*:
 
-# Reshape Data: The `tidyr` Package
+  + "**[Pivoting](https://tidyr.tidyverse.org/articles/pivot.html)**" 
+    converts between *long* and *wide* forms.
+    - `pivot_longer()`{.r} and `pivot_wider()`{.r}
+  
+  + "[Rectangling](https://tidyr.tidyverse.org/articles/rectangle.html)" 
+    turns deeply nested lists (e.g., JSON) into tidy tibbles.
+    - _Not covered here: see the [vignette](https://tidyr.tidyverse.org/articles/rectangle.html)._
+  
+  + "[Nesting](https://tidyr.tidyverse.org/articles/nest.html)"
+    converts grouped data into nested data frames.
+    - _Not covered here: see the [vignette](https://tidyr.tidyverse.org/articles/nest.html)._
+  
+  + **Splitting** and **combining** character columns.
+    - `separate_...()`{.r} a single character column into multiple columns
+    - `unite()`{.r} multiple columns into a single character column.
+    
+  + Handling **missing values**
+    - make implicit missing values explicit with `complete()`{.r}
+    - make explicit missing values implicit with `drop_na()`{.r}
+    - replace missing values with a known value using `replace_na()`{.r}  
+      or `fill()`{.r} them with the next/previous value
+
 
 
 

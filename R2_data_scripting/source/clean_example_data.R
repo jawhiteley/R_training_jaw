@@ -71,6 +71,9 @@ test_clean1_type <- messy %>%
 str(test_clean1_type)
 
 ## Clean `Treatment` column
+## could also use tidyr::expand() to generate all combinations, 
+## then full_join() or coalesce() to replace missing values?
+## But not as elegant, and might not work with duplicate row.
 test_clean2_trt <- test_clean1_type %>% 
   mutate(Treatment = na_if(Treatment, "")) %>%      # replace empty strings with NA
   tidyr::fill(Treatment, .direction = "down") %>%   # Fill Down to replace NAs (tidyr)
@@ -79,13 +82,13 @@ str(test_clean2_trt)
 
 ## The dataset is at least now able to be sorted and grouped without problems. :)
 
-## Recover Plant ID - needs `Treatment` to be fixed first
+## Recover Plant ID - needs `Treatment` to be fixed first, `unite` is from tidyr
 test_clean3_plant <- test_clean2_trt %>% 
   mutate(
     Type.tmp = str_sub(Type, 1, 1),
     Treatment.tmp = str_sub(Treatment, 1, 1)
   ) %>% 
-  unite(Plant, Type.tmp, Treatment.tmp, PlantNum, sep = "") %>% 
+  tidyr::unite(Plant, Type.tmp, Treatment.tmp, PlantNum, sep = "") %>% 
   mutate(Plant = factor(Plant, levels = unique(Plant))) %>% 
   relocate(Plant, Type, Treatment)
 str(test_clean3_plant)
