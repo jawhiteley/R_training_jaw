@@ -1306,7 +1306,9 @@ filter(CO2, conc == 95 | uptake < 10) # | == "OR" operator
 
 filter(DF, Treatment != "")
 filter(DF, !Type %in% c("Quebec", "Mississippi"))
-filter(DF, !Type %in% levels(CO2$Type))
+filter(DF, !Type %in% unique(CO2$Type)) 
+
+filter(DF, X175 > mean(X175))
 ```
 
 ::: notes
@@ -1315,6 +1317,35 @@ Pause to let people try these out
 
 
 ## Rows: `arrange()`{.r}
+
+- `arrange()` changes the order of rows of a data frame
+  based on the values of selected columns
+
+```{r arrange() examples, results='hide'}
+arrange(CO2, conc)
+arrange(CO2, desc(uptake))  # sort in descending order
+
+arrange(DF, Type, Treatment, PlantNum)
+arrange(DF, PlantNum, desc(Type), Treatment)
+
+## sort by all character columns
+arrange(DF, across(where(is.character)) )  
+```
+
+- The last example uses **helper functions**
+  - `across()`{.r} lets you choose columns to sort by, based on criteria
+  - `where()`{.r} is a _selection-helper_ function
+    that applies the `is.character()`{.r} _function_ to each column, 
+    returning a `TRUE`{.r} or `FALSE`{.r} value,
+    to use as the criteria for `across()`{.r}.
+    
+::: notes
+More on helper functions and semantics later
+:::
+
+
+## `filter()`{.r} & `arrange()`{.r} work well together
+
 
 
 ## `dplyr` conventions
@@ -1329,7 +1360,8 @@ All `dplyr` verbs (and other related `tidyverse` functions) share a few things i
 
 - The result is a new data frame.
 
-We'll see how these can help build clear and efficient workflows.
+These features work well with the pipe operator,
+and can help build clear and efficient workflows.
 
 Because all the functions have these in common, 
 it makes it easier to extend your understanding to new functions.

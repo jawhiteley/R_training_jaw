@@ -179,7 +179,20 @@ filter(CO2, conc == 95 | uptake < 10) # | == "OR" operator
 
 filter(DF, Treatment != "")
 filter(DF, !Type %in% c("Quebec", "Mississippi"))
-filter(DF, !Type %in% levels(CO2$Type))
+filter(DF, !Type %in% unique(CO2$Type)) 
+
+filter(DF, X175 > mean(X175))
+
+
+## ----arrange() examples, results='hide'---------------------------------------
+arrange(CO2, conc)
+arrange(CO2, desc(uptake))  # sort in descending order
+
+arrange(DF, Type, Treatment, PlantNum)
+arrange(DF, PlantNum, desc(Type), Treatment)
+
+## sort by all character columns
+arrange(DF, across(where(is.character)) )  
 
 
 ## ----user-defined function, echo=-(1:2)---------------------------------------
