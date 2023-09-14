@@ -501,9 +501,10 @@ latin1_ex <- DF_win |>
 DF <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
 ```
 
-- Conversely, if reading a file that was 
+- If reading a file that was 
   created on a Windows computer and encoded in "`latin1`",
-  on a different system (mac, Unix, linux, etc.),
+  on a different system (mac, Unix, linux, etc.)
+  --- or a recent version of $\R$ (>=4.2) on Windows ---
   you can specify that, too:
   
 ``` r

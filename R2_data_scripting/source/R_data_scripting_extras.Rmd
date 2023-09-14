@@ -38,6 +38,9 @@ options(width = 60)  # to fit output on slides
 -->
 ```
 
+
+
+
 # File Encoding & Microsoft Excel^TM^
 
 - Many OSes and applications encode text using "`UTF-8`" by default.
@@ -101,19 +104,18 @@ bom[4, 1:4]
 
 ```{r read_csv() BOM, message=FALSE}
 bom_readr <- readr::read_csv("../data/data_example_bom.csv")
-bom_readr[4, 1:4] |> as.data.frame()
+bom_readr[4, 1:4] |> knitr::kable()
 ```
 
 - `write_csv()` (in the `readr` package) automatically encodes output files using "UTF-8",
   for greater portability across systems.
-  - _except_ for base $\R$ (`read.csv()`) using default options. :(
-- You can control the encoding used by `readr` functions with the `locale` argument.
-  - see `?readr::read_csv` and `?readr::locale` for details.
+  - _except_ for older versions of base $\R$ (`read.csv()`) on Windows :(
 
 ### !
 
 Hopefully, these examples have demonstrated that 
-using `read_csv()`{.r} avoids many of the pitfalls and frustrations of `read.csv()`
+the `readr` package makes it easy to 
+work with "`UTF-8`" files by default, on any platform.
 
 ::: notes
 Load a file with a BOM 
@@ -132,6 +134,8 @@ Change default encoding for R:
 
 - Some programs (e.g., Excel) expect a BOM
   in "`UTF-8`" encoded files.
+  
+  - Excel will automatically use `UTF-8` when opening a file with a BOM.
 
 - It is possible to add a BOM to a csv file,
   but it must be done _manually_:
@@ -156,6 +160,25 @@ Add a BOM to a file
 :::
 
 
+## Using other encodings with `readr`
+
+- You can control the encoding used by `readr` functions with the **`locale` argument**.
+
+```r
+write_csv(Data, "data.csv", 
+          locale = locale(encoding = "latin1")
+)
+
+read_csv(Data, "data.csv", 
+         locale = locale(encoding = "latin1")
+)
+```
+
+- See `?readr::read_csv` and `?readr::locale` for details.
+
+
+
+
 # Exporting to other formats
 
 ## Writing to Microsoft Excel^TM^ files {.shrink}
@@ -163,7 +186,7 @@ Add a BOM to a file
 Packages that can write to Excel files:
 
 -   [`xlsx`](https://github.com/colearendt/xlsx): read, write, format Excel 2007 (`.xlsx`) and Excel 97/2000/XP/2003 (`.xls`) files.
-    -   Depends on Java and the `rJava` package
+    -   Requires Java and the `rJava` package
 -   [`XLConnect`](https://github.com/miraisolutions/xlconnect): comprehensive and cross-platform R package for manipulating Microsoft Excel files (`.xlsx` & `.xls`) from within R.
     -   Requires a Java Runtime Environment (JRE)
 -   [`openxlsx`](https://ycphs.github.io/openxlsx/index.html): simplified creation of Excel `.xlsx` files (**not** `.xls`).
