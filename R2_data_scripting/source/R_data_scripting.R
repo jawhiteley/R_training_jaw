@@ -158,6 +158,28 @@ excel_sheets(xl_path)  # get the names of the sheets
 iris_xl <- read_excel(xl_path, "iris")
 
 
+## ----load dplyr---------------------------------------------------------------
+library(dplyr)
+
+
+## ----masking, eval=FALSE------------------------------------------------------
+## ?filter  # more than one result!
+
+
+## ----package::object notation, eval=FALSE-------------------------------------
+## ?filter  # more than one result
+## ?dplyr::filter
+## ?stats::filter
+
+
+## ----filter() examples--------------------------------------------------------
+filter(DF, X95 < 10)
+filter(CO2, conc == 95 & uptake < 10)
+filter(DF, Treatment != "")
+filter(DF, !Type %in% c("Quebec", "Mississippi"))
+filter(DF, !Type %in% levels(CO2$Type))
+
+
 ## ----user-defined function, echo=-(1:2)---------------------------------------
 # http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
 # https://github.com/jawhiteley/R-lib/blob/master/functions/compare-na.R
