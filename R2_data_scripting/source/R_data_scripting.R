@@ -226,6 +226,17 @@ arrange(DF, length(Type), X95 + X175)
 arrange(DF, across(where(is.character)) )  
 
 
+## ----select() & filter()------------------------------------------------------
+select(filter(DF, Treatment == "chilled"), 
+       where(is.numeric)
+)
+
+
+## ----filter() %>% select()----------------------------------------------------
+DF %>% filter(Treatment == "chilled") %>% 
+  select(where(is.numeric))
+
+
 ## ----user-defined function, echo=-(1:2)---------------------------------------
 # http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
 # https://github.com/jawhiteley/R-lib/blob/master/functions/compare-na.R

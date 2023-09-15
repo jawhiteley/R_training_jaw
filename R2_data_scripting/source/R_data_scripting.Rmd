@@ -1414,6 +1414,21 @@ More on helper functions and semantics later
 
 ## `select()`{.r} & `filter()`{.r} work well together
 
+- For example, you can filter on a column,
+  then remove it with `select()`{.r}
+  
+```{r select() & filter()}
+select(filter(DF, Treatment == "chilled"), 
+       where(is.numeric)
+)
+```
+
+- But this is clunky!  This is easier to follow:
+
+```{r filter() %>% select()}
+DF %>% filter(Treatment == "chilled") %>% 
+  select(where(is.numeric))
+```
 
 
 ## A 'pipe' operator  {.shrink}
@@ -1512,6 +1527,17 @@ More on helper functions and semantics later
 ## Pipe: Exercise
 
 Re-write the expressions using pipes:
+
+:::::: {.columns .onlytextwidth}
+::: {.column width="48%"}
+
+
+
+:::
+::: {.column width="48%"}
+
+:::
+::::::
 
 
 ## `dplyr` conventions
