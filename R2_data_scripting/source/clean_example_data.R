@@ -78,6 +78,13 @@ test_base %>%
 
 ## duplicate rows / combination of treatments?
 
+## convert rows to vectors (across)?
+DF %>% slice(11:12) %>% select(where(is.numeric)) %>% apply(1, as.numeric) -> DF_rows
+apply(DF_rows, 2, coalesce)
+
+DF %>% slice(11:12) %>% select(where(is.numeric)) %>% as.list() %>% purrr::list_transpose() -> DF_trans
+coalesce(DF_trans[[1]], DF_trans[[2]])
+
 
 
 ##==============================================================
