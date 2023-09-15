@@ -1531,10 +1531,44 @@ Re-write the expressions using pipes:
 :::::: {.columns .onlytextwidth}
 ::: {.column width="48%"}
 
+```r
+# (1)
+sum(1:10)
+
+# (2)
+filter(CO2, conc < 100)
+
+# (3)
+
+
+
+
+
+# (4)
+
+```
 
 
 :::
 ::: {.column width="48%"}
+. . .
+
+```r
+# (1)
+1:10 %>% sum()
+
+# (2)
+CO2 %>% filter(conc < 100)
+
+# (3)
+DF %>% 
+  select(where(is.character) & 
+         starts_with("X")) %>% 
+  filter()
+
+# (4)
+
+```
 
 :::
 ::::::
@@ -1559,6 +1593,23 @@ Because all the functions have these in common,
 it makes it easier to extend your understanding to new functions.
 
 <!-- https://dplyr.tidyverse.org/articles/dplyr.html#commonalities -->
+
+
+
+## Find problematic values systematically
+
+<!-- 
+- using filter() & select() 
+- group_by()?
+-->
+
+## Columns: `mutate()`{.r} 
+
+- `mutate()`{.r} creates new columns, 
+  or modifies existing ones,
+  as functions of existing columns.
+  - it is a `dplyr` workhorse, used for many tasks,
+    since it allows you to modify values _systematically_.
 
 
 
@@ -1591,6 +1642,7 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 :::
 
 
+## Cleaning some columns in the example data
 
 
 ## Define your own function
