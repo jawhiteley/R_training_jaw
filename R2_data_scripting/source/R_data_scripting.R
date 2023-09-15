@@ -84,6 +84,8 @@ plot(DF)
 DF <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
 
 
+
+
 ## ----read_csv-----------------------------------------------------------------
 library(readr)
 DF_readr <- read_csv(DF_path, skip = 2)
@@ -158,6 +160,8 @@ excel_sheets(xl_path)  # get the names of the sheets
 iris_xl <- read_excel(xl_path, "iris")
 
 
+
+
 ## ----load dplyr---------------------------------------------------------------
 library(dplyr)
 
@@ -170,6 +174,30 @@ library(dplyr)
 ## ?filter  # more than one result
 ## ?dplyr::filter
 ## ?stats::filter
+
+
+## ----select() by name, results='hide'-----------------------------------------
+select(DF, Type, Treatment, PlantNum)
+select(DF, "Type", "Treatment", "X95")
+select(DF, Type:PlantNum)
+
+
+## ----select() by position, results='hide'-------------------------------------
+select(DF, 2:5)
+
+
+## ----select() change name and order, results='hide'---------------------------
+select(DF, c(Type, 4:6, Plant = PlantNum))
+
+
+## ----selection helpers, results='hide'----------------------------------------
+select(DF, starts_with("X"))
+select(DF, !starts_with("X"))
+select(DF, contains("m"))
+
+select(DF, where(is.character) & starts_with("X"))
+
+select(DF, any_of(c("Type", "Treatment", "95")))
 
 
 ## ----filter() examples, results='hide'----------------------------------------
@@ -190,6 +218,9 @@ arrange(CO2, desc(uptake))  # sort in descending order
 
 arrange(DF, Type, Treatment, PlantNum)
 arrange(DF, PlantNum, desc(Type), Treatment)
+
+arrange(DF, X95 %% 2) 
+arrange(DF, length(Type), X95 + X175)
 
 ## sort by all character columns
 arrange(DF, across(where(is.character)) )  

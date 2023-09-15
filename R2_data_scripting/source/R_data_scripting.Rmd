@@ -621,6 +621,7 @@ _There are other differences you may have noticed:
 
 # Re-using your code: scripts and other files
 
+```{r, include=FALSE, eval=FALSE, purl=FALSE}
 <!--
 √ What is a script? Why use a script?
   √ Make a simple script that does what we've done so far?
@@ -648,6 +649,7 @@ _There are other differences you may have noticed:
   - Brief mention, demo
 - Projects?
 -->
+```
 
 ## Re-using code
 
@@ -1172,6 +1174,7 @@ Skip this exercise if running late.
 
 # Clean Data: The `dplyr` Package
 
+```{r, include=FALSE, eval=FALSE, purl=FALSE}
 <!--
 Use loaded data set for demos; `who` or `iris` data for exercises?
   - I would like participants to practice using internal datasets for exploration & testing code.
@@ -1212,6 +1215,7 @@ Use loaded data set for demos; `who` or `iris` data for exercises?
   - vignette("programming", package = "dplyr")
 + Exercise: stick with multiple tables exercise, above?
 -->
+```
 
 ## `dplyr`: a grammar of data manipulation
 
@@ -1293,6 +1297,67 @@ library(dplyr)
   - We won't be using the masked functions today, however.
 
 
+## Columns: `select()`{.r}
+
+- Select (and rename) columns in a data frame,
+  using a concise mini-language (`<tidy-select>`)
+
+- Select by name: 
+  'bare names', like regular variables;  
+  or character names
+  
+```{r select() by name, results='hide'}
+select(DF, Type, Treatment, PlantNum)
+select(DF, "Type", "Treatment", "X95")
+select(DF, Type:PlantNum)
+```
+
+- Select by position:
+
+```{r select() by position, results='hide'}
+select(DF, 2:5)
+```
+
+- or both, while changing names and order along the way:
+
+```{r select() change name and order, results='hide'}
+select(DF, c(Type, 4:6, Plant = PlantNum))
+```
+
+
+
+## Columns: selection helpers
+
+- Various **helper functions** (_selection helpers_)
+  add ways to `select()`{.r} columns
+  _based on criteria_ (dynamically).
+
+- Some examples (see `?select` for more):
+
+```{r selection helpers, results='hide'}
+select(DF, starts_with("X"))
+select(DF, !starts_with("X"))
+select(DF, contains("m"))
+
+select(DF, where(is.character) & starts_with("X"))
+
+select(DF, any_of(c("Type", "Treatment", "95")))
+```
+
+. . .
+
+  - `starts_with()`{.r} & `contains()`{.r} match _patterns_ in names
+  - `where()`{.r} applies a function
+    (`is.character()`{.r}, in this case) to each column:
+    those where the function returns `TRUE`{.r} are kept.
+  - `any_of()`{.r} matches names in a character vector;  
+    `all_of()`{.r} is similar, but names that don't exist cause an _error_.
+
+::: notes
+Pause to let people try these out
+:::
+
+
 ## Rows: `filter()`{.r}
 
 - `filter()` retains rows that satisfy _all_ the conditions specified
@@ -1315,7 +1380,7 @@ filter(DF, X175 > mean(X175))
 Pause to let people try these out
 :::
 
-
+<!--
 ## Rows: `arrange()`{.r}
 
 - `arrange()` changes the order of rows of a data frame
@@ -1327,6 +1392,9 @@ arrange(CO2, desc(uptake))  # sort in descending order
 
 arrange(DF, Type, Treatment, PlantNum)
 arrange(DF, PlantNum, desc(Type), Treatment)
+
+arrange(DF, X95 %% 2) 
+arrange(DF, length(Type), X95 + X175)
 
 ## sort by all character columns
 arrange(DF, across(where(is.character)) )  
@@ -1342,9 +1410,9 @@ arrange(DF, across(where(is.character)) )
 ::: notes
 More on helper functions and semantics later
 :::
+-->
 
-
-## `filter()`{.r} & `arrange()`{.r} work well together
+## `select()`{.r} & `filter()`{.r} work well together
 
 
 
