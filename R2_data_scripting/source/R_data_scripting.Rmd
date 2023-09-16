@@ -1613,14 +1613,85 @@ it makes it easier to extend your understanding to new functions.
 
 
 
-## Find problematic values systematically
+## Find problematic values systematically {.shrink}
 
-<!-- 
-- using filter() & select() 
-- group_by()?
--->
+<!--
+- We can use `filter()`{.r} & `select()`{.r} to automatically
+  identify and locate potential issues.
+  -->
 
-## Columns: `mutate()`{.r} 
+- Find columns that are character, but we expect to be numeric:
+
+```{r find char cols}
+cols_charn <- DF %>% 
+  select(starts_with("X") & where(is.character)) %>% 
+  names()
+```
+
+- Loop through the identified column names (using `for`{.r})
+  and print values that would be `NA`{.r} if converted to numeric
+  - `suppressWarnings()`{.r} suppresses the warnings we expect from 
+    `as.numeric()`{.r} in this case.
+    
+```{r find non-numeric values in char cols}
+for (col in cols_charn) {
+  DF %>% select(1:3, all_of(col)) %>% 
+    filter( get(col) %>% as.numeric() %>% is.na() %>% 
+              suppressWarnings() ) %>% 
+    print()
+}
+```
+
+::: notes
+- Might be too much at this point - but it is useful
+- Also not sure about use of `get()` here
+  - it works, and is simpler than `if_any()`,
+    but doesn't feel like the `tidyverse` way.
+:::
+
+
+## Exercise
+
+
+## User-defined function {.shrink}
+
+- Define your own functions with the `function`{.r} function!
+  - function code goes between braces: `{}`{.r}
+  - specify what value is returned with the `return()`{.r} function
+  
+```{r user-defined function, echo=-(1:2)}
+# http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
+# https://github.com/jawhiteley/R-lib/blob/master/functions/compare-na.R
+'%==%' <- function (v1, v2) {
+  same <- (v1 == v2) | (is.na(v1) & is.na(v2))
+  same[is.na(same)] <- FALSE
+  return(same)                 # return the result
+}
+
+# test it:
+c(1, NA, 3, 4 , NaN) %==% c(1, NA, 1, NA, NaN)
+c(1, NA, 3, 4 , NaN)  ==  c(1, NA, 1, NA, NaN)
+```
+
+- This code defines a function that compares two vectors,
+  accounting for missing values (`NA`{.r})
+
+
+## An infix operator
+
+```{r infix operator}
+c(1, NA, 3, 4 , NaN) %==% c(1, NA, 1, NA, NaN)
+```
+
+- This function is also a special type called an "*infix operator*",
+  which goes between two objects (it's arguments) like an operator, 
+  instead of a 'typical' function call
+  
+  - it has exactly **2** arguments (lhs, rhs)
+  - the name begins _and_ ends with a percent symbol (`%`)
+  
+
+## Modify Columns: `mutate()`{.r} 
 
 - `mutate()`{.r} creates new columns, 
   or modifies existing ones,
@@ -1628,10 +1699,25 @@ it makes it easier to extend your understanding to new functions.
   - it is a `dplyr` workhorse, used for many tasks,
     since it allows you to modify values _systematically_.
 
-Add a column:
-```{r mutate() add a column}
-DF %>% mutate()
+Add columns:
+```{r mutate() add columns, results='hide'}
+DF %>% mutate(
+  Trt_n = Treatment %>% nchar(),
+  Xsum = X95 + X175
+  )
 ```
+
+Modify columns:
+```{r mutate() modify columns, results='hide'}
+DF %>% mutate(X95 = X95 / mean(X95))
+```
+
+
+## Define groups: `group_by()`{.r}
+
+- dplyr verbs are applied to each group of rows
+
+- Grouping columns are excluded from the operations
 
 
 ## `dplyr` *semantics*
@@ -1664,24 +1750,69 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 
 ## Cleaning some columns in the example data
 
+- Normalize values of the '`Type`' column:
 
-## Define your own function
+```{r clean `Type` column}
+DF_clean1_type <- DF %>% 
+  mutate(
+    Type = if_else(Type == "Mississippi", Type, "Quebec")
+  )
+```
 
-```{r user-defined function, echo=-(1:2)}
-# http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
-# https://github.com/jawhiteley/R-lib/blob/master/functions/compare-na.R
-`%==%` <- function (v1, v2) {
-  same <- (v1 == v2) | (is.na(v1) & is.na(v2))
-  same[is.na(same)] <- FALSE
-  return(same)
-}
+- Replace ',' with '.' in `X675` column, and convert to numeric:
 
-# test it:
-c(1, NA, 3, 4 , NaN) %==%
-c(1, NA, 1, NA, NaN)
+```{r clean `X675` column}
+library(stringr)
+DF_clean2_675 <- DF_clean1_type %>% 
+  mutate(
+    # Replace "," with "."
+    X675 = str_replace(X675, ",", "."),
+    # convert to numeric
+    X675 = as.numeric(X675)
+  )
+```
+
+- Remove non-numeric characters from `X500` column, and convert to numeric:
+
+```{r clean `X500` column}
+DF_clean2_500 <- DF_clean2_675 %>% 
+  mutate(
+    # drop everything after the first space:
+    X500 = str_split_i(X500, " ", i=1),
+    # convert to numeric
+    X500 = as.numeric(X500)
+  )
 ```
 
 
+## Collapse groups: `summarise()`{.r}
+
+## `summarise()`{.r} multiple columns with `across()`{.r}
+
+* `summarise()`{.r} uses _mutate semantics_,
+  but `across()`{.r} applies a **function** to multiple columns,
+  specified using _select semantics_
+  - i.e., `across()`{.r} lets you use _select semantics_
+    in a context where you would normally use _mutate semantics_
+
+* A function can be specified by name
+
+* For more complex operations, you may have to define a _custom function_
+  or define an _ad hoc function_ to include additional arguments
+
+* You can also define ad hoc functions using a special "lambda" notation
+
+```{r summarise() multiple columns with across(), results='hide'}
+DF %>% 
+  summarise( across(where(is.numeric), ~ sum(is.na(.x))))
+```
+
+
+## Combine duplicate rows in example data
+
+
+
+## Exercise
 
 
 

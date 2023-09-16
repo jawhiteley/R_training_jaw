@@ -237,22 +237,81 @@ DF %>% filter(Treatment == "chilled") %>%
   select(where(is.numeric))
 
 
-## ----mutate() add a column----------------------------------------------------
-DF %>% mutate()
+## ----find char cols-----------------------------------------------------------
+cols_charn <- DF %>% 
+  select(starts_with("X") & where(is.character)) %>% 
+  names()
+
+
+## ----find non-numeric values in char cols-------------------------------------
+for (col in cols_charn) {
+  DF %>% select(1:3, all_of(col)) %>% 
+    filter( get(col) %>% as.numeric() %>% is.na() %>% 
+              suppressWarnings() ) %>% 
+    print()
+}
 
 
 ## ----user-defined function, echo=-(1:2)---------------------------------------
 # http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
 # https://github.com/jawhiteley/R-lib/blob/master/functions/compare-na.R
-`%==%` <- function (v1, v2) {
+'%==%' <- function (v1, v2) {
   same <- (v1 == v2) | (is.na(v1) & is.na(v2))
   same[is.na(same)] <- FALSE
-  return(same)
+  return(same)                 # return the result
 }
 
 # test it:
-c(1, NA, 3, 4 , NaN) %==%
-c(1, NA, 1, NA, NaN)
+c(1, NA, 3, 4 , NaN) %==% c(1, NA, 1, NA, NaN)
+c(1, NA, 3, 4 , NaN)  ==  c(1, NA, 1, NA, NaN)
+
+
+## ----infix operator-----------------------------------------------------------
+c(1, NA, 3, 4 , NaN) %==% c(1, NA, 1, NA, NaN)
+
+
+## ----mutate() add columns, results='hide'-------------------------------------
+DF %>% mutate(
+  Trt_n = Treatment %>% nchar(),
+  Xsum = X95 + X175
+  )
+
+
+## ----mutate() modify columns, results='hide'----------------------------------
+DF %>% mutate(X95 = X95 / mean(X95))
+
+
+## ----clean `Type` column------------------------------------------------------
+DF_clean1_type <- DF %>% 
+  mutate(
+    Type = if_else(Type == "Mississippi", Type, "Quebec")
+  )
+
+
+## ----clean `X675` column------------------------------------------------------
+library(stringr)
+DF_clean2_675 <- DF_clean1_type %>% 
+  mutate(
+    # Replace "," with "."
+    X675 = str_replace(X675, ",", "."),
+    # convert to numeric
+    X675 = as.numeric(X675)
+  )
+
+
+## ----clean `X500` column------------------------------------------------------
+DF_clean2_500 <- DF_clean2_675 %>% 
+  mutate(
+    # drop everything after the first space:
+    X500 = str_split_i(X500, " ", i=1),
+    # convert to numeric
+    X500 = as.numeric(X500)
+  )
+
+
+## ----summarise() multiple columns with across(), results='hide'---------------
+DF %>% 
+  summarise( across(where(is.numeric), ~ sum(is.na(.x))))
 
 
 ## ----write_csv, eval=FALSE----------------------------------------------------

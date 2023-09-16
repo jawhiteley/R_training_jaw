@@ -73,6 +73,15 @@ test_base %>%
   select(where( ~ is.character(.) && any(!is.na(.) & is.na(as.numeric(.)) ))) %>% 
   filter(if_any(everything(), ~ !is.na(.) & is.na(as.numeric(.) )))
 
+cols_charn <- DF %>% 
+  select(starts_with("X") & where(is.character)) %>% 
+  names()
+for (col in cols_charn) {
+  DF %>% select(1:3, all_of(col)) %>% 
+    filter( get(col) %>% as.numeric() %>% is.na() %>% 
+              suppressWarnings() ) %>% 
+    print()
+  
 ## coalesce() the character vector with as.numeric() version to hide all the values that are fine with NAs?
 
 
