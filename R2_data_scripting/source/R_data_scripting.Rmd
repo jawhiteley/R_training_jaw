@@ -1524,13 +1524,14 @@ DF %>% filter(Treatment == "chilled") %>%
 
 [^R4.1]: https://cran.r-project.org/bin/windows/base/old/4.1.0/NEWS.R-4.1.0.html
 
+
 ## Pipe: Exercise
 
 Re-write the expressions using pipes:
 
 :::::: {.columns .onlytextwidth}
-::: {.column width="48%"}
-
+::: {.column width="49%"}
+\small
 ```r
 # (1)
 sum(1:10)
@@ -1539,20 +1540,22 @@ sum(1:10)
 filter(CO2, conc < 100)
 
 # (3)
-
-
-
-
+filter( 
+  select( DF,
+    where(is.character)
+  ), 
+  Treatment == "")
 
 # (4)
-
+gsub("X", "", names(DF))
+ 
 ```
 
-
 :::
-::: {.column width="48%"}
+::: {.column width="49%"}
 . . .
 
+\small
 ```r
 # (1)
 1:10 %>% sum()
@@ -1562,16 +1565,23 @@ CO2 %>% filter(conc < 100)
 
 # (3)
 DF %>% 
-  select(where(is.character) & 
-         starts_with("X")) %>% 
-  filter()
+  select(
+    where(is.character)
+  ) %>% 
+  filter(Treatment == "")
 
 # (4)
-
+DF %>% names() %>% 
+gsub("X", "", .)
 ```
 
 :::
 ::::::
+
+::: notes
+\#4 is not possible with the 'native' pipe,
+but also not a frequent way to use it.
+:::
 
 
 ## `dplyr` conventions
