@@ -731,6 +731,12 @@ assign('x', 3)
 :::
 ::::::
 
+::: notes
+Note the name of the variable in quotes with `assign()`:
+the name of the variable is declared as a character string,
+making it easier to build variable names dynamically.
+:::
+
 
 ## Retrieve values {.shrink}
 
@@ -756,8 +762,13 @@ x
 ::::::
 
 ```{r}
-B.seq
+get("B.seq")
 ```
+
+::: notes
+`get()` is the complement of `assign()`:
+retrieve the value of a variable, using the name as a character string
+:::
 
 
 ## Built-in variables

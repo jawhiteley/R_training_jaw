@@ -228,7 +228,7 @@
 
 \title{A Gentle Introduction to R}
 \author{Jonathan Whiteley}
-\date{2023-09-14}
+\date{2023-09-16}
 
 \begin{document}
 \frame{\titlepage}
@@ -324,7 +324,15 @@ What emoji best describes your current mood or state of mind?
   Have you used a programming language before?
 \end{itemize}
 
-\note{Other icebreaker questions:
+\note{Pronoun sharing (``go-rounds'') can be a minefield, but useful,
+and should always be optional: - Free account required:
+\url{https://medium.com/national-center-for-institutional-diversity/making-space-for-them-her-him-and-prefer-not-to-disclose-in-group-settings-why-1deb8c3d6b86}
+- \url{https://pronouns.org/asking} -
+\url{https://www.theequalityinstitute.com/equality-insights-blog/why-and-how-to-share-pronouns-at-work}
+-
+\url{https://www.nytimes.com/2021/04/29/style/pronouns-gender-work-social-qs.html}
+
+Other icebreaker questions:
 
 \begin{itemize}
 \tightlist
@@ -1232,6 +1240,10 @@ underscores & \StringTok{\texttt{\_}} \\
 \end{Shaded}
 \end{column}
 \end{columns}
+
+\note{Note the name of the variable in quotes with \texttt{assign()}:
+the name of the variable is declared as a character string, making it
+easier to build variable names dynamically.}
 \end{frame}
 
 \begin{frame}[fragile,shrink]{Retrieve values}
@@ -1287,7 +1299,7 @@ When a variable \emph{name} is evaluated, it returns the stored
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{B.seq}
+\FunctionTok{get}\NormalTok{(}\StringTok{"B.seq"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1301,6 +1313,9 @@ When a variable \emph{name} is evaluated, it returns the stored
  [79]  79  80  81  82  83  84  85  86  87  88  89  90  91
  [92]  92  93  94  95  96  97  98  99 100
 \end{verbatim}
+
+\note{\texttt{get()} is the complement of \texttt{assign()}: retrieve
+the value of a variable, using the name as a character string}
 \end{frame}
 
 \begin{frame}[fragile]{Built-in variables}
@@ -2007,7 +2022,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x10b23b878>
+<bytecode: 0x115f5f878>
 <environment: namespace:base>
 \end{verbatim}
 \end{column}
