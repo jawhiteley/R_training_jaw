@@ -857,6 +857,7 @@ DF <-         # short for "data frame"
 
 
 
+
 # The `tidyverse` collection of packages
 
 ## The `tidyverse`
@@ -1172,7 +1173,7 @@ Skip this exercise if running late.
 
 
 
-# Clean Data: The `dplyr` Package
+# Manipulate Data: The `dplyr` Package
 
 ```{r, include=FALSE, eval=FALSE, purl=FALSE}
 <!--
@@ -1296,6 +1297,10 @@ library(dplyr)
   we would have to use the special notation: `stats::filter()`{.r}
   - We won't be using the masked functions today, however.
 
+
+
+
+# `dplyr` Verbs: `select()`{.r} & `filter()`{.r} Parts of a Data Frame
 
 ## Columns: `select()`{.r}
 
@@ -1691,6 +1696,10 @@ c(1, NA, 3, 4 , NaN) %==% c(1, NA, 1, NA, NaN)
   - the name begins _and_ ends with a percent symbol (`%`)
   
 
+
+
+# `dplyr` Verbs: Modify Data Columns
+
 ## Modify Columns: `mutate()`{.r} 
 
 - `mutate()`{.r} creates new columns, 
@@ -1820,6 +1829,10 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 :::
 
 
+
+
+# Clean Some Example Data
+
 ## Cleaning some columns in the example data
 
 - Normalize values of the '`Type`' column:
@@ -1893,6 +1906,10 @@ DF_clean3_500 <- DF_clean2_675 %>%
 ```
 
 
+
+
+# `dplyr` Verbs: Grouped Data
+
 ## Collapse groups: `summarise()`{.r}
 
 ## `summarise()`{.r} multiple columns with `across()`{.r}
@@ -1922,8 +1939,10 @@ https://stackoverflow.com/a/56532176/1112770
 :::
 
 
+
 ## Combine duplicate rows in example data
 
+## Combine duplicate rows in example data
 
 
 ## Exercise
@@ -2091,6 +2110,8 @@ file.remove("data/data_clean.csv")
 * R Markdown
 * R Notebooks
 -->
+
+
 
 
 # Review
