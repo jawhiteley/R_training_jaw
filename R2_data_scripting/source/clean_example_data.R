@@ -63,15 +63,15 @@ test_readr <- readr::read_csv(
 
 ## numeric values above a threshold
 test_readr %>% 
-  filter(if_any(is.numeric, ~ . > 100)) %>% 
+  filter(if_any(is.numeric, ~ .x > 100)) %>% 
   select( Type, Treatment, PlantNum, where(function (x) is.numeric(x) && any(x > 100)) )
 
 ## non-numeric values in a character columns
 ## so many warnings!
 test_base %>% 
   group_by(across(1:3)) %>% 
-  select(where( ~ is.character(.) && any(!is.na(.) & is.na(as.numeric(.)) ))) %>% 
-  filter(if_any(everything(), ~ !is.na(.) & is.na(as.numeric(.) )))
+  select(where( ~ is.character(.) && any(!is.na(.x) & is.na(as.numeric(.x)) ))) %>% 
+  filter(if_any(everything(), ~ !is.na(.x) & is.na(as.numeric(.x) )))
 
 cols_charn <- DF %>% 
   select(starts_with("X") & where(is.character)) %>% 
@@ -105,7 +105,7 @@ messy <- test_base
 ## Clean `Type` column
 test_clean1_type <- messy %>% 
   mutate(Type = ifelse(Type == "Mississippi", Type, "Quebec"),  # In workshop, keep accent to make point about file encoding?
-         Type = factor(Type, levels = unique(Type))
+         Type = factor(Type, levels = unique(Type))  # do this at the end?  mutate(across(is.character, as.factor))  [might need a function to set levels]
   )
 str(test_clean1_type)
 

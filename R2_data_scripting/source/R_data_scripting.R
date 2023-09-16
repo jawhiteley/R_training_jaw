@@ -281,6 +281,19 @@ DF %>% mutate(
 DF %>% mutate(X95 = X95 / mean(X95))
 
 
+## ----lag-lead, results='hide'-------------------------------------------------
+DF %>% mutate(
+  Plant_lag  =  lag(PlantNum),
+  Plant_lead = lead(PlantNum, n=2)
+)
+
+
+## ----row_number(), results='hide'---------------------------------------------
+DF %>% mutate(
+  Plant_row = PlantNum < row_number()
+)
+
+
 ## ----clean `Type` column------------------------------------------------------
 DF_clean1_type <- DF %>% 
   mutate(
@@ -288,8 +301,13 @@ DF_clean1_type <- DF %>%
   )
 
 
-## ----clean `X675` column------------------------------------------------------
+## ----load stringr package-----------------------------------------------------
 library(stringr)
+# help(package="stringr")
+# vignette("stringr")
+
+
+## ----clean `X675` column------------------------------------------------------
 DF_clean2_675 <- DF_clean1_type %>% 
   mutate(
     # Replace "," with "."

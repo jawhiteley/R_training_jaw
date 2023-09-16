@@ -1713,6 +1713,35 @@ DF %>% mutate(X95 = X95 / mean(X95))
 ```
 
 
+## `mutate()`{.r} helper functions
+
+- refer to values in the previous / next row
+  with `lag()`{.r} and `lead`{.r}
+  
+```{r lag-lead, results='hide'}
+DF %>% mutate(
+  Plant_lag  =  lag(PlantNum),
+  Plant_lead = lead(PlantNum, n=2)
+)
+```
+
+- refer to row numbers with `row_number()`{.r}
+
+```{r row_number(), results='hide'}
+DF %>% mutate(
+  Plant_row = PlantNum < row_number()
+)
+```
+
+<!--
+mutate helper functions:
+lag(), lead()?
+row_number()
+if_else()
+case_when()
+-->
+
+
 ## Define groups: `group_by()`{.r}
 
 - dplyr verbs are applied to each group of rows
@@ -1751,6 +1780,7 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 ## Cleaning some columns in the example data
 
 - Normalize values of the '`Type`' column:
+  - using `if_else()`{.r}
 
 ```{r clean `Type` column}
 DF_clean1_type <- DF %>% 
@@ -1759,10 +1789,22 @@ DF_clean1_type <- DF %>%
   )
 ```
 
+
+## Convert character columns to numeric
+
+- To clean character columns, we will use functions from the `stringr` library,
+  which provides many useful functions for working with,
+  and manipulating strings.
+
+```{r load stringr package}
+library(stringr)
+# help(package="stringr")
+# vignette("stringr")
+```
+
 - Replace ',' with '.' in `X675` column, and convert to numeric:
 
 ```{r clean `X675` column}
-library(stringr)
 DF_clean2_675 <- DF_clean1_type %>% 
   mutate(
     # Replace "," with "."
@@ -1801,11 +1843,17 @@ DF_clean2_500 <- DF_clean2_675 %>%
   or define an _ad hoc function_ to include additional arguments
 
 * You can also define ad hoc functions using a special "lambda" notation
+  - refer to the value of the column with '`.x`'
 
 ```{r summarise() multiple columns with across(), results='hide'}
 DF %>% 
   summarise( across(where(is.numeric), ~ sum(is.na(.x))))
 ```
+
+::: notes
+lambdas, `.` & `.x`:
+https://stackoverflow.com/a/56532176/1112770
+:::
 
 
 ## Combine duplicate rows in example data
