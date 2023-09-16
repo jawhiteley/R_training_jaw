@@ -227,14 +227,18 @@ arrange(DF, across(where(is.character)) )
 
 
 ## ----select() & filter()------------------------------------------------------
-select(filter(DF, Treatment == "chilled"), 
-       where(is.numeric)
+select( filter(DF, Treatment == "chilled"), 
+        where(is.numeric)
 )
 
 
 ## ----filter() %>% select()----------------------------------------------------
 DF %>% filter(Treatment == "chilled") %>% 
   select(where(is.numeric))
+
+
+## ----mutate() add a column----------------------------------------------------
+DF %>% mutate()
 
 
 ## ----user-defined function, echo=-(1:2)---------------------------------------

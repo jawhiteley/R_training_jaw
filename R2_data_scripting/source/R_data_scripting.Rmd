@@ -1418,8 +1418,8 @@ More on helper functions and semantics later
   then remove it with `select()`{.r}
   
 ```{r select() & filter()}
-select(filter(DF, Treatment == "chilled"), 
-       where(is.numeric)
+select( filter(DF, Treatment == "chilled"), 
+        where(is.numeric)
 )
 ```
 
@@ -1512,7 +1512,7 @@ DF %>% filter(Treatment == "chilled") %>%
   - [Differences between the base R and magrittr pipes](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/)
   - "[Understanding the native R pipe |>](https://towardsdatascience.com/understanding-the-native-r-pipe-98dea6d8b61b)"
 
-- Because it is so new, most code examples online still use '`%>%`{.r}' from `magrittr`.  
+- Because '`|>`{.r}' is new, many examples online still use `magrittr`\'s '`%>%`{.r}'.  
 
 - But '`|>`{.r}' is always available *in $\R$ >= v4.1*, 
   without having to load additional packages.
@@ -1525,7 +1525,10 @@ DF %>% filter(Treatment == "chilled") %>%
 [^R4.1]: https://cran.r-project.org/bin/windows/base/old/4.1.0/NEWS.R-4.1.0.html
 
 
-## Pipe: Exercise
+## Pipe: Exercise {.shrink}
+
+\small 
+**Insert a pipe in R Studio with `CTL+Shift+M` (`CMD+Shift+M`)**
 
 Re-write the expressions using pipes:
 
@@ -1581,6 +1584,10 @@ gsub("X", "", .)
 ::: notes
 \#4 is not possible with the 'native' pipe,
 but also not a frequent way to use it.
+
+Insert a pipe in R Studio with: `CTL+Shift+M` (`CMD+Shift+M`)
+R Studio has a preference in "Tools > GLobal Options... > Code"
+to use the native pipe operator with the same shortcut.
 :::
 
 
@@ -1621,7 +1628,10 @@ it makes it easier to extend your understanding to new functions.
   - it is a `dplyr` workhorse, used for many tasks,
     since it allows you to modify values _systematically_.
 
-
+Add a column:
+```{r mutate() add a column}
+DF %>% mutate()
+```
 
 
 ## `dplyr` *semantics*
