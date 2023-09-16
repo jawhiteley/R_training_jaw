@@ -294,10 +294,30 @@ DF %>% mutate(
 )
 
 
+## ----case_when(), results='hide'----------------------------------------------
+DF %>% mutate(
+  Type_ab = case_when(
+    Type == "Quebec"      ~ "QC",
+    Type == "Mississippi" ~ "MS",
+    .default = as.character(Type)
+  )
+)
+
+
 ## ----clean `Type` column------------------------------------------------------
 DF_clean1_type <- DF %>% 
   mutate(
     Type = if_else(Type == "Mississippi", Type, "Quebec")
+  )
+
+
+## ----clean `Type` column with case_when(), results='hide'---------------------
+DF %>% 
+  mutate(
+    Type = case_when(
+      Type == "Québec"  ~ "Quebec",
+      .default = Type
+    )
   )
 
 
@@ -318,7 +338,7 @@ DF_clean2_675 <- DF_clean1_type %>%
 
 
 ## ----clean `X500` column------------------------------------------------------
-DF_clean2_500 <- DF_clean2_675 %>% 
+DF_clean3_500 <- DF_clean2_675 %>% 
   mutate(
     # drop everything after the first space:
     X500 = str_split_i(X500, " ", i=1),

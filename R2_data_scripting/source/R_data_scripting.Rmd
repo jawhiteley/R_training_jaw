@@ -1712,6 +1712,14 @@ Modify columns:
 DF %>% mutate(X95 = X95 / mean(X95))
 ```
 
+<!--
+mutate helper functions:
+lag(), lead()?
+row_number()
+if_else()
+case_when()
+-->
+
 
 ## `mutate()`{.r} helper functions
 
@@ -1733,13 +1741,26 @@ DF %>% mutate(
 )
 ```
 
-<!--
-mutate helper functions:
-lag(), lead()?
-row_number()
-if_else()
-case_when()
--->
+
+## `mutate()`{.r}: conditional values
+
+- `case_when()`{.r} lets you apply multiple if/else
+  statements to a vector of values.
+  - conditions go first
+  - the value returned if the condition is true goes after a tilde (`~`)
+  - multiple statements are separated by commas
+  - If no default is specified (`.default = `),
+    anything that does not match any condition is replaced with `NA`
+
+```{r case_when(), results='hide'}
+DF %>% mutate(
+  Type_ab = case_when(
+    Type == "Quebec"      ~ "QC",
+    Type == "Mississippi" ~ "MS",
+    .default = as.character(Type)
+  )
+)
+```
 
 
 ## Define groups: `group_by()`{.r}
@@ -1789,12 +1810,26 @@ DF_clean1_type <- DF %>%
   )
 ```
 
+. . .
 
-## Convert character columns to numeric
+  - could also use `case_when()`{.r}
 
-- To clean character columns, we will use functions from the `stringr` library,
+```{r clean `Type` column with case_when(), results='hide'}
+DF %>% 
+  mutate(
+    Type = case_when(
+      Type == "Québec"  ~ "Quebec",
+      .default = Type
+    )
+  )
+```
+
+## Convert character column to numeric (replace characters)
+
+- To clean character columns, we will use functions from 
+  the [`stringr`](https://stringr.tidyverse.org/) library,
   which provides many useful functions for working with,
-  and manipulating strings.
+  and manipulating *strings*.
 
 ```{r load stringr package}
 library(stringr)
@@ -1814,10 +1849,19 @@ DF_clean2_675 <- DF_clean1_type %>%
   )
 ```
 
+
+## Convert character column to numeric (drop characters)
+
 - Remove non-numeric characters from `X500` column, and convert to numeric:
 
+  - We can use `str_split_i()` from the `stringr` package
+    to 'split' each string into pieces separated by spaces (' '),
+    and keep only the first piece (`i=1`).
+  
+  - i.e., drop all text (in each row) after the first space
+
 ```{r clean `X500` column}
-DF_clean2_500 <- DF_clean2_675 %>% 
+DF_clean3_500 <- DF_clean2_675 %>% 
   mutate(
     # drop everything after the first space:
     X500 = str_split_i(X500, " ", i=1),
