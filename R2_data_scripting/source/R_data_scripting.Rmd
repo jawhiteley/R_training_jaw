@@ -1765,9 +1765,28 @@ DF %>% mutate(
 
 ## Define groups: `group_by()`{.r}
 
+- Group rows based on combinations of column values
+
+```{r group_by, results='hide'}
+DF %>% group_by(Type, PlantNum)
+```
+
 - dplyr verbs are applied to each group of rows
 
+```{r group_by + verbs, results='hide'}
+DF %>% group_by(Type, PlantNum) %>% 
+  filter(row_number() == 1)
+DF %>% group_by(Type, PlantNum) %>% 
+  arrange(Type, PlantNum) %>% 
+  mutate(Norm95 = X95 / mean(X95))
+```
+
 - Grouping columns are excluded from the operations
+
+```{r grouping columns are excluded from operations, results='hide'}
+DF %>% group_by(Type, PlantNum) %>% 
+  select(starts_with("X"))
+```
 
 
 ## `dplyr` *semantics*
@@ -1784,17 +1803,20 @@ But these names have different meanings (semantics) in different verbs.
     and it is interpreted as a reference to the column.
 
 * **"mutate semantics"** (`<data-masking>`): 
-  in `mutate()`{.r}, a column name refers to a _vector of values_.
+  in `mutate()`{.r} and similar functions 
+  (`group_by()`{.r}, `summarise()`{.r}, `filter()`{.r}, etc.),  
+  a column name refers to a _vector of values_.
   - you cannot supply a column name as a string in `mutate()`{.r},
     because it is treated as a vector of length 1, 
     rather than a reference to a column of values.
 
-* Many helper functions only work in one context or the other,
+* Helper functions only work in one context or the other,
   so knowing the difference will tell you which helper functions to use when.
 
 ::: notes
 https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 `vignette("dplyr")`{.r}
+`vignette("colwise")`{.r}
 :::
 
 
