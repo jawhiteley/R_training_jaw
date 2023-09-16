@@ -1772,32 +1772,6 @@ DF %>% mutate(
 ```
 
 
-## Define groups: `group_by()`{.r}
-
-- Group rows based on combinations of column values
-
-```{r group_by, results='hide'}
-DF %>% group_by(Type, PlantNum)
-```
-
-- dplyr verbs are applied to each group of rows
-
-```{r group_by + verbs, results='hide'}
-DF %>% group_by(Type, PlantNum) %>% 
-  filter(row_number() == 1)
-DF %>% group_by(Type, PlantNum) %>% 
-  arrange(Type, PlantNum) %>% 
-  mutate(Norm95 = X95 / mean(X95))
-```
-
-- Grouping columns are excluded from the operations
-
-```{r grouping columns are excluded from operations, results='hide'}
-DF %>% group_by(Type, PlantNum) %>% 
-  select(starts_with("X"))
-```
-
-
 ## `dplyr` *semantics*
 
 `dplyr` verbs and helper functions let you refer to column names
@@ -1829,9 +1803,12 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 :::
 
 
+# Exercise
 
 
-# Clean Some Example Data
+
+
+# Clean Some Data With the `stringr` Package
 
 ## Cleaning some columns in the example data
 
@@ -1906,6 +1883,9 @@ DF_clean3_500 <- DF_clean2_675 %>%
 ```
 
 
+## Exercise
+
+
 
 
 # `dplyr` Verbs: Grouped Data
@@ -1939,8 +1919,33 @@ https://stackoverflow.com/a/56532176/1112770
 :::
 
 
+## Define groups: `group_by()`{.r}
 
-## Combine duplicate rows in example data
+- Group rows based on combinations of column values
+
+```{r group_by, results='hide'}
+DF %>% group_by(Type, PlantNum)
+```
+
+- dplyr verbs are applied to each group of rows
+
+```{r group_by + verbs, results='hide'}
+DF %>% group_by(Type, PlantNum) %>% 
+  filter(row_number() == 1)
+DF %>% group_by(Type, PlantNum) %>% 
+  arrange(Type, PlantNum) %>% 
+  mutate(Norm95 = X95 / mean(X95))
+```
+
+- Grouping columns are excluded from the operations
+
+```{r grouping columns are excluded from operations, results='hide'}
+DF %>% group_by(Type, PlantNum) %>% 
+  select(starts_with("X"))
+```
+
+
+## Identify duplicate rows in example data
 
 ## Combine duplicate rows in example data
 

@@ -304,23 +304,6 @@ DF %>% mutate(
 )
 
 
-## ----group_by, results='hide'-------------------------------------------------
-DF %>% group_by(Type, PlantNum)
-
-
-## ----group_by + verbs, results='hide'-----------------------------------------
-DF %>% group_by(Type, PlantNum) %>% 
-  filter(row_number() == 1)
-DF %>% group_by(Type, PlantNum) %>% 
-  arrange(Type, PlantNum) %>% 
-  mutate(Norm95 = X95 / mean(X95))
-
-
-## ----grouping columns are excluded from operations, results='hide'------------
-DF %>% group_by(Type, PlantNum) %>% 
-  select(starts_with("X"))
-
-
 ## ----clean `Type` column------------------------------------------------------
 DF_clean1_type <- DF %>% 
   mutate(
@@ -367,6 +350,23 @@ DF_clean3_500 <- DF_clean2_675 %>%
 ## ----summarise() multiple columns with across(), results='hide'---------------
 DF %>% 
   summarise( across(where(is.numeric), ~ sum(is.na(.x))))
+
+
+## ----group_by, results='hide'-------------------------------------------------
+DF %>% group_by(Type, PlantNum)
+
+
+## ----group_by + verbs, results='hide'-----------------------------------------
+DF %>% group_by(Type, PlantNum) %>% 
+  filter(row_number() == 1)
+DF %>% group_by(Type, PlantNum) %>% 
+  arrange(Type, PlantNum) %>% 
+  mutate(Norm95 = X95 / mean(X95))
+
+
+## ----grouping columns are excluded from operations, results='hide'------------
+DF %>% group_by(Type, PlantNum) %>% 
+  select(starts_with("X"))
 
 
 ## ----write_csv, eval=FALSE----------------------------------------------------
