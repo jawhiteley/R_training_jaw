@@ -690,12 +690,21 @@ latin1_ex <- DF_win |>
   dplyr::select(Type) |>
   dplyr::filter( ! Type %in% c("Quebec", "Mississippi") ) |> 
   unlist() |> unique()
+## Read latin1 file using UTF-8 for the opposite
+DF_latin1 <- read_csv("data/data_example_latin1.csv", show_col_types = FALSE)
+utf8_ex <- DF_latin1 |>
+  dplyr::select(Type) |>
+  dplyr::filter( ! Type %in% c("Quebec", "Mississippi") ) |> 
+  unlist() |> unique()
+## printing this example inline may cause pandoc to use latin1 instead of UTF-8,
+## which will mess up everything *else*. :(
 ```
 
 - If you are running R in Windows, you may notice that 
   some text values (character) look strange:
   
-  "**`r latin1_ex`**" instead of "Québec"
+  "**`r latin1_ex`**" or ""**Qu\\xe9bec**"
+  instead of "Québec"
 
 - There is nothing wrong with the file 
   --- this indicates a _mismatch_ between 
@@ -717,6 +726,18 @@ latin1_ex <- DF_win |>
   - Starting with [v4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html), $\R$ uses "`UTF-8`" as the default encoding on Windows.
 
 
+## Read at a csv file with a mismatched encoding
+
+```{r read a csv encoded in "latin1", message=FALSE, results='hide'}
+DF_latin1 <- read_csv("data/data_example_latin1.csv")
+DF_latin1
+```
+. . .
+```{r, echo=FALSE, purl=FALSE}
+head(DF_latin1)
+```
+
+
 ## Read a csv file with a different encoding {.shrink}
 
 - You can specify the encoding used in the file 
@@ -728,29 +749,23 @@ read_csv(DF_path, skip = 2,
 )
 ```
 
-- If reading a file that was 
-  created on a Windows computer and encoded in "`latin1`",
-  you can specify that, too:
-  
-``` r
-read_csv(DF_path, skip = 2, 
-         locale = locale(encoding = "latin1")
-)
-```
+- You might need this to read a file that was 
+  created on a Windows computer and encoded in "`latin1`"
 
 ### Microsoft Excel on Windows
 
 Excel in Windows is capable of saving files in `.csv` format,
-but may use "`latin1`" encoding.  
-If it saves using "`UTF-8`" encoding,
+but may use "`latin1`" encoding by default. 
+If it saves a `.csv` file using "`UTF-8`" encoding,
 it may add extra contents to the file (a "BOM") 
-that makes it difficult to read with `read.csv()`{.r}.  
-See the "Extras" document from this workshop for details on how to deal with that.  
+that makes it difficult to read with `read.csv()`{.r} (base $\R$).  
+See the "Extras" document for this workshop for details.  
 _The `readr` package is not affected by the BOM._ :)
 
 ::: notes
 See ?read.csv, ?Encoding, ?file, and other documentation for details.
 :::
+
 
 ## `read_csv()`: column names
 

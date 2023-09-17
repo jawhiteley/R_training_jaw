@@ -159,6 +159,7 @@ if (T) {
   ## Version in latin1 encoding
   write.csv(data_mod, 
             file=file.path(out_path, "data_example_latin1.csv"), 
+            row.names = FALSE,
             fileEncoding = "latin1"
   )
 }

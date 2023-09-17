@@ -101,6 +101,13 @@ data(CO2)
 
 
 
+## ----read a csv encoded in "latin1", message=FALSE, results='hide'------------
+DF_latin1 <- read_csv("data/data_example_latin1.csv")
+DF_latin1
+
+
+
+
 ## ----read_csv() with encoding, results='hide', message=FALSE------------------
 read_csv(DF_path, skip = 2, 
          locale = locale(encoding = "latin1")
