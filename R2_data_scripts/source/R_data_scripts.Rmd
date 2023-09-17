@@ -48,6 +48,18 @@ knitr::opts_knit$set(root.dir = "..")  # run all code as if in the parent direct
 options(width = 60)  # to fit output on slides
 ```
 
+```{r Housekeeping, include = FALSE}
+################################################################
+### A Short Introduction to Working With Data in R
+### All code from workshop slides (automatically generated)
+### Jonathan Whiteley           R v4.3.1              2023-09-18
+################################################################
+## Housekeeping: clear memory
+if (F) # do not run when source()d
+  rm(list = ls())
+```
+
+
 ## Prerequisites {.shrink}
 
 -   Access to a copy of the [![](`r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em}](https://www.r-project.org) software
@@ -1247,15 +1259,15 @@ Use loaded data set for demos; `who` or `iris` data for exercises?
 
 Verbs can be grouped based on the component of the dataset that they work with[^1-table-verbs]:
 
+- Columns:
+  - `select()`{.r} changes whether or not a column is included.
+  - `relocate()`{.r} changes the order of the columns.
+  - `rename()`{.r} changes the name of columns.
+  - `mutate()`{.r} changes the *values* of columns and creates new columns.
 - Rows:
   - `filter()`{.r} chooses rows based on column values.
   - `slice()`{.r} chooses rows based on location.
   - `arrange()`{.r} changes the order of the rows.
-- Columns:
-  - `select()`{.r} changes whether or not a column is included.
-  - `rename()`{.r} changes the name of columns.
-  - `mutate()`{.r} changes the *values* of columns and creates new columns.
-  - `relocate()`{.r} changes the order of the columns.
 - Groups of rows:
   - `group_by()`{.r} defines groups of rows.
   - `summarise()`{.r} collapses a group into a single row.
@@ -2232,6 +2244,8 @@ all.equal(DF_tidy, CO2, check.attributes = FALSE)
 
 - Convert all character columns to *factors*
 
+<!-- show manual way, then with across as a tease -->
+
 ```{r convert character columns to factors}
 DF_final <- DF_tidy %>% 
   mutate( across(where(is.character), factor) )
@@ -2255,9 +2269,9 @@ all.equal(DF_final, CO2, check.attributes = FALSE)
 
 
 
-# Order of operations: clean & tidy
+## Order of operations: clean, tidy
 
-- Clean, then tidy; or tidy then clean?
+- Clean then tidy; or tidy then clean?
 
 - It depends!
 
@@ -2272,6 +2286,8 @@ all.equal(DF_final, CO2, check.attributes = FALSE)
   - In other cases, you may want to pivot _wider_
     to separate different variables, so that they can be cleaned differently.
 
+- In many cases, you might switch between the two more than once.
+  - e.g., clean &rarr; tidy &rarr; clean ...
 
 ## Exercise
 

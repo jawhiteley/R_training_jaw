@@ -1,6 +1,17 @@
 params <-
 list(is_virtual = TRUE)
 
+## ----Housekeeping, include = FALSE--------------------------------------------
+################################################################
+### A Short Introduction to Working With Data in R
+### All code from workshop slides (automatically generated)
+### Jonathan Whiteley           R v4.3.1              2023-09-18
+################################################################
+## Housekeeping: clear memory
+if (F) # do not run when source()d
+  rm(list = ls())
+
+
 ## ----install_tidyverse, eval=FALSE--------------------------------------------
 ## install.packages("tidyverse")
 
