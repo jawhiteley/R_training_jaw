@@ -1883,6 +1883,25 @@ DF_clean3_500 <- DF_clean2_675 %>%
 ```
 
 
+## Clean 'Treatment' column
+
+- The '`Treatment`' column has some empty values
+
+- A value is only present when it changes
+
+- We can use the `fill()`{.r} function from the `tidyr` package
+  - without loading the package,
+    by specifying the function with `package::object` notation
+
+```{r clean `Treatment` column}
+DF_clean4_cols <- DF_clean3_500 %>% 
+  # replace empty strings with NA
+  mutate(Treatment = na_if(Treatment, "")) %>%  
+  # Fill Down to replace NAs (tidyr)
+  tidyr::fill(Treatment, .direction = "down")   
+```
+
+
 ## Exercise
 
 
@@ -1890,41 +1909,12 @@ DF_clean3_500 <- DF_clean2_675 %>%
 
 # `dplyr` Verbs: Grouped Data
 
-## Collapse groups: `summarise()`{.r}
-
-## `summarise()`{.r} multiple columns with `across()`{.r}
-
-* `summarise()`{.r} uses _mutate semantics_,
-  but `across()`{.r} applies a **function** to multiple columns,
-  specified using _select semantics_
-  - i.e., `across()`{.r} lets you use _select semantics_
-    in a context where you would normally use _mutate semantics_
-
-* A function can be specified by name
-
-* For more complex operations, you may have to define a _custom function_
-  or define an _ad hoc function_ to include additional arguments
-
-* You can also define ad hoc functions using a special "lambda" notation
-  - refer to the value of the column with '`.x`'
-
-```{r summarise() multiple columns with across(), results='hide'}
-DF %>% 
-  summarise( across(where(is.numeric), ~ sum(is.na(.x))))
-```
-
-::: notes
-lambdas, `.` & `.x`:
-https://stackoverflow.com/a/56532176/1112770
-:::
-
-
 ## Define groups: `group_by()`{.r}
 
 - Group rows based on combinations of column values
 
 ```{r group_by, results='hide'}
-DF %>% group_by(Type, PlantNum)
+DF %>% group_by(Type, PlantNum)  # no visible change
 ```
 
 - dplyr verbs are applied to each group of rows
@@ -1945,7 +1935,94 @@ DF %>% group_by(Type, PlantNum) %>%
 ```
 
 
+## Collapse groups: `summarise()`{.r} / `summarize()`{.r}
+
+- Without groups specified, `summarise()`{.r}
+  treats the data frame as a single group
+
+```{r summarise ungrouped}
+DF_clean4_cols %>% summarise(n(), mean(X95))
+```
+
+- But `summarise()`{.r} is most useful when applied to grouped data
+
+```{r summarise grouped, results='hide'}
+DF_clean4_cols %>% group_by(Type, PlantNum) %>% 
+  summarise(n = n(), sum(X95))
+```
+
+- `summarise()`{.r} automatically drops the last level from the groups.
+- `summarise()`{.r} & `summarise()`{.r} are synonyms (same function).
+
+
+## `summarise()`{.r} multiple columns with `across()`{.r} {.shrink}
+
+* `summarise()`{.r} uses _mutate semantics_,
+  but `across()`{.r} applies a **function** to multiple columns,
+  specified using _select semantics_
+  - i.e., `across()`{.r} lets you use _select semantics_
+    in a context where you would normally use _mutate semantics_
+
+* A function can be specified by name
+
+```{r summarise() multiple columns with across()}
+DF_clean4_cols %>% 
+  summarise( across(where(is.numeric), max) )
+DF_clean4_cols %>% group_by(Treatment) %>% 
+  summarise( across(starts_with("X"), max) )
+```
+
+
+## `summarise()`{.r} `across()`{.r} with ad hoc function
+
+* For more complex operations, you may have to define a _custom function_
+  or define an _ad hoc function_ to include additional arguments
+
+```{r summarise() across() with ad hoc function}
+DF_clean4_cols %>% 
+  summarise(
+    across(where(is.numeric), 
+           function(x) max(x, na.rm = TRUE)
+    )
+  )
+```
+
+## `summarise()`{.r} `across()`{.r} with "lambda notation"
+
+* You can also define ad hoc functions using a special "lambda" notation
+  - refer to the value in the column with '`.x`'
+
+```{r summarise() across() with lambda}
+DF_clean4_cols %>% 
+  summarise( across(everything(), ~ sum(is.na(.x))) )
+```
+
+### Tip
+
+`sum(is.na())` _is a great way to count the number of missing values in a column._
+
+::: notes
+lambdas, `.` & `.x`:
+https://stackoverflow.com/a/56532176/1112770
+:::
+
+
 ## Identify duplicate rows in example data
+
+```{r distinct rows}
+DF_clean4_cols %>%
+  distinct(Type, Treatment, PlantNum) %>% 
+  nrow()
+nrow(DF_clean4_cols)
+```
+
+```{r count rows on each group}
+DF_clean4_cols %>%
+  group_by(Type, Treatment, PlantNum) %>% 
+  summarise(n = n()) %>% 
+  filter(n != 1)
+```
+
 
 ## Combine duplicate rows in example data
 

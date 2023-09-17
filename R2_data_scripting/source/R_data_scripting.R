@@ -347,13 +347,16 @@ DF_clean3_500 <- DF_clean2_675 %>%
   )
 
 
-## ----summarise() multiple columns with across(), results='hide'---------------
-DF %>% 
-  summarise( across(where(is.numeric), ~ sum(is.na(.x))))
+## ----clean `Treatment` column-------------------------------------------------
+DF_clean4_cols <- DF_clean3_500 %>% 
+  # replace empty strings with NA
+  mutate(Treatment = na_if(Treatment, "")) %>%  
+  # Fill Down to replace NAs (tidyr)
+  tidyr::fill(Treatment, .direction = "down")   
 
 
 ## ----group_by, results='hide'-------------------------------------------------
-DF %>% group_by(Type, PlantNum)
+DF %>% group_by(Type, PlantNum)  # no visible change
 
 
 ## ----group_by + verbs, results='hide'-----------------------------------------
@@ -367,6 +370,50 @@ DF %>% group_by(Type, PlantNum) %>%
 ## ----grouping columns are excluded from operations, results='hide'------------
 DF %>% group_by(Type, PlantNum) %>% 
   select(starts_with("X"))
+
+
+## ----summarise ungrouped------------------------------------------------------
+DF_clean4_cols %>% summarise(n(), mean(X95))
+
+
+## ----summarise grouped, results='hide'----------------------------------------
+DF_clean4_cols %>% group_by(Type, PlantNum) %>% 
+  summarise(n = n(), sum(X95))
+
+
+## ----summarise() multiple columns with across()-------------------------------
+DF_clean4_cols %>% 
+  summarise( across(where(is.numeric), max) )
+DF_clean4_cols %>% group_by(Treatment) %>% 
+  summarise( across(starts_with("X"), max) )
+
+
+## ----summarise() across() with ad hoc function--------------------------------
+DF_clean4_cols %>% 
+  summarise(
+    across(where(is.numeric), 
+           function(x) max(x, na.rm = TRUE)
+    )
+  )
+
+
+## ----summarise() across() with lambda-----------------------------------------
+DF_clean4_cols %>% 
+  summarise( across(everything(), ~ sum(is.na(.x))) )
+
+
+## ----distinct rows------------------------------------------------------------
+DF_clean4_cols %>%
+  distinct(Type, Treatment, PlantNum) %>% 
+  nrow()
+nrow(DF_clean4_cols)
+
+
+## ----count rows on each group-------------------------------------------------
+DF_clean4_cols %>%
+  group_by(Type, Treatment, PlantNum) %>% 
+  summarise(n = n()) %>% 
+  filter(n != 1)
 
 
 ## ----write_csv, eval=FALSE----------------------------------------------------
