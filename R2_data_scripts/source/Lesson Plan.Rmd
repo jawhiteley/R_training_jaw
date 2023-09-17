@@ -106,8 +106,15 @@ knitr::opts_chunk$set(echo = TRUE)
     2.  Explore (base)
         1.  head(), dims(), names(), str(), etc.
     3.  Know your data: CO2
-    4.  **Activity: Find the issues** [with a script? optional]
-3.  correct some issues by re-loading with options
+    4.  **Activity 1: Find the issues** [with a script? optional]
+3.  Scripts
+    1.  Make a simple script
+    2.  *Comments [the sooner this gets introduced, the sooner I can use them in examples! And they get included in output script]*
+    3.  **Activity 2 (short): add your favourite exploring commands from the previous activity to your script.**
+    4.  open a script for the workshop code
+    5.  Run code from the script.
+    6.  Housekeeping: rm(list=ls())
+4.  correct some issues by re-loading with options
     1.  encoding (more in extras)
         1.  **Mini-Activity: Read latin1-encoded file and look at the difference**
     2.  names
@@ -115,13 +122,7 @@ knitr::opts_chunk$set(echo = TRUE)
     4.  missing values?
     5.  locale: grouping_mark (for commas) [or just clean by /10 whenever \>100]
     6.  *'Final' Load: one version for the rest of the workshop.*
-4.  Scripts
-    1.  Make a simple script
-    2.  *Comments [the sooner this gets introduced, the sooner I can use them in examples! And they get included in output script]*
-    3.  Housekeeping: rm(list=ls())
-    4.  open a script for the workshop code
-    5.  Run code from the script
-    6.  **Activity: readxl** in a script [need info on options, check results]
+    7.  **Activity 3: readxl** in a script [need info on options, check results]
 5.  Explore with dplyr: select() & filter()
     1.  dplyr intro & overview
         1.  load dplyr
@@ -129,15 +130,15 @@ knitr::opts_chunk$set(echo = TRUE)
         2.  *dplyr conventions*
     2.  select()
     3.  selection helpers
-    4.  **Activity: select()**
+    4.  **Activity 3: select()**
     5.  filter()
-    6.  **Activity: filter()**
+    6.  **Activity 4: filter()**
     7.  piping
-    8.  **Activity (short): convert expressions to pipes**
+    8.  **Activity 5 (short): convert expressions to pipes**
 6.  Find issues systematically
     1.  for loops? [need scripts]
         1.  *makes less sense if using read_csv() version: only 1 character column*
-    2.  **Activity?**
+    2.  **Activity ?**
 7.  Manipulate Data:
     1.  mutate()
     2.  mutate() helper functions

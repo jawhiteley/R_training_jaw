@@ -678,303 +678,6 @@ _There are other differences you may have noticed:
 
 
 
-# Control how data is read: `read_csv()`{.r} options
-
-## Encoding non-English characters {.shrink}
-
-```{r reproduce windows latin1, include=FALSE, results='hide', purl = FALSE}
-## Reproduce Windows encoding (bad)
-CSV_win <- read.csv(CSV_path, skip = 2, encoding = "latin1")
-## Extract example of messed up encoding
-latin1_ex <- CSV_win |>
-  dplyr::select(Type) |>
-  dplyr::filter( ! Type %in% c("Quebec", "Mississippi") ) |> 
-  unlist() |> unique()
-## Read latin1 file using UTF-8 for the opposite
-CSV_latin1 <- read_csv("data/data_example_latin1.csv", show_col_types = FALSE)
-utf8_ex <- CSV_latin1 |>
-  dplyr::select(Type) |>
-  dplyr::filter( ! Type %in% c("Quebec", "Mississippi") ) |> 
-  unlist() |> unique()
-## printing this example inline may cause pandoc to use latin1 instead of UTF-8,
-## which will mess up everything *else*. :(
-```
-
-- If you are running R in Windows, you may notice that 
-  some text values (character) look strange:
-  
-  "**`r latin1_ex`**" or ""**Qu\\xe9bec**"
-  instead of "Québec"
-
-- There is nothing wrong with the file 
-  --- this indicates a _mismatch_ between 
-  the *encoding* used to write the file,
-  and what $\R$ used to read it.
-
-- Even though '`.csv`' files are plain text,
-  letters (especially non-english characters)
-  can be *encoded* in different ways
-  to represent them in the computer.
-  
-- "[`UTF-8`](https://en.wikipedia.org/wiki/UTF-8)" 
-  is a character encoding standard designed to handle many non-english characters.
-
-  - The example data file was written in "`UTF-8`"
-  - Most OSes and many programs use "`UTF-8`" encoding by default.
-  - But *Windows* uses "`latin1`" by default,
-    and so does $\R$ (< [4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html)) when running in Windows.
-  - Starting with [v4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html), $\R$ uses "`UTF-8`" as the default encoding on Windows.
-
-
-## Read a csv file with a mismatched encoding
-
-```{r read a csv encoded in "latin1", message=FALSE, results='hide'}
-CSV_latin1 <- read_csv("data/data_example_latin1.csv")
-CSV_latin1
-```
-. . .
-```{r, echo=FALSE, purl=FALSE}
-head(CSV_latin1)
-```
-
-
-## `read_csv()`: read a file with a different encoding {.shrink}
-
-- You can specify the encoding used in the file 
-  with the '`locale`' argument of `read_csv()`{.r}
-  
-```{r read_csv() with encoding, results='hide', message=FALSE}
-read_csv(CSV_path, skip = 2, 
-         locale = locale(encoding = "latin1")
-)
-```
-
-- You might need this to read a file that was 
-  created on a Windows computer and encoded in "`latin1`"
-
-### Microsoft Excel on Windows
-
-Excel in Windows is capable of saving files in `.csv` format,
-but may use "`latin1`" encoding by default. 
-If it saves a `.csv` file using "`UTF-8`" encoding,
-it may add extra contents to the file (a "BOM") 
-that makes it difficult to read with `read.csv()`{.r} (base $\R$).  
-See the "Extras" document for this workshop for details.  
-_The `readr` package is not affected by the BOM._ :)
-
-::: notes
-See ?read.csv, ?Encoding, ?file, and other documentation for details.
-:::
-
-
-## `read_csv()`: column names
-
-- The default for `read_csv()`{.r} is to 
-  ensure all column names are _unique_,
-  but not necessarily *syntactically valid*
-
-- You can still refer to columns with syntactically 'invalid' names:
-  - use functions that allow names as characters,
-  - quote names with backticks (``` ` ```{.r})
-
-```{r names with backticks, results='hide'}
-CSV[, "95"]  # still a `data.frame` (with 1 column)
-CSV[["95"]]  # vector
-CSV$`95`     # quoted name
-```
-
-  
-## `read_csv()`: treat column names
-
-- Change how `read_csv()`{.r} treats column names
-  with the '`name_repair`' argument
-  
-  - `"universal"`{.r} makes names unique and syntactic
-  
-```{r read_csv() name_repair universal, results='hide', message=FALSE}
-read_csv(
-  CSV_path, skip = 2, 
-  name_repair = "universal"
-)
-```
-
-- You can also pass a function by name  
-  (`make.names` is the same behaviour as `read.csv()`{.r} in base $\R$)
-  
-```{r read_csv() name_repair make.names, results='hide', message=FALSE}
-read_csv(
-  CSV_path, skip = 2, 
-  name_repair = make.names
-)  
-```
-
-
-## `read_csv()`: guessing column types
-
-- By default, `read_csv()`{.r} prints a message summarizing what it did,
-  including _guessing the data type_ of each column.
-  
-  - _`.csv` files do not include this information as metadata_
-
-- Control how columns are guessed with the `guess_max` argument:
-
-```{r read_csv() guess examples, results = 'hide', message=FALSE}
-# use the first 2 rows to guess column types (less successful)
-  read_csv(CSV_path, skip = 2, guess_max = 2)
-# use *all* rows to guess column types
-# - slow: has to read *every row* twice.
-  read_csv(CSV_path, skip = 2, guess_max = Inf)
-```
-
-::: notes
-The first example produces a warning, as expected.
-:::
-
-
-## `read_csv()`: specify column types
-
-- If you know what the column types are (or should be),
-  you can tell `read_csv()`{.r} what they are
-  with the `col_types` argument.
-  - for large datasets, this can be faster: read rows once
-  - avoids bad guesses.
-  
-```{r read_csv() column spec, results = 'hide', message=FALSE, warning=FALSE}
-## Specify column types with a compact string
-read_csv(CSV_path, skip = 2, col_types = "cccddddddd")
-
-## Or use a `column specification`
-# extract specification from tibble
-col_spec <- spec(CSV)
-# change a column to numeric (double)
-col_spec$cols[["500"]] <- col_double()
-read_csv(CSV_path, skip = 2, col_types = col_spec)
-
-# ?read_csv for more options
-```
-
-
-## `read_csv()`: all columns as strings
-
-- In extreme cases, you can read everything as '`character`',  
-  then clean and coerce to other data types within $\R$
-
-```{r read_csv() all columns as character}
-# read all columns as character
-read_csv(CSV_path, skip = 2, 
-         col_types = cols(.default = col_character())
-         )
-```
-
-
-## `read_csv()`: missing values
-
-- Use the `na` argument to supply a list of values
-  to replace with `NA`{.r}.
-  - This is applied to **all** columns.
-
-```{r read_csv() na argument, message=FALSE, warning=FALSE}
-read_csv(CSV_path, skip = 2, 
-         na = c(".", "NA")  # will not replace empty strings ("") with NA
-         )
-```
-
-::: notes
-Skip these details if running behind.
-
-The example actually produces a warning:
-The missing values in lines 12 & 13 (including header row)
-are read as an empty character string (""),
-then dropped when coerced to numeric,
-triggering the usual warning.
-:::
-
-
-## `read_csv()`: number formats
-
-- `read_csv()`{.r} will attempt to read numbers with
-  "." as the decimal, and "," between large numbers.
-
-- But our example data includes a _mix_ of these.
-  - This makes it difficult to choose one approach for everything,
-    but one option in this case is to set the 'grouping' mark to an empty string
-
-```{r read_csv() grouping_mark, message=FALSE, warning=FALSE}
-CSV_comma <- read_csv(CSV_path, skip = 2, 
-         locale = locale(grouping_mark = "")
-)
-CSV_comma[["675"]]
-```
-
-- With this option, column '`675`' is now *character* instead of *numeric*,
-  With the commas intact.
-
-- See also the '`decimal_mark`' argument of `locale()`{.r} (`?locale`)
-
-::: notes
-Skip these details if running behind.
-:::
-
-
-## `read_csv()`: Read data to clean
-
-- For the rest of this workshop, we will work with this version 
-  of the example file:
-
-```{r read_csv() version to work with}
-DF <- read_csv(
-  CSV_path, skip = 2, 
-  name_repair = make.names
-)  
-```
-
-- We will use "make.names" to make *syntactically valid* names
-  that are easier to work with later.
-
-
-## The `readxl` package
-
-Provides functions for reading from (but not writing to) Microsoft\ Excel files (`.xls` and `.xlsx`)
-
-```{r readxl demo}
-library(readxl)    # load the package
-## Documentation: ?read_excel  help(package="readxl")
-## use an example included in the package
-xl_path <- readxl_example("datasets.xlsx")
-excel_sheets(xl_path)  # get the names of the sheets
-## read a specified sheet from the Excel file
-iris_xl <- read_excel(xl_path, "iris")
-```
-
-
-## **Activity 2**: read a messy Excel file
-
-- `read_excel()`{.r} has many of the same arguments as 
-  `read_csv()`{.r} to control how data is imported.
-
-- Use the script file in the "`examples`" folder as a starting point:
-  - "`R2_exercise_2.R`"
-
-```r
-XL_path <- readxl_example("deaths.xlsx")
-XL <- read_excel(XL_path, ...)
-```
-
-. . .
-
-### Tip
-
-Use the '`range`' argument to read data from a specific range in a sheet, 
-ignoring contents outside this range 
-(rows above & below, columns before & after)
-
-::: notes
-Skip this exercise if running late.
-:::
-
-
-
-
 # Re-using your code: scripts and other files
 
 ## Re-using code
@@ -1140,6 +843,17 @@ DF <-         # short for "data frame"
   <!--   based on conditions later. -->
 
 
+## **Activity 2**: add some commands to your new script
+
+- Take a few minutes to add some commands 
+  you used in the last activity to your new script
+  
+  - **Tip:** use the up arrow to go back through your *command history*
+
+- Be sure to add comments to explain your commands,
+  or what you found with them.
+  
+
 ## Open a script
 
 * All the code shown in the slides for this workshop 
@@ -1182,6 +896,304 @@ DF <-         # short for "data frame"
   ```
   - The code in the script should now run without errors.
 --> 
+
+
+
+
+# Control how data is read: `read_csv()`{.r} options
+
+## Encoding non-English characters {.shrink}
+
+```{r reproduce windows latin1, include=FALSE, results='hide', purl = FALSE}
+## Reproduce Windows encoding (bad)
+CSV_win <- read.csv(CSV_path, skip = 2, encoding = "latin1")
+## Extract example of messed up encoding
+latin1_ex <- CSV_win |>
+  dplyr::select(Type) |>
+  dplyr::filter( ! Type %in% c("Quebec", "Mississippi") ) |> 
+  unlist() |> unique()
+## Read latin1 file using UTF-8 for the opposite
+CSV_latin1 <- read_csv("data/data_example_latin1.csv", show_col_types = FALSE)
+utf8_ex <- CSV_latin1 |>
+  dplyr::select(Type) |>
+  dplyr::filter( ! Type %in% c("Quebec", "Mississippi") ) |> 
+  unlist() |> unique()
+## printing this example inline may cause pandoc to use latin1 instead of UTF-8,
+## which will mess up everything *else*. :(
+```
+
+- If you are running R in Windows, you may notice that 
+  some text values (character) look strange:
+  
+  "**`r latin1_ex`**" or ""**Qu\\xe9bec**"
+  instead of "Québec"
+
+- There is nothing wrong with the file 
+  --- this indicates a _mismatch_ between 
+  the *encoding* used to write the file,
+  and what $\R$ used to read it.
+
+- Even though '`.csv`' files are plain text,
+  letters (especially non-english characters)
+  can be *encoded* in different ways
+  to represent them in the computer.
+  
+- "[`UTF-8`](https://en.wikipedia.org/wiki/UTF-8)" 
+  is a character encoding standard designed to handle many non-english characters.
+
+  - The example data file was written in "`UTF-8`"
+  - Most OSes and many programs use "`UTF-8`" encoding by default.
+  - But *Windows* uses "`latin1`" by default,
+    and so does $\R$ (< [4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html)) when running in Windows.
+  - Starting with [v4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html), $\R$ uses "`UTF-8`" as the default encoding on Windows.
+
+
+## Read a csv file with a mismatched encoding
+
+```{r read a csv encoded in "latin1", message=FALSE, results='hide'}
+CSV_latin1 <- read_csv("data/data_example_latin1.csv")
+CSV_latin1
+```
+. . .
+```{r, echo=FALSE, purl=FALSE}
+head(CSV_latin1)
+```
+
+
+## `read_csv()`: read a file with a different encoding {.shrink}
+
+- You can specify the encoding used in the file 
+  with the '`locale`' argument of `read_csv()`{.r}
+  
+```{r read_csv() with encoding, results='hide', message=FALSE}
+read_csv(CSV_path, skip = 2, 
+         locale = locale(encoding = "latin1")
+)
+```
+
+- You might need this to read a file that was 
+  created on a Windows computer and encoded in "`latin1`"
+
+### Microsoft Excel on Windows
+
+Excel in Windows is capable of saving files in `.csv` format,
+but may use "`latin1`" encoding by default. 
+If it saves a `.csv` file using "`UTF-8`" encoding,
+it may add extra contents to the file (a "BOM") 
+that makes it difficult to read with `read.csv()`{.r} (base $\R$).  
+See the "Extras" document for this workshop for details.  
+_The `readr` package is not affected by the BOM._ :)
+
+::: notes
+See ?read.csv, ?Encoding, ?file, and other documentation for details.
+:::
+
+
+## `read_csv()`: column names
+
+- The default for `read_csv()`{.r} is to 
+  ensure all column names are _unique_,
+  but not necessarily *syntactically valid*
+
+- You can still refer to columns with syntactically 'invalid' names:
+  - use functions that allow names as characters,
+  - quote names with backticks (``` ` ```{.r})
+
+```{r names with backticks, results='hide'}
+CSV[, "95"]  # still a `data.frame` (with 1 column)
+CSV[["95"]]  # vector
+CSV$`95`     # quoted name
+```
+
+  
+## `read_csv()`: treat column names
+
+- Change how `read_csv()`{.r} treats column names
+  with the '`name_repair`' argument
+  
+  - `"universal"`{.r} makes names unique and syntactic
+  
+```{r read_csv() name_repair universal, results='hide', message=FALSE}
+read_csv(
+  CSV_path, skip = 2, 
+  name_repair = "universal" # make names unique and syntactic
+)
+```
+
+- You can also pass a function by name  
+  (`make.names` is the same behaviour as `read.csv()`{.r} in base $\R$)
+  
+```{r read_csv() name_repair make.names, results='hide', message=FALSE}
+read_csv(
+  CSV_path, skip = 2, 
+  name_repair = make.names  # function: same as read.csv()
+)  
+```
+
+
+## `read_csv()`: guessing column types
+
+- By default, `read_csv()`{.r} prints a message summarizing what it did,
+  including _guessing the data type_ of each column.
+  
+  - _`.csv` files do not include this information as metadata_
+
+- Control how columns are guessed with the `guess_max` argument:
+
+```{r read_csv() guess examples, results = 'hide', message=FALSE}
+# use the first 2 rows to guess column types (less successful)
+  read_csv(CSV_path, skip = 2, guess_max = 2)
+# use *all* rows to guess column types
+# - slow: has to read *every row* twice.
+  read_csv(CSV_path, skip = 2, guess_max = Inf)
+```
+
+::: notes
+The first example produces a warning, as expected.
+:::
+
+
+## `read_csv()`: specify column types
+
+- If you know what the column types are (or should be),
+  you can tell `read_csv()`{.r} what they are
+  with the `col_types` argument.
+  - for large datasets, this can be faster: read rows once
+  - avoids bad guesses.
+  
+```{r read_csv() column spec, results = 'hide', message=FALSE, warning=FALSE}
+## Specify column types with a compact string
+read_csv(CSV_path, skip = 2, col_types = "cccddddddd")
+
+## Or use a `column specification`
+# extract specification from tibble
+col_spec <- spec(CSV)
+# change a column to numeric (double)
+col_spec$cols[["500"]] <- col_double()
+read_csv(CSV_path, skip = 2, col_types = col_spec)
+
+# ?read_csv for more options
+```
+
+
+## `read_csv()`: all columns as strings
+
+- In extreme cases, you can read everything as '`character`',  
+  then clean and coerce to other data types within $\R$
+
+```{r read_csv() all columns as character}
+# read all columns as character
+read_csv(CSV_path, skip = 2, 
+         col_types = cols(.default = col_character())
+         )
+```
+
+
+## `read_csv()`: missing values
+
+- Use the `na` argument to supply a list of values
+  to replace with `NA`{.r}.
+  - This is applied to **all** columns.
+
+```{r read_csv() na argument, message=FALSE, warning=FALSE}
+read_csv(CSV_path, skip = 2, 
+         na = c(".", "NA")  # will not replace empty strings ("") with NA
+         )
+```
+
+::: notes
+Skip these details if running behind.
+
+The example actually produces a warning:
+The missing values in lines 12 & 13 (including header row)
+are read as an empty character string (""),
+then dropped when coerced to numeric,
+triggering the usual warning.
+:::
+
+
+## `read_csv()`: number formats
+
+- `read_csv()`{.r} will attempt to read numbers with
+  "." as the decimal, and "," between large numbers.
+
+- But our example data includes a _mix_ of these.
+  - This makes it difficult to choose one approach for everything,
+    but one option in this case is to set the 'grouping' mark to an empty string
+
+```{r read_csv() grouping_mark, message=FALSE, warning=FALSE}
+CSV_comma <- read_csv(CSV_path, skip = 2, 
+         locale = locale(grouping_mark = "")
+)
+CSV_comma[["675"]]
+```
+
+- With this option, column '`675`' is now *character* instead of *numeric*,
+  With the commas intact.
+
+- See also the '`decimal_mark`' argument of `locale()`{.r} (`?locale`)
+
+::: notes
+Skip these details if running behind.
+:::
+
+
+## `read_csv()`: Read data to clean
+
+- For the rest of this workshop, we will work with this version 
+  of the example file:
+
+```{r read_csv() version to work with}
+DF <- read_csv(
+  CSV_path, skip = 2, 
+  name_repair = make.names
+)  
+```
+
+- We will use "make.names" to make *syntactically valid* names
+  that are easier to work with later.
+
+
+## The `readxl` package
+
+Provides functions for reading from (but not writing to) Microsoft\ Excel files (`.xls` and `.xlsx`)
+
+```{r readxl demo}
+library(readxl)    # load the package
+## Documentation: ?read_excel  help(package="readxl")
+## use an example included in the package
+xl_path <- readxl_example("datasets.xlsx")
+excel_sheets(xl_path)  # get the names of the sheets
+## read a specified sheet from the Excel file
+iris_xl <- read_excel(xl_path, "iris")
+```
+
+
+## **Activity 3**: read a messy Excel file
+
+- `read_excel()`{.r} has many of the same arguments as 
+  `read_csv()`{.r} to control how data is imported.
+
+- Use the script file in the "`examples`" folder as a starting point:
+  - "`R2_exercise_3.R`"
+
+```r
+XL_path <- readxl_example("deaths.xlsx")
+XL <- read_excel(XL_path, ...)
+```
+
+. . .
+
+### Tip
+
+Use the '`range`' argument to read data from a specific range in a sheet, 
+ignoring contents outside this range 
+(rows above & below, columns before & after)
+
+::: notes
+Skip this exercise if running late.
+:::
+
 
 
 

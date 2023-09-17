@@ -123,14 +123,14 @@ CSV$`95`     # quoted name
 ## ----read_csv() name_repair universal, results='hide', message=FALSE----------
 read_csv(
   CSV_path, skip = 2, 
-  name_repair = "universal"
+  name_repair = "universal" # make names unique and syntactic
 )
 
 
 ## ----read_csv() name_repair make.names, results='hide', message=FALSE---------
 read_csv(
   CSV_path, skip = 2, 
-  name_repair = make.names
+  name_repair = make.names  # function: same as read.csv()
 )  
 
 
