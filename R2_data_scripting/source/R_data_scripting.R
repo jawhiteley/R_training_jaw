@@ -423,7 +423,9 @@ DF_clean5_rows <- DF_clean4_cols %>%
   summarise(
     across(where(is.numeric), ~ max(.x, na.rm = TRUE)),
     .groups = "drop"
-  )
+  ) %>% 
+  ## Re-sort to original order
+  arrange(desc(Type), desc(Treatment), PlantNum)
 
 
 ## ----load tidyr---------------------------------------------------------------
@@ -481,12 +483,28 @@ DF_tidy <- DF_clean %>%
 all.equal(DF_tidy, CO2, check.attributes = FALSE)
 
 
-## ----write_csv, eval=FALSE----------------------------------------------------
-## write_csv(DF_tidy, "data/data_clean.csv")
-## write_excel_csv(DF_tidy, "data/data_excel.csv")
+## ----convert character columns to factors-------------------------------------
+DF_final <- DF_tidy %>% 
+  mutate( across(where(is.character), factor) )
 
 
-## ----test write, eval=FALSE---------------------------------------------------
-## save_test <- read_csv("data/data_clean.csv")
-## save_test
+## -----------------------------------------------------------------------------
+DF_final <- DF_tidy %>% 
+  mutate(
+    across( where(is.character), ~ factor(.x, levels = unique(.x)) )
+  )
+
+
+## ----check final results------------------------------------------------------
+all.equal(DF_final, CO2, check.attributes = FALSE)
+
+
+## ----write_csv----------------------------------------------------------------
+write_csv(DF_final, "data/data_clean.csv")
+write_excel_csv(DF_final, "data/data_excel.csv")
+
+
+## ----test write, message=FALSE, results='hide'--------------------------------
+save_test <- read_csv("data/data_clean.csv")
+head(save_test)
 

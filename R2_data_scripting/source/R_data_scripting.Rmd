@@ -2046,7 +2046,9 @@ DF_clean5_rows <- DF_clean4_cols %>%
   summarise(
     across(where(is.numeric), ~ max(.x, na.rm = TRUE)),
     .groups = "drop"
-  )
+  ) %>% 
+  ## Re-sort to original order
+  arrange(desc(Type), desc(Treatment), PlantNum)
 ```
 
 
@@ -2177,6 +2179,9 @@ DF_clean %>% select(where(is.numeric)) %>% names()
     relationships are between the *column names*
     and *values*
 
+<!--
+Add some visual representations of long vs wide
+-->
 
 ## Pivot
 
@@ -2199,10 +2204,43 @@ DF_tidy <- DF_clean %>%
 
 ## Check results
 
-Did we manage to re-construct the original data set?
+- Did we manage to re-construct the original data set?
 
 ```{r check results}
 all.equal(DF_tidy, CO2, check.attributes = FALSE)
+```
+
+- Not quite --- our character columns are not '*factors*',
+  as in the original.
+  
+  - *factors* are a special kind of vector for categorical data
+  
+  - See `?factor`, and the [`forcats`](https://forcats.tidyverse.org/) package
+    for more information
+
+
+## Final steps
+
+- Convert all character columns to *factors*
+
+```{r convert character columns to factors}
+DF_final <- DF_tidy %>% 
+  mutate( across(where(is.character), factor) )
+```
+
+<!-- to preserve the order of the factor levels:
+```{r}
+DF_final <- DF_tidy %>% 
+  mutate(
+    across( where(is.character), ~ factor(.x, levels = unique(.x)) )
+  )
+```
+-->
+
+- Did we manage to re-construct the original data set?
+
+```{r check final results}
+all.equal(DF_final, CO2, check.attributes = FALSE)
 ```
 
 
@@ -2261,19 +2299,22 @@ all.equal(DF_tidy, CO2, check.attributes = FALSE)
 - Save a data frame to a `.csv` file:
   - it will be encoded with `UTF-8` by default (on all platforms)
   
-```{r write_csv, eval=FALSE}
-write_csv(DF_tidy, "data/data_clean.csv")
-write_excel_csv(DF_tidy, "data/data_excel.csv")
+```{r write_csv}
+write_csv(DF_final, "data/data_clean.csv")
+write_excel_csv(DF_final, "data/data_excel.csv")
 ```
+
+. . .
 
 - Read it back in to check
-```{r test write, eval=FALSE}
+```{r test write, message=FALSE, results='hide'}
 save_test <- read_csv("data/data_clean.csv")
-save_test
+head(save_test)
 ```
 
-```{r cleanup, include=FALSE, purl=FALSE, eval=FALSE}
-file.remove("data/data_clean.csv")
+```{r cleanup, include=FALSE, purl=FALSE}
+## Cleanup
+file.remove( c("data/data_clean.csv", "data/data_excel.csv") )
 ```
 
 
