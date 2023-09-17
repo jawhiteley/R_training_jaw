@@ -120,15 +120,17 @@ CSV[["95"]]  # vector
 CSV$`95`     # quoted name
 
 
-## ----read_csv() name_repair, results='hide', message=FALSE--------------------
+## ----read_csv() name_repair universal, results='hide', message=FALSE----------
 read_csv(
   CSV_path, skip = 2, 
-  name_repair = "universal" # make names unique and syntactic
+  name_repair = "universal"
 )
 
+
+## ----read_csv() name_repair make.names, results='hide', message=FALSE---------
 read_csv(
   CSV_path, skip = 2, 
-  name_repair = make.names  # a function: same as read.csv()
+  name_repair = make.names
 )  
 
 
