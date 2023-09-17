@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
     -   = **12 topics**
 
-## Outline
+## Outline - OLD
 
 1.  Load data (base)
 

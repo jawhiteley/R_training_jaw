@@ -25,6 +25,108 @@ knitr::opts_chunk$set(echo = TRUE, comment='#')
 options(width = 60)  # to fit output on slides
 ```
 
+
+# Reading a csv file with base $\R$
+
+## Load a csv file using `read.csv()`
+
+```r
+?read.csv
+```
+- If `read.csv()`{.r} encounters problems reading a file,
+  it is more likely to trigger an **error** than `read_csv()`{.r},
+  which gives a warning more often.
+  
+```{r load with read_csv (1st try), message=FALSE, warning=TRUE}
+DF_path <- file.path("..", "data", "data_example.csv")
+try( read.csv(DF_path) )
+```
+
+## Check the file contents
+
+- Let's take a peek at the first few lines and see if we can identify the problem
+  (this is more often necessary with `read.csv()`{.r}):
+
+```{r readlines}
+readLines(DF_path, n = 4)
+```
+
+- The first **2** lines don't look like comma-separated values!
+
+- They look like extra information that is not part of the data table *structure*.
+
+
+## Load a csv file into $\R$
+
+- We can tell $\R$ to skip the lines with no data:
+
+```{r load, message=FALSE}
+DF <- read.csv(DF_path, skip = 2)
+DF_readr <- readr::read_csv(DF_path, skip = 2)
+```
+
+- Just because there were no `Error`{.r}s from $\R$, 
+  doesn't mean there's nothing wrong with the data!
+
+
+## `readr` vs base $\R$ functions
+
++--------------------+-----------------------------+--------------------+-----------------------+
+| **`readr`**                                      | **`base R`**                               |
++====================+=============================+====================+=======================+
+| `read_csv()`{.r}   | comma separated values      | `read.csv()`{.r}   |                       |
++--------------------+-----------------------------+--------------------+-----------------------+
+| `read_csv2()`{.r}  | '`;`' as delimiter\         | `read.csv2()`{.r}  | '`,`' for decimals,\  |
+|                    | (allows '`,`' for decimals) |                    | '`;`' as separator    |
++--------------------+-----------------------------+--------------------+-----------------------+
+| `read_tsv()`{.r}   | tab separated values        | `read.delim()`{.r} | delimited files       |
+|                    |                             |                    | (tab is default)      |
++--------------------+-----------------------------+--------------------+-----------------------+
+| `read_delim()`{.r} | (generic) files             | `read.table()`{.r} |                       |
+|                    | with any delimiter          |                    |                       |
++--------------------+-----------------------------+--------------------+-----------------------+
+| `read_fwf()`{.r}   | fixed width files           | `read.fwf()`{.r}   |                       |
++--------------------+-----------------------------+--------------------+-----------------------+
+
+`readr` descriptions based on [#dsbox](https://datasciencebox.org/course-materials/_slides/u2-d12-data-import/u2-d12-data-import#5)
+
+
+## Comparison of `read.csv()` and `read_csv()`
+
+- In keeping with Tidyverse conventions, functions are names with words separated by "`_`" 
+  - instead of "`.`" or `camelCase`, as in many base $\R$ functions
+
+- The column names are different
+  - `read.csv()`{.r} automatically applies `make.names()`{.r} to the column names 
+    to make 'syntactically valid' names to use in $\R$.
+  - convenient, but not always what we want.
+  - there are other 'cleaning' functions available 
+    (e.g.,\ `clean_names()`{.r} in the [`janitor` package](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html))
+
+- `read_csv()`{.r} automatically replaced empty strings 
+  in the `Treatment` column with `NA`{.r}s.
+
+- `read_csv()`{.r} left the '`675`' column as numeric,
+  but ignored the commas, resulting in larger numbers.
+
+- `read_csv()`{.r} produces a `"tbl_df"` (*tibble*) object,
+  not a simple `data.frame`
+
+
+## Tibble examples {.shrink}
+
+- Tibbles have an enhanced `print()`{.r} method
+- and they will _not_ do partial matching on variable names,
+  triggering a *warning* instead for columns that do not exist.
+  
+```{r tibble examples}
+print(DF_readr, n=2)
+is.null(DF$Treat)
+is.null(DF_readr$Treat)
+```
+
+
+
 # Downloading Data From the Internet
 
 ```{=html}

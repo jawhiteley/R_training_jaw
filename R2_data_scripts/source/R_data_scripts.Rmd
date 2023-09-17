@@ -146,10 +146,11 @@ _If you are comfortable sharing_:
   - Change data types
 - Tidy data
   - Change the _shape_ of a data frame
-- Re-use code, reproducible results, automated reports
+- Re-use code, reproducible results <!--, automated reports  -->
   - Scripts
+  <!--
   - R Markdown, R Notebooks
-
+  -->
 
 ## Disclaimer
 
@@ -170,6 +171,54 @@ to tackle bigger problems.
 Feel free to take what you learn here
 and experiment, or explore alternatives.
 Find what works for _you_.
+
+
+
+
+# The `tidyverse` collection of packages
+
+## The `tidyverse`
+
+``` r
+install.packages("tidyverse")
+help(package="tidyverse")
+```
+
+- The [`tidyverse`](https://www.tidyverse.org/) is an "opinionated" [collection of packages](https://www.tidyverse.org/packages/) that are designed to work together.
+
+- All packages share an underlying design philosophy, grammar, and data structures.
+  - _Unlike base $\R$_ <!-- and some other packages -->
+  - Shared naming conventions (e.g., '`_`' instead of '`.`' in function names)
+  - Emphasis on functions that do one thing well
+  - Designed to be combined together to achieve complex operations
+
+- `tidyverse` is under active development.
+  - New functions and features sometimes replace or supersede old ones.
+  - No guarantee that functions will continue to work the same way in future versions.
+
+::: notes
+These characteristics means tidyverse packages may not be ideal in a production environment.
+Nevertheless, the package designers are pretty good about replacing old functions with new ones, to avoid disruptive changes, and keeping older functions around, though with only minimal support.
+I have code from 10+ years ago that will not run in current versions of R because of the number of changes to dplyr and related packages over the years.
+
+But I still like dplyr and the tidyverse for analysis, because they are coherent with each other.
+Although they can be complex, and take advantage of some arcane aspects of R,
+they do make it easier to translate ideas into code --- once you understand the grammar.
+The consistency in naming and argument syntax, however, is also hugely appealing in terms of fewer new things to learn while expanding your toolbox.
+
+Write code that works and that you understand: then take time to revise and optimize, based on your needs and capacity.
+:::
+
+
+## Core `tidyverse` packages
+
+Today, we will focus on a few of the core `tidyverse` packages for loading, cleaning, and manipulating data:
+
+* [readr](https://readr.tidyverse.org/), [readxl](https://readxl.tidyverse.org/) for **loading** data
+<!-- * [tibble](https://tibble.tidyverse.org/) for a 'modern' version of `data.frame`s that behave slightly differently (but are compatible with `data.frame`s). -->
+* [dplyr](https://dplyr.tidyverse.org/) for **manipulating** data (values)
+* [tidyr](https://tidyr.tidyverse.org/) for **reshaping** data
+* [stringr](https://stringr.tidyverse.org/) for working with **strings**
 
 
 
@@ -312,7 +361,7 @@ file.exists(DF_path)
 
 
 
-# Loading Data into $\R$
+# Load Data: The `readr` & `readxl` Packages
 
 ## csv files
 
@@ -332,14 +381,14 @@ file.exists(DF_path)
     to see what's in the file.*
 
 
-## Load a csv file into $\R$ (basic)
+## Load a csv file using `read_csv()`
 
 ```r
-?read.csv
-read.csv(DF_path)
+?read_csv
 ```
-```{r load1, echo=FALSE}
-try( read.csv(DF_path) )
+```{r load with read_csv (1st try), results='hide', message=FALSE, warning=TRUE}
+library(readr)
+try( read_csv(DF_path) )
 ```
 
 . . .
@@ -366,11 +415,11 @@ readLines(DF_path, n = 4)
   - and we'll *assign* the result to a variable
     so we can work on it
   
-```{r load}
-DF <- read.csv(DF_path, skip = 2)
+```{r load with read_csv}
+DF <- read_csv(DF_path, skip = 2)
 ```
 
-- Just because there were no `Error`{.r}s from $\R$, 
+- Just because there were no `Error`{.r}s or `Warning`{.r}s from $\R$, 
   doesn't mean there's nothing wrong with the data!
 
 
@@ -382,19 +431,64 @@ DF <- read.csv(DF_path, skip = 2)
 
 Before we explore our new data set, let's quickly review the kind of *object* we're dealing with:
 
-```{r 3.data.frame}
+```{r data.frame}
 class(DF)
 typeof(DF)
 ```
 
 ## Data frames
 
+```{r data.frame view, echo=FALSE, purl=FALSE}
+DF_sub <- DF[1:7, 1:7]
+DF_sub[8, 1] <- "..."
+DF_sub[, "..."] <- ""
+knitr::kable( DF_sub )
+```
+
+- **columns** = _data variables_
+- **rows** = observations, cases
+
 <!--
 - Data frames (review)
 - head, str, names, plot?
 - View / RStudio Environment pane
-- Know Your Data
 -->
+
+
+## Data frames: _structure_
+
+- Each column contains data of the _same type_
+
+```{r data.frame review, echo=FALSE, purl=FALSE}
+str( as.data.frame(DF) )
+```
+
+### !
+`readr` doesn't just read data into a `data.frame`, 
+but the result is _also_ a `tibble` (`"tbl_df"`).
+
+
+## Tibbles: `data.frame`s reimagined
+
+* A ['tibble'](https://tibble.tidyverse.org/) (`class()`{.r} == `"tbl_df"`) is 
+  "a modern reimagining of the data.frame".
+  - See the [package documentation](https://tibble.tidyverse.org/) for details.
+
++ Many tidyverse functions produce tibbles by default.
+
++ **Tibbles are _also_ `data.frame`s**, and *inherit* from that class.
+  - functions that work with `data.frame`s should also work with tibbles.
+  - but some may behave differently (by design).
+  - for example, `print()`ing a tibble includes slightly more information,
+    and only prints a few rows and columns by default,
+    preventing large datasets from overwhelming your console.
+  - when indexing a tibble, it will _not_ do partial matching on column names,
+    making it clear if a column exists or not
+
++ For most purposes, tibbles are interchangeable with `data.frame`s.
+  - A tibble can be converted to a 'plain' `data.frame` 
+    with `as.data.frame()`{.r} if necessary.
+
 
 ## `head()`: peek at the first few rows
 
@@ -411,6 +505,7 @@ nrow(DF)
 ncol(DF)
 ```
 
+
 ## *Names* of elements (columns)
 
 ```{r colnames}
@@ -419,12 +514,13 @@ colnames(DF)
 rownames(DF)
 ```
 
+
 ## Look at a column {.shrink}
 
 **Remember:** you can refer to elements within a data frame by *name*.
 
 ```{r}
-DF[, "Treatment"]
+DF[["Treatment"]]
 unique(DF$Type)
 ```
 
@@ -434,10 +530,14 @@ Looks like there might be some missing values in the `Treatment` column, and inc
 We'll learn how to fix those soon, 
 but these simple functions are already helping us understand our data.
 
+
 ## `str()`: structure of an object
 
-```{r str}
+```{r str, results='hide', purl=TRUE}
 str(DF)
+```
+```{r str tibble, echo=FALSE, purl = FALSE}
+str( dplyr::mutate(DF) )  # to drop extra attributes
 ```
 
 ### Tip
@@ -449,6 +549,7 @@ _The `str()`{.r} and `names()`{.r} functions can be used with **any** object._
 ```{r summary}
 summary(DF)
 ```
+
 
 ## Simple plots {.shrink}
 
@@ -876,53 +977,6 @@ DF <-         # short for "data frame"
   - The code in the script should now run without errors.
 --> 
 
-
-
-
-# The `tidyverse` collection of packages
-
-## The `tidyverse`
-
-``` r
-install.packages("tidyverse")
-help(package="tidyverse")
-```
-
-- The [`tidyverse`](https://www.tidyverse.org/) is an "opinionated" [collection of packages](https://www.tidyverse.org/packages/) that are designed to work together.
-
-- All packages share an underlying design philosophy, grammar, and data structures.
-  - _Unlike base $\R$_ <!-- and some other packages -->
-  - Shared naming conventions (e.g., '`_`' instead of '`.`' in function names)
-  - Emphasis on functions that do one thing well
-  - Designed to be combined together to achieve complex operations
-
-- `tidyverse` is under active development.
-  - New functions and features sometimes replace or supersede old ones.
-  - No guarantee that functions will continue to work the same way in future versions.
-
-::: notes
-These characteristics means tidyverse packages may not be ideal in a production environment.
-Nevertheless, the package designers are pretty good about replacing old functions with new ones, to avoid disruptive changes, and keeping older functions around, though with only minimal support.
-I have code from 10+ years ago that will not run in current versions of R because of the number of changes to dplyr and related packages over the years.
-
-But I still like dplyr and the tidyverse for analysis, because they are coherent with each other.
-Although they can be complex, and take advantage of some arcane aspects of R,
-they do make it easier to translate ideas into code --- once you understand the grammar.
-The consistency in naming and argument syntax, however, is also hugely appealing in terms of fewer new things to learn while expanding your toolbox.
-
-Write code that works and that you understand: then take time to revise and optimize, based on your needs and capacity.
-:::
-
-
-## Core `tidyverse` packages
-
-Today, we will focus on a few of the core `tidyverse` packages for loading, cleaning, and manipulating data:
-
-* [readr](https://readr.tidyverse.org/), [readxl](https://readxl.tidyverse.org/) for **loading** data
-<!-- * [tibble](https://tibble.tidyverse.org/) for a 'modern' version of `data.frame`s that behave slightly differently (but are compatible with `data.frame`s). -->
-* [dplyr](https://dplyr.tidyverse.org/) for **manipulating** data (values)
-* [tidyr](https://tidyr.tidyverse.org/) for **reshaping** data
-* [stringr](https://stringr.tidyverse.org/) for working with **strings**
 
 
 
