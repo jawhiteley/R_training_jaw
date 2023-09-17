@@ -176,7 +176,7 @@ CSV_comma <- read_csv(CSV_path, skip = 2,
 CSV_comma[["675"]]
 
 
-## ----read_csv() version to work with------------------------------------------
+## ----read_csv() version to work with, message=FALSE---------------------------
 DF <- read_csv(
   CSV_path, skip = 2, 
   name_repair = make.names
@@ -233,7 +233,7 @@ select(DF, any_of(c("Type", "Treatment", "95")))
 
 ## ----filter() examples, results='hide'----------------------------------------
 filter(DF, X95 < 10)
-filter(CO2, conc == 95, uptake < 10)
+filter(CO2, conc == 95, uptake < 10)  # "AND"
 filter(CO2, conc == 95 | uptake < 10) # | == "OR" operator
 
 filter(DF, Treatment != "")
@@ -241,20 +241,6 @@ filter(DF, !Type %in% c("Quebec", "Mississippi"))
 filter(DF, !Type %in% unique(CO2$Type)) 
 
 filter(DF, X175 > mean(X175))
-
-
-## ----arrange() examples, results='hide'---------------------------------------
-arrange(CO2, conc)
-arrange(CO2, desc(uptake))  # sort in descending order
-
-arrange(DF, Type, Treatment, PlantNum)
-arrange(DF, PlantNum, desc(Type), Treatment)
-
-arrange(DF, X95 %% 2) 
-arrange(DF, length(Type), X95 + X175)
-
-## sort by all character columns
-arrange(DF, across(where(is.character)) )  
 
 
 ## ----select() & filter()------------------------------------------------------
@@ -266,21 +252,6 @@ select( filter(DF, Treatment == "chilled"),
 ## ----filter() %>% select()----------------------------------------------------
 DF %>% filter(Treatment == "chilled") %>% 
   select(where(is.numeric))
-
-
-## ----find char cols-----------------------------------------------------------
-cols_charn <- DF %>% 
-  select(starts_with("X") & where(is.character)) %>% 
-  names()
-
-
-## ----find non-numeric values in char cols-------------------------------------
-for (col in cols_charn) {
-  DF %>% select(1:3, all_of(col)) %>% 
-    filter( get(col) %>% as.numeric() %>% is.na() %>% 
-              suppressWarnings() ) %>% 
-    print()
-}
 
 
 ## ----mutate() add columns, results='hide'-------------------------------------

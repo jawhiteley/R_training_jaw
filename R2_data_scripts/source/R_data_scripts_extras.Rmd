@@ -23,6 +23,10 @@ knit: (function(inputFile, encoding) {
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment='#')
 options(width = 60)  # to fit output on slides
+library(readr)
+library(dplyr)
+library(tidyr)
+library(stringr)
 ```
 
 
@@ -443,6 +447,44 @@ c(1, NA, 3, 4 , NaN) %==% c(1, NA, 1, NA, NaN)
   - it has exactly **2** arguments (lhs, rhs)
   - the name begins _and_ ends with a percent symbol (`%`)
   
+
+
+## Find values systematically {.shrink}
+
+<!--
+- We can use `filter()`{.r} & `select()`{.r} to automatically
+  identify and locate potential issues.
+  -->
+
+- Find columns that are character, but we expect to be numeric:
+
+```{r find char cols}
+cols_charn <- DF %>% 
+  select(starts_with("X") & where(is.character)) %>% 
+  names()
+```
+
+- Loop through the identified column names (using `for`{.r})
+  and print values that would be `NA`{.r} if converted to numeric
+  - `suppressWarnings()`{.r} suppresses the warnings we expect from 
+    `as.numeric()`{.r} in this case.
+    
+```{r find non-numeric values in char cols}
+for (col in cols_charn) {
+  DF %>% select(1:3, all_of(col)) %>% 
+    filter( get(col) %>% as.numeric() %>% is.na() %>% 
+              suppressWarnings() ) %>% 
+    print()
+}
+```
+
+::: notes
+- Might be too much at this point - but it is useful
+- Also not sure about use of `get()` here
+  - it works, and is simpler than `if_any()`,
+    but doesn't feel like the `tidyverse` way.
+:::
+
 
 
 

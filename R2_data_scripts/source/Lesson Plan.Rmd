@@ -129,11 +129,11 @@ knitr::opts_chunk$set(echo = TRUE)
     5.  locale: grouping_mark (for commas) [or just clean by /10 whenever \>100]
     6.  *'Final' Load: one version for the rest of the workshop.*
     7.  **Activity 3: readxl** in a script [need info on options, check results]
-5.  Explore with dplyr: select() & filter()
+5.  Explore with dplyr: select() & filter() parts of a data frame
     1.  dplyr intro & overview
         1.  load dplyr
             1.  ~~package::function notation?~~ (extras)
-        2.  *dplyr conventions*
+        2.  *dplyr conventions?*
     2.  select()
     3.  selection helpers
     4.  **Activity 3: select()**
@@ -141,11 +141,12 @@ knitr::opts_chunk$set(echo = TRUE)
     6.  **Activity 4: filter()**
     7.  piping
     8.  **Activity 5 (short): convert expressions to pipes**
-6.  Find issues systematically
-    1.  for loops? [need scripts]
+    9.  *dplyr conventions (after seeing a couple of examples, and pipes)?*
+6.  ~~Find issues systematically~~ (move to Extras)
+    1.  ~~for loops? [need scripts]~~
         1.  *makes less sense if using read_csv() version: only 1 character column*
     2.  **Activity ?**
-7.  Manipulate Data:
+7.  Manipulate Data
     1.  mutate()
     2.  mutate() helper functions
     3.  *select vs mutate semantics*
@@ -154,6 +155,8 @@ knitr::opts_chunk$set(echo = TRUE)
     1.  **Activity?**
 9.  stringr + mutate: clean character columns
     1.  clean columns in example data
+
+        1.  Locate non-numeric values in character column
 
     2.  package:: object notation to use tidyr::fill()
 

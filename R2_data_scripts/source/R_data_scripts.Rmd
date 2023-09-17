@@ -1138,19 +1138,19 @@ Skip these details if running behind.
 :::
 
 
-## `read_csv()`: Read data to clean
+## **Final read of data for workshop**
 
 - For the rest of this workshop, we will work with this version 
-  of the example file:
+  of the example data file, read with `read_csv()`{.r}:
 
-```{r read_csv() version to work with}
+```{r read_csv() version to work with, message=FALSE}
 DF <- read_csv(
   CSV_path, skip = 2, 
   name_repair = make.names
 )  
 ```
 
-- We will use "make.names" to make *syntactically valid* names
+- We use "make.names" to make *syntactically valid* names
   that are easier to work with later.
 
 
@@ -1305,7 +1305,8 @@ Feel free to skip this; we'll see it again later for tidyr::fill()
 
 
 
-# `dplyr` Verbs: `select()`{.r} & `filter()`{.r} Parts of a Data Frame
+
+# Explore With `dplyr`: `select()`{.r} & `filter()`{.r} Parts of a Data Frame
 
 ## Columns: `select()`{.r}
 
@@ -1376,7 +1377,7 @@ Pause to let people try these out
 
 ```{r filter() examples, results='hide'}
 filter(DF, X95 < 10)
-filter(CO2, conc == 95, uptake < 10)
+filter(CO2, conc == 95, uptake < 10)  # "AND"
 filter(CO2, conc == 95 | uptake < 10) # | == "OR" operator
 
 filter(DF, Treatment != "")
@@ -1388,39 +1389,10 @@ filter(DF, X175 > mean(X175))
 
 ::: notes
 Pause to let people try these out
+
+`Treatment` may have NA instead of "", but it still works!
 :::
 
-<!--
-## Rows: `arrange()`{.r}
-
-- `arrange()` changes the order of rows of a data frame
-  based on the values of selected columns
-
-```{r arrange() examples, results='hide'}
-arrange(CO2, conc)
-arrange(CO2, desc(uptake))  # sort in descending order
-
-arrange(DF, Type, Treatment, PlantNum)
-arrange(DF, PlantNum, desc(Type), Treatment)
-
-arrange(DF, X95 %% 2) 
-arrange(DF, length(Type), X95 + X175)
-
-## sort by all character columns
-arrange(DF, across(where(is.character)) )  
-```
-
-- The last example uses **helper functions**
-  - `across()`{.r} lets you choose columns to sort by, based on criteria
-  - `where()`{.r} is a _selection-helper_ function
-    that applies the `is.character()`{.r} _function_ to each column, 
-    returning a `TRUE`{.r} or `FALSE`{.r} value,
-    to use as the criteria for `across()`{.r}.
-    
-::: notes
-More on helper functions and semantics later
-:::
--->
 
 ## `select()`{.r} & `filter()`{.r} work well together
 
@@ -1535,7 +1507,7 @@ DF %>% filter(Treatment == "chilled") %>%
 [^R4.1]: https://cran.r-project.org/bin/windows/base/old/4.1.0/NEWS.R-4.1.0.html
 
 
-## Pipe: Exercise {.shrink}
+## **Activity **: pipes {.shrink}
 
 \small 
 **Insert a pipe in R Studio with `CTL+Shift+M` (`CMD+Shift+M`)**
@@ -1622,45 +1594,6 @@ it makes it easier to extend your understanding to new functions.
 <!-- https://dplyr.tidyverse.org/articles/dplyr.html#commonalities -->
 
 
-
-## Find problematic values systematically {.shrink}
-
-<!--
-- We can use `filter()`{.r} & `select()`{.r} to automatically
-  identify and locate potential issues.
-  -->
-
-- Find columns that are character, but we expect to be numeric:
-
-```{r find char cols}
-cols_charn <- DF %>% 
-  select(starts_with("X") & where(is.character)) %>% 
-  names()
-```
-
-- Loop through the identified column names (using `for`{.r})
-  and print values that would be `NA`{.r} if converted to numeric
-  - `suppressWarnings()`{.r} suppresses the warnings we expect from 
-    `as.numeric()`{.r} in this case.
-    
-```{r find non-numeric values in char cols}
-for (col in cols_charn) {
-  DF %>% select(1:3, all_of(col)) %>% 
-    filter( get(col) %>% as.numeric() %>% is.na() %>% 
-              suppressWarnings() ) %>% 
-    print()
-}
-```
-
-::: notes
-- Might be too much at this point - but it is useful
-- Also not sure about use of `get()` here
-  - it works, and is simpler than `if_any()`,
-    but doesn't feel like the `tidyverse` way.
-:::
-
-
-## Exercise
 
 
 # `dplyr` Verbs: Modify Data Columns
