@@ -48,7 +48,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 6.  select() & filter()
 
-    1.   pipes
+    1.  pipes
 
 7.  mutate() \*\*\*
 
@@ -96,56 +96,65 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Outline - NEW
 
-1.  Intro: Tidyverse overview
-2.  Load data: readr
+0.  Intro: Tidyverse overview
+1.  Load data: readr
     1.  Working directory & paths
-    2.  encoding
-    3.  **Activity: readxl** [need info on options, check result]
-3.  Explore data
+    2.  read_csv, readLines
+    3.  skip argument
+2.  Explore data (base)
     1.  data.frames & tibbles (review)
     2.  Explore (base)
-        1.  head(), names(), str(), etc.
-4.  Explore (dplyr) select() & filter()
-    1.  selection helpers
-    2.  piping
-    3.  **Activity: convert expressions to pipes**
-5.  Know your data: CO2
-    1.  
-    2.  correct some issues by re-loading
-        1.  locale: grouping_mark (for commas)
-6.  Scripts
-    1.  ~~Activity: Make a simple script~~
-    2.  **Activity: Find the issues** [with a script?]
-7.  Programming? [or peppered as necessary?]
-    1.  Find issues systematically [need scripts?]
-        1.  for loops
-    2.  functions
-    3.  if else
-        1.  messages
-    4.  ~~for loop? [later]~~
-    5.  **Activity: script with custom function to compare data to original**
-        1.  Check for presence of known issues.
-        2.  copy code from previous script; add if () else () conditions & messages, etc.
-8.  dplyr intro & overview
-    1.  *dplyr conventions*
-    2.  mutate()
-        1.  ad hoc functions?
-    3.  *semantics?*
-    4.  **Activity: apply mutate() to tidy data** [ CO2, iris ]
-9.  Conditional execution: if () else () -\> if_else(), case_when()
+        1.  head(), dims(), names(), str(), etc.
+    3.  Know your data: CO2
+    4.  **Activity: Find the issues** [with a script? optional]
+3.  correct some issues by re-loading with options
+    1.  encoding (more in extras)
+    2.  names
+    3.  column types
+    4.  missing values?
+    5.  locale: grouping_mark (for commas) [or just clean by /10 whenever \>100]
+4.  Scripts
+    1.  Make a simple script
+    2.  Housekeeping: rm(list=ls())
+    3.  open a script for the workshop code
+    4.  Run code from the script
+    5.  **Activity: readxl** in a script [need info on options, check results]
+5.  Explore with dplyr: select() & filter()
+    1.  dplyr intro & overview
+        1.  load dplyr
+            1.  ~~package::function notation?~~ (extras)
+        2.  *dplyr conventions*
+    2.  select()
+    3.  selection helpers
+    4.  **Activity: select()**
+    5.  filter()
+    6.  **Activity: filter()**
+    7.  piping
+    8.  **Activity (short): convert expressions to pipes**
+6.  Find issues systematically
+    1.  for loops? [need scripts]
+    2.  **Activity?**
+7.  Manipulate Data:
+    1.  mutate()
+    2.  mutate() helper functions
+    3.  *select vs mutate semantics*
+    4.  **Activity: use mutate() on tidy data** [ CO2, iris ]
+8.  Conditional execution: if () else () -\> if_else(), case_when()
     1.  **Activity?**
-10. stringr: clean columns in example data
-    1.  package:: object notation to use tidyr::fill()
+9.  stringr + mutate: clean character columns
+    1.  clean columns in example data
 
-    2.  **Activity: modify some strings (script)**
-11. Grouped data
+    2.  package:: object notation to use tidyr::fill()
+
+    3.  **Activity: modify some strings (script)**
+10. Grouped data
     1.  group_by()
     2.  summarise()
     3.  **Activity: summarise CO2 vs loaded (wide) data**
         1.  Exposure to different layouts
     4.  Clean rows in *example data*?
-        1.  Laborious to summarise() multiple columns; easier if 1 column
-12. tidyr
+        1.  Laborious to summarise() multiple columns; would be easier if 1 column ...
+11. tidyr
     1.  tidy data
     2.  missing values?
     3.  unite
@@ -153,18 +162,22 @@ knitr::opts_chunk$set(echo = TRUE)
     5.  Tidy *example data*
         1.  Finish cleaning by removing duplicates with summarise()
     6.  **Activity: pivot_wider & back** [with CO2]
-13. Save data
-    1.  **Activity?** split CO2 data by Type & save to separate files?
+12. Save data
+    1.  **Activity?** split CO2 data by a Type or Treatment & save to separate files?
         1.  for loops optional
-14. Combining tables
+13. Combining tables
     1.  bind_rows() & bind_cols()
-    2.  mention joins, but no time
+    2.  mention joins, but no time for examples (extras?)
     3.  **Activity: split & recombine CO2 dataset**
-15. Code Style
+
+------------------------------------------------------------------------
+
+1.  *Code Style*
     1.  Notebooks?
-16. **Capstone Activity**
+2.  **Capstone Activity**
     1.  load, check, clean multiple files [4x subsets of who dataset]
     2.  *Combine into larger file*
     3.  Answer simple analysis question / calculation
     4.  Optional: work in pairs to separate tasks
-17. Review
+3.  Review
+    0.  other packages for other formats & data types
