@@ -354,8 +354,8 @@ setwd( choose.dir() )
   by checking to see if a known file exists (from $\R$'s perspective):
 
 ```{r check_wd}
-DF_path <- file.path("data", "data_example.csv")
-file.exists(DF_path)
+CSV_path <- file.path("data", "data_example.csv")
+file.exists(CSV_path)
 ```
 
 - If the result of the statement above is not "`TRUE`{.r}" in your session,
@@ -392,7 +392,7 @@ file.exists(DF_path)
 ```
 ```{r load with read_csv (1st try), results='hide', message=FALSE, warning=TRUE}
 library(readr)
-try( read_csv(DF_path) )
+try( read_csv(CSV_path) )
 ```
 
 . . .
@@ -404,7 +404,7 @@ try( read_csv(DF_path) )
 
 - Let's take a peek at the first few lines and see if we can identify the problem:
 ```{r readlines}
-readLines(DF_path, n = 4)
+readLines(CSV_path, n = 4)
 ```
 . . .
 
@@ -420,7 +420,7 @@ readLines(DF_path, n = 4)
     so we can work on it
   
 ```{r load with read_csv}
-DF <- read_csv(DF_path, skip = 2)
+CSV <- read_csv(CSV_path, skip = 2)
 ```
 
 - Just because there were no `Error`{.r}s or `Warning`{.r}s from $\R$, 
@@ -436,17 +436,17 @@ DF <- read_csv(DF_path, skip = 2)
 Before we explore our new data set, let's quickly review the kind of *object* we're dealing with:
 
 ```{r data.frame}
-class(DF)
-typeof(DF)
+class(CSV)
+typeof(CSV)
 ```
 
 ## Data frames
 
 ```{r data.frame view, echo=FALSE, purl=FALSE}
-DF_sub <- DF[1:7, 1:7]
-DF_sub[8, 1] <- "..."
-DF_sub[, "..."] <- ""
-knitr::kable( DF_sub )
+CSV_sub <- CSV[1:7, 1:7]
+CSV_sub[8, 1] <- "..."
+CSV_sub[, "..."] <- ""
+knitr::kable( CSV_sub )
 ```
 
 - **columns** = _data variables_
@@ -464,7 +464,7 @@ knitr::kable( DF_sub )
 - Each column contains data of the _same type_
 
 ```{r data.frame review, echo=FALSE, purl=FALSE}
-str( as.data.frame(DF) )
+str( as.data.frame(CSV) )
 ```
 
 ### !
@@ -497,25 +497,25 @@ but the result is _also_ a `tibble` (`"tbl_df"`).
 ## `head()`: peek at the first few rows
 
 ```{r head}
-head(DF)
+head(CSV)
 ```
 
 
 ## Dimensions (rows & columns)
 
 ```{r dims}
-dim(DF)
-nrow(DF)
-ncol(DF)
+dim(CSV)
+nrow(CSV)
+ncol(CSV)
 ```
 
 
 ## *Names* of elements (columns)
 
 ```{r colnames}
-names(DF)
-colnames(DF)
-rownames(DF)
+names(CSV)
+colnames(CSV)
+rownames(CSV)
 ```
 
 
@@ -524,8 +524,8 @@ rownames(DF)
 **Remember:** you can refer to elements within a data frame by *name*.
 
 ```{r}
-DF[["Treatment"]]
-unique(DF$Type)
+CSV[["Treatment"]]
+unique(CSV$Type)
 ```
 
 ### !
@@ -538,10 +538,10 @@ but these simple functions are already helping us understand our data.
 ## `str()`: structure of an object
 
 ```{r str, results='hide', purl=TRUE}
-str(DF)
+str(CSV)
 ```
 ```{r str tibble, echo=FALSE, purl = FALSE}
-str( dplyr::mutate(DF) )  # to drop extra attributes
+str( dplyr::mutate(CSV) )  # to drop extra attributes
 ```
 
 ### Tip
@@ -551,21 +551,21 @@ _The `str()`{.r} and `names()`{.r} functions can be used with **any** object._
 ## `summary()`: statistical summaries by column
 
 ```{r summary}
-summary(DF)
+summary(CSV)
 ```
 
 
 ## Simple plots {.shrink}
 
 ```{r plot_basic}
-plot(DF)
+plot(CSV)
 ```
 
 
 ## Spreadsheet-like `View()`
 
 ``` r
-View(DF)
+View(CSV)
 ```
 - This command opens a data frame in a spreadsheet-like view,
   which can be easier to navigate.
@@ -678,21 +678,21 @@ _There are other differences you may have noticed:
 
 
 
-# Control how data is read: `read_csv` options
+# Control how data is read: `read_csv()`{.r} options
 
 ## Encoding non-English characters {.shrink}
 
 ```{r reproduce windows latin1, include=FALSE, results='hide', purl = FALSE}
 ## Reproduce Windows encoding (bad)
-DF_win <- read.csv(DF_path, skip = 2, encoding = "latin1")
+CSV_win <- read.csv(CSV_path, skip = 2, encoding = "latin1")
 ## Extract example of messed up encoding
-latin1_ex <- DF_win |>
+latin1_ex <- CSV_win |>
   dplyr::select(Type) |>
   dplyr::filter( ! Type %in% c("Quebec", "Mississippi") ) |> 
   unlist() |> unique()
 ## Read latin1 file using UTF-8 for the opposite
-DF_latin1 <- read_csv("data/data_example_latin1.csv", show_col_types = FALSE)
-utf8_ex <- DF_latin1 |>
+CSV_latin1 <- read_csv("data/data_example_latin1.csv", show_col_types = FALSE)
+utf8_ex <- CSV_latin1 |>
   dplyr::select(Type) |>
   dplyr::filter( ! Type %in% c("Quebec", "Mississippi") ) |> 
   unlist() |> unique()
@@ -726,25 +726,25 @@ utf8_ex <- DF_latin1 |>
   - Starting with [v4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html), $\R$ uses "`UTF-8`" as the default encoding on Windows.
 
 
-## Read at a csv file with a mismatched encoding
+## Read a csv file with a mismatched encoding
 
 ```{r read a csv encoded in "latin1", message=FALSE, results='hide'}
-DF_latin1 <- read_csv("data/data_example_latin1.csv")
-DF_latin1
+CSV_latin1 <- read_csv("data/data_example_latin1.csv")
+CSV_latin1
 ```
 . . .
 ```{r, echo=FALSE, purl=FALSE}
-head(DF_latin1)
+head(CSV_latin1)
 ```
 
 
-## Read a csv file with a different encoding {.shrink}
+## `read_csv()`: read a file with a different encoding {.shrink}
 
 - You can specify the encoding used in the file 
   with the '`locale`' argument of `read_csv()`{.r}
   
 ```{r read_csv() with encoding, results='hide', message=FALSE}
-read_csv(DF_path, skip = 2, 
+read_csv(CSV_path, skip = 2, 
          locale = locale(encoding = "latin1")
 )
 ```
@@ -778,9 +778,9 @@ See ?read.csv, ?Encoding, ?file, and other documentation for details.
   - quote names with backticks (``` ` ```{.r})
 
 ```{r names with backticks, results='hide'}
-DF[, "95"]  # still a `data.frame` (with 1 column)
-DF[["95"]]  # vector
-DF$`95`     # quoted name
+CSV[, "95"]  # still a `data.frame` (with 1 column)
+CSV[["95"]]  # vector
+CSV$`95`     # quoted name
 ```
 
   
@@ -791,12 +791,12 @@ DF$`95`     # quoted name
 
 ```{r read_csv() name_repair, results='hide', message=FALSE}
 read_csv(
-  DF_path, skip = 2, 
+  CSV_path, skip = 2, 
   name_repair = "universal" # make names unique and syntactic
 )
 
 read_csv(
-  DF_path, skip = 2, 
+  CSV_path, skip = 2, 
   name_repair = make.names  # a function: same as read.csv()
 )  
 ```
@@ -813,11 +813,15 @@ read_csv(
 
 ```{r read_csv() guess examples, results = 'hide', message=FALSE}
 # use the first 2 rows to guess column types (less successful)
-  read_csv(DF_path, skip = 2, guess_max = 2)
+  read_csv(CSV_path, skip = 2, guess_max = 2)
 # use *all* rows to guess column types
 # - slow: has to read *every row* twice.
-  read_csv(DF_path, skip = 2, guess_max = Inf)
+  read_csv(CSV_path, skip = 2, guess_max = Inf)
 ```
+
+::: notes
+The first example produces a warning, as expected.
+:::
 
 
 ## `read_csv()`: specify column types
@@ -826,18 +830,18 @@ read_csv(
   you can tell `read_csv()`{.r} what they are
   with the `col_types` argument.
   - for large datasets, this can be faster: read rows once
-  - avoid bad guesses.
+  - avoids bad guesses.
   
 ```{r read_csv() column spec, results = 'hide', message=FALSE, warning=FALSE}
 ## Specify column types with a compact string
-read_csv(DF_path, skip = 2, col_types = "cccddddddd")
+read_csv(CSV_path, skip = 2, col_types = "cccddddddd")
 
 ## Or use a `column specification`
 # extract specification from tibble
-col_spec <- spec(DF)
+col_spec <- spec(CSV)
 # change a column to numeric (double)
 col_spec$cols[["500"]] <- col_double()
-read_csv(DF_path, skip = 2, col_types = col_spec)
+read_csv(CSV_path, skip = 2, col_types = col_spec)
 
 # ?read_csv for more options
 ```
@@ -850,7 +854,7 @@ read_csv(DF_path, skip = 2, col_types = col_spec)
 
 ```{r read_csv() all columns as character}
 # read all columns as character
-read_csv(DF_path, skip = 2, 
+read_csv(CSV_path, skip = 2, 
          col_types = cols(.default = col_character())
          )
 ```
@@ -863,7 +867,7 @@ read_csv(DF_path, skip = 2,
   - This is applied to **all** columns.
 
 ```{r read_csv() na argument, message=FALSE, warning=FALSE}
-read_csv(DF_path, skip = 2, 
+read_csv(CSV_path, skip = 2, 
          na = c(".", "NA")  # will not replace empty strings ("") with NA
          )
 ```
@@ -889,10 +893,10 @@ triggering the usual warning.
     but one option in this case is to set the 'grouping' mark to an empty string
 
 ```{r read_csv() grouping_mark, message=FALSE, warning=FALSE}
-DF_comma <- read_csv(DF_path, skip = 2, 
+CSV_comma <- read_csv(CSV_path, skip = 2, 
          locale = locale(grouping_mark = "")
 )
-DF_comma[["675"]]
+CSV_comma[["675"]]
 ```
 
 - With this option, column '`675`' is now *character* instead of *numeric*,
@@ -912,7 +916,7 @@ Skip these details if running behind.
 
 ```{r read_csv() version to work with}
 DF <- read_csv(
-  DF_path, skip = 2, 
+  CSV_path, skip = 2, 
   name_repair = make.names
 )  
 ```
@@ -1034,10 +1038,10 @@ An $\R$ *script* is a file that stores $\R$ code in *plain text*
 - Paste in the following code to your script file:
 
 ``` r
-DF_path <- file.path("data", "data_example.csv")
-file.exists(DF_path)
+CSV_path <- file.path("data", "data_example.csv")
+file.exists(CSV_path)
 
-DF <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
+DF <- read.csv(CSV_path, skip = 2, encoding = "UTF-8")
 
 colnames(DF)
 plot(DF)
@@ -1113,7 +1117,7 @@ We will not be trying Batch Mode---it is mentioned for information only.
 ``` r
 DF <-         # short for "data frame"
   read.csv(   # read a csv file
-    DF_path,  # path to file
+    CSV_path,  # path to file
     skip = 2  # skip lines at top of file (not data)
   )
 ```

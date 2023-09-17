@@ -35,26 +35,26 @@ getwd()
 
 
 ## ----check_wd-----------------------------------------------------------------
-DF_path <- file.path("data", "data_example.csv")
-file.exists(DF_path)
+CSV_path <- file.path("data", "data_example.csv")
+file.exists(CSV_path)
 
 
 ## ----load with read_csv (1st try), results='hide', message=FALSE, warning=TRUE----
 library(readr)
-try( read_csv(DF_path) )
+try( read_csv(CSV_path) )
 
 
 ## ----readlines----------------------------------------------------------------
-readLines(DF_path, n = 4)
+readLines(CSV_path, n = 4)
 
 
 ## ----load with read_csv-------------------------------------------------------
-DF <- read_csv(DF_path, skip = 2)
+CSV <- read_csv(CSV_path, skip = 2)
 
 
 ## ----data.frame---------------------------------------------------------------
-class(DF)
-typeof(DF)
+class(CSV)
+typeof(CSV)
 
 
 
@@ -62,37 +62,37 @@ typeof(DF)
 
 
 ## ----head---------------------------------------------------------------------
-head(DF)
+head(CSV)
 
 
 ## ----dims---------------------------------------------------------------------
-dim(DF)
-nrow(DF)
-ncol(DF)
+dim(CSV)
+nrow(CSV)
+ncol(CSV)
 
 
 ## ----colnames-----------------------------------------------------------------
-names(DF)
-colnames(DF)
-rownames(DF)
+names(CSV)
+colnames(CSV)
+rownames(CSV)
 
 
 ## -----------------------------------------------------------------------------
-DF[["Treatment"]]
-unique(DF$Type)
+CSV[["Treatment"]]
+unique(CSV$Type)
 
 
 ## ----str, results='hide', purl=TRUE-------------------------------------------
-str(DF)
+str(CSV)
 
 
 
 ## ----summary------------------------------------------------------------------
-summary(DF)
+summary(CSV)
 
 
 ## ----plot_basic---------------------------------------------------------------
-plot(DF)
+plot(CSV)
 
 
 ## ----load internal CO2 data---------------------------------------------------
@@ -102,81 +102,81 @@ data(CO2)
 
 
 ## ----read a csv encoded in "latin1", message=FALSE, results='hide'------------
-DF_latin1 <- read_csv("data/data_example_latin1.csv")
-DF_latin1
+CSV_latin1 <- read_csv("data/data_example_latin1.csv")
+CSV_latin1
 
 
 
 
 ## ----read_csv() with encoding, results='hide', message=FALSE------------------
-read_csv(DF_path, skip = 2, 
+read_csv(CSV_path, skip = 2, 
          locale = locale(encoding = "latin1")
 )
 
 
 ## ----names with backticks, results='hide'-------------------------------------
-DF[, "95"]  # still a `data.frame` (with 1 column)
-DF[["95"]]  # vector
-DF$`95`     # quoted name
+CSV[, "95"]  # still a `data.frame` (with 1 column)
+CSV[["95"]]  # vector
+CSV$`95`     # quoted name
 
 
 ## ----read_csv() name_repair, results='hide', message=FALSE--------------------
 read_csv(
-  DF_path, skip = 2, 
+  CSV_path, skip = 2, 
   name_repair = "universal" # make names unique and syntactic
 )
 
 read_csv(
-  DF_path, skip = 2, 
+  CSV_path, skip = 2, 
   name_repair = make.names  # a function: same as read.csv()
 )  
 
 
 ## ----read_csv() guess examples, results = 'hide', message=FALSE---------------
 # use the first 2 rows to guess column types (less successful)
-  read_csv(DF_path, skip = 2, guess_max = 2)
+  read_csv(CSV_path, skip = 2, guess_max = 2)
 # use *all* rows to guess column types
 # - slow: has to read *every row* twice.
-  read_csv(DF_path, skip = 2, guess_max = Inf)
+  read_csv(CSV_path, skip = 2, guess_max = Inf)
 
 
 ## ----read_csv() column spec, results = 'hide', message=FALSE, warning=FALSE----
 ## Specify column types with a compact string
-read_csv(DF_path, skip = 2, col_types = "cccddddddd")
+read_csv(CSV_path, skip = 2, col_types = "cccddddddd")
 
 ## Or use a `column specification`
 # extract specification from tibble
-col_spec <- spec(DF)
+col_spec <- spec(CSV)
 # change a column to numeric (double)
 col_spec$cols[["500"]] <- col_double()
-read_csv(DF_path, skip = 2, col_types = col_spec)
+read_csv(CSV_path, skip = 2, col_types = col_spec)
 
 # ?read_csv for more options
 
 
 ## ----read_csv() all columns as character--------------------------------------
 # read all columns as character
-read_csv(DF_path, skip = 2, 
+read_csv(CSV_path, skip = 2, 
          col_types = cols(.default = col_character())
          )
 
 
 ## ----read_csv() na argument, message=FALSE, warning=FALSE---------------------
-read_csv(DF_path, skip = 2, 
+read_csv(CSV_path, skip = 2, 
          na = c(".", "NA")  # will not replace empty strings ("") with NA
          )
 
 
 ## ----read_csv() grouping_mark, message=FALSE, warning=FALSE-------------------
-DF_comma <- read_csv(DF_path, skip = 2, 
+CSV_comma <- read_csv(CSV_path, skip = 2, 
          locale = locale(grouping_mark = "")
 )
-DF_comma[["675"]]
+CSV_comma[["675"]]
 
 
 ## ----read_csv() version to work with------------------------------------------
 DF <- read_csv(
-  DF_path, skip = 2, 
+  CSV_path, skip = 2, 
   name_repair = make.names
 )  
 

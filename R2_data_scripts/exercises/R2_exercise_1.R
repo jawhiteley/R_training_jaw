@@ -7,13 +7,13 @@
 ## Set your working directory to the _parent directory_
 ## of where this file is
 
-DF_path <- file.path("data", "data_example.csv")
-file.exists(DF_path)
+CSV_path <- file.path("data", "data_example.csv")
+file.exists(CSV_path)
 
-DF <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
+CSV <- read.csv(CSV_path, skip = 2, encoding = "UTF-8")
 
-colnames(DF)
-plot(DF)
+colnames(CSV)
+plot(CSV)
 
 ## Add more functions to explore the loaded dataset
 ## And comments to explain your approach and document your findings

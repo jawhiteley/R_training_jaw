@@ -57,6 +57,7 @@ data_mod1 <- data_wide %>%
 ## Introduce a character value into a numeric column
 data_mod2 <- data_mod1 %>% 
   mutate(
+    ## Something else in `350`?
     `500` = as.character(`500`),
     `500` = case_when(
       Plant == "Qc1"    ~ paste0(`500`, " (umol/m^2 sec)"),
@@ -69,7 +70,7 @@ data_mod2 <- data_mod1 %>%
       TRUE              ~ `675`
     ),
     `675` = case_when(
-      Type == "Québec"  ~ str_replace(`675`, "\\.", ","),  # french-formatted numbers
+      Type == "Québec"  ~ str_replace(`675`, "\\.", ","),  # french-formatted numbers; read_csv reads these as grouping marks, resulting in numbers x10
       TRUE              ~ `675`
     )
   )
