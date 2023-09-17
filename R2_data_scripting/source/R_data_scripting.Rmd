@@ -2041,7 +2041,7 @@ DF_duprows %>%
   using `summarise()`{.r}
 
 ```{r collapse duplicate rows}
-DF_clean <- DF_clean4_cols %>%
+DF_clean5_rows <- DF_clean4_cols %>%
   group_by(Type, Treatment, PlantNum) %>% 
   summarise(
     across(where(is.numeric), ~ max(.x, na.rm = TRUE)),
@@ -2079,6 +2079,10 @@ DF_clean <- DF_clean4_cols %>%
 
 ## The `tidyr` package
 
+```{r load tidyr}
+library(tidyr)
+```
+
 The `tidyr` package provides tools for making data *tidy*:
 
   + "**[Pivoting](https://tidyr.tidyverse.org/articles/pivot.html)**" 
@@ -2104,9 +2108,54 @@ The `tidyr` package provides tools for making data *tidy*:
       or `fill()`{.r} them with the next/previous value
 
 
+## Re-create the 'Plant' column
+
+- Our example data is still missing unique values of '`Plant`',
+  made up of the first character of the '`Type`' and '`Treatment`' columns,
+  and a unique number.
+  
+```{r unique values of `Plant` in CO2}
+CO2 %>% pull(Plant) %>% unique() %>% as.character()
+```
+
+- We can create temporary columns with `mutate()`{.r}
+
+```{r temporary columns, results='hide'}
+DF_clean5_rows %>% select(Type, Treatment) %>% 
+  ## Create columns with the first letter of each row
+  mutate(
+    Type.tmp      = str_sub(Type, 1, 1),
+    Treatment.tmp = str_sub(Treatment, 1, 1),
+  )
+```
 
 
-# Saving Data Outside $\R$
+## Combine columns
+
+- We can create temporary columns with `mutate()`{.r},  
+  then combine them with `unite()`{.r}
+
+```{r unite() columns}
+DF_clean <- DF_clean5_rows %>% 
+  ## Create columns with the first letter of each row
+  mutate(
+    Type.tmp      = str_sub(Type, 1, 1),
+    Treatment.tmp = str_sub(Treatment, 1, 1)
+  ) %>% 
+  ## Combine columns, and remove them
+  unite(
+    Plant,                             # new column name
+    Type.tmp, Treatment.tmp, PlantNum, # input columns
+    sep = ""      # characters to separate each input
+  ) %>% 
+  ## Move columns to the front (left)
+  relocate(Plant, Type, Treatment)
+```
+
+
+
+
+# Save Data Outside $\R$
 
 ## The `readr` package: writing data
 

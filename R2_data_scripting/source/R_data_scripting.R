@@ -418,12 +418,46 @@ DF_duprows %>%
 
 
 ## ----collapse duplicate rows--------------------------------------------------
-DF_clean <- DF_clean4_cols %>%
+DF_clean5_rows <- DF_clean4_cols %>%
   group_by(Type, Treatment, PlantNum) %>% 
   summarise(
     across(where(is.numeric), ~ max(.x, na.rm = TRUE)),
     .groups = "drop"
   )
+
+
+## ----load tidyr---------------------------------------------------------------
+library(tidyr)
+
+
+## ----unique values of `Plant` in CO2------------------------------------------
+CO2 %>% pull(Plant) %>% unique() %>% as.character()
+
+
+## ----temporary columns, results='hide'----------------------------------------
+DF_clean5_rows %>% select(Type, Treatment) %>% 
+  ## Create columns with the first letter of each row
+  mutate(
+    Type.tmp      = str_sub(Type, 1, 1),
+    Treatment.tmp = str_sub(Treatment, 1, 1),
+  )
+
+
+## ----unite() columns----------------------------------------------------------
+DF_clean <- DF_clean5_rows %>% 
+  ## Create columns with the first letter of each row
+  mutate(
+    Type.tmp      = str_sub(Type, 1, 1),
+    Treatment.tmp = str_sub(Treatment, 1, 1)
+  ) %>% 
+  ## Combine columns, and remove them
+  unite(
+    Plant,                             # new column name
+    Type.tmp, Treatment.tmp, PlantNum, # input columns
+    sep = ""      # characters to separate each input
+  ) %>% 
+  ## Move columns to the front (left)
+  relocate(Plant, Type, Treatment)
 
 
 ## ----write_csv, eval=FALSE----------------------------------------------------
