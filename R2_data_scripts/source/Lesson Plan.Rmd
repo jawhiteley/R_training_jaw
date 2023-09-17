@@ -1,0 +1,170 @@
+---
+title: "Lesson Plan"
+output: html_document
+date: "2023-09-17"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Ground Rules
+
+-   Assume 15 minutes for intro / icebreaker
+
+-   Assume 15 minutes for capstone exercise + Review (Outro)
+
+-   Aim for 5 minutes talking + 5 minutes activity for each 'topic'
+
+-   10 minute break every hour
+
+-   Therefore, about 2 hours of "topics" (+10 minute buffer)
+
+    -   10 minutes each (5 minutes talking + 5 minutes activity)
+
+    -   = **12 topics**
+
+## Outline
+
+1.  Load data (base)
+
+    1.  Working directory & paths
+
+    2.  encoding
+
+2.  Explore data (base)
+
+    1.  data.frames
+
+3.  Scripts
+
+    1.  load packages
+
+4.  Load: readr, readxl
+
+    1.  *Tidyverse intro*
+
+5.  *Manipulate: dplyr*
+
+6.  select() & filter()
+
+    1.   pipes
+
+7.  mutate() \*\*\*
+
+8.  stringr: clean example data
+
+9.  Grouped data: group_by() & summarise()
+
+10. Reshape: tidyr
+
+    1.  tidy data
+
+    2.  unite() on example data
+
+    3.  missing values?
+
+    4.  **pivot()**
+
+11. Save data
+
+12. Code style
+
+    1.  Notebooks?
+
+### missing
+
+-   comparing NAs
+
+-   Programming:
+
+    -   ~~functions (introduce just before ad hoc functions?)~~
+
+        -   variable scope
+
+        -   custom messages, warnings, errors?
+
+        -   **ad hoc functions**
+
+    -   loops: for [short intro for capstone exercise?]
+
+-   2-table verbs (join) --- NO TIME!
+
+    -   Combine 2 tables: at least bind_rows, bind_cols
+
+    -   No time for join
+
+## Outline - NEW
+
+1.  Intro: Tidyverse overview
+2.  Load data: readr
+    1.  Working directory & paths
+    2.  encoding
+    3.  **Activity: readxl** [need info on options, check result]
+3.  Explore data
+    1.  data.frames & tibbles (review)
+    2.  Explore (base)
+        1.  head(), names(), str(), etc.
+4.  Explore (dplyr) select() & filter()
+    1.  selection helpers
+    2.  piping
+    3.  **Activity: convert expressions to pipes**
+5.  Know your data: CO2
+    1.  
+    2.  correct some issues by re-loading
+        1.  locale: grouping_mark (for commas)
+6.  Scripts
+    1.  ~~Activity: Make a simple script~~
+    2.  **Activity: Find the issues** [with a script?]
+7.  Programming? [or peppered as necessary?]
+    1.  Find issues systematically [need scripts?]
+        1.  for loops
+    2.  functions
+    3.  if else
+        1.  messages
+    4.  ~~for loop? [later]~~
+    5.  **Activity: script with custom function to compare data to original**
+        1.  Check for presence of known issues.
+        2.  copy code from previous script; add if () else () conditions & messages, etc.
+8.  dplyr intro & overview
+    1.  *dplyr conventions*
+    2.  mutate()
+        1.  ad hoc functions?
+    3.  *semantics?*
+    4.  **Activity: apply mutate() to tidy data** [ CO2, iris ]
+9.  Conditional execution: if () else () -\> if_else(), case_when()
+    1.  **Activity?**
+10. stringr: clean columns in example data
+    1.  package:: object notation to use tidyr::fill()
+
+    2.  **Activity: modify some strings (script)**
+11. Grouped data
+    1.  group_by()
+    2.  summarise()
+    3.  **Activity: summarise CO2 vs loaded (wide) data**
+        1.  Exposure to different layouts
+    4.  Clean rows in *example data*?
+        1.  Laborious to summarise() multiple columns; easier if 1 column
+12. tidyr
+    1.  tidy data
+    2.  missing values?
+    3.  unite
+    4.  *pivot*
+    5.  Tidy *example data*
+        1.  Finish cleaning by removing duplicates with summarise()
+    6.  **Activity: pivot_wider & back** [with CO2]
+13. Save data
+    1.  **Activity?** split CO2 data by Type & save to separate files?
+        1.  for loops optional
+14. Combining tables
+    1.  bind_rows() & bind_cols()
+    2.  mention joins, but no time
+    3.  **Activity: split & recombine CO2 dataset**
+15. Code Style
+    1.  Notebooks?
+16. **Capstone Activity**
+    1.  load, check, clean multiple files [4x subsets of who dataset]
+    2.  *Combine into larger file*
+    3.  Answer simple analysis question / calculation
+    4.  Optional: work in pairs to separate tasks
+17. Review

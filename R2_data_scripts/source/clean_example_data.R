@@ -16,6 +16,7 @@ rm(list=ls())
 library(dplyr)
 library(tidyr)
 library(stringr)
+library(readr)
 
 out_path <- "../data"    # relative path to output destination
 
@@ -54,6 +55,12 @@ test_base <- read.csv(
 test_readr <- readr::read_csv(
   file.path(out_path, "data_example.csv"), 
   skip = 2
+)
+
+test_readr2 <- read_csv(
+  file.path(out_path, "data_example.csv"), 
+  skip = 2,
+  locale = locale(grouping_mark = "")
 )
 
 
@@ -130,8 +137,32 @@ test_tidy <- test_clean %>%
   )
 str(test_tidy)
 
+
+## combine duplicates _after_ reshaping to avoid across()
+
+test2_tidy <- test_clean5_uptake %>% 
+  pivot_longer(
+    cols = where(is.numeric),    # or starts_with("X")
+    names_to = "conc",
+    values_to = "uptake"
+  ) %>% 
+  mutate(
+    conc = str_replace(conc, "X", "") %>% as.numeric()
+  )
+
+## combine duplicates without across() 
+test2_clean <- test2_tidy %>% 
+  group_by(Plant, Type, Treatment, conc) %>% 
+  summarize(uptake = max(uptake, na.rm = TRUE), 
+             .groups = "drop"      # drop groups to avoid having to use ungroup()
+  ) %>% 
+  arrange(Plant, Type, Treatment, conc) # may have to sort (some descending if not factors)
+
+
 ##==============================================================
 ## Compare
+
+all.equal(test2_clean, CO2, check.attributes = FALSE)
 
 comp <- all.equal(test_tidy, CO2, check.attributes = FALSE)
 
