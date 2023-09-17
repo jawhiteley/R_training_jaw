@@ -58,45 +58,6 @@ test_readr <- readr::read_csv(
 
 
 ##==============================================================
-## Explore
-##  these might form examples in the workshop materials
-
-## numeric values above a threshold
-test_readr %>% 
-  filter(if_any(is.numeric, ~ .x > 100)) %>% 
-  select( Type, Treatment, PlantNum, where(function (x) is.numeric(x) && any(x > 100)) )
-
-## non-numeric values in a character columns
-## so many warnings!
-test_base %>% 
-  group_by(across(1:3)) %>% 
-  select(where( ~ is.character(.) && any(!is.na(.x) & is.na(as.numeric(.x)) ))) %>% 
-  filter(if_any(everything(), ~ !is.na(.x) & is.na(as.numeric(.x) )))
-
-cols_charn <- DF %>% 
-  select(starts_with("X") & where(is.character)) %>% 
-  names()
-for (col in cols_charn) {
-  DF %>% select(1:3, all_of(col)) %>% 
-    filter( get(col) %>% as.numeric() %>% is.na() %>% 
-              suppressWarnings() ) %>% 
-    print()
-  
-## coalesce() the character vector with as.numeric() version to hide all the values that are fine with NAs?
-
-
-## duplicate rows / combination of treatments?
-
-## convert rows to vectors (across)?
-DF %>% slice(11:12) %>% select(where(is.numeric)) %>% apply(1, as.numeric) -> DF_rows
-apply(DF_rows, 2, coalesce)
-
-DF %>% slice(11:12) %>% select(where(is.numeric)) %>% as.list() %>% purrr::list_transpose() -> DF_trans
-coalesce(DF_trans[[1]], DF_trans[[2]])
-
-
-
-##==============================================================
 ## Clean
 
 ## Use this for testing
@@ -188,3 +149,48 @@ if (F) {  # do not run when source()d
   levels(CO2$Plant)
   levels(test_tidy$Plant)
 }
+
+
+
+
+##==============================================================
+## Explore
+##  these might form examples in the workshop materials
+
+## numeric values above a threshold
+test_readr %>% 
+  filter(if_any(is.numeric, ~ .x > 100)) %>% 
+  select( Type, Treatment, PlantNum, where(function (x) is.numeric(x) && any(x > 100)) )
+
+## non-numeric values in a character columns
+## so many warnings!
+test_base %>% 
+  group_by(across(1:3)) %>% 
+  select(where( ~ is.character(.) && any(!is.na(.x) & is.na(as.numeric(.x)) ))) %>% 
+  filter(if_any(everything(), ~ !is.na(.x) & is.na(as.numeric(.x) )))
+
+cols_charn <- DF %>% 
+  select(starts_with("X") & where(is.character)) %>% 
+  names()
+for (col in cols_charn) {
+  DF %>% select(1:3, all_of(col)) %>% 
+    filter( get(col) %>% as.numeric() %>% is.na() %>% 
+              suppressWarnings() ) %>% 
+    print()
+}
+
+## duplicate rows / combination of treatments?
+test_clean %>%
+  distinct(Type, Treatment, PlantNum) %>% 
+  nrow()
+
+
+## convert rows to vectors (across)?
+messy %>% slice(11:12) %>% select(where(is.numeric)) %>% apply(1, as.numeric) -> DF_rows
+apply(DF_rows, 2, coalesce)
+
+messy %>% slice(11:12) %>% select(where(is.numeric)) %>% as.list() %>% purrr::list_transpose() -> DF_trans
+coalesce(DF_trans[[1]], DF_trans[[2]])
+
+
+
