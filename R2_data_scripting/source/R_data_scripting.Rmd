@@ -20,7 +20,14 @@ params:
   is_virtual: TRUE    # is this presentation for a virtual (T) or in-person (F) environment?
 knit: 
   (function(input_file, ...) {
-    knitr::purl(input_file, documentation = 1);
+    purl_out <- knitr::purl(input_file, documentation = 1);
+    out_path <- file.path("..", basename(purl_out));
+    success <- file.copy( purl_out, out_path, overwrite = TRUE );
+    if (!isFALSE(success)) {
+      message("> Output file copied to '", normalizePath(out_path), "'" );
+      success <- file.remove( purl_out );
+      if (!isFALSE(success)) message("> Original file deleted '", purl_out, "'");
+    };
     render_out <- rmarkdown::render(input_file, ...);
     out_path <- file.path("..", basename(render_out));
     message("Copying output \nfrom '", render_out, "'\n  to '", normalizePath(out_path, mustWork = FALSE), "'" );
@@ -844,7 +851,9 @@ DF <-         # short for "data frame"
 ### For this workshop
   - All the code in this document
   assumes that the working directory
-  is the _parent directory_ of where this file is.
+  is the _same directory_ as where the script file is.
+
+<!-- if the script is in the `source` folder instead of the main folder:
 
   - After running the menu item above to set the working directory, 
     run this code in your console:
@@ -852,8 +861,8 @@ DF <-         # short for "data frame"
   setwd("..")  # move to the parent directory
   getwd()      # check the current working directory
   ```
-  
   - The code in the script should now run without errors.
+--> 
 
 
 
@@ -1803,7 +1812,7 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 :::
 
 
-# Exercise
+## Exercise
 
 
 
@@ -2391,12 +2400,16 @@ file.remove( c("data/data_clean.csv", "data/data_excel.csv") )
 
 <!--
 in pairs, or small groups:
-write a script (or two companion scripts) that
-- load a series of files in a folder (portions of `who`?)
-  - ue existing dataset, split up by a grouping variable (or year, etc.)
-- cleans each one to be consistent (in a function)
+write a script (or two companion scripts) to:
+- load a series of files in a folder 
+  - use existing dataset, split up by a grouping variable (or year, etc.)
+    - (portions of `who`?)
+  - will need to introduce a for loop
+- clean each one to be consistent (in a function)
 - combine them into a single dataset
-- re-arrange (pivot) the final dataset
+- Do something with the combined dataset
+  - re-arrange (pivot) the final dataset
+  - or do some simple analysis
 - compare to reference file to test success?
   - have another team / person write a script to do this?
 - export & save the file
