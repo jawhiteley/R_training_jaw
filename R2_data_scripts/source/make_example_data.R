@@ -28,7 +28,7 @@ out_path <- "../data"    # relative path to output destination
 ## Check working directory
 wd_paths <- getwd() |> strsplit("/") |> unlist()
 wd_fpath <- do.call(file.path, as.list(wd_paths))
-if (!("R2_data_scripting" %in% wd_paths))
+if (!("R2_data_scripts" %in% wd_paths))
   warning("The current working directory is not in the workshop files:\n  ", 
           wd_fpath)
 
@@ -143,6 +143,7 @@ if (T) {
   ## Version with BOM (Byte-Order Mark) and no leading lines
   ## ?file
   ## https://stackoverflow.com/a/41408091
+  ## ?write_excel_csv 
   writeChar(iconv("\ufeff", to = "UTF-8"), 
             file.path(out_path, "data_example_bom.csv"), 
             eos = NULL
@@ -153,6 +154,12 @@ if (T) {
             col_names = TRUE,
             quote = "needed", 
             na = "",
+  )
+  
+  ## Version in latin1 encoding
+  write.csv(data_mod, 
+            file=file.path(out_path, "data_example_latin1.csv"), 
+            fileEncoding = "latin1"
   )
 }
 
@@ -177,6 +184,12 @@ test_readr <- readr::read_csv(
   file.path(out_path, "data_example.csv"), 
   skip = 2
   )
+
+test_latin1_readr <- readr::read_csv(
+  file.path(out_path, "data_example_latin1.csv")#,
+  #locale = locale(encoding = "UTF-8")
+)
+
 
 ##==============================================================
 ## Load BOM version
