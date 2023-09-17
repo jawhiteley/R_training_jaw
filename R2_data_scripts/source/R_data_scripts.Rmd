@@ -1199,49 +1199,6 @@ Skip this exercise if running late.
 
 # Manipulate Data: The `dplyr` Package
 
-```{r, include=FALSE, eval=FALSE, purl=FALSE}
-<!--
-Use loaded data set for demos; `who` or `iris` data for exercises?
-  - I would like participants to practice using internal datasets for exploration & testing code.
-  - I don't want participants to get lost or derailed if they miss an exercise
-  - Explore data with tidyverse functions:
-    - identify non-numeric values in columns that should be numeric
-      - NA comparisons
-    
-* ROWS
-  + filter() ***
-    - package::function notation (to distinguish from other functions named 'filter')
-    - near()?
-    - duplicates: find, drop [after merging?]
-  + sorting: arrange() **
-    - pipes
-    - group_by()
-* COLUMNS
-  + select() **
-    * tidy-select? ?dplyr_tidy_select
-  + rename(), relocate()
-  + mutate() ***
-  * dplyr semantics (select vs mutate)?
-+ summarize() ***
-+ Cleaning: editing values systematically
-  - ifelse(), if_else() (mutate semantics and variable name scope?)
-  - case_when()
-  - factors?
-* MULTIPLE TABLES
-  + combining datasets
-    - rbind / bind_rows
-    - cbind / bind_cols
-    - join() [mention merge()?]
-    - Exercise: summarize() a dataset and merge back with original for calculation?
-      - or just group_by() & mutate()
-* data masking? (advanced) ?args_data_masking
-  * {{ var }} and when to use it?
-  - https://dplyr.tidyverse.org/articles/programming.html
-  - vignette("programming", package = "dplyr")
-+ Exercise: stick with multiple tables exercise, above?
--->
-```
-
 ## `dplyr`: a grammar of data manipulation
 
 - `dplyr` provides many functions that follow a coherent framework or "_grammar_"
@@ -1256,6 +1213,27 @@ Use loaded data set for demos; `who` or `iris` data for exercises?
   - These functions may not work on their own, 
     outside of `dplyr` verbs and `tidyr` functions
     (see `?"faq-selection-context"`{.r}).
+
+<!--
+Use loaded data set for demos; `who` or `iris` data for exercises?
+  - I would like participants to practice using internal datasets for exploration & testing code.
+  - I don't want participants to get lost or derailed if they miss an exercise
+  - Explore data with tidyverse functions:
+    - identify non-numeric values in columns that should be numeric
+      - NA comparisons
+
+* MULTIPLE TABLES
+  + combining datasets
+    - rbind / bind_rows
+    - cbind / bind_cols
+    - join() [mention merge()?]
+    - Exercise: summarize() a dataset and merge back with original for calculation?
+      - or just group_by() & mutate()
+* data masking? (advanced) ?args_data_masking
+  * {{ var }} and when to use it?
+  - https://dplyr.tidyverse.org/articles/programming.html
+  - vignette("programming", package = "dplyr")
+-->
 
 
 ## `dplyr` verbs
@@ -1321,6 +1299,9 @@ library(dplyr)
   we would have to use the special notation: `stats::filter()`{.r}
   - We won't be using the masked functions today, however.
 
+::: notes
+Feel free to skip this; we'll see it again later for tidyr::fill()
+:::
 
 
 
@@ -1361,7 +1342,7 @@ select(DF, c(Type, 4:6, Plant = PlantNum))
   add ways to `select()`{.r} columns
   _based on criteria_ (dynamically).
 
-- Some examples (see `?select` for more):
+- Some examples (see `?select` and `?dplyr_tidy_select` for more):
 
 ```{r selection helpers, results='hide'}
 select(DF, starts_with("X"))

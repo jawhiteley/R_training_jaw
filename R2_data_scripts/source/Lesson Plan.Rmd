@@ -94,6 +94,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
     -   No time for join
 
+-    factors
+
+-   sort: arrange()
+
+    -   leave to explore on their own
+
 ## Outline - NEW
 
 0.  Intro: Tidyverse overview
@@ -174,6 +180,8 @@ knitr::opts_chunk$set(echo = TRUE)
     1.  bind_rows() & bind_cols()
     2.  mention joins, but no time for examples (extras?)
     3.  **Activity: split & recombine CO2 dataset**
+        -   summarize() a dataset and merge back with original for calculation?
+        -   or just group_by() & mutate()
 
 ------------------------------------------------------------------------
 

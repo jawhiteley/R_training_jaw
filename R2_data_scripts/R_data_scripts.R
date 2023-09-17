@@ -193,8 +193,6 @@ excel_sheets(xl_path)  # get the names of the sheets
 iris_xl <- read_excel(xl_path, "iris")
 
 
-
-
 ## ----load dplyr---------------------------------------------------------------
 library(dplyr)
 

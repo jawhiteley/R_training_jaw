@@ -452,3 +452,13 @@ CANSIM / CODR data:
 
 - [An ecosystem of R packages to access and process Canadian data](https://mountainmath.ca/canssi/#1)
 - [Analyzing Canadian Demographic and Housing Data](https://mountainmath.github.io/canadian_data/)
+
+
+
+
+<!--
+* data masking? (advanced) ?args_data_masking
+  * {{ var }} and when to use it?
+  - https://dplyr.tidyverse.org/articles/programming.html
+  - vignette("programming", package = "dplyr")
+-->
