@@ -2007,24 +2007,47 @@ https://stackoverflow.com/a/56532176/1112770
 :::
 
 
-## Identify duplicate rows in example data
+## Locate duplicate rows in example data
 
-```{r distinct rows}
-DF_clean4_cols %>%
-  distinct(Type, Treatment, PlantNum) %>% 
-  nrow()
-nrow(DF_clean4_cols)
-```
-
+- We can combine dplyr verbs, 
+  like `summarize` and `filter` to quickly
+  locate issues
+  
 ```{r count rows on each group}
 DF_clean4_cols %>%
   group_by(Type, Treatment, PlantNum) %>% 
-  summarise(n = n()) %>% 
-  filter(n != 1)
+  summarise(n = n(), .groups = "drop") %>% 
+  filter(n > 1)
 ```
 
 
+## Inspect duplicate rows in example data
+
+- Luckily in this case, the missing values
+  in the duplicate rows are _not_ missing
+  in the other row
+
+```{r look at duplicate rows}
+DF_duprows <- DF_clean4_cols %>%
+  group_by(Type, Treatment, PlantNum) %>% 
+  filter(n() > 1)
+DF_duprows %>%
+  mutate(across(everything(), ~ near(.x, max(.x, na.rm = TRUE)) ))
+```
+
 ## Combine duplicate rows in example data
+
+- We can therefore collapse the duplicate rows
+  using `summarise()`{.r}
+
+```{r collapse duplicate rows}
+DF_clean <- DF_clean4_cols %>%
+  group_by(Type, Treatment, PlantNum) %>% 
+  summarise(
+    across(where(is.numeric), ~ max(.x, na.rm = TRUE)),
+    .groups = "drop"
+  )
+```
 
 
 ## Exercise

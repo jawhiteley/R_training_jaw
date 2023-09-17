@@ -402,18 +402,28 @@ DF_clean4_cols %>%
   summarise( across(everything(), ~ sum(is.na(.x))) )
 
 
-## ----distinct rows------------------------------------------------------------
-DF_clean4_cols %>%
-  distinct(Type, Treatment, PlantNum) %>% 
-  nrow()
-nrow(DF_clean4_cols)
-
-
 ## ----count rows on each group-------------------------------------------------
 DF_clean4_cols %>%
   group_by(Type, Treatment, PlantNum) %>% 
-  summarise(n = n()) %>% 
-  filter(n != 1)
+  summarise(n = n(), .groups = "drop") %>% 
+  filter(n > 1)
+
+
+## ----look at duplicate rows---------------------------------------------------
+DF_duprows <- DF_clean4_cols %>%
+  group_by(Type, Treatment, PlantNum) %>% 
+  filter(n() > 1)
+DF_duprows %>%
+  mutate(across(everything(), ~ near(.x, max(.x, na.rm = TRUE)) ))
+
+
+## ----collapse duplicate rows--------------------------------------------------
+DF_clean <- DF_clean4_cols %>%
+  group_by(Type, Treatment, PlantNum) %>% 
+  summarise(
+    across(where(is.numeric), ~ max(.x, na.rm = TRUE)),
+    .groups = "drop"
+  )
 
 
 ## ----write_csv, eval=FALSE----------------------------------------------------
