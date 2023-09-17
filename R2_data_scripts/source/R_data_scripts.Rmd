@@ -172,7 +172,11 @@ Feel free to take what you learn here
 and experiment, or explore alternatives.
 Find what works for _you_.
 
+### info
 
+I may not speak to all slides during the workshop:
+some are mostly for reference, but may be helpful 
+for the activities that you do on your own.
 
 
 # The `tidyverse` collection of packages
