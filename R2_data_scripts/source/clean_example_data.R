@@ -54,6 +54,7 @@ test_base <- read.csv(
 ## readr uses UTF-8 (& skips BOM if present) by default :)
 test_readr <- readr::read_csv(
   file.path(out_path, "data_example.csv"), 
+  name_repair = make.names,
   skip = 2
 )
 
@@ -67,7 +68,8 @@ test_readr2 <- read_csv(
 ##==============================================================
 ## Clean
 
-## Use this for testing
+## Use this for testing 
+## --- I actually dropped read.csv from the main workshop, and used a read_csv version
 messy <- test_base
 
 ## Clean `Type` column
