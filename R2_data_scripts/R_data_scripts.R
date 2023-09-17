@@ -126,7 +126,7 @@ read_csv(
   name_repair = "universal" # make names unique and syntactic
 )
 
-DF <- read_csv(
+read_csv(
   DF_path, skip = 2, 
   name_repair = make.names  # a function: same as read.csv()
 )  
@@ -167,6 +167,20 @@ read_csv(DF_path, skip = 2,
          )
 
 
+## ----read_csv() grouping_mark, message=FALSE, warning=FALSE-------------------
+DF_comma <- read_csv(DF_path, skip = 2, 
+         locale = locale(grouping_mark = "")
+)
+DF_comma[["675"]]
+
+
+## ----read_csv() version to work with------------------------------------------
+DF <- read_csv(
+  DF_path, skip = 2, 
+  name_repair = make.names
+)  
+
+
 ## ----readxl demo--------------------------------------------------------------
 library(readxl)    # load the package
 ## Documentation: ?read_excel  help(package="readxl")
@@ -175,8 +189,6 @@ xl_path <- readxl_example("datasets.xlsx")
 excel_sheets(xl_path)  # get the names of the sheets
 ## read a specified sheet from the Excel file
 iris_xl <- read_excel(xl_path, "iris")
-
-
 
 
 

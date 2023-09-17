@@ -795,18 +795,11 @@ read_csv(
   name_repair = "universal" # make names unique and syntactic
 )
 
-DF <- read_csv(
+read_csv(
   DF_path, skip = 2, 
   name_repair = make.names  # a function: same as read.csv()
 )  
 ```
-
-- We will use "make.names" to make *syntactically valid* names
-  that are easier to work with later.
-
-::: notes
-Skip these details if running behind.
-:::
 
 
 ## `read_csv()`: guessing column types
@@ -876,12 +869,56 @@ read_csv(DF_path, skip = 2,
 ```
 
 ::: notes
+Skip these details if running behind.
+
 The example actually produces a warning:
 The missing values in lines 12 & 13 (including header row)
 are read as an empty character string (""),
 then dropped when coerced to numeric,
 triggering the usual warning.
 :::
+
+
+## `read_csv()`: number formats
+
+- `read_csv()`{.r} will attempt to read numbers with
+  "." as the decimal, and "," between large numbers.
+
+- But our example data includes a _mix_ of these.
+  - This makes it difficult to choose one approach for everything,
+    but one option in this case is to set the 'grouping' mark to an empty string
+
+```{r read_csv() grouping_mark, message=FALSE, warning=FALSE}
+DF_comma <- read_csv(DF_path, skip = 2, 
+         locale = locale(grouping_mark = "")
+)
+DF_comma[["675"]]
+```
+
+- With this option, column '`675`' is now *character* instead of *numeric*,
+  With the commas intact.
+
+- See also the '`decimal_mark`' argument of `locale()`{.r} (`?locale`)
+
+::: notes
+Skip these details if running behind.
+:::
+
+
+## `read_csv()`: Read data to clean
+
+- For the rest of this workshop, we will work with this version 
+  of the example file:
+
+```{r read_csv() version to work with}
+DF <- read_csv(
+  DF_path, skip = 2, 
+  name_repair = make.names
+)  
+```
+
+- We will use "make.names" to make *syntactically valid* names
+  that are easier to work with later.
 
 
 ## The `readxl` package
@@ -899,13 +936,13 @@ iris_xl <- read_excel(xl_path, "iris")
 ```
 
 
-## Example 3: read a messy Excel file
+## **Activity 2**: read a messy Excel file
 
 - `read_excel()`{.r} has many of the same arguments as 
   `read_csv()`{.r} to control how data is imported.
 
 - Use the script file in the "`examples`" folder as a starting point:
-  - "`R2_exercise_3.R`"
+  - "`R2_exercise_2.R`"
 
 ```r
 XL_path <- readxl_example("deaths.xlsx")
@@ -928,36 +965,6 @@ Skip this exercise if running late.
 
 
 # Re-using your code: scripts and other files
-
-```{r, include=FALSE, eval=FALSE, purl=FALSE}
-<!--
-√ What is a script? Why use a script?
-  √ Make a simple script that does what we've done so far?
-√ The comment character '#'
-- never use setwd() in a script!
-√ > Point to script file of all the code in this workshop to follow along from here onward.
-+ Housekeeping: `rm(list=ls())`
-+ Flow-control
-  - if () else
-    - message(), warning(), stop()
-  - for () loop
-    - apply() functions
-+ defining your own functions
-  - variable scope, environments?
-  - anonymous functions? (*introduce when it becomes relevant*, later)
-  - write a custom function for comparing a dataset to CO2, to check our work?
-    - incorporate conditional execution, messages, warnings?
-  * write a custom function for comparing values in two vectors with NAs
-    - http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
-    - https://stackoverflow.com/questions/37610056/how-to-treat-nas-like-values-when-comparing-elementwise-in-r
-√ Style Guides
-  - https://style.tidyverse.org/syntax.html
-  - https://google.github.io/styleguide/Rguide.html
-+ Rmd, Notebooks? (save for later)
-  - Brief mention, demo
-- Projects?
--->
-```
 
 ## Re-using code
 

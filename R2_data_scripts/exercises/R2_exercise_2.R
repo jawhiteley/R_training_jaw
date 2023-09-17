@@ -1,28 +1,24 @@
 ################################################################
-### Exercise 2: compare `read.csv` and `read_csv` from `readr`
+### Exercise 3: read a messy Excel file
 ### "A Short Introduction to Working With Data in R"
 ### R v4.3.1
 ################################################################
-## Set your working directory to the _parent directory_
-## of where this file is
+## No need to change your working directory for this one
+## --- we'll use an example that comes with the `readxl` package
 
 # Libraries ---------------------------------------------------------------
 
-library(readr)
+library(readxl)
 
 
 # LOAD data ---------------------------------------------------------------
 
-DF_path <- file.path("data", "data_example.csv")
+XL_path <- readxl_example("deaths.xlsx")
+XL_sheets <- excel_sheets(XL_path)
 
-DF_base  <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
-DF_readr <- read_csv(DF_path, skip = 2)
+## Basic version: doesn't quite work
+XL <- read_excel(XL_path, sheet = XL_sheets[1])
 
-class(DF_base)
-class(DF_readr)
+## Modify the read_excel command with other arguments to get a better result
+# ?read_excel for arguments and options
 
-str(DF_base)
-str(DF_readr)
-
-## Add more commands to explore the loaded datasets
-## And comments to explain your approach and document your findings
