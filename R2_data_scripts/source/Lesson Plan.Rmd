@@ -109,16 +109,18 @@ knitr::opts_chunk$set(echo = TRUE)
     4.  **Activity: Find the issues** [with a script? optional]
 3.  correct some issues by re-loading with options
     1.  encoding (more in extras)
+        1.  **Mini-Activity: Read latin1-encoded file and look at the difference**
     2.  names
     3.  column types
     4.  missing values?
     5.  locale: grouping_mark (for commas) [or just clean by /10 whenever \>100]
 4.  Scripts
     1.  Make a simple script
-    2.  Housekeeping: rm(list=ls())
-    3.  open a script for the workshop code
-    4.  Run code from the script
-    5.  **Activity: readxl** in a script [need info on options, check results]
+    2.  *Comments*
+    3.  Housekeeping: rm(list=ls())
+    4.  open a script for the workshop code
+    5.  Run code from the script
+    6.  **Activity: readxl** in a script [need info on options, check results]
 5.  Explore with dplyr: select() & filter()
     1.  dplyr intro & overview
         1.  load dplyr

@@ -578,75 +578,6 @@ View(DF)
 <!-- RStudio View screenshot -->
 
 
-## Encoding non-English characters {.shrink}
-
-```{r reproduce windows latin1, include=FALSE, results='hide', purl = FALSE}
-## Reproduce Windows encoding (bad)
-DF_win <- read.csv(DF_path, skip = 2, encoding = "latin1")
-## Extract example of messed up encoding
-latin1_ex <- DF_win |>
-  dplyr::select(Type) |>
-  dplyr::filter( ! Type %in% c("Quebec", "Mississippi") ) |> 
-  unlist() |> unique()
-```
-
-- If you are running R in Windows, you may notice that 
-  some values of the `Type` column look strange:
-  
-  "**`r latin1_ex`**" instead of "Québec"
-
-- There is nothing wrong with the file 
-  --- this indicates a _mismatch_ between 
-  the *encoding* used to write the file,
-  and what $\R$ used to read it.
-
-- Even though '`.csv`' files are plain text,
-  letters (especially non-english characters)
-  can be *encoded* in different ways
-  to represent them in the computer.
-  
-- "[`UTF-8`](https://en.wikipedia.org/wiki/UTF-8)" 
-  is a character encoding standard designed to handle many non-english characters.
-
-  - The example data file was written in "`UTF-8`"
-  - Most OSes and many programs use "`UTF-8`" encoding by default.
-  - But *Windows* uses "`latin1`" by default,
-    and so does $\R$ (< [4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html)) when running in Windows.
-  - Starting with [v4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html), $\R$ uses "`UTF-8`" as the default encoding on Windows.
-
-
-## Read a csv file with a different encoding {.shrink}
-
-- You can specify the encoding used in the file 
-  with the '`encoding`' argument of `read.csv()`{.r}
-  
-```{r read.csv() with encoding}
-DF <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
-```
-
-- If reading a file that was 
-  created on a Windows computer and encoded in "`latin1`",
-  on a different system (mac, Unix, linux, etc.)
-  --- or a recent version of $\R$ (>=4.2) on Windows ---
-  you can specify that, too:
-  
-``` r
-read.csv(DF_path, skip = 2, encoding = "latin1")
-```
-
-### Microsoft Excel on Windows
-
-Excel in Windows is capable of saving files in `.csv` format with "`UTF-8`" encoding,
-but it adds extra contents to the file (a "BOM") 
-that makes it difficult to read with `read.csv()`{.r}.  
-See the "Extras" document from this workshop for details on how to deal with that.  
-_Or use the `readr` package (coming up) and don't worry about it._ :)
-
-::: notes
-See ?read.csv, ?Encoding, ?file, and other documentation for details.
-:::
-
-
 ## Know Your Data
 
 - These functions are useful for exploring different aspects of a loaded data set
@@ -673,8 +604,12 @@ From the documentation:
 > was measured at several levels of ambient CO2 concentration. 
 > Half the plants of each type were chilled overnight before the experiment was conducted.
 
+```{r load internal CO2 data}
+data(CO2)
+```
 
-## Exercise 1: what's wrong with this data?
+
+## **Activity** 1: what's wrong with this data?
 
 The original dataset has the following properties (`str(CO2)`{.r}):
 
@@ -708,7 +643,7 @@ with the data set you loaded?
 _**Spoiler alert:** suggested answers on the next slide._
 
 
-## Exercise 1: what _is_ wrong with this data {.shrink}
+## Activity 1: what _is_ wrong with this data {.shrink}
 
 - The data we loaded has different dimensions!
   - Values from the `conc` column are shown as *column names*
@@ -735,6 +670,240 @@ _**Spoiler alert:** suggested answers on the next slide._
   
 _There are other differences you may have noticed:
  we'll look at ways to identify these automatically later._
+
+
+
+
+# Control how data is read: `read_csv` options
+
+## Encoding non-English characters {.shrink}
+
+```{r reproduce windows latin1, include=FALSE, results='hide', purl = FALSE}
+## Reproduce Windows encoding (bad)
+DF_win <- read.csv(DF_path, skip = 2, encoding = "latin1")
+## Extract example of messed up encoding
+latin1_ex <- DF_win |>
+  dplyr::select(Type) |>
+  dplyr::filter( ! Type %in% c("Quebec", "Mississippi") ) |> 
+  unlist() |> unique()
+```
+
+- If you are running R in Windows, you may notice that 
+  some text values (character) look strange:
+  
+  "**`r latin1_ex`**" instead of "Québec"
+
+- There is nothing wrong with the file 
+  --- this indicates a _mismatch_ between 
+  the *encoding* used to write the file,
+  and what $\R$ used to read it.
+
+- Even though '`.csv`' files are plain text,
+  letters (especially non-english characters)
+  can be *encoded* in different ways
+  to represent them in the computer.
+  
+- "[`UTF-8`](https://en.wikipedia.org/wiki/UTF-8)" 
+  is a character encoding standard designed to handle many non-english characters.
+
+  - The example data file was written in "`UTF-8`"
+  - Most OSes and many programs use "`UTF-8`" encoding by default.
+  - But *Windows* uses "`latin1`" by default,
+    and so does $\R$ (< [4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html)) when running in Windows.
+  - Starting with [v4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html), $\R$ uses "`UTF-8`" as the default encoding on Windows.
+
+
+## Read a csv file with a different encoding {.shrink}
+
+- You can specify the encoding used in the file 
+  with the '`locale`' argument of `read_csv()`{.r}
+  
+```{r read_csv() with encoding, results='hide', message=FALSE}
+read_csv(DF_path, skip = 2, 
+         locale = locale(encoding = "latin1")
+)
+```
+
+- If reading a file that was 
+  created on a Windows computer and encoded in "`latin1`",
+  you can specify that, too:
+  
+``` r
+read_csv(DF_path, skip = 2, 
+         locale = locale(encoding = "latin1")
+)
+```
+
+### Microsoft Excel on Windows
+
+Excel in Windows is capable of saving files in `.csv` format,
+but may use "`latin1`" encoding.  
+If it saves using "`UTF-8`" encoding,
+it may add extra contents to the file (a "BOM") 
+that makes it difficult to read with `read.csv()`{.r}.  
+See the "Extras" document from this workshop for details on how to deal with that.  
+_The `readr` package is not affected by the BOM._ :)
+
+::: notes
+See ?read.csv, ?Encoding, ?file, and other documentation for details.
+:::
+
+## `read_csv()`: column names
+
+- The default for `read_csv()`{.r} is to 
+  ensure all column names are _unique_,
+  but not necessarily *syntactically valid*
+
+- You can still refer to columns with syntactically 'invalid' names:
+  - use functions that allow names as characters,
+  - quote names with backticks (``` ` ```{.r})
+
+```{r names with backticks, results='hide'}
+DF[, "95"]  # still a `data.frame` (with 1 column)
+DF[["95"]]  # vector
+DF$`95`     # quoted name
+```
+
+  
+## `read_csv()`: treat column names
+
+- Change how `read_csv()`{.r} treats column names
+  with the '`name_repair`' argument
+
+```{r read_csv() name_repair, results='hide', message=FALSE}
+read_csv(
+  DF_path, skip = 2, 
+  name_repair = "universal" # make names unique and syntactic
+)
+
+DF <- read_csv(
+  DF_path, skip = 2, 
+  name_repair = make.names  # a function: same as read.csv()
+)  
+```
+
+- We will use "make.names" to make *syntactically valid* names
+  that are easier to work with later.
+
+::: notes
+Skip these details if running behind.
+:::
+
+
+## `read_csv()`: guessing column types
+
+- By default, `read_csv()`{.r} prints a message summarizing what it did,
+  including _guessing the data type_ of each column.
+  
+  - _`.csv` files do not include this information as metadata_
+
+- Control how columns are guessed with the `guess_max` argument:
+
+```{r read_csv() guess examples, results = 'hide', message=FALSE}
+# use the first 2 rows to guess column types (less successful)
+  read_csv(DF_path, skip = 2, guess_max = 2)
+# use *all* rows to guess column types
+# - slow: has to read *every row* twice.
+  read_csv(DF_path, skip = 2, guess_max = Inf)
+```
+
+
+## `read_csv()`: specify column types
+
+- If you know what the column types are (or should be),
+  you can tell `read_csv()`{.r} what they are
+  with the `col_types` argument.
+  - for large datasets, this can be faster: read rows once
+  - avoid bad guesses.
+  
+```{r read_csv() column spec, results = 'hide', message=FALSE, warning=FALSE}
+## Specify column types with a compact string
+read_csv(DF_path, skip = 2, col_types = "cccddddddd")
+
+## Or use a `column specification`
+# extract specification from tibble
+col_spec <- spec(DF)
+# change a column to numeric (double)
+col_spec$cols[["500"]] <- col_double()
+read_csv(DF_path, skip = 2, col_types = col_spec)
+
+# ?read_csv for more options
+```
+
+
+## `read_csv()`: all columns as strings
+
+- In extreme cases, you can read everything as '`character`',  
+  then clean and coerce to other data types within $\R$
+
+```{r read_csv() all columns as character}
+# read all columns as character
+read_csv(DF_path, skip = 2, 
+         col_types = cols(.default = col_character())
+         )
+```
+
+
+## `read_csv()`: missing values
+
+- Use the `na` argument to supply a list of values
+  to replace with `NA`{.r}.
+  - This is applied to **all** columns.
+
+```{r read_csv() na argument, message=FALSE, warning=FALSE}
+read_csv(DF_path, skip = 2, 
+         na = c(".", "NA")  # will not replace empty strings ("") with NA
+         )
+```
+
+::: notes
+The example actually produces a warning:
+The missing values in lines 12 & 13 (including header row)
+are read as an empty character string (""),
+then dropped when coerced to numeric,
+triggering the usual warning.
+:::
+
+
+## The `readxl` package
+
+Provides functions for reading from (but not writing to) Microsoft\ Excel files (`.xls` and `.xlsx`)
+
+```{r readxl demo}
+library(readxl)    # load the package
+## Documentation: ?read_excel  help(package="readxl")
+## use an example included in the package
+xl_path <- readxl_example("datasets.xlsx")
+excel_sheets(xl_path)  # get the names of the sheets
+## read a specified sheet from the Excel file
+iris_xl <- read_excel(xl_path, "iris")
+```
+
+
+## Example 3: read a messy Excel file
+
+- `read_excel()`{.r} has many of the same arguments as 
+  `read_csv()`{.r} to control how data is imported.
+
+- Use the script file in the "`examples`" folder as a starting point:
+  - "`R2_exercise_3.R`"
+
+```r
+XL_path <- readxl_example("deaths.xlsx")
+XL <- read_excel(XL_path, ...)
+```
+
+. . .
+
+### Tip
+
+Use the '`range`' argument to read data from a specific range in a sheet, 
+ignoring contents outside this range 
+(rows above & below, columns before & after)
+
+::: notes
+Skip this exercise if running late.
+:::
 
 
 
@@ -976,275 +1145,6 @@ DF <-         # short for "data frame"
   ```
   - The code in the script should now run without errors.
 --> 
-
-
-
-
-
-# Load Data: The `readr` & `readxl` Packages
-
-## The `readr` package: reading data
-
-+--------------------+-----------------------------+--------------------+-----------------------+
-| **`readr`**                                      | **`base R`**                               |
-+====================+=============================+====================+=======================+
-| `read_csv()`{.r}   | comma separated values      | `read.csv()`{.r}   |                       |
-+--------------------+-----------------------------+--------------------+-----------------------+
-| `read_csv2()`{.r}  | '`;`' as delimiter\         | `read.csv2()`{.r}  | '`,`' for decimals,\  |
-|                    | (allows '`,`' for decimals) |                    | '`;`' as separator    |
-+--------------------+-----------------------------+--------------------+-----------------------+
-| `read_tsv()`{.r}   | tab separated values        | `read.delim()`{.r} | delimited files       |
-|                    |                             |                    | (tab is default)      |
-+--------------------+-----------------------------+--------------------+-----------------------+
-| `read_delim()`{.r} | (generic) files             | `read.table()`{.r} |                       |
-|                    | with any delimiter          |                    |                       |
-+--------------------+-----------------------------+--------------------+-----------------------+
-| `read_fwf()`{.r}   | fixed width files           | `read.fwf()`{.r}   |                       |
-+--------------------+-----------------------------+--------------------+-----------------------+
-
-`readr` descriptions based on [#dsbox](https://datasciencebox.org/course-materials/_slides/u2-d12-data-import/u2-d12-data-import#5)
-
-
-## Read a csv file using `read_csv()`
-
-- In keeping with Tidyverse conventions, functions are names with words separated by "`_`" 
-  - instead of "`.`" or `camelCase`, as in many base $\R$ functions
-
-```{r read_csv}
-library(readr)
-DF_readr <- read_csv(DF_path, skip = 2)
-```
-
-
-## Exercise 2: compare results from `read.csv()` and `read_csv()`
-
-- Use the functions we [learned earlier](#head-peek-at-the-first-few-rows) 
-  to inspect and compare the results of 
-  `read.csv()` (in base $\R$) and 
-  `read_csv()` (from the `readr` package)
-
-- There's a script file in the `exercises` folder to get you started.
-
-  - "`R2_exercise_2.R`"
-
-### **Spoiler alert:**
-
-_suggested answers on the next slide._
-
-
-## Exercise 2: comparison of `read.csv()` and `read_csv()`
-
-- The column names are different
-  - `read.csv()`{.r} automatically applies `make.names()`{.r} to the column names 
-    to make 'syntactically valid' names to use in $\R$.
-  - convenient, but not always what we want.
-  - there are other 'cleaning' functions available 
-    (e.g.,\ `clean_names()`{.r} in the [`janitor` package](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html))
-
-- `read_csv()`{.r} automatically replaced empty strings 
-  in the `Treatment` column with `NA`{.r}s.
-
-- `read_csv()`{.r} left the '`675`' column as numeric,
-  but ignored the commas, resulting in larger numbers.
-
-- `read_csv()`{.r} produces a `tbl_df` (*tibble*) object,
-  not a simple `data.frame`
-
-
-## Tibbles: `data.frame`s reimagined
-
-* A ['tibble'](https://tibble.tidyverse.org/) (`class()`{.r} == `"tbl_df"`) is 
-  "a modern reimagining of the data.frame".
-  - See the [package documentation](https://tibble.tidyverse.org/) for details.
-
-+ Many tidyverse functions produce tibbles by default.
-
-+ **Tibbles are _also_ `data.frame`s**, and *inherit* from that class.
-  - functions that work with `data.frame`s should also work with tibbles.
-  - but some may behave differently (by design).
-  - for example, `print()`ing a tibble includes slightly more information,
-    and only prints a few rows and columns by default,
-    preventing large datasets from overwhelming your console.
-  - when indexing a tibble, it will _not_ do partial matching on column names,
-    making it clear if a column exists or not
-
-+ For most purposes, tibbles are interchangeable with `data.frame`s.
-  - A tibble can be converted to a 'plain' `data.frame` 
-    with `as.data.frame()`{.r} if necessary.
-
-
-## Tibble examples
-
-```{r tibble examples}
-print(DF_readr, n=2)
-is.null(DF$Treat)
-is.null(DF_readr$Treat)
-```
-
-
-## `read_csv()`: column names
-
-- The default for `read_csv()`{.r} is to 
-  ensure all column names are _unique_,
-  but not necessarily *syntactically valid*
-
-- You can still refer to columns with syntactically 'invalid' names:
-  - use functions that allow names as characters,
-  - quote names with backticks (``` ` ```{.r})
-
-```{r names with backticks, results='hide'}
-DF_readr[, "95"]  # still a `data.frame` (with 1 column)
-DF_readr[["95"]]  # vector
-DF_readr$`95`     # quoted name
-```
-
-  
-## `read_csv()`: treat column names
-
-- Change how `read_csv()`{.r} treats column names
-  with the '`name_repair`' argument
-
-```{r read_csv() name_repair, results='hide', message=FALSE}
-read_csv(
-  DF_path, skip = 2, 
-  name_repair = "universal" # make names unique and syntactic
-)
-
-read_csv(
-  DF_path, skip = 2, 
-  name_repair = make.names  # a function: same as read.csv()
-)  
-```
-
-::: notes
-Skip these details if running behind.
-:::
-
-
-## `read_csv()`: guessing column types
-
-- By default, `read_csv()`{.r} prints a message summarizing what it did,
-  including _guessing the data type_ of each column.
-  
-  - _`.csv` files do not include this information as metadata_
-
-- Control how columns are guessed with the `guess_max` argument:
-
-```{r read_csv() guess examples, results = 'hide', message=FALSE}
-# use the first 2 rows to guess column types (less successful)
-  read_csv(DF_path, skip = 2, guess_max = 2)
-# use *all* rows to guess column types
-# - slow: has to read *every row* twice.
-  read_csv(DF_path, skip = 2, guess_max = Inf)
-```
-
-
-## `read_csv()`: specify column types
-
-- If you know what the column types are (or should be),
-  you can tell `read_csv()`{.r} what they are
-  with the `col_types` argument.
-  - for large datasets, this can be faster: read rows once
-  - avoid bad guesses.
-  
-```{r read_csv() column spec, results = 'hide', message=FALSE, warning=FALSE}
-## Specify column types with a compact string
-read_csv(DF_path, skip = 2, col_types = "cccddddddd")
-
-## Or use a `column specification`
-# extract specification from tibble
-col_spec <- spec(DF_readr)
-# change a column to numeric (double)
-col_spec$cols[["500"]] <- col_double()
-read_csv(DF_path, skip = 2, col_types = col_spec)
-
-# ?read_csv for more options
-```
-
-
-## `read_csv()`: all columns as strings
-
-- In extreme cases, you can read everything as '`character`',  
-  then clean and coerce to other data types within $\R$
-
-```{r read_csv() all columns as character}
-# read all columns as character
-read_csv(DF_path, skip = 2, 
-         col_types = cols(.default = col_character())
-         )
-```
-
-
-## `read_csv()`: missing values
-
-- Use the `na` argument to supply a list of values
-  to replace with `NA`{.r}.
-  - This is applied to **all** columns.
-
-```{r read_csv() na argument, message=FALSE, warning=FALSE}
-read_csv(DF_path, skip = 2, 
-         na = c(".", "NA")  # will not replace empty strings ("") with NA
-         )
-```
-
-::: notes
-The example actually produces a warning:
-The missing values in lines 12 & 13 (including header row)
-are read as an empty character string (""),
-then dropped when coerced to numeric,
-triggering the usual warning.
-:::
-
-
-## The `readxl` package
-
-Provides functions for reading from (but not writing to) Microsoft\ Excel files (`.xls` and `.xlsx`)
-
-```{r readxl demo}
-library(readxl)    # load the package
-## Documentation: ?read_excel  help(package="readxl")
-## use an example included in the package
-xl_path <- readxl_example("datasets.xlsx")
-excel_sheets(xl_path)  # get the names of the sheets
-## read a specified sheet from the Excel file
-iris_xl <- read_excel(xl_path, "iris")
-```
-
-
-## Example 3: read a messy Excel file
-
-- `read_excel()`{.r} has many of the same arguments as 
-  `read_csv()`{.r} to control how data is imported.
-
-- Use the script file in the "`examples`" folder as a starting point:
-  - "`R2_exercise_3.R`"
-
-```r
-XL_path <- readxl_example("deaths.xlsx")
-XL <- read_excel(XL_path, ...)
-```
-
-. . .
-
-### Tip
-
-Use the '`range`' argument to read data from a specific range in a sheet, 
-ignoring contents outside this range 
-(rows above & below, columns before & after)
-
-::: notes
-Skip this exercise if running late.
-:::
-
-
-<!--
-√ read_csv()
-  √ compare results with read.csv()
-  √ Exercise: use known functions to identify differences in a separate script file?
-  √ options for controlling behaviour: clumn names, column classes, NAs
-√ read_excel() example (short, built-in)
--->
-
 
 
 

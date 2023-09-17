@@ -127,26 +127,68 @@ is.null(DF_readr$Treat)
 
 
 
-# Downloading Data From the Internet
+# File Encoding, Windows, & Microsoft Excel^TM^
 
-```{=html}
-<!--
-- You can use read.csv & read_csv on urls directly!
-  - the same example file, directly from the URL on GitHub
-- downloading data from the internet (to a temp dir)
-  - the same example file, directly from the URL on GitHub
-  - download.file()
-- CANSIM / NDMr / other package?
--->
+## Encoding non-English characters {.shrink}
+
+```{r reproduce windows latin1, include=FALSE, results='hide', purl = FALSE}
+## Reproduce Windows encoding (bad)
+DF_win <- read.csv(DF_path, skip = 2, encoding = "latin1")
+## Extract example of messed up encoding
+latin1_ex <- DF_win |>
+  dplyr::select(Type) |>
+  dplyr::filter( ! Type %in% c("Quebec", "Mississippi") ) |> 
+  unlist() |> unique()
+```
+
+- If you are running $\R$ in Windows, you may notice that 
+  some text values (character) look strange when read
+  with `read.csv()`{.r}:
+  
+  "**`r latin1_ex`**" instead of "Québec"
+
+- There is nothing wrong with the file 
+  --- this indicates a _mismatch_ between 
+  the *encoding* used to write the file,
+  and what $\R$ used to read it.
+
+- Even though '`.csv`' files are plain text,
+  letters (especially non-english characters)
+  can be *encoded* in different ways
+  to represent them in the computer.
+  
+- "[`UTF-8`](https://en.wikipedia.org/wiki/UTF-8)" 
+  is a character encoding standard designed to handle many non-english characters.
+
+  - The example data file was written in "`UTF-8`"
+  - Most OSes and many programs use "`UTF-8`" encoding by default.
+  - But *Windows* uses "`latin1`" by default,
+    and so does $\R$ (< [4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html)) when running in Windows.
+  - Starting with [v4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html), $\R$ uses "`UTF-8`" as the default encoding on Windows.
+
+
+## Read a csv file with a different encoding {.shrink}
+
+- You can specify the encoding used in the file 
+  with the '`encoding`' argument of `read.csv()`{.r}
+  
+```{r read.csv() with encoding}
+DF <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
+```
+
+- If reading a file that was 
+  created on a Windows computer and encoded in "`latin1`",
+  on a different system (mac, Unix, linux, etc.)
+  --- or a recent version of $\R$ (>=4.2) on Windows ---
+  you can specify that, too:
+  
+``` r
+read.csv(DF_path, skip = 2, encoding = "latin1")
 ```
 
 
+## Encoding & Microsoft Excel^TM^
 
-
-# File Encoding & Microsoft Excel^TM^
-
-- Many OSes and applications encode text using "`UTF-8`" by default.
-- Windows uses "`latin1`" encoding by default.
 - Excel can save a `.csv` file using `UTF-8` encoding,
   but in doing so, it adds "[**b**yte **o**rder **m**ark](https://en.wikipedia.org/wiki/Byte_order_mark)" ("BOM")
   to the file.
@@ -166,7 +208,7 @@ is.null(DF_readr$Treat)
     or [importing it using commands in the "Data" ribbon / menu](https://stackoverflow.com/questions/6002256/is-it-possible-to-force-excel-recognize-utf-8-csv-files-automatically)
 
 
-## Read a file with a BOM using `read.csv()`
+## Read a file with a BOM using `read.csv()` in $\R$
 
 - Reading a `.csv` file with a BOM using the usual method 
   may cause [the BOM to be included in the name of the first column](https://stackoverflow.com/questions/39593637/dealing-with-byte-order-mark-bom-in-r)
@@ -288,6 +330,22 @@ read_csv(Data, "data.csv",
 ```
 
 - See `?readr::read_csv` and `?readr::locale` for details.
+
+
+
+
+# Downloading Data From the Internet
+
+```{=html}
+<!--
+- You can use read.csv & read_csv on urls directly!
+  - the same example file, directly from the URL on GitHub
+- downloading data from the internet (to a temp dir)
+  - the same example file, directly from the URL on GitHub
+  - download.file()
+- CANSIM / NDMr / other package?
+-->
+```
 
 
 

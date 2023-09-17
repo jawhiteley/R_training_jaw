@@ -95,29 +95,22 @@ summary(DF)
 plot(DF)
 
 
-
-
-## ----read.csv() with encoding-------------------------------------------------
-DF <- read.csv(DF_path, skip = 2, encoding = "UTF-8")
+## ----load internal CO2 data---------------------------------------------------
+data(CO2)
 
 
 
 
-## ----read_csv-----------------------------------------------------------------
-library(readr)
-DF_readr <- read_csv(DF_path, skip = 2)
-
-
-## ----tibble examples----------------------------------------------------------
-print(DF_readr, n=2)
-is.null(DF$Treat)
-is.null(DF_readr$Treat)
+## ----read_csv() with encoding, results='hide', message=FALSE------------------
+read_csv(DF_path, skip = 2, 
+         locale = locale(encoding = "latin1")
+)
 
 
 ## ----names with backticks, results='hide'-------------------------------------
-DF_readr[, "95"]  # still a `data.frame` (with 1 column)
-DF_readr[["95"]]  # vector
-DF_readr$`95`     # quoted name
+DF[, "95"]  # still a `data.frame` (with 1 column)
+DF[["95"]]  # vector
+DF$`95`     # quoted name
 
 
 ## ----read_csv() name_repair, results='hide', message=FALSE--------------------
@@ -126,7 +119,7 @@ read_csv(
   name_repair = "universal" # make names unique and syntactic
 )
 
-read_csv(
+DF <- read_csv(
   DF_path, skip = 2, 
   name_repair = make.names  # a function: same as read.csv()
 )  
@@ -146,7 +139,7 @@ read_csv(DF_path, skip = 2, col_types = "cccddddddd")
 
 ## Or use a `column specification`
 # extract specification from tibble
-col_spec <- spec(DF_readr)
+col_spec <- spec(DF)
 # change a column to numeric (double)
 col_spec$cols[["500"]] <- col_double()
 read_csv(DF_path, skip = 2, col_types = col_spec)
@@ -175,6 +168,8 @@ xl_path <- readxl_example("datasets.xlsx")
 excel_sheets(xl_path)  # get the names of the sheets
 ## read a specified sheet from the Excel file
 iris_xl <- read_excel(xl_path, "iris")
+
+
 
 
 
