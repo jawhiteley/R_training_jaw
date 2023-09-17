@@ -109,14 +109,14 @@ knitr::opts_chunk$set(echo = TRUE)
     4.  **Activity: Find the issues** [with a script? optional]
 3.  correct some issues by re-loading with options
     1.  encoding (more in extras)
-        1.  **Mini-Activity: Read latin1-encoded file and look at the difference**
+        1.  Mini-Activity: Read latin1-encoded file and look at the difference
     2.  names
     3.  column types
     4.  missing values?
     5.  locale: grouping_mark (for commas) [or just clean by /10 whenever \>100]
 4.  Scripts
     1.  Make a simple script
-    2.  *Comments*
+    2.  *Comments [the sooner this gets introduced, the sooner I can use them in examples!]*
     3.  Housekeeping: rm(list=ls())
     4.  open a script for the workshop code
     5.  Run code from the script

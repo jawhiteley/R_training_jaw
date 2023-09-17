@@ -401,6 +401,51 @@ I personally prefer the `openxlsx` package, because in my experience, the depend
 The main trade-off is the openxlsx cannot write to `.xls` files (Excel 97/2000/XP/2003 format) and has fewer formatting options than other packages --- but if you need that much formatting, why not produce a formatted report with R Markdown?
 :::
 
+
+
+
+# Programming
+
+## User-defined function {.shrink}
+
+- Define your own functions with the `function`{.r} function!
+  - function code goes between braces: `{}`{.r}
+  - specify what value is returned with the `return()`{.r} function
+  
+```{r user-defined function, echo=-(1:2)}
+# http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/
+# https://github.com/jawhiteley/R-lib/blob/master/functions/compare-na.R
+'%==%' <- function (v1, v2) {
+  same <- (v1 == v2) | (is.na(v1) & is.na(v2))
+  same[is.na(same)] <- FALSE
+  return(same)                 # return the result
+}
+
+# test it:
+c(1, NA, 3, 4 , NaN) %==% c(1, NA, 1, NA, NaN)
+c(1, NA, 3, 4 , NaN)  ==  c(1, NA, 1, NA, NaN)
+```
+
+- This code defines a function that compares two vectors,
+  accounting for missing values (`NA`{.r})
+
+
+## An infix operator
+
+```{r infix operator}
+c(1, NA, 3, 4 , NaN) %==% c(1, NA, 1, NA, NaN)
+```
+
+- This function is also a special type called an "*infix operator*",
+  which goes between two objects (it's arguments) like an operator, 
+  instead of a 'typical' function call
+  
+  - it has exactly **2** arguments (lhs, rhs)
+  - the name begins _and_ ends with a percent symbol (`%`)
+  
+
+
+
 ## References (Extras)
 
 CANSIM / CODR data:
