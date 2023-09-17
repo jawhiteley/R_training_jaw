@@ -128,7 +128,7 @@ _If you are comfortable sharing_:
 - Export data from R to external files
 - Data frames
 - Clean data
-  - re-arrange & modify rows
+  - Re-arrange & modify rows
   - Add & change columns
   - Edit values systematically
   - Change data types
@@ -149,7 +149,7 @@ _If you are comfortable sharing_:
 
 - Some are more portable (work on multiple systems)
 
-- But there is rarely as single 'best way'.
+- But there is rarely a single 'best way'.
 
 This workshop focuses on a coherent approach,
 that can be learned more easily and extended as needed
