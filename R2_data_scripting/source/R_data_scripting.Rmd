@@ -2153,6 +2153,82 @@ DF_clean <- DF_clean5_rows %>%
 ```
 
 
+## Long vs wide
+
+- Our data frame is looking clean!  
+But it still has one problem: 
+it's in 'wide' format
+
+```{r example data is wide}
+DF_clean %>% select(where(is.numeric)) %>% names()
+```
+
+- All the numeric columns are values of a hidden variable, '`uptake`'
+
+- The names of these columns are actually _values_ 
+  of another hidden variable, '`conc`' (concentration)
+  
+- This is **not** 'tidy'
+
+  - most plotting functions will not expect column names
+    as values
+    
+  - analysis is more complicated:
+    relationships are between the *column names*
+    and *values*
+
+
+## Pivot
+
+- We can make this data 'tidy' by *pivoting* to a longer structure
+  - then convert the former column names to numeric values.
+
+```{r pivot longer}
+DF_tidy <- DF_clean %>% 
+  pivot_longer(
+    cols = where(is.numeric),  # columns to pivot
+    names_to = "conc",         # name of new column with old column names
+    values_to = "uptake"       # name of new column with old values
+  ) %>% 
+  ## Clean former column names and convert to numeric
+  mutate(
+    conc = str_replace(conc, "X", "") %>% as.numeric()
+  )
+```
+
+
+## Check results
+
+Did we manage to re-construct the original data set?
+
+```{r check results}
+all.equal(DF_tidy, CO2, check.attributes = FALSE)
+```
+
+
+
+
+# Order of operations: clean & tidy
+
+- Clean, then tidy; or tidy then clean?
+
+- It depends!
+
+  - In this example, we cleaned columns before pivoting to combine them.
+    This allowed us to correct _different_ issues in each column,
+    and convert them to a common type before combining.
+  
+  - If the same issue is present in multiple columns,
+    it often makes sense to pivot first, 
+    then you have fewer columns to clean
+  
+  - In other cases, you may want to pivot _wider_
+    to separate different variables, so that they can be cleaned differently.
+
+
+## Exercise
+
+
 
 
 # Save Data Outside $\R$

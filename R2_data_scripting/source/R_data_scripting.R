@@ -460,6 +460,27 @@ DF_clean <- DF_clean5_rows %>%
   relocate(Plant, Type, Treatment)
 
 
+## ----example data is wide-----------------------------------------------------
+DF_clean %>% select(where(is.numeric)) %>% names()
+
+
+## ----pivot longer-------------------------------------------------------------
+DF_tidy <- DF_clean %>% 
+  pivot_longer(
+    cols = where(is.numeric),  # columns to pivot
+    names_to = "conc",         # name of new column with old column names
+    values_to = "uptake"       # name of new column with old values
+  ) %>% 
+  ## Clean former column names and convert to numeric
+  mutate(
+    conc = str_replace(conc, "X", "") %>% as.numeric()
+  )
+
+
+## ----check results------------------------------------------------------------
+all.equal(DF_tidy, CO2, check.attributes = FALSE)
+
+
 ## ----write_csv, eval=FALSE----------------------------------------------------
 ## write_csv(DF_tidy, "data/data_clean.csv")
 ## write_excel_csv(DF_tidy, "data/data_excel.csv")
