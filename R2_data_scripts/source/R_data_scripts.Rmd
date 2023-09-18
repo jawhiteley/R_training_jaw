@@ -1781,6 +1781,10 @@ library(stringr)
 # vignette("stringr")
 ```
 
+<!-- 
+- str_replace() 
+-->
+
 
 ## Cleaning some columns in the example data
 
@@ -1829,6 +1833,36 @@ DF_clean2_500 <- DF_clean1_type %>%
     X500 = str_split_i(X500, " ", i=1),
     # convert to numeric
     X500 = as.numeric(X500)
+  )
+```
+
+
+## Convert character column to numeric (replace characters)
+
+- The `675` column had some values where a comma (,)
+  was used instead of a period (.) for the decimal.
+
+- If we loaded the data without using "," as a grouping mark,
+  the `675` column would be character.
+  
+```{r Find non-numeric values in `675` column, echo = FALSE}
+CSV_comma %>% select(1:3, "675") %>% 
+  filter(!is.na(`675`) & `675` %>%
+           as.numeric() %>%
+           is.na() %>%
+           suppressWarnings()
+  ) %>% pull("675")
+```
+
+- Replace ',' with '.' in `675` column, and convert to numeric:
+
+```{r clean `675` column (character), results='hide'}
+CSV_comma %>% select(1:3, "675") %>% 
+  mutate(
+    # Replace "," with "."
+    `675` = str_replace(`675`, ",", "."),
+    # convert to numeric
+    `675` = as.numeric(`675`)
   )
 ```
 

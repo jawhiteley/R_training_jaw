@@ -350,6 +350,25 @@ DF_clean2_500 <- DF_clean1_type %>%
   )
 
 
+## ----Find non-numeric values in `675` column, echo = FALSE--------------------
+CSV_comma %>% select(1:3, "675") %>% 
+  filter(!is.na(`675`) & `675` %>%
+           as.numeric() %>%
+           is.na() %>%
+           suppressWarnings()
+  ) %>% pull("675")
+
+
+## ----clean `675` column (character), results='hide'---------------------------
+CSV_comma %>% select(1:3, "675") %>% 
+  mutate(
+    # Replace "," with "."
+    `675` = str_replace(`675`, ",", "."),
+    # convert to numeric
+    `675` = as.numeric(`675`)
+  )
+
+
 
 
 ## ----clean `X675` column------------------------------------------------------

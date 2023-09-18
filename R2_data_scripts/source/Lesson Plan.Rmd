@@ -142,18 +142,14 @@ knitr::opts_chunk$set(echo = TRUE)
     7.  piping
     8.  **Activity 5 (short): convert expressions to pipes**
     9.  *dplyr conventions (after seeing a couple of examples, and pipes)?*
-6.  ~~Find issues systematically~~ (move to Extras)
-    1.  ~~for loops? [need scripts]~~
-        1.  *makes less sense if using read_csv() version: only 1 character column*
-    2.  Identify specific problems in example data?
-        1.  ID character column where numeric expected
-
-            `select(DF, where(is.character) & X95:X1000)`
-
-        2.  non-numeric value in character column
-
-        3.  unusual numeric values
-    3.  **Activity ?**
+6.  Find specific values in example data
+    1.  ID character columns where numeric expected
+    2.  Locate non-numeric values in character column
+    3.  unusual numeric values
+    4.  **Activity ?**
+    5.  ~~Find issues systematically~~ (move to Extras)
+        1.  ~~for loops? [need scripts]~~
+            1.  *makes less sense if using read_csv() version: only 1 character column*
 7.  Manipulate Data
     1.  mutate()
     2.  mutate() helper functions
@@ -164,11 +160,11 @@ knitr::opts_chunk$set(echo = TRUE)
 9.  stringr + mutate: clean character columns
     1.  clean columns in example data
 
-        1.  Locate non-numeric values in character column
+    2.  stringr example: str_replace() ?
 
-    2.  package:: object notation to use tidyr::fill()
+    3.  package:: object notation to use tidyr::fill()
 
-    3.  **Activity: modify some strings (script)**
+    4.  **Activity: modify some strings (script)**
 10. Grouped data
     1.  group_by()
     2.  summarise()
