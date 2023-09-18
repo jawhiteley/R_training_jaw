@@ -55,8 +55,9 @@ options(width = 60)  # to fit output on slides
 ### Jonathan Whiteley           R v4.3.1              2023-09-18
 ################################################################
 ## Housekeeping: clear memory
-if (F) # do not run when source()d
+if (FALSE) { # do not run when source()d
   rm(list = ls())
+}
 ```
 
 
@@ -1659,6 +1660,10 @@ DF_nonum
 
 See the "Extras" for code to do this _systematically_
 across multiple columns (using a loop).
+
+::: notes
+https://stackoverflow.com/questions/21196106/finding-non-numeric-data-in-a-data-frame-or-vector
+:::
 
 
 ## Find numeric values outside expected range

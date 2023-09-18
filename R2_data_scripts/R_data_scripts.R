@@ -8,8 +8,9 @@ list(is_virtual = TRUE)
 ### Jonathan Whiteley           R v4.3.1              2023-09-18
 ################################################################
 ## Housekeeping: clear memory
-if (F) # do not run when source()d
+if (FALSE) { # do not run when source()d
   rm(list = ls())
+}
 
 
 ## ----install_tidyverse, eval=FALSE--------------------------------------------
