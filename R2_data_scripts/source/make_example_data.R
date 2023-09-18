@@ -36,8 +36,6 @@ if (!("R2_data_scripts" %in% wd_paths))
 data(CO2)
 
 
-
-
 ################################################################
 ### UN-CLEAN - apply changes (processing)
 
@@ -214,3 +212,69 @@ bom_base <- read.csv(
 
 ## recent (> 2016, v0.2.2.9000) versions of readr automatically skip the BOM
 bom_readr <- readr::read_csv( file.path(out_path, "data_example_bom.csv") )
+
+
+
+
+################################################################
+### Prepare final activity
+
+data(who)
+data(population)
+
+countries2 <- c("CA", "US", "GB", "AU", "NZ")
+
+## who data
+data_activity <- 
+  who %>% 
+  filter(iso2 %in% countries2) %>% 
+  group_by(country) %>% 
+  mutate(
+    year = if_else(iso2 == "US", year %% 100, year),  # 2-digit year
+    new_sp_m1524 = new_sp_m1524 %>% 
+      as.character() %>% 
+      replace_na(".."),
+    new_sn_m014 = new_sn_m014 %>% 
+      as.character() %>% 
+      replace_na("."),
+    new_sp_f65 = new_sp_f65 %>% 
+      as.character() %>% 
+      if_else(iso2 == "CA" & (year %in% c(1988, 1995, 2007, 2008)) & !is.na(new_sp_f65), 
+              paste0(., " F"), # "F", "E" with no space is still read in as numeric by read_csv!
+              .
+      ),
+    country = if_else(iso2 == "CA" & (year %% 4 == 0), "Canäda", country),
+  )
+
+## Population data
+data_pop <- population %>% 
+  filter(country %in% unique(data_activity$country)) %>% 
+  # left_join(who %>% distinct(country, iso2), by = "country") %>% 
+  # relocate(country, iso2) %>% 
+  mutate(
+    country = if_else(country == "Canada" & (year %% 4 == 0), "Canäda", country),
+  )
+
+
+
+##==============================================================
+## Split & export into separate files
+for (d in countries2) {
+  data_activity %>% 
+    filter(iso2 == d) %>% 
+    write_csv( file.path(out_path, "activity", paste0("tb_", unique(.$iso3), ".csv")) )
+}
+
+## Export population table
+data_pop %>% 
+  write.csv(file.path(out_path, "activity", "population.csv"),
+            fileEncoding = "latin1"
+  )
+
+
+## Quick test
+
+test_tb <- read_csv(file.path(out_path, "activity", "tb_CAN.csv"))
+
+test_pop <- read_csv( file.path(out_path, "activity", "population.csv") )
+                     
