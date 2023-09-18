@@ -228,7 +228,7 @@ select(DF, contains("m"))
 
 select(DF, where(is.character) & starts_with("X"))
 
-select(DF, any_of(c("Type", "Treatment", "95")))
+select(DF, any_of(c("Type", "Treatment", "Plant", "95")))
 
 
 ## ----filter() examples, results='hide'----------------------------------------
@@ -252,6 +252,31 @@ select( filter(DF, Treatment == "chilled"),
 ## ----filter() %>% select()----------------------------------------------------
 DF %>% filter(Treatment == "chilled") %>% 
   select(where(is.numeric))
+
+
+## ----Find characters where numeric expected-----------------------------------
+# specify columns by pattern 
+# (in this case, all numeric columns start with "X")
+DF %>% 
+  select(where(is.character) & starts_with("X")) %>% names()
+# specify a range of known columns
+DF %>% 
+  select(where(is.character) & X95:X1000) %>% names()
+
+
+## ----Find non-numeric values in character column------------------------------
+DF %>% select(1:3, X500) %>% 
+  filter(!is.na(X500) &       # exclude existing NAs
+           X500 %>%           
+           as.numeric() %>%   # non-numeric -> NA + warning
+           is.na() %>%        # check for new NAs
+           suppressWarnings() # suppress expected warnings
+  )
+
+
+## ----Find numeric values outside expected range-------------------------------
+DF %>% select(1:3, X675) %>% 
+  filter(X675 > 100)
 
 
 ## ----mutate() add columns, results='hide'-------------------------------------

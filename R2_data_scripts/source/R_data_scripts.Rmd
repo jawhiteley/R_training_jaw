@@ -1352,7 +1352,7 @@ select(DF, contains("m"))
 
 select(DF, where(is.character) & starts_with("X"))
 
-select(DF, any_of(c("Type", "Treatment", "95")))
+select(DF, any_of(c("Type", "Treatment", "Plant", "95")))
 ```
 
 . . .
@@ -1594,6 +1594,62 @@ it makes it easier to extend your understanding to new functions.
 <!-- https://dplyr.tidyverse.org/articles/dplyr.html#commonalities -->
 
 
+# Find specific values with `dplyr`
+
+## Find unexpected data types in example data
+
+- Character columns where numeric is expected
+
+```{r Find characters where numeric expected}
+# specify columns by pattern 
+# (in this case, all numeric columns start with "X")
+DF %>% 
+  select(where(is.character) & starts_with("X")) %>% names()
+# specify a range of known columns
+DF %>% 
+  select(where(is.character) & X95:X1000) %>% names()
+```
+
+
+## Find non-numeric values in a character column
+
+- `as.numeric()`{.r} replaces non-numeric values with `NA`{.r},
+  and produces a *warning*.
+- `suppressWarnings()`{.r} suppresses these expected warnings
+- `is.na()`{.r} checks for the `NA`{.r}s produced.
+  - `!is.na(X500)`{.r} prevents existing `NA`{.r}s from being included.
+
+```{r Find non-numeric values in character column}
+DF %>% select(1:3, X500) %>% 
+  filter(!is.na(X500) &       # exclude existing NAs
+           X500 %>%           
+           as.numeric() %>%   # non-numeric -> NA + warning
+           is.na() %>%        # check for new NAs
+           suppressWarnings() # suppress expected warnings
+  )
+```
+
+### Extras
+
+See the "Extras" for code to do this _systematically_
+across multiple columns (using a loop).
+
+
+## Find numeric values outside expected range
+
+```{r Find numeric values outside expected range}
+DF %>% select(1:3, X675) %>% 
+  filter(X675 > 100)
+```
+
+- These values had a comma (,) instead of a period (.)
+  for the decimal.
+- They are 10\times{} what they should be.
+
+### Extras
+
+See the "Extras" for examples of using a custom function
+that can be applied to multiple columns at once.
 
 
 # `dplyr` Verbs: Modify Data Columns
@@ -1701,7 +1757,7 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 :::
 
 
-## Exercise
+## **Activity**
 
 
 
@@ -1733,6 +1789,7 @@ DF %>%
     )
   )
 ```
+
 
 ## Convert character column to numeric (replace characters)
 
@@ -1807,7 +1864,7 @@ DF_clean4_cols <- DF_clean3_500 %>%
 ```
 
 
-## Exercise
+## **Activity**
 
 
 

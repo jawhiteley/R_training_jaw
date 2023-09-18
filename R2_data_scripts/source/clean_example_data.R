@@ -191,6 +191,7 @@ if (F) {  # do not run when source()d
 ##  these might form examples in the workshop materials
 
 ## numeric values above a threshold
+test_readr %>% select(where( ~ is.numeric(.x) && max(.x, na.rm = TRUE) > 100 ))
 test_readr %>% 
   filter(if_any(is.numeric, ~ .x > 100)) %>% 
   select( Type, Treatment, PlantNum, where(function (x) is.numeric(x) && any(x > 100)) )
