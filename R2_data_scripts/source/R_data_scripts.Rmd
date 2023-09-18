@@ -1736,6 +1736,11 @@ DF %>%
 
 ## Convert character column to numeric (replace characters)
 
+<!-- 
+- Now just divide by 10 if > 100 (lucky)
+- Add slide to diagnose the problem?
+-->
+
 - To clean character columns, we will use functions from 
   the [`stringr`](https://stringr.tidyverse.org/) library,
   which provides many useful functions for working with,
@@ -1761,6 +1766,8 @@ DF_clean2_675 <- DF_clean1_type %>%
 
 
 ## Convert character column to numeric (drop characters)
+
+<!-- add slide to show how to find the problem -->
 
 - Remove non-numeric characters from `X500` column, and convert to numeric:
 

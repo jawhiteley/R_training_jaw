@@ -145,7 +145,10 @@ knitr::opts_chunk$set(echo = TRUE)
 6.  ~~Find issues systematically~~ (move to Extras)
     1.  ~~for loops? [need scripts]~~
         1.  *makes less sense if using read_csv() version: only 1 character column*
-    2.  **Activity ?**
+    2.  Identify specific problems in example data?
+        1.  non-numeric value in character column
+        2.  unusual numeric values
+    3.  **Activity ?**
 7.  Manipulate Data
     1.  mutate()
     2.  mutate() helper functions
