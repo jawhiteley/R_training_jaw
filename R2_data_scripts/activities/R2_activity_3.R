@@ -1,5 +1,5 @@
 ################################################################
-### Exercise 3: read a messy Excel file
+### Activity 3: read a messy Excel file
 ### "A Short Introduction to Working With Data in R"
 ### R v4.3.1
 ################################################################

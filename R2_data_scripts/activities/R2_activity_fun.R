@@ -1,5 +1,5 @@
 ################################################################
-### Exercise X: Define a function to check example data
+### Activity X: Define a function to check example data
 ### "A Short Introduction to Working With Data in R"
 ### R vx.x.x
 ################################################################

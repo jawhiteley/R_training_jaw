@@ -1,5 +1,5 @@
 ################################################################
-### Exercise 2: compare `read.csv` and `read_csv` from `readr`
+### Activity X: compare `read.csv` and `read_csv` from `readr`
 ### "A Short Introduction to Working With Data in R"
 ### R v4.3.1
 ################################################################

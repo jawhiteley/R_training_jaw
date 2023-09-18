@@ -1175,7 +1175,7 @@ iris_xl <- read_excel(xl_path, "iris")
   `read_csv()`{.r} to control how data is imported.
 
 - Use the script file in the "`examples`" folder as a starting point:
-  - "`R2_exercise_3.R`"
+  - "`R2_activity_3.R`"
 
 ```r
 XL_path <- readxl_example("deaths.xlsx")
