@@ -1875,9 +1875,9 @@ DF %>%
   
 - Remove non-numeric characters from `X500` column, and convert to numeric:
 
-  - We can use `str_split_i()` from the `stringr` package
-    to 'split' each string into pieces separated by spaces (' '),
-    and keep only the first piece (`i=1`).
+  - We can use `word()` from the `stringr` package
+    to extract the first 'word' (separated by spaces ' ') 
+    in each row.
   
   - i.e., drop all text (in each row) after the first space
 
@@ -1885,11 +1885,13 @@ DF %>%
 DF_clean2_500 <- DF_clean1_type %>% 
   mutate(
     # drop everything after the first space:
-    X500 = str_split_i(X500, " ", i=1),
+    X500 = word(X500, 1),
     # convert to numeric
     X500 = as.numeric(X500)
   )
 ```
+
+- Other `stringr` functions would also work, such as `str_split_i()`{.r}
 
 
 ## Modify extreme values

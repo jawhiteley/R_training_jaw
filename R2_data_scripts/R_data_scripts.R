@@ -363,7 +363,7 @@ DF %>%
 DF_clean2_500 <- DF_clean1_type %>% 
   mutate(
     # drop everything after the first space:
-    X500 = str_split_i(X500, " ", i=1),
+    X500 = word(X500, 1),
     # convert to numeric
     X500 = as.numeric(X500)
   )
