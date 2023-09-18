@@ -272,9 +272,61 @@ data_pop %>%
   )
 
 
+##==============================================================
 ## Quick test
+
+tb_files <- list.files(file.path(out_path, "activity"), "tb_")
 
 test_tb <- read_csv(file.path(out_path, "activity", "tb_CAN.csv"))
 
 test_pop <- read_csv( file.path(out_path, "activity", "population.csv") )
-                     
+
+
+## target analysis
+whotb <- who %>% 
+  filter(iso2 %in% countries2) %>% 
+  pivot_longer(where(is.numeric) & !year, names_to = "trt", values_to = "cases") %>% 
+  group_by(country, year) %>% 
+  summarise(cases = sum(cases, na.rm = TRUE))
+
+whotb_pop <- whotb %>% 
+  left_join(population, by = c("country", "year")) %>% 
+  mutate(
+    rate = (cases / population) #%>% if_else(is.na(.), 0, .)
+  )
+
+## country with highest all-time rate
+whotb_pop %>% 
+  group_by(country) %>% 
+  summarise(max = max(rate, na.rm = TRUE))
+
+## what year was it in?
+whotb_pop %>% 
+  group_by(country) %>% 
+  filter(rate == max(rate, na.rm = TRUE))
+
+## Which country has had the lowest average rate since 2006 (including that year)?
+whotb_pop %>% 
+  group_by(country) %>% 
+  filter(year >= 2006) %>% 
+  summarise(avg_rate = mean(rate, na.rm = TRUE))
+
+## Which country has had the highest & lowest _growth rate_ in cases since 2006 (including that year)?
+whotb_pop %>% 
+  group_by(country) %>% 
+  filter(year >= 2006) %>% 
+  mutate(
+    growth = cases / lag(cases) -1
+  ) %>% 
+  summarise(avg_growth = mean(growth, na.rm = TRUE))
+
+## Why 2006?  Sudden jump in that year ...
+
+## Are cases monotonically increasing or decreasing in any country? NO
+whotb_pop %>% 
+  group_by(country) %>% 
+  filter(year >= 2006) %>% 
+  summarise(
+    incr = (cases >= lag(cases)) %>% all(),
+    decr = (cases <= lag(cases)) %>% all()
+  )

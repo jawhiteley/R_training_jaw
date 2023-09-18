@@ -2468,7 +2468,41 @@ We don't have time to explore these today.
 
 # Review
 
-## Exercise
+## Final **Activity**
+
+- Use this script file in the 'activities' folder as a starting point:
+  `R2_activity_final.R`
+  
+- Load *all* the data files in this directory:  
+  `data/activity`
+  
+  - They are from the "World Health Organization Global Tuberculosis Report",
+    with counts of new cases in each year for a subset of countries,
+    by group (method of diagnosis, gender, and age)
+    <!-- `?tidyr::who` -->
+
+- Check & clean the files, as appropriate
+
+- Combine the data into a single data frame with:
+
+  - The total number of new TB cases in each year and country
+  - The country's population in that year
+  - The rate of new cases (total cases / population)
+
+- _optional_: Save the data in the parent directory
+
+
+## Final **Activity**: Challenges
+
+Can you answer these questions with the data?
+
+1. Which country had the highest all-time rate of new cases?
+  1. In which year was it?
+2. Which country has had the _lowest_ average rate since 2006 
+   (including that year)?
+3. Which country had the highest & lowest *growth rate* in *cases* since 2006 
+   (including that year)?
+4. What changed in 2006?
 
 <!--
 in pairs, or small groups:
