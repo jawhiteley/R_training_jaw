@@ -1620,13 +1620,15 @@ DF %>%
   - `!is.na(X500)`{.r} prevents existing `NA`{.r}s from being included.
 
 ```{r Find non-numeric values in character column}
-DF %>% select(1:3, X500) %>% 
+DF_nonum <- 
+  DF %>% select(1:3, X500) %>% 
   filter(!is.na(X500) &       # exclude existing NAs
            X500 %>%           
            as.numeric() %>%   # non-numeric -> NA + warning
            is.na() %>%        # check for new NAs
            suppressWarnings() # suppress expected warnings
   )
+DF_nonum
 ```
 
 ### Extras
@@ -1638,8 +1640,10 @@ across multiple columns (using a loop).
 ## Find numeric values outside expected range
 
 ```{r Find numeric values outside expected range}
-DF %>% select(1:3, X675) %>% 
+DF_extreme_nums <- 
+  DF %>% select(1:3, X675) %>% 
   filter(X675 > 100)
+DF_extreme_nums
 ```
 
 - These values had a comma (,) instead of a period (.)
@@ -1764,6 +1768,20 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 
 # Clean Some Data With the `stringr` Package
 
+## The `stringr` package
+
+- To clean character columns, we will use functions from 
+  the [`stringr`](https://stringr.tidyverse.org/) library,
+  which provides many useful functions for working with,
+  and manipulating *strings*.
+
+```{r load stringr package}
+library(stringr)
+# help(package="stringr")
+# vignette("stringr")
+```
+
+
 ## Cleaning some columns in the example data
 
 - Normalize values of the '`Type`' column:
@@ -1791,41 +1809,11 @@ DF %>%
 ```
 
 
-## Convert character column to numeric (replace characters)
-
-<!-- 
-- Now just divide by 10 if > 100 (lucky)
-- Add slide to diagnose the problem?
--->
-
-- To clean character columns, we will use functions from 
-  the [`stringr`](https://stringr.tidyverse.org/) library,
-  which provides many useful functions for working with,
-  and manipulating *strings*.
-
-```{r load stringr package}
-library(stringr)
-# help(package="stringr")
-# vignette("stringr")
-```
-
-- Replace ',' with '.' in `X675` column, and convert to numeric:
-
-```{r clean `X675` column}
-DF_clean2_675 <- DF_clean1_type %>% 
-  mutate(
-    # Replace "," with "."
-    X675 = str_replace(X675, ",", "."),
-    # convert to numeric
-    X675 = as.numeric(X675)
-  )
-```
-
-
 ## Convert character column to numeric (drop characters)
 
-<!-- add slide to show how to find the problem -->
-
+- The `X500` column had a value with extra text:
+  "`r DF_nonum[["X500"]]`"
+  
 - Remove non-numeric characters from `X500` column, and convert to numeric:
 
   - We can use `str_split_i()` from the `stringr` package
@@ -1835,7 +1823,7 @@ DF_clean2_675 <- DF_clean1_type %>%
   - i.e., drop all text (in each row) after the first space
 
 ```{r clean `X500` column}
-DF_clean3_500 <- DF_clean2_675 %>% 
+DF_clean2_500 <- DF_clean1_type %>% 
   mutate(
     # drop everything after the first space:
     X500 = str_split_i(X500, " ", i=1),
@@ -1845,9 +1833,33 @@ DF_clean3_500 <- DF_clean2_675 %>%
 ```
 
 
+## Modify extreme values
+
+- `X675` column had some large values where a comma (,)
+  was used instead of a period (.) for the decimal,
+  resulting in values 10\times{} what they should be.
+  
+```{r Extreme values, echo=FALSE, purl=FALSE}
+DF_extreme_nums %>% knitr::kable()
+```
+  
+- Divide large values (> 100) in the `X675` column by 10:
+
+```{r clean `X675` column}
+DF_clean3_675 <- DF_clean2_500 %>% 
+  mutate(
+    X675 = if_else(X675 > 100, X675 / 10, X675)
+  )
+```
+
+
 ## Clean 'Treatment' column
 
 - The '`Treatment`' column has some empty values
+
+```{r unique values of the Treatment column}
+DF %>% distinct(Treatment) %>% pull()
+```
 
 - A value is only present when it changes
 
@@ -1856,8 +1868,8 @@ DF_clean3_500 <- DF_clean2_675 %>%
     by specifying the function with `package::object` notation
 
 ```{r clean `Treatment` column}
-DF_clean4_cols <- DF_clean3_500 %>% 
-  # replace empty strings with NA
+DF_clean4_cols <- DF_clean3_675 %>% 
+  # replace empty strings with NA (if present)
   mutate(Treatment = na_if(Treatment, "")) %>%  
   # Fill Down to replace NAs (tidyr)
   tidyr::fill(Treatment, .direction = "down")   

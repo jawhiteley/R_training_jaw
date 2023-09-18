@@ -265,18 +265,22 @@ DF %>%
 
 
 ## ----Find non-numeric values in character column------------------------------
-DF %>% select(1:3, X500) %>% 
+DF_nonum <- 
+  DF %>% select(1:3, X500) %>% 
   filter(!is.na(X500) &       # exclude existing NAs
            X500 %>%           
            as.numeric() %>%   # non-numeric -> NA + warning
            is.na() %>%        # check for new NAs
            suppressWarnings() # suppress expected warnings
   )
+DF_nonum
 
 
 ## ----Find numeric values outside expected range-------------------------------
-DF %>% select(1:3, X675) %>% 
+DF_extreme_nums <- 
+  DF %>% select(1:3, X675) %>% 
   filter(X675 > 100)
+DF_extreme_nums
 
 
 ## ----mutate() add columns, results='hide'-------------------------------------
@@ -313,6 +317,12 @@ DF %>% mutate(
 )
 
 
+## ----load stringr package-----------------------------------------------------
+library(stringr)
+# help(package="stringr")
+# vignette("stringr")
+
+
 ## ----clean `Type` column------------------------------------------------------
 DF_clean1_type <- DF %>% 
   mutate(
@@ -330,24 +340,8 @@ DF %>%
   )
 
 
-## ----load stringr package-----------------------------------------------------
-library(stringr)
-# help(package="stringr")
-# vignette("stringr")
-
-
-## ----clean `X675` column------------------------------------------------------
-DF_clean2_675 <- DF_clean1_type %>% 
-  mutate(
-    # Replace "," with "."
-    X675 = str_replace(X675, ",", "."),
-    # convert to numeric
-    X675 = as.numeric(X675)
-  )
-
-
 ## ----clean `X500` column------------------------------------------------------
-DF_clean3_500 <- DF_clean2_675 %>% 
+DF_clean2_500 <- DF_clean1_type %>% 
   mutate(
     # drop everything after the first space:
     X500 = str_split_i(X500, " ", i=1),
@@ -356,9 +350,22 @@ DF_clean3_500 <- DF_clean2_675 %>%
   )
 
 
+
+
+## ----clean `X675` column------------------------------------------------------
+DF_clean3_675 <- DF_clean2_500 %>% 
+  mutate(
+    X675 = if_else(X675 > 100, X675 / 10, X675)
+  )
+
+
+## ----unique values of the Treatment column------------------------------------
+DF %>% distinct(Treatment) %>% pull()
+
+
 ## ----clean `Treatment` column-------------------------------------------------
-DF_clean4_cols <- DF_clean3_500 %>% 
-  # replace empty strings with NA
+DF_clean4_cols <- DF_clean3_675 %>% 
+  # replace empty strings with NA (if present)
   mutate(Treatment = na_if(Treatment, "")) %>%  
   # Fill Down to replace NAs (tidyr)
   tidyr::fill(Treatment, .direction = "down")   
