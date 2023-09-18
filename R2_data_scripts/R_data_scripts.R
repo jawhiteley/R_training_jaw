@@ -536,6 +536,14 @@ DF_clean %>%
 all.equal(DF_final, CO2, check.attributes = FALSE)
 
 
+## ----plots are easier with tidy data, message=FALSE---------------------------
+library(ggplot2)
+DF_final %>% 
+  ggplot(aes(x = conc, y = uptake)) +         # use variables naturally
+  geom_point() + geom_smooth() + theme_bw() +
+  facet_grid(Type ~ Treatment)                # easy grouping!
+
+
 ## ----write_csv----------------------------------------------------------------
 write_csv(DF_final, "data/data_clean.csv")
 write_excel_csv(DF_final, "data/data_excel.csv")

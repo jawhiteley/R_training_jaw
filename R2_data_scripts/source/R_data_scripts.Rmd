@@ -2290,8 +2290,19 @@ all.equal(DF_final, CO2, check.attributes = FALSE)
 ```
 
 
+## Tidy data makes plotting and analysis easier {.shrink}
 
-## Order of operations: clean, tidy
+\footnotesize
+```{r plots are easier with tidy data, message=FALSE}
+library(ggplot2)
+DF_final %>% 
+  ggplot(aes(x = conc, y = uptake)) +         # use variables naturally
+  geom_point() + geom_smooth() + theme_bw() +
+  facet_grid(Type ~ Treatment)                # easy grouping!
+```
+
+
+## Order of operations: clean <-> tidy
 
 - Clean then tidy; or tidy then clean?
 
