@@ -1,5 +1,5 @@
 ################################################################
-### Activity 1-2: Load & explore a dataset
+### Activity: Load & explore a dataset
 ### "A Short Introduction to Working With Data in R"
 ### R v4.3.1
 ################################################################

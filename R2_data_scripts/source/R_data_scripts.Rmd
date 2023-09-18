@@ -102,8 +102,11 @@ if (F) # do not run when source()d
 
 + If multiple packages have functions with the same name,
   how can you specify which one to use?
-+ Does $\R$ store data in memory or temporary files?
-+ What is the limit to the size of objects and datasets that can be loaded into $\R$?
++ What are "UTF-8" and "latin1"?
++ What's the difference between a dplyr 'verb' and a 'helper function'?
++ Does the `filter()`{.r} verb use 'select' or 'mutate' _semantics_?
++ What are the 3 rules of 'tidy data'?
++ TRUE or FALSE: If $\R$ reads a file without errors, there are no problems
 + TRUE or FALSE: $\R$ has rules and conventions for naming functions
 + TRUE or FALSE: if you use one package from the `tidyverse`, you have to use all of them.
 
@@ -1679,14 +1682,6 @@ Modify columns:
 DF %>% mutate(X95 = X95 / mean(X95))
 ```
 
-<!--
-mutate helper functions:
-lag(), lead()?
-row_number()
-if_else()
-case_when()
--->
-
 
 ## `mutate()`{.r} helper functions
 
@@ -1707,6 +1702,14 @@ DF %>% mutate(
   Plant_row = PlantNum < row_number()
 )
 ```
+
+<!--
+mutate helper functions:
+lag(), lead()?
+row_number()
+if_else()
+case_when()
+-->
 
 
 ## `mutate()`{.r}: conditional values
@@ -2447,12 +2450,48 @@ Might work best with a few parameters to limit the kinds of changes that can be 
 
 ## [Quiz](#pop-quiz) Review
 
-<!-- copy questions from [Pop Quiz][], above. -->
-
++ If multiple packages have functions with the same name,
+  how can you [specify which one to use](#package-object-notation)?
++ What are ["UTF-8"](#encoding-non-english-characters) 
+  and ["latin1"](#read_csv-read-a-file-with-a-different-encoding)?
++ What's the difference between a [dplyr 'verb'](#dplyr-verbs) and a ['helper function'](#dplyr-a-grammar-of-data-manipulation)?
++ Does the [`filter()`{.r} verb](#dplyr-verbs) use 'select' or 'mutate' [_semantics_](#dplyr-semantics)?
++ What are the [3 rules of 'tidy data'](#tidy-data)?
++ TRUE or FALSE: If $\R$ reads a file [without errors](#load-a-csv-file-into-r), there are no problems
++ TRUE or FALSE: $\R$ has rules and conventions for [naming functions](#the-tidyverse)
++ TRUE or FALSE: if you use one 
+  [package from the `tidyverse`](#core-tidyverse-packages), 
+  you have to use all of them.
 
 ::: notes
 `## Answers (for discussion)`
 
++ Specify which function with `package::object` notation
+
++ "UTF-8" and "latin1" are character encodings
+  - "UTF-8" is increasingly standard (even in $\R$),
+    but some Windows programs will write files in "latin1"
+
++ dplyr 'verbs' are the main functions that act on a data frame
+  - helper functions work _inside_ verbs to add functionality
+
++ `filter()`{.r} uses _mutate_ semantics
+  - it expects a _vector of values_ to filter on
+
++ the 3 rules of 'tidy data' are:
+  * Each variable must have its own column.
+  * Each observation must have its own row.
+  * Each value must have its own cell.
+
++ FALSE: Just because there were no errors reading the data,
+  does **not** mean there are no problems.
+
++ FALSE: `tidyverse` has naming conventions; base $\R$ does not,
+  though R does have a few _rules_ about naming functions
+
++ FALSE: you do **not** have to use all tidyverse packages
+  --- you can load only the ones you want,
+  or load the 'core' packages with `library(tidyverse)`
 :::
 
 
