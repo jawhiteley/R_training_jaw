@@ -544,3 +544,23 @@ write_excel_csv(DF_final, "data/data_excel.csv")
 save_test <- read_csv("data/data_clean.csv")
 head(save_test)
 
+
+
+
+## ----bind_rows() stack data vertically, results='hide'------------------------
+DF_bindr <- bind_rows(DF_duprows, DF_clean5_cols)
+head(DF_bindr)
+
+# can also use it on a _list of data frames_
+bind_rows(list(DF_duprows, DF_duprows))
+
+
+## ----bind_cols() stack data horizontally, message=FALSE, results='hide'-------
+bind_cols(tibble(new = 1:nrow(DF_duprows)), DF_duprows)
+
+DF_bindc <- bind_cols(DF_final, DF_clean)
+head(DF_bindc)
+
+# can also use it on a _list of data frames_
+bind_cols(list("..", DF_duprows))
+

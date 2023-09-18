@@ -94,7 +94,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
     -   No time for join
 
--    factors
+-   factors
 
 -   sort: arrange()
 
@@ -155,8 +155,9 @@ knitr::opts_chunk$set(echo = TRUE)
     2.  mutate() helper functions
     3.  *select vs mutate semantics*
     4.  **Activity: use mutate() on tidy data** [ CO2, iris ]
-8.  Conditional execution: if () else () -\> if_else(), case_when()
-    1.  **Activity?**
+8.  Conditional execution
+    1.  ***if () else () -\> if_else(), case_when()***
+    2.  **Activity?**
 9.  stringr + mutate: clean character columns
     1.  clean columns in example data
 
@@ -184,7 +185,7 @@ knitr::opts_chunk$set(echo = TRUE)
     1.  **Activity?** split CO2 data by a Type or Treatment & save to separate files?
         1.  for loops optional
 13. Combining tables
-    1.  bind_rows() & bind_cols()
+    1.  ***bind_rows() & bind_cols()***
     2.  mention joins, but no time for examples (extras?)
     3.  **Activity: split & recombine CO2 dataset**
         -   summarize() a dataset and merge back with original for calculation?

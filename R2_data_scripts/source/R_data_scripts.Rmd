@@ -2349,6 +2349,60 @@ file.remove( c("data/data_clean.csv", "data/data_excel.csv") )
 
 
 
+# Combining Data Frames
+
+## `bind_rows()`: stack data vertically
+
+- Combine data with the same columns,
+  stacking rows together
+  
+  - Columns are matched by name
+  
+```{r bind_rows() stack data vertically, results='hide'}
+DF_bindr <- bind_rows(DF_duprows, DF_clean5_cols)
+head(DF_bindr)
+
+# can also use it on a _list of data frames_
+bind_rows(list(DF_duprows, DF_duprows))
+```
+
+
+## `bind_cols()`: stack data horizontally
+
+- Combines columns together,
+  with rows in the order they appear
+  
+  - **No attempt to match by ID**
+  
+  - Number of rows must be a compatible
+  
+```{r bind_cols() stack data horizontally, message=FALSE, results='hide'}
+bind_cols(tibble(new = 1:nrow(DF_duprows)), DF_duprows)
+
+DF_bindc <- bind_cols(DF_final, DF_clean)
+head(DF_bindc)
+
+# can also use it on a _list of data frames_
+bind_cols(list("..", DF_duprows))
+```
+
+
+## `dplyr`: two-table verbs
+
+- Two-table verbs allow you to 'join' two data frames, 
+  matching values in common.
+  
+  - similar to SQL joins
+  
+- See [`vignette("two-table")`](https://dplyr.tidyverse.org/articles/two-table.html)
+  for more information
+  
+::: notes
+We don't have time to explore these today.
+:::
+
+
+
 # Sharing Code <!-- & Results -->
 
 ## Style
