@@ -855,7 +855,28 @@ DF <-         # short for "data frame"
 
 - Be sure to add comments to explain your commands,
   or what you found with them.
-  
+
+
+## Housekeeping
+
+- This command removes all objects from your workspace (active session)
+  - aka "clear memory" or "empty your environment"
+
+```r
+rm(list = ls())
+```
+
+- Many $\R$ users find it useful to include this line near the top of their scripts,
+  to ensure a "clean workspace" for the rest of the script.
+
+- This can avoid problems with objects from different scripts 
+  that have the same name, 
+  or other unexpected behaviours from extra objects in your workspace.
+
+::: notes
+This was mentioned in the last workshop: this is a reminder
+:::
+
 
 ## Open a script
 

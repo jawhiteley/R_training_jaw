@@ -117,9 +117,9 @@ knitr::opts_chunk$set(echo = TRUE)
     1.  Make a simple script
     2.  *Comments [the sooner this gets introduced, the sooner I can use them in examples! And they get included in output script]*
     3.  **Activity 2 (short): add your favourite exploring commands from the previous activity to your script.**
-    4.  open a script for the workshop code
-    5.  Run code from the script.
-    6.  Housekeeping: rm(list=ls())
+    4.  Housekeeping: rm(list=ls())
+    5.  open a script for the workshop code
+    6.  Run code from the script.
 4.  correct some issues by re-loading with options
     1.  encoding (more in extras)
         1.  **Mini-Activity: Read latin1-encoded file and look at the difference**
