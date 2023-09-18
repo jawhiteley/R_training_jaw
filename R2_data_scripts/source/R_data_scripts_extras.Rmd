@@ -486,6 +486,57 @@ for (col in cols_charn) {
 :::
 
 
+## `summarise()`{.r} multiple columns with `across()`{.r} {.shrink}
+
+* `summarise()`{.r} uses _mutate semantics_,
+  but `across()`{.r} applies a **function** to multiple columns,
+  specified using _select semantics_
+  - i.e., `across()`{.r} lets you use _select semantics_
+    in a context where you would normally use _mutate semantics_
+
+* A function can be specified by name
+
+```{r summarise() multiple columns with across()}
+DF %>% 
+  summarise( across(where(is.numeric), max) )
+DF %>% group_by(Treatment) %>% 
+  summarise( across(starts_with("X"), max) )
+```
+
+
+## `summarise()`{.r} `across()`{.r} with ad hoc function
+
+* For more complex operations, you may have to define a _custom function_
+  or define an _ad hoc function_ to include additional arguments
+
+```{r summarise() across() with ad hoc function}
+DF %>% 
+  summarise(
+    across(where(is.numeric), 
+           function(x) max(x, na.rm = TRUE)
+    )
+  )
+```
+
+
+## `summarise()`{.r} `across()`{.r} with "lambda notation"
+
+* You can also define ad hoc functions using a special "lambda" notation
+  - refer to the value in the column with '`.x`'
+
+```{r summarise() across() with lambda}
+DF %>% 
+  summarise( across(everything(), ~ sum(is.na(.x))) )
+```
+
+### Tip
+
+`sum(is.na())` _is a great way to count the number of missing values in a column._
+
+::: notes
+lambdas, `.` & `.x`:
+https://stackoverflow.com/a/56532176/1112770
+:::
 
 
 ## References (Extras)

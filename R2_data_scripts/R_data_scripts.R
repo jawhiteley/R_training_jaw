@@ -323,6 +323,25 @@ library(stringr)
 # vignette("stringr")
 
 
+## ----Find non-numeric values in `675` column, echo = FALSE--------------------
+CSV_comma %>% select(1:3, "675") %>% 
+  filter(!is.na(`675`) & `675` %>%
+           as.numeric() %>%
+           is.na() %>%
+           suppressWarnings()
+  ) %>% pull("675")
+
+
+## ----clean `675` column (character), results='hide'---------------------------
+CSV_comma %>% select(1:3, "675") %>% 
+  mutate(
+    # Replace "," with "."
+    `675` = str_replace(`675`, ",", "."),
+    # convert to numeric
+    `675` = as.numeric(`675`)
+  )
+
+
 ## ----clean `Type` column------------------------------------------------------
 DF_clean1_type <- DF %>% 
   mutate(
@@ -350,25 +369,6 @@ DF_clean2_500 <- DF_clean1_type %>%
   )
 
 
-## ----Find non-numeric values in `675` column, echo = FALSE--------------------
-CSV_comma %>% select(1:3, "675") %>% 
-  filter(!is.na(`675`) & `675` %>%
-           as.numeric() %>%
-           is.na() %>%
-           suppressWarnings()
-  ) %>% pull("675")
-
-
-## ----clean `675` column (character), results='hide'---------------------------
-CSV_comma %>% select(1:3, "675") %>% 
-  mutate(
-    # Replace "," with "."
-    `675` = str_replace(`675`, ",", "."),
-    # convert to numeric
-    `675` = as.numeric(`675`)
-  )
-
-
 
 
 ## ----clean `X675` column------------------------------------------------------
@@ -383,7 +383,7 @@ DF %>% distinct(Treatment) %>% pull()
 
 
 ## ----clean `Treatment` column-------------------------------------------------
-DF_clean4_cols <- DF_clean3_675 %>% 
+DF_clean4_trt <- DF_clean3_675 %>% 
   # replace empty strings with NA (if present)
   mutate(Treatment = na_if(Treatment, "")) %>%  
   # Fill Down to replace NAs (tidyr)
@@ -402,65 +402,32 @@ DF %>% group_by(Type, PlantNum) %>%
   mutate(Norm95 = X95 / mean(X95))
 
 
-## ----grouping columns are excluded from operations, results='hide'------------
+## ----grouping columns are excluded from operations, results='hide', message=FALSE----
 DF %>% group_by(Type, PlantNum) %>% 
   select(starts_with("X"))
 
 
 ## ----summarise ungrouped------------------------------------------------------
-DF_clean4_cols %>% summarise(n(), mean(X95))
+DF_clean4_trt %>% summarise(n(), mean(X95))
 
 
 ## ----summarise grouped, results='hide'----------------------------------------
-DF_clean4_cols %>% group_by(Type, PlantNum) %>% 
+DF_clean4_trt %>% group_by(Type, PlantNum) %>% 
   summarise(n = n(), sum(X95))
 
 
-## ----summarise() multiple columns with across()-------------------------------
-DF_clean4_cols %>% 
-  summarise( across(where(is.numeric), max) )
-DF_clean4_cols %>% group_by(Treatment) %>% 
-  summarise( across(starts_with("X"), max) )
-
-
-## ----summarise() across() with ad hoc function--------------------------------
-DF_clean4_cols %>% 
-  summarise(
-    across(where(is.numeric), 
-           function(x) max(x, na.rm = TRUE)
-    )
-  )
-
-
-## ----summarise() across() with lambda-----------------------------------------
-DF_clean4_cols %>% 
-  summarise( across(everything(), ~ sum(is.na(.x))) )
-
-
 ## ----count rows on each group-------------------------------------------------
-DF_clean4_cols %>%
+DF_clean4_trt %>%
   group_by(Type, Treatment, PlantNum) %>% 
   summarise(n = n(), .groups = "drop") %>% 
   filter(n > 1)
 
 
 ## ----look at duplicate rows---------------------------------------------------
-DF_duprows <- DF_clean4_cols %>%
+DF_duprows <- DF_clean4_trt %>%
   group_by(Type, Treatment, PlantNum) %>% 
   filter(n() > 1)
-DF_duprows %>%
-  mutate(across(everything(), ~ near(.x, max(.x, na.rm = TRUE)) ))
-
-
-## ----collapse duplicate rows--------------------------------------------------
-DF_clean5_rows <- DF_clean4_cols %>%
-  group_by(Type, Treatment, PlantNum) %>% 
-  summarise(
-    across(where(is.numeric), ~ max(.x, na.rm = TRUE)),
-    .groups = "drop"
-  ) %>% 
-  ## Re-sort to original order
-  arrange(desc(Type), desc(Treatment), PlantNum)
+DF_duprows
 
 
 ## ----load tidyr---------------------------------------------------------------
@@ -472,7 +439,7 @@ CO2 %>% pull(Plant) %>% unique() %>% as.character()
 
 
 ## ----temporary columns, results='hide'----------------------------------------
-DF_clean5_rows %>% select(Type, Treatment) %>% 
+DF_clean4_trt %>% select(Type, Treatment) %>% 
   ## Create columns with the first letter of each row
   mutate(
     Type.tmp      = str_sub(Type, 1, 1),
@@ -481,7 +448,7 @@ DF_clean5_rows %>% select(Type, Treatment) %>%
 
 
 ## ----unite() columns----------------------------------------------------------
-DF_clean <- DF_clean5_rows %>% 
+DF_clean5_cols <- DF_clean4_trt %>% 
   ## Create columns with the first letter of each row
   mutate(
     Type.tmp      = str_sub(Type, 1, 1),
@@ -498,11 +465,11 @@ DF_clean <- DF_clean5_rows %>%
 
 
 ## ----example data is wide-----------------------------------------------------
-DF_clean %>% select(where(is.numeric)) %>% names()
+DF_clean5_cols %>% select(where(is.numeric)) %>% names()
 
 
 ## ----pivot longer-------------------------------------------------------------
-DF_tidy <- DF_clean %>% 
+DF_tidy <- DF_clean5_cols %>% 
   pivot_longer(
     cols = where(is.numeric),  # columns to pivot
     names_to = "conc",         # name of new column with old column names
@@ -514,20 +481,54 @@ DF_tidy <- DF_clean %>%
   )
 
 
+## ----Duplicate values of `uptake`, message=FALSE------------------------------
+DF_tidy %>% 
+  group_by(Plant, Type, Treatment, conc) %>% 
+  summarise(n = n()) %>% 
+  filter(n > 1)
+
+
+## ----Confirm that all duplicate values are "near" the max & min---------------
+DF_tidy %>% 
+  group_by(Plant, conc) %>% 
+  summarise(
+    n = n(), 
+    min_max = min(uptake, na.rm = TRUE) %>% 
+              near(max(uptake, na.rm = TRUE)),
+    .groups = "drop"
+  ) %>% 
+  filter(!min_max) %>% nrow()
+
+
+## ----collapse duplicate rows--------------------------------------------------
+DF_clean <- 
+  DF_tidy %>% 
+  group_by(Plant, Type, Treatment, conc) %>% 
+  summarise(
+    uptake = max(uptake, na.rm = TRUE), 
+    .groups = "drop"
+  ) %>% 
+  arrange(desc(Type), desc(Treatment), Plant, conc)
+
+
 ## ----check results------------------------------------------------------------
-all.equal(DF_tidy, CO2, check.attributes = FALSE)
+all.equal(DF_clean, CO2, check.attributes = FALSE)
 
 
 ## ----convert character columns to factors-------------------------------------
-DF_final <- DF_tidy %>% 
+DF_final <- DF_clean %>% 
+  mutate(
+    Plant     = factor(Plant, levels = unique(Plant)),
+    Type      = factor(Type,  levels = unique(Type)),
+    Treatment = factor(Treatment, levels = unique(Treatment))
+  )
+
+
+## ----convert *all* character columns to factors, results='hide'---------------
+DF_clean %>% 
   mutate( across(where(is.character), factor) )
 
 
-## -----------------------------------------------------------------------------
-DF_final <- DF_tidy %>% 
-  mutate(
-    across( where(is.character), ~ factor(.x, levels = unique(.x)) )
-  )
 
 
 ## ----check final results------------------------------------------------------
