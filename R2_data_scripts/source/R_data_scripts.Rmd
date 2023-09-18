@@ -2357,6 +2357,8 @@ file.remove( c("data/data_clean.csv", "data/data_excel.csv") )
 > "Hell is other people's code."
 > --- programming aphorism
 
+**But it doesn't _have_ to be!**
+
 - The syntax of the $\R$ language is strict about some things,
   but not others, like white space and indentation.
 
@@ -2365,9 +2367,14 @@ file.remove( c("data/data_clean.csv", "data/data_excel.csv") )
   - different styles of _naming things_
   - different name formats: `camelCase`, `snake_case`, etc.
 
-- Reading someone else's code that is written in a different style,
+- Code that is written in a different style than you're used to,
   or with inconsistent formatting,
-  can be confusing.
+  can be difficult to read and follow.
+
+<!--
+- Code that is formatted consistently can be easier to read and understand.
+-->
+
 
 ## Style Guides
 
