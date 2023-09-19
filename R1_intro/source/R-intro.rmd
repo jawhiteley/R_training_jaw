@@ -2209,6 +2209,7 @@ Other training materials and tutorials used as inspiration:
 <!-- To ADD:
 + Functions
   + the `c()` function for making vectors
+  + `paste()` & `paste0()`
 + Script files
   + Rmarkdown & R notebooks
   + Code style guide?
