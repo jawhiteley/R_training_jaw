@@ -54,7 +54,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 8.  stringr: clean example data
 
-9.  Grouped data: group_by() & summarise()
+9.  Grouped data: group_by() & summarize()
 
 10. Reshape: tidyr
 
@@ -139,7 +139,7 @@ knitr::opts_chunk$set(echo = TRUE)
     4.  ***Activity ?: select()***
     5.  filter()
     6.  **Activity 4: filter()**
-    7.  piping
+    7.  pipes
     8.  **Activity 5 (short): convert expressions to pipes**
     9.  *dplyr conventions (after seeing a couple of examples, and pipes)?*
 6.  Find specific values in example data
@@ -168,19 +168,19 @@ knitr::opts_chunk$set(echo = TRUE)
     4.  **Activity 8: modify some strings (script)**
 10. Grouped data
     1.  group_by()
-    2.  summarise()
-    3.  **Activity 9: summarise CO2 vs loaded (wide) data**
+    2.  summarize()
+    3.  **Activity 9: summarize CO2 vs loaded (wide) data**
         1.  source() external script to generate `CO2_wide`
         2.  Exposure to different layouts
     4.  Clean rows in *example data*?
-        1.  Laborious to summarise() multiple columns; would be easier if 1 column ...
+        1.  Laborious to summarize() multiple columns; would be easier if 1 column ...
 11. tidyr
     1.  tidy data
     2.  missing values?
     3.  unite
     4.  *pivot*
     5.  Tidy *example data*
-        1.  Finish cleaning by removing duplicates with summarise()
+        1.  Finish cleaning by removing duplicates with summarize()
     6.  **Activity 10: pivot_wider & back** [with CO2]
 12. Save data
     1.  **Activity 11:** split CO2 data by a Type or Treatment & save to separate files?

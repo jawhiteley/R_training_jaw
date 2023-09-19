@@ -1200,7 +1200,7 @@ iris_xl <- read_excel(xl_path, "iris")
   `read_csv()`{.r} to control how data is imported.
 
 - Use the script file in the "`activities`" folder as a starting point:
-  - "`R2_activity_readxl.R`"
+  - "`activity3_readxl.R`"
 
 ```r
 XL_path <- readxl_example("deaths.xlsx")
@@ -1425,7 +1425,7 @@ Pause to let people try these out
   with `filter()`{.r}, `select()`{.r}, and helper functions.
 
 - Use the script file in the "`activities`" folder:
-  - "`R2_activity_filter.R`"
+  - "`activity4_filter.R`"
 
 - The script contains some questions for you to answer,
   as *comments* in the code.
@@ -1773,7 +1773,7 @@ case_when()
   to add & modify columns in the `iris` dataset (`?iris`{.r}).
 
 - Use the script file in the "`activities`" folder:
-  - "`R2_activity_mutate.R`"
+  - "`activity6_mutate.R`"
 
 - The script contains some questions for you to answer,
   as *comments* in the code.
@@ -1837,7 +1837,7 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
   to add & modify columns in the `iris` dataset (`?iris`{.r}).
 
 - Use the script file in the "`activities`" folder:
-  - "`R2_activity_mutate_conditions.R`"
+  - "`activity7_mutate_conditions.R`"
 
 - The script contains some questions for you to answer,
   as *comments* in the code.
@@ -2000,7 +2000,7 @@ DF_clean4_trt <- DF_clean3_675 %>%
   to explore and modify the `starwars` dataset (`?starwars`{.r}).
 
 - Use the script file in the "`activities`" folder:
-  - "`R2_activity_stringr.R`"
+  - "`activity8_stringr.R`"
 
 - The script contains some questions for you to answer,
   as *comments* in the code.
@@ -2064,7 +2064,7 @@ DF_clean4_trt %>% group_by(Type, PlantNum) %>%
   to analyze and explore the `CO2` dataset (`?CO2`{.r}).
 
 - Use the script file in the "`activities`" folder:
-  - "`R2_activity_summarize.R`"
+  - "`activity9_summarize.R`"
 
 - The script contains some questions for you to answer,
   as *comments* in the code.
@@ -2371,7 +2371,7 @@ all.equal(DF_final, CO2, check.attributes = FALSE)
   to reshape the original `CO2` dataset (`?CO2`{.r}).
 
 - Use the script file in the "`activities`" folder:
-  - "`R2_activity_pivot.R`"
+  - "`activity10_pivot.R`"
 
 - The script contains some challenges for you to try,
   described in code *comments*.
@@ -2478,7 +2478,7 @@ file.remove( c("data/data_clean.csv", "data/data_excel.csv") )
   to write portions of the `CO2` dataset (`?CO2`{.r}) to external files.
 
 - Use the script file in the "`activities`" folder:
-  - "`R2_activity_write.R`"
+  - "`activity11_write.R`"
 
 - The script contains some tasks for you to try to achieve,
   as *comments* in the code.
@@ -2546,7 +2546,7 @@ We don't have time to explore these today.
   to combine the data frames.
 
 - Use the script file in the "`activities`" folder:
-  - "`R2_activity_2tables.R`"
+  - "`activity12_2tables.R`"
 
 - The script contains some specific tasks for you to try,
   described in code *comments*.
@@ -2622,7 +2622,7 @@ We don't have time to explore these today.
 ## Final **Activity**
 
 - Use this script file in the 'activities' folder as a starting point:
-  `R2_activity_final.R`
+  `activity_final.R`
   
 - Load *all* the data files in this directory:  
   `data/activity`
