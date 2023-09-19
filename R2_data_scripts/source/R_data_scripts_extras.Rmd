@@ -340,6 +340,19 @@ read_csv(Data, "data.csv",
 
 # Downloading Data From the Internet
 
+- You can use read.csv & read_csv with urls as file paths:
+
+```{r}
+csv_web <- 
+  read_csv( paste0(
+    "https://raw.githubusercontent.com/jawhiteley/",
+    "R_training_jaw/main/R2_data_scripts/",
+    "data/data_example.csv"
+    ),
+    skip = 2
+  )
+```
+
 ```{=html}
 <!--
 - You can use read.csv & read_csv on urls directly!
