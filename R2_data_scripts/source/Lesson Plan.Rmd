@@ -169,8 +169,9 @@ knitr::opts_chunk$set(echo = TRUE)
 10. Grouped data
     1.  group_by()
     2.  summarise()
-    3.  ***Activity 9: summarise CO2 vs loaded (wide) data***
-        1.  Exposure to different layouts
+    3.  **Activity 9: summarise CO2 vs loaded (wide) data**
+        1.  source() external script to generate `CO2_wide`
+        2.  Exposure to different layouts
     4.  Clean rows in *example data*?
         1.  Laborious to summarise() multiple columns; would be easier if 1 column ...
 11. tidyr

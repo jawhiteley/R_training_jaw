@@ -1424,7 +1424,7 @@ Pause to let people try these out
 - Explore the `iris` dataset (`?iris`{.r})
   with `filter()`{.r}, `select()`{.r}, and helper functions.
 
-- Use the script file in the "`activities`" folder as a starting point:
+- Use the script file in the "`activities`" folder:
   - "`R2_activity_filter.R`"
 
 - The script contains some questions for you to answer,
@@ -1697,7 +1697,7 @@ See the "Extras" for examples of using a custom function
 that can be applied to multiple columns at once.
 
 
-<!--
+<!--  the idea for this activity is incorporated into other activities
 ## **Activity ?**: detect values in data
 
 - Use `filter()`{.r}, `select()`{.r}, and helper functions,
@@ -1772,7 +1772,7 @@ case_when()
 - Practice using `mutate()`{.r} and helper functions
   to add & modify columns in the `iris` dataset (`?iris`{.r}).
 
-- Use the script file in the "`activities`" folder as a starting point:
+- Use the script file in the "`activities`" folder:
   - "`R2_activity_mutate.R`"
 
 - The script contains some questions for you to answer,
@@ -1836,7 +1836,7 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 - Practice using `mutate()`{.r} and conditional expressions
   to add & modify columns in the `iris` dataset (`?iris`{.r}).
 
-- Use the script file in the "`activities`" folder as a starting point:
+- Use the script file in the "`activities`" folder:
   - "`R2_activity_mutate_conditions.R`"
 
 - The script contains some questions for you to answer,
@@ -1999,7 +1999,7 @@ DF_clean4_trt <- DF_clean3_675 %>%
 - Practice using functions from the `stringr` package
   to explore and modify the `starwars` dataset (`?starwars`{.r}).
 
-- Use the script file in the "`activities`" folder as a starting point:
+- Use the script file in the "`activities`" folder:
   - "`R2_activity_stringr.R`"
 
 - The script contains some questions for you to answer,
@@ -2057,18 +2057,17 @@ DF_clean4_trt %>% group_by(Type, PlantNum) %>%
 - `summarize()`{.r} automatically drops the last level from the groups.
 - `summarize()`{.r} & `summarise()`{.r} are synonyms (same function).
 
-<!--
-## **Activity **: `summarize()`{.r} data frames
+
+## **Activity 9**: `summarize()`{.r} data frames
 
 - Practice using `summarize()`{.r} and helper functions
   to analyze and explore the `CO2` dataset (`?CO2`{.r}).
 
-- Use the script file in the "`activities`" folder as a starting point:
+- Use the script file in the "`activities`" folder:
   - "`R2_activity_summarize.R`"
 
 - The script contains some questions for you to answer,
   as *comments* in the code.
--->
 
 
 
@@ -2366,12 +2365,12 @@ all.equal(DF_final, CO2, check.attributes = FALSE)
 ```
 
 
-## **Activity **: reshape data with the `tidyr` package
+## **Activity 10**: reshape data with the `tidyr` package
 
 - Practice using `pivot_wider()`{.r} and `pivot_wider()`{.r}
   to reshape the original `CO2` dataset (`?CO2`{.r}).
 
-- Use the script file in the "`activities`" folder as a starting point:
+- Use the script file in the "`activities`" folder:
   - "`R2_activity_pivot.R`"
 
 - The script contains some challenges for you to try,
@@ -2473,12 +2472,12 @@ file.remove( c("data/data_clean.csv", "data/data_excel.csv") )
 -->
 
 
-## **Activity **: write data to files with the `readr` package
+## **Activity 11**: write data to files with the `readr` package
 
 - Practice using `write_csv()`{.r} and other `tidyverse` functions
   to write portions of the `CO2` dataset (`?CO2`{.r}) to external files.
 
-- Use the script file in the "`activities`" folder as a starting point:
+- Use the script file in the "`activities`" folder:
   - "`R2_activity_write.R`"
 
 - The script contains some tasks for you to try to achieve,
@@ -2540,13 +2539,13 @@ We don't have time to explore these today.
 :::
 
 
-## **Activity **: combine data frames with 2-table `dplyr` verbs
+## **Activity 12**: combine data frames with 2-table `dplyr` verbs
 
 - Read the files you created in the last activity,
   then use `bind_cols()`{.r} or `bind_rows()`{.r}
   to combine the data frames.
 
-- Use the script file in the "`activities`" folder as a starting point:
+- Use the script file in the "`activities`" folder:
   - "`R2_activity_2tables.R`"
 
 - The script contains some specific tasks for you to try,
