@@ -534,7 +534,7 @@ if (isFALSE(0 == 1)) {
 }
 ```
 
-## Control flow: multiple `if`{.r}, `else`{.r} conditions {.shrink}
+## Control flow: multiple `if`{.r}, `else`{.r} conditions
 
 - You can have multiple "`if-else`" statements,
   as long as each `if`{.r} after the first follows immediately after
@@ -613,7 +613,7 @@ c(1, NA, 3, 4 , NaN)  ==  c(1, NA, 1, NA, NaN)
 - This code defines a function that compares two vectors,
   accounting for missing values (`NA`{.r})
   \small _(code adapted from [Cookbook for R](http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA/))_
-  
+
 
 ## An infix operator
 
