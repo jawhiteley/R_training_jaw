@@ -1210,7 +1210,7 @@ iris_xl <- read_excel(xl_path, "iris")
   `read_csv()`{.r} to control how data is imported.
 
 - Use the script file in the "`activities`" folder as a starting point:
-  - "`activity3_readxl.R`"
+  - "`activity03_readxl.R`"
 
 ```r
 XL_path <- readxl_example("deaths.xlsx")
@@ -1435,7 +1435,7 @@ Pause to let people try these out
   with `filter()`{.r}, `select()`{.r}, and helper functions.
 
 - Use the script file in the "`activities`" folder:
-  - "`activity4_filter.R`"
+  - "`activity04_filter.R`"
 
 - The script contains some questions for you to answer,
   as *comments* in the code.
@@ -1714,7 +1714,7 @@ that can be applied to multiple columns at once.
   to locate specific values _systematically_
 
 - Use the script file in the "`activities`" folder as a starting point:
-  - "`R2_activity_detect.R`"
+  - "`activity_detect.R`"
 
 - The script contains some questions for you to answer,
   as *comments* in the code.
@@ -1783,7 +1783,7 @@ case_when()
   to add & modify columns in the `iris` dataset (`?iris`{.r}).
 
 - Use the script file in the "`activities`" folder:
-  - "`activity6_mutate.R`"
+  - "`activity06_mutate.R`"
 
 - The script contains some questions for you to answer,
   as *comments* in the code.
@@ -1847,7 +1847,7 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
   to add & modify columns in the `iris` dataset (`?iris`{.r}).
 
 - Use the script file in the "`activities`" folder:
-  - "`activity7_mutate_conditions.R`"
+  - "`activity07_mutate_conditions.R`"
 
 - The script contains some questions for you to answer,
   as *comments* in the code.
@@ -2010,7 +2010,7 @@ DF_clean4_trt <- DF_clean3_675 %>%
   to explore and modify the `starwars` dataset (`?starwars`{.r}).
 
 - Use the script file in the "`activities`" folder:
-  - "`activity8_stringr.R`"
+  - "`activity08_stringr.R`"
 
 - The script contains some questions for you to answer,
   as *comments* in the code.
@@ -2074,7 +2074,7 @@ DF_clean4_trt %>% group_by(Type, PlantNum) %>%
   to analyze and explore the `CO2` dataset (`?CO2`{.r}).
 
 - Use the script file in the "`activities`" folder:
-  - "`activity9_summarize.R`"
+  - "`activity09_summarize.R`"
 
 - The script contains some questions for you to answer,
   as *comments* in the code.
