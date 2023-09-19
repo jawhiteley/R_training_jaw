@@ -73,7 +73,7 @@ DF_readr <- readr::read_csv(DF_path, skip = 2)
   doesn't mean there's nothing wrong with the data!
 
 
-## `readr` vs base $\R$ functions
+## Loading data: `readr` vs base $\R$ functions
 
 +--------------------+-----------------------------+--------------------+-----------------------+
 | **`readr`**                                      | **`base R`**                               |
@@ -135,7 +135,7 @@ I could use built-in data sets instead, but decided it wasn't worth spending tim
 :::
 
 
-## The `readr` package: writing data
+## Writing data: `readr` vs base $\R$ functions
 
 +--------------------------+----------------------------------+------------------------+
 | **`readr`**                                                 | **`base R`**           |
