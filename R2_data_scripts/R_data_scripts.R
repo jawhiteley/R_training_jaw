@@ -408,19 +408,19 @@ DF %>% group_by(Type, PlantNum) %>%
   select(starts_with("X"))
 
 
-## ----summarise ungrouped------------------------------------------------------
-DF_clean4_trt %>% summarise(n(), mean(X95))
+## ----summarize ungrouped------------------------------------------------------
+DF_clean4_trt %>% summarize(n(), mean(X95))
 
 
-## ----summarise grouped, results='hide'----------------------------------------
+## ----summarize grouped, results='hide'----------------------------------------
 DF_clean4_trt %>% group_by(Type, PlantNum) %>% 
-  summarise(n = n(), sum(X95))
+  summarize(n = n(), sum(X95))
 
 
 ## ----count rows on each group-------------------------------------------------
 DF_clean4_trt %>%
   group_by(Type, Treatment, PlantNum) %>% 
-  summarise(n = n(), .groups = "drop") %>% 
+  summarize(n = n(), .groups = "drop") %>% 
   filter(n > 1)
 
 
@@ -485,14 +485,14 @@ DF_tidy <- DF_clean5_cols %>%
 ## ----Duplicate values of `uptake`, message=FALSE------------------------------
 DF_tidy %>% 
   group_by(Plant, Type, Treatment, conc) %>% 
-  summarise(n = n()) %>% 
+  summarize(n = n()) %>% 
   filter(n > 1)
 
 
 ## ----Confirm that all duplicate values are "near" the max & min---------------
 DF_tidy %>% 
   group_by(Plant, conc) %>% 
-  summarise(
+  summarize(
     n = n(), 
     min_max = min(uptake, na.rm = TRUE) %>% 
               near(max(uptake, na.rm = TRUE)),
@@ -505,7 +505,7 @@ DF_tidy %>%
 DF_clean <- 
   DF_tidy %>% 
   group_by(Plant, Type, Treatment, conc) %>% 
-  summarise(
+  summarize(
     uptake = max(uptake, na.rm = TRUE), 
     .groups = "drop"
   ) %>% 

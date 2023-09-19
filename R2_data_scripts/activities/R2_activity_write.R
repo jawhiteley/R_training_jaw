@@ -1,5 +1,5 @@
 ################################################################
-### Activity: save data with the `readr` package
+### Activity: write (save) data with the `readr` package
 ### "A Short Introduction to Working With Data in R"
 ### R v4.3.1
 ################################################################

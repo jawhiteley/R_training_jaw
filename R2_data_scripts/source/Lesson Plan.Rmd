@@ -136,7 +136,7 @@ knitr::opts_chunk$set(echo = TRUE)
         2.  *dplyr conventions?*
     2.  select()
     3.  selection helpers
-    4.  ***Activity 3: select()***
+    4.  ***Activity ?: select()***
     5.  filter()
     6.  **Activity 4: filter()**
     7.  piping
@@ -146,7 +146,7 @@ knitr::opts_chunk$set(echo = TRUE)
     1.  ID character columns where numeric expected
     2.  Locate non-numeric values in character column
     3.  unusual numeric values
-    4.  ***Activity ?****[can be included in later activities, too]*
+    4.  ***Activity ?****[can be included in other activities, too]*
     5.  ~~Find issues systematically~~ (move to Extras)
         1.  ~~for loops? [need scripts]~~
             1.  *makes less sense if using read_csv() version: only 1 character column*
@@ -154,10 +154,10 @@ knitr::opts_chunk$set(echo = TRUE)
     1.  mutate()
     2.  mutate() helper functions
     3.  *select vs mutate semantics*
-    4.  **Activity: use mutate() on tidy data** [ ~~CO2~~, iris ]
+    4.  **Activity 6: use mutate() on tidy data** [ ~~CO2~~, iris ]
 8.  Conditional execution
     1.  ***if () else () -\> if_else(), case_when()***
-    2.  **Activity: practice using mutate with conditions** on `iris` dataset
+    2.  **Activity 7: practice using mutate with conditions** on `iris` dataset
 9.  stringr + mutate: clean character columns
     1.  clean columns in example data
 
@@ -165,11 +165,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
     3.  package:: object notation to use tidyr::fill()
 
-    4.  **Activity: modify some strings (script)**
+    4.  **Activity 8: modify some strings (script)**
 10. Grouped data
     1.  group_by()
     2.  summarise()
-    3.  ***Activity: summarise CO2 vs loaded (wide) data***
+    3.  ***Activity 9: summarise CO2 vs loaded (wide) data***
         1.  Exposure to different layouts
     4.  Clean rows in *example data*?
         1.  Laborious to summarise() multiple columns; would be easier if 1 column ...
@@ -180,14 +180,14 @@ knitr::opts_chunk$set(echo = TRUE)
     4.  *pivot*
     5.  Tidy *example data*
         1.  Finish cleaning by removing duplicates with summarise()
-    6.  **Activity: pivot_wider & back** [with CO2]
+    6.  **Activity 10: pivot_wider & back** [with CO2]
 12. Save data
-    1.  **Activity?** split CO2 data by a Type or Treatment & save to separate files?
+    1.  **Activity 11:** split CO2 data by a Type or Treatment & save to separate files?
         1.  for loops optional
 13. Combining tables
     1.  bind_rows() & bind_cols()
     2.  mention joins, but no time for examples (extras?)
-    3.  **Activity: split & recombine CO2 dataset** (read files saved in last activity?)
+    3.  **Activity 12: split & recombine CO2 dataset** (read files saved in last activity?)
         -   summarize() a dataset and merge back with original for calculation?
         -   or just group_by() & mutate()
 

@@ -86,8 +86,8 @@ if (FALSE) { # do not run when source()d
 <!-- R logo: ![](`r file.path(R.home("doc"), "html", "logo.jpg")`){height=1em} -->
 
 - I will use an example data file to demo various cleaning & manipulation steps
-- Exercises, however, should generally **stand-alone**
-  - Exercises are an opportunity to try to apply knowledge, experiment, sometimes fail, and discuss 
+- Activities/Exercises, however, should generally **stand alone**
+  - Activities/Exercises are an opportunity to try to apply knowledge, experiment, sometimes fail, and discuss 
     --- _success_ is not the primary objective.
   - Messing up an exercise should not derail your progress on future exercises.
 :::
@@ -617,7 +617,7 @@ data(CO2)
 ```
 
 
-## **Activity** 1: what's wrong with this data?
+## **Activity 1**: what's wrong with this data?
 
 The original dataset has the following properties (`str(CO2)`{.r}):
 
@@ -1199,7 +1199,7 @@ iris_xl <- read_excel(xl_path, "iris")
 - `read_excel()`{.r} has many of the same arguments as 
   `read_csv()`{.r} to control how data is imported.
 
-- Use the script file in the "`examples`" folder as a starting point:
+- Use the script file in the "`activities`" folder as a starting point:
   - "`R2_activity_readxl.R`"
 
 ```r
@@ -1216,7 +1216,7 @@ ignoring contents outside this range
 (rows above & below, columns before & after)
 
 ::: notes
-Skip this exercise if running late.
+Skip this activity if running late.
 :::
 
 
@@ -1252,7 +1252,7 @@ Use loaded data set for demos; `who` or `iris` data for exercises?
     - rbind / bind_rows
     - cbind / bind_cols
     - join() [mention merge()?]
-    - Exercise: summarize() a dataset and merge back with original for calculation?
+    - Exercise: summarize() a dataset and join back with original for calculation?
       - or just group_by() & mutate()
 * data masking? (advanced) ?args_data_masking
   * {{ var }} and when to use it?
@@ -1419,6 +1419,18 @@ Pause to let people try these out
 :::
 
 
+## **Activity 4**: explore data with `filter()`{.r}
+
+- Explore the `iris` dataset (`?iris`{.r})
+  with `filter()`{.r}, `select()`{.r}, and helper functions.
+
+- Use the script file in the "`activities`" folder as a starting point:
+  - "`R2_activity_filter.R`"
+
+- The script contains some questions for you to answer,
+  as *comments* in the code.
+
+
 ## `select()`{.r} & `filter()`{.r} work well together
 
 - For example, you can filter on a column,
@@ -1532,7 +1544,7 @@ DF %>% filter(Treatment == "chilled") %>%
 [^R4.1]: https://cran.r-project.org/bin/windows/base/old/4.1.0/NEWS.R-4.1.0.html
 
 
-## **Activity **: pipes {.shrink}
+## **Activity 5**: pipes {.shrink}
 
 \small 
 **Insert a pipe in R Studio with `CTL+Shift+M` (`CMD+Shift+M`)**
@@ -1685,6 +1697,23 @@ See the "Extras" for examples of using a custom function
 that can be applied to multiple columns at once.
 
 
+<!--
+## **Activity ?**: detect values in data
+
+- Use `filter()`{.r}, `select()`{.r}, and helper functions,
+  to locate specific values _systematically_
+
+- Use the script file in the "`activities`" folder as a starting point:
+  - "`R2_activity_detect.R`"
+
+- The script contains some questions for you to answer,
+  as *comments* in the code.
+-->
+
+
+
+
+
 # `dplyr` Verbs: Modify Data Columns
 
 ## Modify Columns: `mutate()`{.r} 
@@ -1736,6 +1765,18 @@ row_number()
 if_else()
 case_when()
 -->
+
+
+## **Activity 6**: `mutate()`{.r} some columns
+
+- Practice using `mutate()`{.r} and helper functions
+  to add & modify columns in the `iris` dataset (`?iris`{.r}).
+
+- Use the script file in the "`activities`" folder as a starting point:
+  - "`R2_activity_mutate.R`"
+
+- The script contains some questions for you to answer,
+  as *comments* in the code.
 
 
 ## `mutate()`{.r}: conditional values
@@ -1790,7 +1831,18 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 :::
 
 
-## **Activity**
+## **Activity 7**: `mutate()`{.r} with conditions
+
+- Practice using `mutate()`{.r} and conditional expressions
+  to add & modify columns in the `iris` dataset (`?iris`{.r}).
+
+- Use the script file in the "`activities`" folder as a starting point:
+  - "`R2_activity_mutate_conditions.R`"
+
+- The script contains some questions for you to answer,
+  as *comments* in the code.
+
+
 
 
 
@@ -1942,7 +1994,18 @@ DF_clean4_trt <- DF_clean3_675 %>%
 ```
 
 
-## **Activity**
+## **Activity 8**: work with strings using the `stringr` package
+
+- Practice using functions from the `stringr` package
+  to explore and modify the `starwars` dataset (`?starwars`{.r}).
+
+- Use the script file in the "`activities`" folder as a starting point:
+  - "`R2_activity_stringr.R`"
+
+- The script contains some questions for you to answer,
+  as *comments* in the code.
+
+
 
 
 
@@ -1977,25 +2040,36 @@ DF %>% group_by(Type, PlantNum) %>%
 
 ## Collapse groups: `summarise()`{.r} / `summarize()`{.r}
 
-- Without groups specified, `summarise()`{.r}
+- Without groups specified, `summarize()`{.r}
   treats the data frame as a single group
 
-```{r summarise ungrouped}
-DF_clean4_trt %>% summarise(n(), mean(X95))
+```{r summarize ungrouped}
+DF_clean4_trt %>% summarize(n(), mean(X95))
 ```
 
-- But `summarise()`{.r} is most useful when applied to grouped data
+- But `summarize()`{.r} is most useful when applied to grouped data
 
-```{r summarise grouped, results='hide'}
+```{r summarize grouped, results='hide'}
 DF_clean4_trt %>% group_by(Type, PlantNum) %>% 
-  summarise(n = n(), sum(X95))
+  summarize(n = n(), sum(X95))
 ```
 
-- `summarise()`{.r} automatically drops the last level from the groups.
-- `summarise()`{.r} & `summarise()`{.r} are synonyms (same function).
+- `summarize()`{.r} automatically drops the last level from the groups.
+- `summarize()`{.r} & `summarise()`{.r} are synonyms (same function).
 
+<!--
+## **Activity **: `summarize()`{.r} data frames
 
-## **Activity**
+- Practice using `summarize()`{.r} and helper functions
+  to analyze and explore the `CO2` dataset (`?CO2`{.r}).
+
+- Use the script file in the "`activities`" folder as a starting point:
+  - "`R2_activity_summarize.R`"
+
+- The script contains some questions for you to answer,
+  as *comments* in the code.
+-->
+
 
 
 
@@ -2008,7 +2082,7 @@ DF_clean4_trt %>% group_by(Type, PlantNum) %>%
 ```{r count rows on each group}
 DF_clean4_trt %>%
   group_by(Type, Treatment, PlantNum) %>% 
-  summarise(n = n(), .groups = "drop") %>% 
+  summarize(n = n(), .groups = "drop") %>% 
   filter(n > 1)
 ```
 
@@ -2026,10 +2100,12 @@ DF_duprows <- DF_clean4_trt %>%
 DF_duprows
 ```
 
-## Combine duplicate rows in example data
+## Combine duplicate rows in example data? (to\ be\ continued...)
 
-- We could collapse the duplicate rows using `summarise()`{.r},
+- We could collapse the duplicate rows using `summarize()`{.r}...
+
   - but it would be tedious to write out the statements for each column
+  
   - or figure out a more advanced method (see "Extras" for ideas).
 
 - It will be much easier to remove duplicates after the data is _tidy_
@@ -2191,7 +2267,7 @@ DF_tidy <- DF_clean5_cols %>%
 ```{r Duplicate values of `uptake`, message=FALSE}
 DF_tidy %>% 
   group_by(Plant, Type, Treatment, conc) %>% 
-  summarise(n = n()) %>% 
+  summarize(n = n()) %>% 
   filter(n > 1)
 ```
 
@@ -2205,7 +2281,7 @@ DF_tidy %>%
 ```{r Confirm that all duplicate values are "near" the max & min}
 DF_tidy %>% 
   group_by(Plant, conc) %>% 
-  summarise(
+  summarize(
     n = n(), 
     min_max = min(uptake, na.rm = TRUE) %>% 
               near(max(uptake, na.rm = TRUE)),
@@ -2218,7 +2294,7 @@ DF_tidy %>%
 ## Combine duplicate rows in example data
 
 - Now we only have to group by other columns,
-  and `summarise()`{.r} the `uptake` column
+  and `summarize()`{.r} the `uptake` column
   
   - and sort (with `arrange()`{.r}) to recover original order.
   
@@ -2226,7 +2302,7 @@ DF_tidy %>%
 DF_clean <- 
   DF_tidy %>% 
   group_by(Plant, Type, Treatment, conc) %>% 
-  summarise(
+  summarize(
     uptake = max(uptake, na.rm = TRUE), 
     .groups = "drop"
   ) %>% 
@@ -2290,6 +2366,19 @@ all.equal(DF_final, CO2, check.attributes = FALSE)
 ```
 
 
+## **Activity **: reshape data with the `tidyr` package
+
+- Practice using `pivot_wider()`{.r} and `pivot_wider()`{.r}
+  to reshape the original `CO2` dataset (`?CO2`{.r}).
+
+- Use the script file in the "`activities`" folder as a starting point:
+  - "`R2_activity_pivot.R`"
+
+- The script contains some challenges for you to try,
+  described in code *comments*.
+
+
+
 ## Tidy data makes plotting and analysis easier {.shrink}
 
 \footnotesize
@@ -2322,8 +2411,6 @@ DF_final %>%
 
 - In many cases, you might switch between the two more than once.
   - e.g., clean &rarr; tidy &rarr; clean ...
-
-## Exercise
 
 
 
@@ -2386,6 +2473,18 @@ file.remove( c("data/data_clean.csv", "data/data_excel.csv") )
 -->
 
 
+## **Activity **: write data to files with the `readr` package
+
+- Practice using `write_csv()`{.r} and other `tidyverse` functions
+  to write portions of the `CO2` dataset (`?CO2`{.r}) to external files.
+
+- Use the script file in the "`activities`" folder as a starting point:
+  - "`R2_activity_write.R`"
+
+- The script contains some tasks for you to try to achieve,
+  as *comments* in the code.
+
+
 
 
 # Combining Data Frames
@@ -2439,6 +2538,20 @@ bind_cols(list("..", DF_duprows))
 ::: notes
 We don't have time to explore these today.
 :::
+
+
+## **Activity **: combine data frames with 2-table `dplyr` verbs
+
+- Read the files you created in the last activity,
+  then use `bind_cols()`{.r} or `bind_rows()`{.r}
+  to combine the data frames.
+
+- Use the script file in the "`activities`" folder as a starting point:
+  - "`R2_activity_2tables.R`"
+
+- The script contains some specific tasks for you to try,
+  described in code *comments*.
+
 
 
 
