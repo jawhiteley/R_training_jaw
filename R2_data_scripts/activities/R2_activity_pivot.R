@@ -1,5 +1,5 @@
 ################################################################
-### Activity: working with strings using the `stringr` package
+### Activity: reshape data with 'pivot' functions from `tidyr`
 ### "A Short Introduction to Working With Data in R"
 ### R v4.3.1
 ################################################################

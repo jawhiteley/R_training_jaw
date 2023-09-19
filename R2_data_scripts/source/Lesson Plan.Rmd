@@ -182,12 +182,12 @@ knitr::opts_chunk$set(echo = TRUE)
         1.  Finish cleaning by removing duplicates with summarise()
     6.  **Activity: pivot_wider & back** [with CO2]
 12. Save data
-    1.  ***Activity?** split CO2 data by a Type or Treatment & save to separate files?*
+    1.  **Activity?** split CO2 data by a Type or Treatment & save to separate files?
         1.  for loops optional
 13. Combining tables
     1.  bind_rows() & bind_cols()
     2.  mention joins, but no time for examples (extras?)
-    3.  ***Activity: split & recombine CO2 dataset*** (read files saved in last activity?)
+    3.  **Activity: split & recombine CO2 dataset** (read files saved in last activity?)
         -   summarize() a dataset and merge back with original for calculation?
         -   or just group_by() & mutate()
 
