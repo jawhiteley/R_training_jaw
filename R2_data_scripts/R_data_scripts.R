@@ -313,7 +313,7 @@ DF %>% mutate(
   Type_ab = case_when(
     Type == "Quebec"      ~ "QC",
     Type == "Mississippi" ~ "MS",
-    .default = as.character(Type)
+    .default = Type
   )
 )
 
@@ -355,7 +355,7 @@ DF %>%
   mutate(
     Type = case_when(
       Type == "Québec"  ~ "Quebec",
-      .default = Type
+      TRUE              ~ Type      # i.e., a default
     )
   )
 
@@ -572,4 +572,10 @@ head(DF_bindc)
 
 # can also use it on a _list of data frames_
 bind_cols(list("..", DF_duprows))
+
+
+## ----END of workshop script, include = FALSE----------------------------------
+################################################################
+### END --- Thank You!  I hope you enjoyed it.
+################################################################
 

@@ -1804,7 +1804,7 @@ DF %>% mutate(
   Type_ab = case_when(
     Type == "Quebec"      ~ "QC",
     Type == "Mississippi" ~ "MS",
-    .default = as.character(Type)
+    .default = Type
   )
 )
 ```
@@ -1928,7 +1928,7 @@ DF %>%
   mutate(
     Type = case_when(
       Type == "Québec"  ~ "Quebec",
-      .default = Type
+      TRUE              ~ Type      # i.e., a default
     )
   )
 ```
@@ -2748,6 +2748,12 @@ Might work best with a few parameters to limit the kinds of changes that can be 
 
 
 # Backmatter
+
+```{r END of workshop script, include = FALSE}
+################################################################
+### END --- Thank You!  I hope you enjoyed it.
+################################################################
+```
 
 ## Other packages to look at
 
