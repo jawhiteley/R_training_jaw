@@ -399,12 +399,8 @@ csv_web <-
 
 # Reading Data in Other Formats
 
-- Parquet files: an efficient columnar format,
-  popular with Big Data and cloud computing
-  
-  - [Apache Arrow](https://github.com/apache/arrow/tree/main/r) 
-    (i.e., the '`arrow`' package)
-  
+## Other `tidyverse` packages
+
 - The [Data Import Chapter of R for Data Science](https://r4ds.had.co.nz/data-import.html#other-types-of-data) ([2e](https://r4ds.hadley.nz/data-import)) 
   describes these tidyverse packages for other types of data:
 
@@ -412,6 +408,21 @@ csv_web <-
   
   - **`DBI`**, along with a database specific backend (e.g. `RMySQL`, `RSQLite`, `RPostgreSQL`, etc.) 
     allows you to run SQL queries on a **database** and return a data frame.
+  
+
+## Other options
+
+- The [`foreign` package](https://cran.r-project.org/web/packages/foreign/index.html)
+  can read data in a variety of formats, including: 
+  'Minitab', 'S', 'SAS', 'SPSS', 'Stata', and others
+  - _May require access to external software to read their formats_
+  <!-- e.g., reading SAS files requires SAS to be available -->
+
+- Parquet files: an efficient columnar format,
+  popular with Big Data and cloud computing
+  
+  - [Apache Arrow](https://github.com/apache/arrow/tree/main/r) 
+    (i.e., the '`arrow`' package)
   
 - See the [Import Section](https://r4ds.hadley.nz/import) of [R for Data Science (2nd edition)](https://r4ds.hadley.nz/) 
   For more details on getting data into R from these and other sources.
@@ -453,6 +464,132 @@ The main trade-off is the openxlsx cannot write to `.xls` files (Excel 97/2000/X
 
 # Programming
 
+## Control flow: `if`{.r} conditions
+
+```r
+?Control
+```
+
+- Control what code in a script actually runs with
+  conditional expressions and `if`{.r} statements
+  
+```r
+if (condition) {
+  message("The condition is TRUE")
+}
+```
+  
+- **IF** the *expression* (condition) in the parentheses `()` 
+  evaluates to `TRUE`{.r},
+  **then** the code inside the braces `{}` will run.
+  - Otherwise, it will not.
+
+
+## Control flow: `if`{.r} & `NA`{.r} {.shrink}
+
+- The conditional expression *must* result in 
+  _either_ `TRUE`{.r} **or** `FALSE`{.r};   
+  anything else causes an **error**.
+  - `NA` is a common source of problems here.
+  - `isTRUE()`{.r} and `isFALSE()`{.r} are useful 
+    to ensure a `TRUE`{.r}/`FALSE`{.r} result.
+
+```r
+if (NA) {
+  message("The condition is NA")
+}
+```
+```{r if NA, echo=-1}
+try( if (NA) {
+  message("The condition is NA")
+})
+if (isTRUE(NA)) {
+  message("The condition is NA")
+}
+if (is.na(NA)) {
+  message("The condition is TRUE")
+}
+```
+
+
+## Control flow: `if`{.r}, `else`{.r} conditions {.shrink}
+
+- An `else`{.r} condition is optional:  
+  **IF** the *expression* (condition) in the `if`{.r} statement 
+  evaluates to `FALSE`{.r},
+  **then** the code inside the braces `{}` _after_ `else`{.r} will run.
+
+```r
+if (isTRUE(condition)) {
+  message("The condition is TRUE")
+} else {
+  warning("The condition is FALSE")
+}
+```
+```{r if-else example}
+if (isFALSE(0 == 1)) {
+  message("The condition is TRUE")
+} else {
+  warning("The condition is FALSE")
+}
+```
+
+## Control flow: multiple `if`{.r}, `else`{.r} conditions {.shrink}
+
+- You can have multiple "`if-else`" statements,
+  as long as each `if`{.r} after the first follows immediately after
+  the `else`{.r} keyword.
+  
+```{r if-else-if example}
+if (isTRUE(NA)) {
+  stop("NA is TRUE")
+} else if (isFALSE(NA)) {
+  warning("NA is FALSE")
+} else {
+  message("NA is neither TRUE nor FALSE")
+}
+```
+
+
+## Control flow: `for`{.r} loops
+
+```r
+?Control
+```
+
+- Tell $\R$ to run a block of code multiple times in a row
+  with a *loop*
+
+:::::: {.columns .onlytextwidth}
+::: {.column width="45%"}
+```{r for example}
+for (i in 1:3) {
+  print( paste("i =", i) )
+}
+```
+:::
+::: {.column width="52%"}
+
+**`for`{.r} loops**
+
+- Put inside the parentheses `()`, in order:
+
+  - The **name of a variable** to update 
+    each time through the loop (*iteration*)
+  
+  - The keyword '`in`{.r}'
+  
+  - A **vector** of values
+
+- The code inside the the braces `{}` is run 
+  with the specified *variable* 
+  assigned each value in the *vector*,
+  in sequence.
+  
+:::
+::::::
+
+
 ## User-defined function {.shrink}
 
 - Define your own functions with the `function`{.r} function!
@@ -491,6 +628,38 @@ c(1, NA, 3, 4 , NaN) %==% c(1, NA, 1, NA, NaN)
   - the name begins _and_ ends with a percent symbol (`%`)
   
 
+## Debugging
+
+These are some useful functions for troubleshooting 
+or *debugging* code that is not doing what you want:
+
+- `?traceback`: prints a list ("stack") showing
+  the order of expressions that triggered the last error
+  
+  - useful in cases where functions call other functions
+    iteratively, and you want to know which function in the "stack"
+    caused the error.
+
+- `?debug`{.r}: flag a function for debugging
+
+  - The next time the function is called, 
+    it will open an interactive 'browser' session 
+    that lets you run the code in the function 1 line at a time,
+    and even explore how objects change between lines.
+
+- `?browser`: open the same interactive session
+  as `debug()`{.r}, but at a specific location in the code 
+  (_anywhere_)
+
+For more information, check out these (and other) sources:
+[Advanced R](https://adv-r.hadley.nz/debugging.html), 
+[R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/debugging.html), 
+[Debugging with the RStudio IDE](https://support.posit.co/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE)
+
+
+
+
+# Some Advanced `dplyr` Examples
 
 ## Find values systematically {.shrink}
 
@@ -580,6 +749,8 @@ DF %>%
 lambdas, `.` & `.x`:
 https://stackoverflow.com/a/56532176/1112770
 :::
+
+
 
 
 ## References (Extras)
