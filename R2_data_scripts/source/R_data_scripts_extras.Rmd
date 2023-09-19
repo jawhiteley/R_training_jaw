@@ -129,6 +129,36 @@ is.null(DF$Treat)
 is.null(DF_readr$Treat)
 ```
 
+::: notes
+This is not in the main document, because the base read functions were removed.
+I could use built-in data sets instead, but decided it wasn't worth spending time on.
+:::
+
+
+## The `readr` package: writing data
+
++--------------------------+----------------------------------+------------------------+
+| **`readr`**                                                 | **`base R`**           |
++==========================+==================================+========================+
+| `write_csv()`{.r}        | &larr; comma separated values    | `write.csv()`{.r}      |
++--------------------------+----------------------------------+------------------------+
+| `write_csv2()`{.r}       | &larr; allows '`;`' as delimiter | `write.csv2()`{.r}\    |
+|                          | and '`,`' for decimals           | '`,`' for decimals,\   |
+|                          | (depending on locale)            | '`;`' as separator     |
++--------------------------+----------------------------------+------------------------+
+| `write_tsv()`{.r}        | &larr; tab separated values      |                        |
+|                          |                                  |                        |
++--------------------------+----------------------------------+------------------------+
+| `write_delim()`{.r}      | &larr; (generic) files           | `write.table()`{.r}    |
+|                          | with an arbitrary delimiter      |                        |
++--------------------------+----------------------------------+------------------------+
+| `write_excel_csv()`{.r}, | &larr; include a UTF-8           |                        |
+| `write_excel_csv2()`{.r} | Byte order mark, which           |                        |
+|                          | indicates to Excel the csv       |                        |
+|                          | is UTF-8 encoded                 |                        |
++--------------------------+----------------------------------+------------------------+
+
+
 
 
 # File Encoding, Windows, & Microsoft Excel^TM^

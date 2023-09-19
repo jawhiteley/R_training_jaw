@@ -391,10 +391,20 @@ file.exists(CSV_path)
 
 ## Load a csv file using `read_csv()`
 
+::: {.block data-latex="{}\itshape\small"}
+The `readr` package provides functions for reading text data
+in a variety of common formats (csv, tsv, fixed-width, etc.).
+See the "Extras" document and package documentation
+(`help(package = "readr")`{.r}) for details.
+:::
+
 ```r
+library(readr)
 ?read_csv
+
+read_csv(CSV_path)
 ```
-```{r load with read_csv (1st try), results='hide', message=FALSE, warning=TRUE}
+```{r load with read_csv (1st try), echo=FALSE, results='hide', message=FALSE, warning=TRUE}
 library(readr)
 try( read_csv(CSV_path) )
 ```
@@ -950,7 +960,7 @@ utf8_ex <- CSV_latin1 |>
 - If you are running R in Windows, you may notice that 
   some text values (character) look strange:
   
-  "**`r latin1_ex`**" or ""**Qu\\xe9bec**"
+  "**`r latin1_ex`**" or "**Qu\\xe9bec**"
   instead of "Québec"
 
 - There is nothing wrong with the file 
@@ -2434,10 +2444,11 @@ DF_final %>%
 |                          | with an arbitrary delimiter      |                        |
 +--------------------------+----------------------------------+------------------------+
 | `write_excel_csv()`{.r}, | &larr; include a UTF-8           |                        |
-| `write_excel_cs2v()`{.r} | Byte order mark, which           |                        |
+| `write_excel_csv2()`{.r} | Byte order mark, which           |                        |
 |                          | indicates to Excel the csv       |                        |
 |                          | is UTF-8 encoded                 |                        |
 +--------------------------+----------------------------------+------------------------+
+
 
 ## Save our work
 

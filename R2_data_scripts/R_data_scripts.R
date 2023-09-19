@@ -40,7 +40,7 @@ CSV_path <- file.path("data", "data_example.csv")
 file.exists(CSV_path)
 
 
-## ----load with read_csv (1st try), results='hide', message=FALSE, warning=TRUE----
+## ----load with read_csv (1st try), echo=FALSE, results='hide', message=FALSE, warning=TRUE----
 library(readr)
 try( read_csv(CSV_path) )
 
