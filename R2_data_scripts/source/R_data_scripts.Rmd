@@ -1331,7 +1331,7 @@ Feel free to skip this; we'll see it again later for tidyr::fill()
 
 
 
-# Explore With `dplyr`: `select()`{.r} & `filter()`{.r} Parts of a Data Frame
+# Explore Data With `dplyr`: `select()`{.r} & `filter()`{.r} Parts of a Data Frame
 
 ## Columns: `select()`{.r}
 
@@ -1847,7 +1847,7 @@ https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations
 
 
 
-# Clean Some Data With the `stringr` Package
+# Clean Some Data With The `stringr` Package
 
 ## The `stringr` package
 
@@ -1897,7 +1897,7 @@ CSV_comma %>% select(1:3, "675") %>%
 ```
 
 
-## Cleaning some columns in the example data
+## Clean some columns in the example data
 
 - Normalize values of the '`Type`' column:
   - using `if_else()`{.r}
@@ -1971,7 +1971,7 @@ DF_clean3_675 <- DF_clean2_500 %>%
 ```
 
 
-## Clean 'Treatment' column
+## Fill in missing values (with `tidyr`)
 
 - The '`Treatment`' column has some empty values
 
@@ -2533,7 +2533,7 @@ bind_cols(list("..", DF_duprows))
   - similar to SQL joins
   
 - See [`vignette("two-table")`](https://dplyr.tidyverse.org/articles/two-table.html)
-  for more information
+  for more information.
   
 ::: notes
 We don't have time to explore these today.
@@ -2764,7 +2764,8 @@ Cheatsheets:
 On the web:
 
 - [Tidyverse documentation](https://tidyverse.tidyverse.org/)
-- [R for Data Science](https://r4ds.hadley.nz/data-transform.html) (2e)
+- [R for Data Science](https://r4ds.had.co.nz/) 
+  ([2e](https://r4ds.hadley.nz/))
 - [Data Science in a Box](https://datasciencebox.org/) (#dsbox)
 - [An introduction to data cleaning with R](https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf)
 
