@@ -200,6 +200,10 @@ latin1_ex <- DF_win |>
     and so does $\R$ (< [4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html)) when running in Windows.
   - Starting with [v4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html), $\R$ uses "`UTF-8`" as the default encoding on Windows.
 
+::: notes
+[Working with Data and Application Programming Interfaces (CSV)](https://open.canada.ca/en/working-data#toc1a)
+:::
+
 
 ## Read a csv file with a different encoding {.shrink}
 
@@ -370,7 +374,9 @@ read_csv(Data, "data.csv",
 
 # Downloading Data From the Internet
 
-- You can use read.csv & read_csv with urls as file paths:
+## Read data directly from a URL
+
+- You can use `read.csv()`{.r} & `read_csv()`{.r} with URLs as file paths:
 
 ```{r}
 csv_web <- 
@@ -385,16 +391,54 @@ csv_web <-
 
 ```{=html}
 <!--
-- You can use read.csv & read_csv on urls directly!
-  - the same example file, directly from the URL on GitHub
-- downloading data from the internet (to a temp dir)
+- downloading data from the internet to a temp dir
   - the same example file, directly from the URL on GitHub
   - download.file()
-- CANSIM / NDMr / other package?
 -->
 ```
 
 
+## Packages: Canadian sources
+
+Some packages provide convenient ways to download data from online sources.
+
+- [An ecosystem of R packages to access and process Canadian data](https://mountainmath.ca/canssi/#1)
+
+  - [`cansim`](https://mountainmath.github.io/cansim/):
+    download public data 
+    from [Statistics Canada](https://www150.statcan.gc.ca/) ([CODR](https://www150.statcan.gc.ca/n1/en/type/data)).
+
+  - [`cancensus`](https://mountainmath.github.io/cancensus/):
+    "access, retrieve, and work with 
+    [Canadian Census](https://www12.statcan.gc.ca/census-recensement/index-eng.cfm) data and geography".
+    - requires a valid CensusMapper API key
+
+  - [`cmhc`](https://mountainmath.github.io/cmhc/):
+    API wrapper for extracting CMHC data out of the 
+    [CMHC Housing Market Information Portal](https://www.cmhc-schl.gc.ca/hmiportal).
+
+  - [`tongfen`](https://mountainmath.github.io/tongfen/):
+    prepare "data on disparate geographies for comparison by converting them to a common geography" 
+    ("slightly coarser least common denominator geography").
+
+  - See also: [Analyzing Canadian Demographic and Housing Data](https://mountainmath.github.io/canadian_data/)
+
+
+<!--
+## Other sources
+
+- Examples of packages for working with statistics from
+  government sources in the USA:
+  
+  - [`tidycensus`](https://walker-data.com/tidycensus/)
+
+  - [`blsAPI`](https://github.com/mikeasilva/blsAPI), 
+    [`blsR`](https://github.com/groditi/blsR)
+
+::: notes
+I haven't used these yet
+:::
+-->
 
 
 # Reading Data in Other Formats
@@ -754,9 +798,10 @@ https://stackoverflow.com/a/56532176/1112770
 
 
 
+<!--
 ## References (Extras)
 
-CANSIM / CODR data:
+Canadian data (Statistics Canada, CMHC):
 
 - [An ecosystem of R packages to access and process Canadian data](https://mountainmath.ca/canssi/#1)
 - [Analyzing Canadian Demographic and Housing Data](https://mountainmath.github.io/canadian_data/)
@@ -764,7 +809,6 @@ CANSIM / CODR data:
 
 
 
-<!--
 * data masking? (advanced) ?args_data_masking
   * {{ var }} and when to use it?
   - https://dplyr.tidyverse.org/articles/programming.html
