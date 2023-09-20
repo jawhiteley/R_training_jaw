@@ -11,7 +11,7 @@
 
 
 
-<title>Activity: Combine tables with 2-table verbs from ‘dplyr’</title>
+<title>Final Activity: read, clean &amp; combine files, then analyze</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1746,92 +1746,81 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Activity: Combine tables with 2-table verbs
-from ‘dplyr’</h1>
+<h1 class="title toc-ignore">Final Activity: read, clean &amp; combine
+files, then analyze</h1>
 <h3 class="subtitle">A Short Introduction to Working With Data in R</h3>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a>
-Notebook. When you execute code within the notebook, the results appear
-beneath the code.</p>
-<p>Try executing this chunk by clicking the <em>Run</em> button within
-the chunk or by placing your cursor inside it and pressing
-<em>Ctrl+Shift+Enter</em> (<em>Cmd+Shift+Enter</em> on
-mac<em>)</em>.</p>
+<p>Remember:</p>
+<ul>
+<li><p><em>code in an R Notebook uses the file location as the working
+directory.</em></p></li>
+<li><p><em>Output appears in this document, not the
+console.</em></p></li>
+</ul>
+<div id="libraries" class="section level2">
+<h2>Libraries</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudmVyc2lvblxuYGBgXG5gYGAifQ== -->
-<pre class="r"><code>```r
-version</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd/Ctrl+Shift+K* to preview the HTML file).
-
-## Libraries
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeShyZWFkcilcbmxpYnJhcnkoZHBseXIpXG5gYGBcbmBgYCJ9 --&gt;
-
-```r
-```r
-library(readr)
-library(dplyr)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-# Load Data
-
-Add code to the chunk below to read the files from the previous activity (&quot;`activity11_write.R`&quot;).
-
-Code in an R Notebook automatically uses the **file&#39;s location** as the working directory.
-
-*Run it when you are ready or want to test it, then move on to the next section.*
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmlsZS5wYXRoKFwiLi5cIiwgXCJkYXRhXCIsIFwiZmlsZS5jc3ZcIikgICMjIFwiLi5cIiByZWZlcnMgdG8gdGhlICpwYXJlbnQqIGRpcmVjdG9yeS5cbmBgYCJ9 --&gt;
-
-```r
-file.path(&quot;..&quot;, &quot;data&quot;, &quot;file.csv&quot;)  ## &quot;..&quot; refers to the *parent* directory.</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<div id="do-things" class="section level1">
-<h1>Do Things</h1>
-<p>Now combine them back into a single table.</p>
+</div>
+<div id="load" class="section level1">
+<h1>Load</h1>
+<p>Load <em>all</em> the data files in this directory:
+<code>../data/activity</code> (“..” in the path refers to the <em>parent
+directory</em> of where this file is)</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlzdC5maWxlcyggZmlsZS5wYXRoKFwiLi5cIiwgXCJkYXRhXCIsIFwiYWN0aXZpdHlcIikgKVxuYGBgIn0= -->
+<pre class="r"><code>list.files( file.path(&quot;..&quot;, &quot;data&quot;, &quot;activity&quot;) )</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Data are from the “World Health Organization Global Tuberculosis
+Report”, with counts of new cases in each year for a subset of
+countries, by group (method of diagnosis, gender, and age)<br />
+(see <code>?tidyr::who</code> for details).</p>
+</div>
+<div id="clean" class="section level1">
+<h1>Clean</h1>
+<p>Check &amp; clean the files, as appropriate.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Try combining the data.frames in both dimensions (by row and by
-column) to compare the results.</p>
+<div id="process" class="section level2">
+<h2>Process</h2>
+<p>Combine the data into a single data frame with:</p>
+<ul>
+<li>The total number of new TB cases in each year and country</li>
+<li>The country’s population in that year</li>
+<li>The rate of new cases (total cases / population)</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="analyze" class="section level1">
+<h1>Analyze</h1>
+<p>Can you answer these questions with the data?</p>
+<ol style="list-style-type: decimal">
+<li>Which country had the highest all-time rate of new cases?</li>
+<li>In which year was it?</li>
+<li>Which country has had the <em>lowest</em> average rate since 2006
+(including that year)?</li>
+<li>Which country had the highest &amp; lowest <em>growth rate</em> in
+<em>cases</em> since 2006 (including that year)?</li>
+<li>What changed in 2006?</li>
+</ol>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-chunk-end -->
@@ -1839,10 +1828,20 @@ column) to compare the results.</p>
 <p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the
 toolbar or by pressing <em>Ctrl+Alt+I</em> (<em>Cmd+Option+I</em> on
 mac<em>)</em>.</p>
+</div>
+<div id="save" class="section level1">
+<h1>Save</h1>
+<p><em>optional</em>: Save the data in the parent directory
+(<code>data</code>)</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3V0X3BhdGggPC0gZmlsZS5wYXRoKFwiLi5cIiwgXCJkYXRhXCIpXG5gYGAifQ== -->
+<pre class="r"><code>out_path &lt;- file.path(&quot;..&quot;, &quot;data&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQWN0aXZpdHk6IENvbWJpbmUgdGFibGVzIHdpdGggMi10YWJsZSB2ZXJicyBmcm9tICdkcGx5ciciCnN1YnRpdGxlOiAiQSBTaG9ydCBJbnRyb2R1Y3Rpb24gdG8gV29ya2luZyBXaXRoIERhdGEgaW4gUiIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4KClRyeSBleGVjdXRpbmcgdGhpcyBjaHVuayBieSBjbGlja2luZyB0aGUgKlJ1biogYnV0dG9uIHdpdGhpbiB0aGUgY2h1bmsgb3IgYnkgcGxhY2luZyB5b3VyIGN1cnNvciBpbnNpZGUgaXQgYW5kIHByZXNzaW5nICpDdHJsK1NoaWZ0K0VudGVyKiAoKkNtZCtTaGlmdCtFbnRlciogb24gbWFjKikqLgoKYGBge3J9CnZlcnNpb24KYGBgCgpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkNtZC9DdHJsK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuCgojIyBMaWJyYXJpZXMKCmBgYHtyIGxpYnJhcmllc30KbGlicmFyeShyZWFkcikKbGlicmFyeShkcGx5cikKYGBgCgojIExvYWQgRGF0YQoKQWRkIGNvZGUgdG8gdGhlIGNodW5rIGJlbG93IHRvIHJlYWQgdGhlIGZpbGVzIGZyb20gdGhlIHByZXZpb3VzIGFjdGl2aXR5ICgiYGFjdGl2aXR5MTFfd3JpdGUuUmAiKS4KCkNvZGUgaW4gYW4gUiBOb3RlYm9vayBhdXRvbWF0aWNhbGx5IHVzZXMgdGhlICoqZmlsZSdzIGxvY2F0aW9uKiogYXMgdGhlIHdvcmtpbmcgZGlyZWN0b3J5LgoKKlJ1biBpdCB3aGVuIHlvdSBhcmUgcmVhZHkgb3Igd2FudCB0byB0ZXN0IGl0LCB0aGVuIG1vdmUgb24gdG8gdGhlIG5leHQgc2VjdGlvbi4qCgpgYGB7ciBsb2FkIGRhdGF9CmZpbGUucGF0aCgiLi4iLCAiZGF0YSIsICJmaWxlLmNzdiIpICAjIyAiLi4iIHJlZmVycyB0byB0aGUgKnBhcmVudCogZGlyZWN0b3J5LgpgYGAKCiMgRG8gVGhpbmdzCgpOb3cgY29tYmluZSB0aGVtIGJhY2sgaW50byBhIHNpbmdsZSB0YWJsZS4KCmBgYHtyIGNvbWJpbmUgZGF0YX0KCmBgYAoKVHJ5IGNvbWJpbmluZyB0aGUgZGF0YS5mcmFtZXMgaW4gYm90aCBkaW1lbnNpb25zIChieSByb3cgYW5kIGJ5IGNvbHVtbikgdG8gY29tcGFyZSB0aGUgcmVzdWx0cy4KCmBgYHtyfQoKYGBgCgpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ3RybCtBbHQrSSogKCpDbWQrT3B0aW9uK0kqIG9uIG1hYyopKi4K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRmluYWwgQWN0aXZpdHk6IHJlYWQsIGNsZWFuICYgY29tYmluZSBmaWxlcywgdGhlbiBhbmFseXplIgpzdWJ0aXRsZTogIkEgU2hvcnQgSW50cm9kdWN0aW9uIHRvIFdvcmtpbmcgV2l0aCBEYXRhIGluIFIiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClJlbWVtYmVyOgoKLSAgICpjb2RlIGluIGFuIFIgTm90ZWJvb2sgdXNlcyB0aGUgZmlsZSBsb2NhdGlvbiBhcyB0aGUgd29ya2luZyBkaXJlY3RvcnkuKgoKLSAgICpPdXRwdXQgYXBwZWFycyBpbiB0aGlzIGRvY3VtZW50LCBub3QgdGhlIGNvbnNvbGUuKgoKIyMgTGlicmFyaWVzCgpgYGB7ciBsaWJyYXJpZXN9CmxpYnJhcnkodGlkeXZlcnNlKQpgYGAKCiMgTG9hZAoKTG9hZCAqYWxsKiB0aGUgZGF0YSBmaWxlcyBpbiB0aGlzIGRpcmVjdG9yeTogYC4uL2RhdGEvYWN0aXZpdHlgICgiLi4iIGluIHRoZSBwYXRoIHJlZmVycyB0byB0aGUgKnBhcmVudCBkaXJlY3RvcnkqIG9mIHdoZXJlIHRoaXMgZmlsZSBpcykKCmBgYHtyIGxvYWQgZGF0YX0KbGlzdC5maWxlcyggZmlsZS5wYXRoKCIuLiIsICJkYXRhIiwgImFjdGl2aXR5IikgKQpgYGAKCkRhdGEgYXJlIGZyb20gdGhlICJXb3JsZCBIZWFsdGggT3JnYW5pemF0aW9uIEdsb2JhbCBUdWJlcmN1bG9zaXMgUmVwb3J0Iiwgd2l0aCBjb3VudHMgb2YgbmV3IGNhc2VzIGluIGVhY2ggeWVhciBmb3IgYSBzdWJzZXQgb2YgY291bnRyaWVzLCBieSBncm91cCAobWV0aG9kIG9mIGRpYWdub3NpcywgZ2VuZGVyLCBhbmQgYWdlKVwKKHNlZSBgP3RpZHlyOjp3aG9gIGZvciBkZXRhaWxzKS4KCiMgQ2xlYW4KCkNoZWNrICYgY2xlYW4gdGhlIGZpbGVzLCBhcyBhcHByb3ByaWF0ZS4KCmBgYHtyfQoKYGBgCgojIyBQcm9jZXNzCgpDb21iaW5lIHRoZSBkYXRhIGludG8gYSBzaW5nbGUgZGF0YSBmcmFtZSB3aXRoOgoKLSAgIFRoZSB0b3RhbCBudW1iZXIgb2YgbmV3IFRCIGNhc2VzIGluIGVhY2ggeWVhciBhbmQgY291bnRyeQotICAgVGhlIGNvdW50cnkncyBwb3B1bGF0aW9uIGluIHRoYXQgeWVhcgotICAgVGhlIHJhdGUgb2YgbmV3IGNhc2VzICh0b3RhbCBjYXNlcyAvIHBvcHVsYXRpb24pCgpgYGB7cn0KCmBgYAoKIyBBbmFseXplCgpDYW4geW91IGFuc3dlciB0aGVzZSBxdWVzdGlvbnMgd2l0aCB0aGUgZGF0YT8KCjEuICBXaGljaCBjb3VudHJ5IGhhZCB0aGUgaGlnaGVzdCBhbGwtdGltZSByYXRlIG9mIG5ldyBjYXNlcz8KMi4gIEluIHdoaWNoIHllYXIgd2FzIGl0PwozLiAgV2hpY2ggY291bnRyeSBoYXMgaGFkIHRoZSAqbG93ZXN0KiBhdmVyYWdlIHJhdGUgc2luY2UgMjAwNiAoaW5jbHVkaW5nIHRoYXQgeWVhcik/CjQuICBXaGljaCBjb3VudHJ5IGhhZCB0aGUgaGlnaGVzdCAmIGxvd2VzdCAqZ3Jvd3RoIHJhdGUqIGluICpjYXNlcyogc2luY2UgMjAwNiAoaW5jbHVkaW5nIHRoYXQgeWVhcik/CjUuICBXaGF0IGNoYW5nZWQgaW4gMjAwNj8KCmBgYHtyfQoKYGBgCgpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ3RybCtBbHQrSSogKCpDbWQrT3B0aW9uK0kqIG9uIG1hYyopKi4KCiMgU2F2ZQoKKm9wdGlvbmFsKjogU2F2ZSB0aGUgZGF0YSBpbiB0aGUgcGFyZW50IGRpcmVjdG9yeSAoYGRhdGFgKQoKYGBge3J9Cm91dF9wYXRoIDwtIGZpbGUucGF0aCgiLi4iLCAiZGF0YSIpCmBgYAo=</div>
 
 
 
@@ -1889,7 +1888,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("activity12_2tables.Rmd");
+  window.initializeSourceEmbed("activity_final.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

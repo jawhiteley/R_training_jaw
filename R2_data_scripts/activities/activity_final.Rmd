@@ -1,0 +1,72 @@
+---
+title: "Final Activity: read, clean & combine files, then analyze"
+subtitle: "A Short Introduction to Working With Data in R"
+output: html_notebook
+---
+
+Remember:
+
+-   *code in an R Notebook uses the file location as the working directory.*
+
+-   *Output appears in this document, not the console.*
+
+## Libraries
+
+```{r libraries}
+library(tidyverse)
+```
+
+# Load
+
+Load *all* the data files in this directory: `../data/activity` (".." in the path refers to the *parent directory* of where this file is)
+
+```{r load data}
+list.files( file.path("..", "data", "activity") )
+```
+
+Data are from the "World Health Organization Global Tuberculosis Report", with counts of new cases in each year for a subset of countries, by group (method of diagnosis, gender, and age)\
+(see `?tidyr::who` for details).
+
+# Clean
+
+Check & clean the files, as appropriate.
+
+```{r}
+
+```
+
+## Process
+
+Combine the data into a single data frame with:
+
+-   The total number of new TB cases in each year and country
+-   The country's population in that year
+-   The rate of new cases (total cases / population)
+
+```{r}
+
+```
+
+# Analyze
+
+Can you answer these questions with the data?
+
+1.  Which country had the highest all-time rate of new cases?
+2.  In which year was it?
+3.  Which country has had the *lowest* average rate since 2006 (including that year)?
+4.  Which country had the highest & lowest *growth rate* in *cases* since 2006 (including that year)?
+5.  What changed in 2006?
+
+```{r}
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I* (*Cmd+Option+I* on mac*)*.
+
+# Save
+
+*optional*: Save the data in the parent directory (`data`)
+
+```{r}
+out_path <- file.path("..", "data")
+```

@@ -2651,7 +2651,7 @@ We don't have time to explore these today.
   - The country's population in that year
   - The rate of new cases (total cases / population)
 
-- _optional_: Save the data in the parent directory
+- _optional_: Save the data in the `data` directory
 
 
 ## Final **Activity**: Challenges

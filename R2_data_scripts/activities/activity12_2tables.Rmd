@@ -25,10 +25,12 @@ library(dplyr)
 
 Add code to the chunk below to read the files from the previous activity ("`activity11_write.R`").
 
+Code in an R Notebook automatically uses the **file's location** as the working directory.
+
 *Run it when you are ready or want to test it, then move on to the next section.*
 
 ```{r load data}
-
+file.path("..", "data", "file.csv")  ## ".." refers to the *parent* directory.
 ```
 
 # Do Things
