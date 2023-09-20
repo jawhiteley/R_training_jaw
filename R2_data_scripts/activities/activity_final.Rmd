@@ -1,12 +1,12 @@
 ---
 title: "Final Activity: read, clean & combine files, then analyze"
 subtitle: "A Short Introduction to Working With Data in R"
-output: html_notebook
+output: html_document # change to 'html_notebook' to automatically save html with output
 ---
 
 Remember:
 
--   *code in an R Notebook uses the file location as the working directory.*
+-   *code in an R Markdown document uses the file location as the working directory.*
 
 -   *Output appears in this document, not the console.*
 
