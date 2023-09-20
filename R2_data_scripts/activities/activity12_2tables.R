@@ -10,7 +10,7 @@ library(dplyr)
 
 # LOAD data ---------------------------------------------------------------
 
-## Read the files from the previous activity ("R2_activity_save.R").
+## Read the files from the previous activity ("activity11_write.R").
 
 
 # Activity ----------------------------------------------------------------

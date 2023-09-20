@@ -1,0 +1,48 @@
+---
+title: "Activity: Combine tables with 2-table verbs from 'dplyr'"
+subtitle: "A Short Introduction to Working With Data in R"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter* (*Cmd+Shift+Enter* on mac*)*.
+
+```{r}
+version
+```
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd/Ctrl+Shift+K* to preview the HTML file).
+
+## Libraries
+
+```{r libraries}
+library(readr)
+library(dplyr)
+```
+
+# Load Data
+
+Add code to the chunk below to read the files from the previous activity ("`activity11_write.R`").
+
+*Run it when you are ready or want to test it, then move on to the next section.*
+
+```{r load data}
+
+```
+
+# Do Things
+
+Now combine them back into a single table.
+
+```{r combine data}
+
+```
+
+Try combining the data.frames in both dimensions (by row and by column) to compare the results.
+
+```{r}
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I* (*Cmd+Option+I* on mac*)*.
