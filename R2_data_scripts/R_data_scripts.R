@@ -154,7 +154,7 @@ col_spec <- spec(CSV)
 col_spec$cols[["500"]] <- col_double()
 read_csv(CSV_path, skip = 2, col_types = col_spec)
 
-# ?read_csv for more options
+# ?read_csv to see more options
 
 
 ## ----read_csv() all columns as character--------------------------------------

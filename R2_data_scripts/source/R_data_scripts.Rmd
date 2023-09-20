@@ -765,10 +765,10 @@ An $\R$ *script* is a file that stores $\R$ code in *plain text*
 CSV_path <- file.path("data", "data_example.csv")
 file.exists(CSV_path)
 
-DF <- read.csv(CSV_path, skip = 2, encoding = "UTF-8")
+CSV <- read_csv(CSV_path, skip = 2)
 
-colnames(DF)
-plot(DF)
+colnames(CSV)
+plot(CSV)
 ```
 
 - and save it.
@@ -839,10 +839,10 @@ We will not be trying Batch Mode---it is mentioned for information only.
   and continue reading code on the next line
 
 ``` r
-DF <-         # short for "data frame"
-  read.csv(   # read a csv file
+CSV <-         # short for "data frame"
+  read_csv(    # read a csv file
     CSV_path,  # path to file
-    skip = 2  # skip lines at top of file (not data)
+    skip = 2   # skip lines at top of file (not data)
   )
 ```
 
@@ -854,7 +854,7 @@ DF <-         # short for "data frame"
     (useful for debugging).
     - `Shift+CTL+C` (`Shift+CMD+C`) comment a line in RStudio
   <!-- - We'll learn how to stop code from running  -->
-  <!--   based on conditions later. -->
+  <!--   based on conditions later. -- (see Extras) -->
 
 
 ## **Activity 2**: add some commands to your new script
@@ -982,6 +982,10 @@ utf8_ex <- CSV_latin1 |>
     and so does $\R$ (< [4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html)) when running in Windows.
   - Starting with [v4.2.0](https://stat.ethz.ch/pipermail/r-announce/2022/000683.html), $\R$ uses "`UTF-8`" as the default encoding on Windows.
 
+::: notes
+[Working with Data and Application Programming Interfaces (CSV)](https://open.canada.ca/en/working-data#toc1a)
+:::
+
 
 ## Read a csv file with a mismatched encoding
 
@@ -1021,6 +1025,8 @@ _The `readr` package is not affected by the BOM._ :)
 
 ::: notes
 See ?read.csv, ?Encoding, ?file, and other documentation for details.
+See also:
+[Working with Data and Application Programming Interfaces (CSV)](https://open.canada.ca/en/working-data#toc1a)
 :::
 
 
@@ -1107,7 +1113,7 @@ col_spec <- spec(CSV)
 col_spec$cols[["500"]] <- col_double()
 read_csv(CSV_path, skip = 2, col_types = col_spec)
 
-# ?read_csv for more options
+# ?read_csv to see more options
 ```
 
 
@@ -2817,6 +2823,7 @@ Other related tutorials:
 https://posit.co/resources/videos/a-gentle-introduction-to-tidy-statistics-in-r/
 
 CSV files & encoding:
+https://open.canada.ca/en/working-data#toc1a
 https://stackoverflow.com/questions/16838613/cannot-read-unicode-csv-into-r
 https://donnees-data.tpsgc-pwgsc.gc.ca/dd/csv_df-eng.html#multiline
   - Found this in a Google search, but not sure how current or 'official' it is.
