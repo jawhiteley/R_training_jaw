@@ -110,7 +110,7 @@ CSV_latin1
 
 
 ## ----read_csv() with encoding, results='hide', message=FALSE------------------
-read_csv(CSV_path, skip = 2, 
+read_csv("data/data_example_latin1.csv", skip = 2, 
          locale = locale(encoding = "latin1")
 )
 
@@ -161,7 +161,7 @@ read_csv(CSV_path, skip = 2, col_types = col_spec)
 # read all columns as character
 read_csv(CSV_path, skip = 2, 
          col_types = cols(.default = col_character())
-         )
+)
 
 
 ## ----read_csv() na argument, message=FALSE, warning=FALSE---------------------
@@ -259,10 +259,12 @@ DF %>% filter(Treatment == "chilled") %>%
 # specify columns by pattern 
 # (in this case, all numeric columns start with "X")
 DF %>% 
-  select(where(is.character) & starts_with("X")) %>% names()
+  select(where(is.character) & starts_with("X")) %>% 
+  names()
 # specify a range of known columns
 DF %>% 
-  select(where(is.character) & X95:X1000) %>% names()
+  select(where(is.character) & X95:X1000) %>% 
+  names()
 
 
 ## ----Find non-numeric values in character column------------------------------

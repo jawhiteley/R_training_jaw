@@ -217,14 +217,14 @@ bom_readr <- readr::read_csv( file.path(out_path, "data_example_bom.csv") )
 
 
 ################################################################
-### Prepare final activity
+### Prepare FINAL activity
 
 data(who)
 data(population)
 
 countries2 <- c("CA", "US", "GB", "AU", "NZ")
 
-## who data
+## WHO data
 data_activity <- 
   who %>% 
   filter(iso2 %in% countries2) %>% 
@@ -246,6 +246,7 @@ data_activity <-
     country = if_else(iso2 == "CA" & (year %% 4 == 0), "Canäda", country),
   )
 
+
 ## Population data
 data_pop <- population %>% 
   filter(country %in% unique(data_activity$country)) %>% 
@@ -258,8 +259,11 @@ data_pop <- population %>%
 
 
 ##==============================================================
+## Save Output
+
 ## Split & export into separate files
 for (d in countries2) {
+  ## rename, re-arrange, or drop a column (that is all NA) from *one* of the files?
   data_activity %>% 
     filter(iso2 == d) %>% 
     write_csv( file.path(out_path, "activity", paste0("tb_", unique(.$iso3), ".csv")) )
