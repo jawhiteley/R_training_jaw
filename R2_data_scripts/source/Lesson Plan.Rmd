@@ -24,83 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
     -   = **12 topics**
 
-## Outline - OLD
-
-1.  Load data (base)
-
-    1.  Working directory & paths
-
-    2.  encoding
-
-2.  Explore data (base)
-
-    1.  data.frames
-
-3.  Scripts
-
-    1.  load packages
-
-4.  Load: readr, readxl
-
-    1.  *Tidyverse intro*
-
-5.  *Manipulate: dplyr*
-
-6.  select() & filter()
-
-    1.  pipes
-
-7.  mutate() \*\*\*
-
-8.  stringr: clean example data
-
-9.  Grouped data: group_by() & summarize()
-
-10. Reshape: tidyr
-
-    1.  tidy data
-
-    2.  unite() on example data
-
-    3.  missing values?
-
-    4.  **pivot()**
-
-11. Save data
-
-12. Code style
-
-    1.  Notebooks?
-
-### missing
-
--   comparing NAs
-
--   Programming:
-
-    -   ~~functions (introduce just before ad hoc functions?)~~
-
-        -   variable scope
-
-        -   custom messages, warnings, errors?
-
-        -   **ad hoc functions**
-
-    -   loops: for [short intro for capstone exercise?]
-
--   2-table verbs (join) --- NO TIME!
-
-    -   Combine 2 tables: at least bind_rows, bind_cols
-
-    -   No time for join
-
--   factors
-
--   sort: arrange()
-
-    -   leave to explore on their own
-
-## Outline - NEW
+## Outline
 
 0.  Intro: Tidyverse overview
 1.  Load data: readr
@@ -146,7 +70,7 @@ knitr::opts_chunk$set(echo = TRUE)
     1.  ID character columns where numeric expected
     2.  Locate non-numeric values in character column
     3.  unusual numeric values
-    4.  ***Activity ?****[can be included in other activities, too]*
+    4.  ***Activity ?**[can be included in other activities, too]*
     5.  ~~Find issues systematically~~ (move to Extras)
         1.  ~~for loops? [need scripts]~~
             1.  *makes less sense if using read_csv() version: only 1 character column*
@@ -203,3 +127,76 @@ knitr::opts_chunk$set(echo = TRUE)
     4.  Optional: work in pairs to separate tasks
 3.  Review
     0.  other packages for other formats & data types
+
+### Missing Topics
+
+-   comparing NAs
+
+-   Programming:
+
+    -   ~~functions (introduce just before ad hoc functions?)~~
+
+        -   variable scope
+
+        -   custom messages, warnings, errors?
+
+        -   **ad hoc functions**
+
+    -   loops: for [short intro for capstone exercise?]
+
+    -   Could build this into visualization: might be more natural, more time for it?
+
+-   2-table verbs (join) --- NO TIME!
+
+    -   Combine 2 tables: at least bind_rows, bind_cols
+
+    -   No time for join
+
+-   factors
+
+-   sort: arrange()
+
+    -   leave to explore on their own
+
+# Notes from previous events of this workshop
+
+-   Some had real difficulty downloading, finding files & following along with the script file at first.
+
+    -   Assistants to help people 1-on-1?
+
+    -   Spend *more* time ensuring people are setup with all the files locally at the beginning, or send more instructions of what to do.
+
+-   Skip file path format (move to Extras): simplify people's lives and stick to forward slash or file.path()?
+
+-   OR change approach to not use local files and read all files from remote URL?
+
+    -   Might not work if in-person & offline ...
+    -   Avoids struggles with relative paths.
+
+-   Too fast, too much.
+
+    -   Refocus again, reduce ambitious goals.
+    -   write() functions sooner to get them out of the way?
+    -   Have dedicated section on cleaning the example file (so sections stand alone more?)
+
+-   1 hr: only at Activity 2?
+
+-   2 hrs: finished Activity 5
+
+-   2.5 hrs: Activity 7 (mutate + conditions)
+
+-   Some still needing time to understand how to apply functions.
+
+-   Many asked for example solutions for the activities.
+
+-   Skipped stringr activity
+
+-   Last activity was the one for summarize()
+
+-   No time to finish cleaning example data
+
+-   Quick overview of Tidy
+
+-   Skipped 2-table verbs & final activity entirely
+
+-   Ended 5-6 minutes over time, mostly reviewing Pop Quiz.
